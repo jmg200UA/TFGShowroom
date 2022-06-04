@@ -4,24 +4,32 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
 import { DashboardUsuariosComponent } from './dashboardusuarios/dashboardusuarios.component';
-import { ChartsModule } from 'ng2-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ToastrModule } from 'ngx-toastr';
 import { NuevousuarioComponent } from './nuevousuario/nuevousuario.component';
+import { ComponentsModule } from '../../components/components.module';
+import { AdminComponent } from './admin.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    ChartsModule,
     NgbModule,
-    ToastrModule.forRoot()
+    ReactiveFormsModule,
+    RouterModule,
+    ComponentsModule
   ],
   declarations: [
     UserProfileComponent,
     DashboardUsuariosComponent,
     NuevousuarioComponent,
-  ]
+    AdminComponent
+  ],
+  // exports:[
+  //   UserProfileComponent,
+  //   DashboardUsuariosComponent,
+  //   NuevousuarioComponent,
+  //   AdminComponent
+  // ]
 })
 
-export class AdminLayoutModule {}
+export class AdminModule {}

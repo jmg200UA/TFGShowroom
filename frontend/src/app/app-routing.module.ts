@@ -6,7 +6,7 @@ import { PagesRoutingModule } from './pages/pages.routing';
 
 
 const routes: Routes = [
-  { path: '**', redirectTo: 'landing'}
+  { path: '**', redirectTo: 'admin/dashboard'}
 ];
 
 @NgModule({

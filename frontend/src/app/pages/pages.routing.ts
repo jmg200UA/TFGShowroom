@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { DashboardUsuariosComponent } from './admin/dashboardusuarios/dashboardusuarios.component';
 import { AdminComponent } from './admin/admin.component';
+import { NuevousuarioComponent } from './admin/nuevousuario/nuevousuario.component';
 
 
 
@@ -52,14 +53,19 @@ const routes: Routes = [
   //   { path: '**', redirectTo: 'dashboard'}
   // ]},
 
+  //PATHS ADMIN
+
   { path: 'admin', component: AdminComponent,
   children:[
     { path: 'dashboard', component: DashboardUsuariosComponent},
     { path: 'perfil', component: UserProfileComponent},
+    { path: 'nuevousu', component: NuevousuarioComponent},
+
+    { path: '**', redirectTo: 'admin/dashboard'}
   ]},
 
-
   { path: '**', redirectTo: 'admin/dashboard'}
+
 ];
 
 @NgModule({

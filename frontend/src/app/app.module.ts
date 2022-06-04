@@ -12,6 +12,7 @@ import { ComponentsModule } from './components/components.module';
 import { AppComponent } from './app.component';
 
 import { AdminComponent } from './pages/admin/admin.component';
+import { PagesModule } from './pages/pages.module';
 
 @NgModule({
   imports: [
@@ -22,11 +23,11 @@ import { AdminComponent } from './pages/admin/admin.component';
     RouterModule,
     AppRoutingModule,
     NgbModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    PagesModule
   ],
   declarations: [
     AppComponent,
-    AdminComponent
 
   ],
   providers: [],
