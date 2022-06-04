@@ -7,6 +7,7 @@ import { DashboardUsuariosComponent } from './dashboardusuarios/dashboardusuario
 import { ChartsModule } from 'ng2-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
+import { NuevousuarioComponent } from './nuevousuario/nuevousuario.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { ToastrModule } from 'ngx-toastr';
   declarations: [
     UserProfileComponent,
     DashboardUsuariosComponent,
+    NuevousuarioComponent,
   ]
 })
 
