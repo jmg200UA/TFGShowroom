@@ -1,11 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 const UsuarioSchema = Schema({
-    nombre: {
-        type: String,
-        require: true
-    },
-    apellidos: {
+    nombre_apellidos: {
         type: String,
         require: true
     },
@@ -30,10 +26,6 @@ const UsuarioSchema = Schema({
         type: Date,
         default: Date.now
     },
-    activo: {
-        type: Boolean,
-        default: true
-    }
 }, { collection: 'usuarios' });
 
 UsuarioSchema.method('toJSON', function() {
