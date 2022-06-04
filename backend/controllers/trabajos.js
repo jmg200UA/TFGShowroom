@@ -3,7 +3,7 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs');
 
 const Trabajo = require('../models/trabajos');
-const Usuario = require('../models/usuario');
+const Usuario = require('../models/usuarios');
 
 /*
 get / 
@@ -179,4 +179,4 @@ const borrarTrabajo = async(req, res = response) => {
 }
 
 
-module.exports = { obtenerUsuarios, crearUsuario, actualizarUsuario, borrarUsuario }
+module.exports = { obtenerTrabajos, crearTrabajo, actualizarTrabajo, borrarTrabajo }

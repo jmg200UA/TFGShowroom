@@ -39,7 +39,7 @@ const UsuarioSchema = Schema({
     multimedia: [{
         type: String,
     }],
-}, { collection: 'usuarios' });
+}, { collection: 'trabajos' });
 
 UsuarioSchema.method('toJSON', function() {
     const { __v, _id, password, ...object } = this.toObject();
@@ -48,4 +48,4 @@ UsuarioSchema.method('toJSON', function() {
     return object;
 })
 
-module.exports = model('Usuario', UsuarioSchema);
+module.exports = model('Trabajo', UsuarioSchema);
