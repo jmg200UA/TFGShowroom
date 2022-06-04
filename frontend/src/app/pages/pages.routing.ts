@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 //import { AuthGuard } from '../guards/auth.guard';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
-import { TableListComponent } from '../table-list/table-list.component';
+import { DashboardUsuariosComponent } from './admin/dashboardusuarios/dashboardusuarios.component';
 import { AdminComponent } from './admin/admin.component';
 
 
@@ -54,12 +54,12 @@ const routes: Routes = [
 
   { path: 'admin', component: AdminComponent,
   children:[
-    { path: 'dashboard', component: TableListComponent},
+    { path: 'dashboard', component: DashboardUsuariosComponent},
     { path: 'perfil', component: UserProfileComponent},
   ]},
 
 
-  { path: '**', redirectTo: 'admin'}
+  { path: '**', redirectTo: 'dashboard'}
 ];
 
 @NgModule({
