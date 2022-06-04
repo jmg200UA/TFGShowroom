@@ -3,12 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 // import { AuthRoutingModule } from './auth/auth.routing';
 import { PagesRoutingModule } from './pages/pages.routing';
-import { AdminComponent } from './pages/admin/admin.component';
 
 
 const routes: Routes = [
-  { path: 'admin',   component: AdminComponent },
-  { path: '**', redirectTo: 'admin'}
+  { path: '**', redirectTo: 'landing'}
 ];
 
 @NgModule({
