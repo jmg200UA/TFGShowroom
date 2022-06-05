@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 //import { AuthGuard } from '../guards/auth.guard';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { DashboardUsuariosComponent } from './admin/dashboardusuarios/dashboardusuarios.component';
+import { DashboardTrabajosComponent } from './admin/dashboardtrabajos/dashboardtrabajos.component';
 import { AdminComponent } from './admin/admin.component';
 import { NuevousuarioComponent } from './admin/nuevousuario/nuevousuario.component';
 
@@ -58,6 +59,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent,
   children:[
     { path: 'dashboard', component: DashboardUsuariosComponent},
+    { path: 'trabajos', component: DashboardTrabajosComponent},
     { path: 'perfil', component: UserProfileComponent},
     { path: 'nuevousu', component: NuevousuarioComponent},
 

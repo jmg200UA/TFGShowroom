@@ -4,7 +4,7 @@
 <div class="main-content">
     <div class="row">
         <div class="col-md-10"></div>
-        <div class="col-md-2 float-right"><button class="btn btn-primary btn-block float-right" routerLink="/admin/nuevousu">Nuevo usuario</button></div>
+        <div class="col-md-2 float-right"><button class="btn btn-primary btn-block float-right" routerLink="/admin/nuevousu">Nuevo trabajo</button></div>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -22,23 +22,27 @@
                         <table class="table">
                             <thead class=" text-primary">
                                 <th>
-                                    Nombre
+                                    Autor
                                 </th>
                                 <th>
-                                    Email
+                                    Título
                                 </th>
                                 <th>
-                                    Rol
+                                    Director
+                                </th>
+                                <th>
+                                    Tipo
                                 </th>
                                 <th class="text-right">
                                     Acción
                                 </th>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let usuario of listaUsuarios">
-                                    <td class="micursor">{{usuario.nombre_apellidos}}</td>
-                                    <td>{{usuario.email}}</td>
-                                    <td>{{usuario.rol}}</td>
+                                <tr *ngFor="let trabajo of listaTrabajos">
+                                    <td>{{trabajo.autor.nombre_apellidos}}</td>
+                                    <td>{{trabajo.titulo}}</td>
+                                    <td>{{trabajo.director}}</td>
+                                    <td>{{trabajo.tipo}}</td>
                                     <td class="text-right"><i class="fa fa-trash text-danger fa-lg micursor"></i> </td>
                                 </tr>
                             </tbody>

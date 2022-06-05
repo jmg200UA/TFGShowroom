@@ -21,7 +21,7 @@ app.use(fileUpload({
     createParentPath: true,
 }));
 
-//app.use('/api/login', require('./routes/auth'));
+app.use('/api/login', require('./routes/auth'));
 app.use('/api/usuarios', require('./routes/usuarios'));
 app.use('/api/trabajos', require('./routes/trabajos'));
 

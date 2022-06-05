@@ -28,7 +28,7 @@ const obtenerTrabajos = async(req, res) => {
         if (id) {
 
             [trabajos, total] = await Promise.all([
-                Trabajo.findById(id),
+                Trabajo.findById(id).populate('autor'),
                 Trabajo.countDocuments()
             ]);
 
@@ -36,7 +36,7 @@ const obtenerTrabajos = async(req, res) => {
         // Si no ha llegado ID, hacemos el get / paginado
         else {
             [trabajos, total] = await Promise.all([
-                Trabajo.find({}).skip(desde).limit(registropp),
+                Trabajo.find({}).skip(desde).limit(registropp).populate('autor'),
                 Trabajo.countDocuments()
             ]);
         }

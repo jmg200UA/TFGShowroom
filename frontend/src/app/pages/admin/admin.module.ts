@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NuevousuarioComponent } from './nuevousuario/nuevousuario.component';
 import { ComponentsModule } from '../../components/components.module';
 import { AdminComponent } from './admin.component';
+import { DashboardTrabajosComponent } from './dashboardtrabajos/dashboardtrabajos.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { AdminComponent } from './admin.component';
     UserProfileComponent,
     DashboardUsuariosComponent,
     NuevousuarioComponent,
-    AdminComponent
+    AdminComponent,
+    DashboardTrabajosComponent
   ],
   // exports:[
   //   UserProfileComponent,

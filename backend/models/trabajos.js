@@ -7,7 +7,8 @@ const UsuarioSchema = Schema({
     },
     autor: {
         type: Schema.Types.ObjectId,
-        ref: 'Usuario'
+        ref: 'Usuario',
+        require: true
     },
     resumen: {
         type: String,
@@ -33,12 +34,15 @@ const UsuarioSchema = Schema({
         require: true
     },
     valoracion: {
-        type: Number,
-        default: true
+        type: Number
     },
     multimedia: [{
         type: String,
     }],
+    tipo: { //comprobar en el controllers si es TFG o TFM
+        type: String,
+        require: true
+    }
 }, { collection: 'trabajos' });
 
 UsuarioSchema.method('toJSON', function() {

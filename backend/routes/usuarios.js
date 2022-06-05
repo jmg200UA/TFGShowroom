@@ -21,12 +21,9 @@ router.get('/', [
 
 router.post('/', [
     validarJWT,
-    check('nombre', 'El argumento nombre es obligatorio').not().isEmpty().trim(),
-    check('apellidos', 'El argumento apellidos es obligatorio').not().isEmpty().trim(),
+    check('nombre_apellidos', 'El argumento nombre es obligatorio').not().isEmpty().trim(),
     check('email', 'El argumento email debe ser un email').isEmail(),
     check('password', 'El argumento password es obligatorio').not().isEmpty(),
-    // campos que son opcionales que vengan pero que si vienen queremos validar el tipo
-    check('activo', 'El estado activo debe ser true/false').optional().isBoolean(),
     validarCampos,
     validarRol,
 ], crearUsuario);
