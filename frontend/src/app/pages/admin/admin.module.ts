@@ -9,6 +9,7 @@ import { NuevousuarioComponent } from './nuevousuario/nuevousuario.component';
 import { ComponentsModule } from '../../components/components.module';
 import { AdminComponent } from './admin.component';
 import { DashboardTrabajosComponent } from './dashboardtrabajos/dashboardtrabajos.component';
+import { NuevotrabajoComponent } from './nuevotrabajo/nuevotrabajo.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { DashboardTrabajosComponent } from './dashboardtrabajos/dashboardtrabajo
     DashboardUsuariosComponent,
     NuevousuarioComponent,
     AdminComponent,
-    DashboardTrabajosComponent
+    DashboardTrabajosComponent,
+    NuevotrabajoComponent
   ],
   // exports:[
   //   UserProfileComponent,

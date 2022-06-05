@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { UsuarioService } from '../../../services/usuario.service';
+import { TrabajosService } from '../../../services/trabajos.service';
 
 @Component({
-  selector: 'nuevousuario',
-  templateUrl: './nuevousuario.component.html',
-  styleUrls: ['./nuevousuario.component.css']
+  selector: 'nuevotrabajo',
+  templateUrl: './nuevotrabajo.component.html',
+  styleUrls: ['./nuevotrabajo.component.css']
 })
-export class NuevousuarioComponent implements OnInit {
+export class NuevotrabajoComponent implements OnInit {
 
 
   private formSubmited = false;
@@ -17,43 +18,42 @@ export class NuevousuarioComponent implements OnInit {
   public showOKP: boolean = false;
 
   public datosForm = this.fb.group({
-    uid: [{value: 'nuevo', disabled: true}, Validators.required],
-    email: [ '', [Validators.required, Validators.email] ],
-    nombre_apellidos: ['', Validators.required ],
-    password: ['', Validators.required ],
-    rol: ['ROL_ALUMNO', Validators.required ],
+    autor: ['', Validators.required ], // hacer peticion a la BD para sacar en un desplegable todos los usuarios con ROL_ALUMNO
+    titulo: ['', Validators.required ],
+    director: ['', Validators.required ],
+    tipo: ['', Validators.required ],
   });
 
-
-  constructor( private fb: FormBuilder,
-               private route: ActivatedRoute,
-               private router: Router,
-               private UsuarioService: UsuarioService) { }
+  constructor(private fb: FormBuilder,
+              private route: ActivatedRoute,
+              private router: Router,
+              private TrabajosService: TrabajosService) { }
 
   ngOnInit(): void {
   }
 
+
+
   cancelar(): void {
     // Si estamos creando uno nuevo, vamos a la lista
-      this.router.navigateByUrl('/admin/dashboard');
+      this.router.navigateByUrl('/admin/trabajos');
   }
-
 
   enviar(): void {
     this.formSubmited = true;
     if (this.datosForm.invalid) { return; }
 
-      this.UsuarioService.nuevoUsuario( this.datosForm.value )
+      this.TrabajosService.nuevoTrabajo( this.datosForm.value )
         .subscribe( res => {
           this.datosForm.markAsPristine();
 
           Swal.fire({
             icon: 'success',
-            title: 'Usuario creado correctamente',
+            title: 'Trabajo creado correctamente',
             showConfirmButton: false,
             timer: 2000
           })
-          this.router.navigateByUrl('/admin/dashboard');
+          this.router.navigateByUrl('/admin/trabajos');
 
         }, (err) => {
           const errtext = err.error.msg || 'No se pudo completar la acción, vuelva a intentarlo.';
@@ -69,6 +69,3 @@ export class NuevousuarioComponent implements OnInit {
   }
 
 }
-
-
-

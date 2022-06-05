@@ -6,6 +6,7 @@ import { DashboardUsuariosComponent } from './admin/dashboardusuarios/dashboardu
 import { DashboardTrabajosComponent } from './admin/dashboardtrabajos/dashboardtrabajos.component';
 import { AdminComponent } from './admin/admin.component';
 import { NuevousuarioComponent } from './admin/nuevousuario/nuevousuario.component';
+import { NuevotrabajoComponent } from './admin/nuevotrabajo/nuevotrabajo.component';
 
 
 
@@ -62,6 +63,7 @@ const routes: Routes = [
     { path: 'trabajos', component: DashboardTrabajosComponent},
     { path: 'perfil', component: UserProfileComponent},
     { path: 'nuevousu', component: NuevousuarioComponent},
+    { path: 'nuevotrabajo', component: NuevotrabajoComponent},
 
     { path: '**', redirectTo: 'admin/dashboard'}
   ]},
