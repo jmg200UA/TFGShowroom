@@ -1,3 +1,5 @@
+/* HEADER */
+
 @import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
 body {
     background-color: #eee;
@@ -26,7 +28,8 @@ body {
     width: 100%;
     position: absolute;
     height: 100%;
-    background-color: #000;
+    /* background-color: #000; */
+    background-color: rgba(181, 68, 226, 0.62);
     clip-path: polygon(81% 0, 100% 0, 100% 50%, 100% 100%, 71% 100%);
     transition: 1s all;
 }
@@ -47,10 +50,14 @@ body {
 }
 
 .navbar-red {
-    background-color: red;
+    /* background-color: red; */
+    background-color: rgba(26, 23, 196, 0.62);
     color: #fff;
 }
 
 .all-show {
     z-index: 10;
 }
+
+
+/*  Carrousel */
