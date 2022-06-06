@@ -7,6 +7,7 @@ import { DashboardTrabajosComponent } from './admin/dashboardtrabajos/dashboardt
 import { AdminComponent } from './admin/admin.component';
 import { NuevousuarioComponent } from './admin/nuevousuario/nuevousuario.component';
 import { NuevotrabajoComponent } from './admin/nuevotrabajo/nuevotrabajo.component';
+import { LandingComponent } from './landing/landing.component';
 
 
 
@@ -67,6 +68,9 @@ const routes: Routes = [
 
     { path: '**', redirectTo: 'admin/dashboard'}
   ]},
+
+  //PATHS LANDING
+  { path: 'landing', component: LandingComponent,},
 
   { path: '**', redirectTo: 'admin/dashboard'}
 
