@@ -43,7 +43,7 @@
                                     <td>{{trabajo.titulo}}</td>
                                     <td>{{trabajo.director}}</td>
                                     <td>{{trabajo.tipo}}</td>
-                                    <td class="text-right"><i class="fa fa-trash text-danger fa-lg micursor"></i> </td>
+                                    <td class="text-right"><i class="fa fa-trash text-danger fa-lg micursor" (click)="eliminarTrabajo(trabajo.uid, trabajo.titulo)"></i></td>
                                 </tr>
                             </tbody>
                         </table>
