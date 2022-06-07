@@ -13,11 +13,12 @@ body {
 }
 
 .navbar-toggler {
-    padding: .20rem .50rem;
+    /* padding: .20rem .50rem;
     font-size: 1.25rem;
     line-height: 1;
+    border: 1px solid white;*/
     background-color: transparent;
-    border: 1px solid white;
+    border: none;
 }
 
 .nav-link {
@@ -57,6 +58,12 @@ body {
 
 .all-show {
     z-index: 10;
+}
+
+.navbar-toggler-icon {
+    /* color: #eee; */
+    border: none;
+    background-color: transparent;
 }
 
 
