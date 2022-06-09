@@ -22,7 +22,7 @@ const TitulacionSchema = Schema({
     }
 }, { collection: 'titulaciones' });
 
-UsuarioSchema.method('toJSON', function() {
+TitulacionSchema.method('toJSON', function() {
     const { __v, _id, password, ...object } = this.toObject();
 
     object.uid = _id;

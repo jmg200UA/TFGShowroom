@@ -40,7 +40,7 @@ const TrabajoSchema = Schema({
     },
 }, { collection: 'trabajos' });
 
-UsuarioSchema.method('toJSON', function() {
+TrabajoSchema.method('toJSON', function() {
     const { __v, _id, password, ...object } = this.toObject();
 
     object.uid = _id;

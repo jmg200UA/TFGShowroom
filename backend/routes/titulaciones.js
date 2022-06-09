@@ -3,7 +3,7 @@ Ruta base: /api/titulaciones
 */
 
 const { Router } = require('express');
-const { obtenerTitulaciones, crearTitulacion, actualizarTitulacion, borrarTitulacion } = require('../controllers/trabajos');
+const { obtenerTitulaciones, crearTitulacion, actualizarTitulacion, borrarTitulacion } = require('../controllers/titulaciones');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middleware/validar-campos');
 const { validarRol } = require('../middleware/validar-rol');
