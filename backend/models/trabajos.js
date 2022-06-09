@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const UsuarioSchema = Schema({
+const TrabajoSchema = Schema({
     titulo: {
         type: String,
         require: true
@@ -18,12 +18,7 @@ const UsuarioSchema = Schema({
         type: String,
     },
     area: { // area de conocimiento
-        type: String,
-        require: true
-    },
-    carrera: {
-        type: String,
-        require: true
+        type: String, // comprobar por middleware segun la carrera
     },
     alta: {
         type: Date,
@@ -39,10 +34,10 @@ const UsuarioSchema = Schema({
     multimedia: [{
         type: String,
     }],
-    tipo: { //comprobar en el controllers si es TFG o TFM
+    titulacion: {
         type: String,
         require: true
-    }
+    },
 }, { collection: 'trabajos' });
 
 UsuarioSchema.method('toJSON', function() {
@@ -52,4 +47,4 @@ UsuarioSchema.method('toJSON', function() {
     return object;
 })
 
-module.exports = model('Trabajo', UsuarioSchema);
+module.exports = model('Trabajo', TrabajoSchema);

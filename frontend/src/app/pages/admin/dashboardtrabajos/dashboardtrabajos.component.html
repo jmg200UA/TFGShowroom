@@ -28,10 +28,7 @@
                                     Título
                                 </th>
                                 <th>
-                                    Director
-                                </th>
-                                <th>
-                                    Tipo
+                                    Titulación
                                 </th>
                                 <th class="text-right">
                                     Acción
@@ -41,8 +38,7 @@
                                 <tr *ngFor="let trabajo of listaTrabajos">
                                     <td>{{trabajo.autor.nombre_apellidos}}</td>
                                     <td>{{trabajo.titulo}}</td>
-                                    <td>{{trabajo.director}}</td>
-                                    <td>{{trabajo.tipo}}</td>
+                                    <td>{{trabajo.titulacion}}</td>
                                     <td class="text-right"><i class="fa fa-trash text-danger fa-lg micursor" (click)="eliminarTrabajo(trabajo.uid, trabajo.titulo)"></i></td>
                                 </tr>
                             </tbody>

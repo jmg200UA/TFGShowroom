@@ -20,8 +20,7 @@ export class NuevotrabajoComponent implements OnInit {
   public datosForm = this.fb.group({
     autor: ['', Validators.required ], // hacer peticion a la BD para sacar en un desplegable todos los usuarios con ROL_ALUMNO
     titulo: ['', Validators.required ],
-    director: ['', Validators.required ],
-    tipo: ['', Validators.required ],
+    titulacion: ['', Validators.required ],
   });
 
   constructor(private fb: FormBuilder,

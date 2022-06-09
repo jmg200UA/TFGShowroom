@@ -17,7 +17,6 @@ export class NuevousuarioComponent implements OnInit {
   public showOKP: boolean = false;
 
   public datosForm = this.fb.group({
-    uid: [{value: 'nuevo', disabled: true}, Validators.required],
     email: [ '', [Validators.required, Validators.email] ],
     nombre_apellidos: ['', Validators.required ],
     password: ['', Validators.required ],
