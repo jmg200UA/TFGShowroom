@@ -5,11 +5,11 @@ import { Trabajo } from '../../../models/trabajo.model';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'dashboardtrabajos',
-  templateUrl: './dashboardtrabajos.component.html',
-  styleUrls: ['./dashboardtrabajos.component.css']
+  selector: 'gestiontrabajos',
+  templateUrl: './gestiontrabajos.component.html',
+  styleUrls: ['./gestiontrabajos.component.css']
 })
-export class DashboardTrabajosComponent implements OnInit {
+export class GestionTrabajosComponent implements OnInit {
 
   public loading = true;
 

@@ -5,11 +5,11 @@ import { Usuario } from '../../../models/usuario.model';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-dashboardusuarios',
-  templateUrl: './dashboardusuarios.component.html',
-  styleUrls: ['./dashboardusuarios.component.css']
+  selector: 'app-gestionusuarios',
+  templateUrl: './gestionusuarios.component.html',
+  styleUrls: ['./gestionusuarios.component.css']
 })
-export class DashboardUsuariosComponent implements OnInit {
+export class GestionUsuariosComponent implements OnInit {
 
   public loading = true;
 

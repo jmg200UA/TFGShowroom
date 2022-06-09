@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 //import { AuthGuard } from '../guards/auth.guard';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
-import { DashboardUsuariosComponent } from './admin/dashboardusuarios/dashboardusuarios.component';
-import { DashboardTrabajosComponent } from './admin/dashboardtrabajos/dashboardtrabajos.component';
+import { GestionUsuariosComponent } from './admin/gestionusuarios/gestionusuarios.component';
+import { GestionTrabajosComponent } from './admin/gestiontrabajos/gestiontrabajos.component';
 import { AdminComponent } from './admin/admin.component';
 import { NuevousuarioComponent } from './admin/nuevousuario/nuevousuario.component';
 import { NuevotrabajoComponent } from './admin/nuevotrabajo/nuevotrabajo.component';
@@ -60,8 +60,8 @@ const routes: Routes = [
 
   { path: 'admin', component: AdminComponent,
   children:[
-    { path: 'dashboard', component: DashboardUsuariosComponent},
-    { path: 'trabajos', component: DashboardTrabajosComponent},
+    { path: 'dashboard', component: GestionUsuariosComponent},
+    { path: 'trabajos', component: GestionTrabajosComponent},
     { path: 'perfil', component: UserProfileComponent},
     { path: 'nuevousu', component: NuevousuarioComponent},
     { path: 'nuevotrabajo', component: NuevotrabajoComponent},
