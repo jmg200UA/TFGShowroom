@@ -25,6 +25,7 @@ app.use('/api/login', require('./routes/auth'));
 app.use('/api/usuarios', require('./routes/usuarios'));
 app.use('/api/trabajos', require('./routes/trabajos'));
 app.use('/api/titulaciones', require('./routes/titulaciones'));
+app.use('/api/upload', require('./routes/uploads'));
 
 
 // Abrir la aplicación en el puerto 3000

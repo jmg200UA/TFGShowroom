@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require("uuid");
 const { actualizarBD } = require("../helpers/actualizarBD");
 const fs = require("fs");
 
-const subirArchivo = async(req, res = repsonse) => {
+const subirArchivo = async(req, res = response) => {
     if (!req.files || Object.keys(req.files).length === 0) {
         return res.status(400).json({
             ok: false,
@@ -77,6 +77,8 @@ const subirArchivo = async(req, res = repsonse) => {
     const path = `${process.env.PATHUPLOAD}/${tipo}`;
     const nombreArchivo = `${uuidv4()}.${extension}`;
     const patharchivo = `${path}/${nombreArchivo}`;
+
+    console.log(path, nombreArchivo, patharchivo);
 
     archivo.mv(patharchivo, (err) => {
         if (err) {

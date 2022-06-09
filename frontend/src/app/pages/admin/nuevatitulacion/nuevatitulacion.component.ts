@@ -48,8 +48,9 @@ export class NuevatitulacionComponent implements OnInit {
         .subscribe( res => {
           console.log("Titulacion creada: ", res['titulacion']);
           if (this.foto ) {
-            this.TitulacionService.subirFoto( res['titulacion'], this.foto)
+            this.TitulacionService.subirFoto( res['titulacion'].uid, this.foto)
             .subscribe( res => {
+              console.log("Respuesta a la subida de la foto: ", res);
             }, (err) => {
               const errtext = err.error.msg || 'No se pudo cargar la imagen';
               Swal.fire({icon: 'error', title: 'Oops...', text: errtext});
