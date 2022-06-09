@@ -40,6 +40,22 @@ export class TitulacionService {
     return this.http.delete(`${environment.base_url}/titulaciones/${uid}` , this.cabeceras);
   }
 
+  subirFoto( uid: string, foto: File) {
+    const url = `${environment.base_url}/upload/titulacionimg/${uid}`;
+    const datos: FormData = new FormData();
+    datos.append('archivo', foto, foto.name);
+    return this.http.post(`${environment.base_url}/upload/titulacionimg/${uid}`, datos, this.cabeceras);
+  }
+
+  crearImagenUrl( imagen: string) {
+
+    const token = localStorage.getItem('token') || '';
+    if (!imagen) {
+      return `${environment.base_url}/upload/titulacionimg/no-imagen.jpg?token=${token}`;
+    }
+    return `${environment.base_url}/upload/titulacionimg/${imagen}?token=${token}`;
+  }
+
   get cabeceras() {
     return {
       headers: {

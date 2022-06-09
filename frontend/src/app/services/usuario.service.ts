@@ -115,14 +115,14 @@ export class UsuarioService {
     this.usuario.email = email;
   }
 
-  // crearImagenUrl( imagen: string) {
+  crearImagenUrl( imagen: string) {
 
-  //   const token = localStorage.getItem('token') || '';
-  //   if (!imagen) {
-  //     return `${environment.base_url}/upload/fotoperfil/no-imagen.jpg?token=${token}`;
-  //   }
-  //   return `${environment.base_url}/upload/fotoperfil/${imagen}?token=${token}`;
-  // }
+    const token = localStorage.getItem('token') || '';
+    if (!imagen) {
+      return `${environment.base_url}/upload/fotoperfil/no-imagen.jpg?token=${token}`;
+    }
+    return `${environment.base_url}/upload/fotoperfil/${imagen}?token=${token}`;
+  }
 
 
   get cabeceras() {

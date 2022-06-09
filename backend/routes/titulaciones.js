@@ -24,12 +24,10 @@ router.post('/', [
     validarJWT,
     check('nombre', 'El argumento nombre es obligatorio').not().isEmpty().trim(),
     check('resumen', 'El argumento resumen es obligatorio').not().isEmpty().trim(),
-    check('imagen', 'El argumento imagen debe ser un email').isEmail(),
     check('area', 'El argumento area es obligatorio').not().isEmpty(),
-    check('tipo', 'El argumento tipo es obligatorio').not().isEmpty(),
     validarCampos,
-    validarRol,
-    validarRolAdmin
+    // validarRol,
+    // validarRolAdmin
 ], crearTitulacion);
 
 router.put('/:id', [

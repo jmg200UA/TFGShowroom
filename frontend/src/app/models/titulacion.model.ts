@@ -6,8 +6,8 @@ export class Titulacion {
 
     constructor( // opcionales
                  public tipo: string,
+                 public imagen: string,
                  // obligatorios
-                 public imagen?: string,
                  public titulo?,
                  public resumen?: string,
                  public area?: string

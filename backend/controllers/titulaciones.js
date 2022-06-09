@@ -63,7 +63,7 @@ const obtenerTitulaciones = async(req, res) => {
 /*
 post / 
 <-- comprobar campos requeridos
---> trabajo registrado
+--> titulacion registrada
 */
 const crearTitulacion = async(req, res = response) => {
 
@@ -85,7 +85,7 @@ const crearTitulacion = async(req, res = response) => {
         res.json({
             ok: true,
             msg: 'crearTitulacion',
-            trabajo,
+            titulacion,
         });
 
     } catch (error) {
@@ -119,7 +119,7 @@ const actualizarTitulacion = async(req, res = response) => {
         res.json({
             ok: true,
             msg: 'Titulacion actualizada',
-            trabajo
+            titulacion
         });
 
     } catch (error) {

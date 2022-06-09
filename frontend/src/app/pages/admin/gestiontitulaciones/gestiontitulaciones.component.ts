@@ -77,4 +77,8 @@ export class GestionTitulacionesComponent implements OnInit {
       });
   }
 
+  crearImagenUrl(imagen: string) {
+    return this.TitulacionService.crearImagenUrl(imagen);
+  }
+
 }

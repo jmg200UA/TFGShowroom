@@ -32,32 +32,28 @@
                             </div>
                         </div>
 
-                        <div class=" row m-t-10 ">
+                        <div class=" row m-t-20 ">
                             <div class="col-lg-3 col-md-12 text-lg-right ">
                                 <span class=" ">Resumen</span>
                             </div>
                             <div class="col-lg-8 col-md-12 ">
-                                <select class="select2 form-control custom-select" formControlName="resumen" [ngClass]="{'is-invalid' : campoNoValido('resumen')}" style="width: 100%; height:36px;" id="resumen">
-                              <option value="TFG" selected>TFG</option>
-                              <option value="TFM" selected>TFM</option>
-                          </select>
-                                <div class="invalid-feedback">
+                                <input type="text " class="form-control " formControlName="resumen" [ngClass]="{ 'is-invalid' : campoNoValido( 'resumen')} " id="resumen ">
+                                <div class="invalid-feedback ">
                                     El campo es obligatorio
                                 </div>
                             </div>
                         </div>
-                        <div class=" row m-t-10 ">
-                            <div class="col-lg-3 col-md-12 text-lg-right ">
+                        <div class="form-group row m-t-10">
+                            <div class="col-lg-3 text-lg-right">
                                 <span class=" ">Imagen</span>
                             </div>
-                            <div class="col-lg-8 col-md-12 ">
-                                <select class="select2 form-control custom-select" formControlName="imagen" [ngClass]="{'is-invalid' : campoNoValido('imagen')}" style="width: 100%; height:36px;" id="imagen">
-                            <option value="TFG" selected>TFG</option>
-                            <option value="TFM" selected>TFM</option>
-                        </select>
-                                <div class="invalid-feedback">
-                                    El campo es obligatorio
+                            <div class="col-lg-8 col-md-12">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="imagen" id="fotoperfil" (change)="cambioImagen( $event )">
+                                    <label class="custom-file-label" for="fotoperfil" data-browse="Elegir">{{fileText}}</label>
+
                                 </div>
+
                             </div>
                         </div>
                         <div class="d-flex justify-content-center m-t-10 ">

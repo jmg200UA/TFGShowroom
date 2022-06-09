@@ -70,13 +70,13 @@ const routes: Routes = [
     { path: 'nuevotrabajo', component: NuevotrabajoComponent},
     { path: 'nuevatitulacion', component: NuevatitulacionComponent},
 
-    { path: '**', redirectTo: 'admin/dashboard'}
+    { path: '**', redirectTo: 'admin/usuarios'}
   ]},
 
   //PATHS LANDING
   { path: 'landing', component: LandingComponent,},
 
-  { path: '**', redirectTo: 'admin/dashboard'}
+  { path: '**', redirectTo: 'admin/usuarios'}
 
 ];
 

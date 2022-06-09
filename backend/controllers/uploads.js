@@ -24,12 +24,13 @@ const subirArchivo = async(req, res = repsonse) => {
         });
     }
 
-    const tipo = req.params.tipo; // fotoperfil   evidencia
+    const tipo = req.params.tipo; // tipos definidos
     const id = req.params.id;
 
-    const archivosValidos = {
+    const archivosValidos = { //definir aqui todos los tipos posibles
         fotoperfil: ["jpeg", "jpg", "png"],
-        evidencia: ["doc", "docx", "xls", "pdf", "zip", "jpg"],
+        titulacionimg: ["jpeg", "jpg", "png"],
+        trabajoimg: ["jpeg", "jpg", "png"],
     };
 
     const archivo = req.files.archivo;
@@ -41,18 +42,26 @@ const subirArchivo = async(req, res = repsonse) => {
             if (!archivosValidos.fotoperfil.includes(extension)) {
                 return res.status(400).json({
                     ok: false,
-                    msg: `El tipo de archivo '${extension}' no está permtido (${archivosValidos.fotoperfil})`,
+                    msg: `El tipo de archivo '${extension}' no está permitido (${archivosValidos.fotoperfil})`,
                 });
             }
 
             // Comprobar que solo el usuario cambia su foto de usuario
 
             break;
-        case "evidencia":
-            if (!archivosValidos.evidencia.includes(extension)) {
+        case "titulacionimg":
+            if (!archivosValidos.titulacionimg.includes(extension)) {
                 return res.status(400).json({
                     ok: false,
-                    msg: `El tipo de archivo '${extension}' no está permtido (${archivosValidos.evidencia})`,
+                    msg: `El tipo de archivo '${extension}' no está permitido (${archivosValidos.titulacionimg})`,
+                });
+            }
+            break;
+        case "trabajoimg":
+            if (!archivosValidos.trabajoimg.includes(extension)) {
+                return res.status(400).json({
+                    ok: false,
+                    msg: `El tipo de archivo '${extension}' no está permitido (${archivosValidos.trabajoimg})`,
                 });
             }
             break;
@@ -107,7 +116,7 @@ const subirArchivo = async(req, res = repsonse) => {
 };
 
 const enviarArchivo = async(req, res = repsonse) => {
-    const tipo = req.params.tipo; // fotoperfil   evidencia
+    const tipo = req.params.tipo; // tipos definidos
     const nombreArchivo = req.params.nombrearchivo;
 
     const path = `${process.env.PATHUPLOAD}/${tipo}`;
