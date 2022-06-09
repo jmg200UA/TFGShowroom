@@ -7,7 +7,9 @@ import { GestionTrabajosComponent } from './admin/gestiontrabajos/gestiontrabajo
 import { AdminComponent } from './admin/admin.component';
 import { NuevousuarioComponent } from './admin/nuevousuario/nuevousuario.component';
 import { NuevotrabajoComponent } from './admin/nuevotrabajo/nuevotrabajo.component';
+import { NuevatitulacionComponent } from './admin/nuevatitulacion/nuevatitulacion.component';
 import { LandingComponent } from './landing/landing.component';
+import { GestionTitulacionesComponent } from './admin/gestiontitulaciones/gestiontitulaciones.component';
 
 
 
@@ -60,11 +62,13 @@ const routes: Routes = [
 
   { path: 'admin', component: AdminComponent,
   children:[
-    { path: 'dashboard', component: GestionUsuariosComponent},
+    { path: 'usuarios', component: GestionUsuariosComponent},
     { path: 'trabajos', component: GestionTrabajosComponent},
+    { path: 'titulaciones', component: GestionTitulacionesComponent},
     { path: 'perfil', component: UserProfileComponent},
     { path: 'nuevousu', component: NuevousuarioComponent},
     { path: 'nuevotrabajo', component: NuevotrabajoComponent},
+    { path: 'nuevatitulacion', component: NuevatitulacionComponent},
 
     { path: '**', redirectTo: 'admin/dashboard'}
   ]},

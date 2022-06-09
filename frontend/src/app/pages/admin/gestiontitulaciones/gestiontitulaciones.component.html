@@ -1,0 +1,55 @@
+<div class="panel-header panel-header-sm">
+</div>
+
+<div class="main-content">
+    <div class="row">
+        <div class="col-md-10"></div>
+        <div class="col-md-2 float-right"><button class="btn btn-primary btn-block float-right" routerLink="/admin/nuevatitulacion">Nueva titulación</button></div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title"> Usuarios</h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-primary text-center" *ngIf="loading">
+                        <h4 class="alert-heading">Cargando!</h4>
+                        <i class="fa fa-spin fa-spinner fa-3x"></i>
+                        <p>Por favor, espere</p>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class=" text-primary">
+                                <th>
+                                    Imagen
+                                </th>
+                                <th>
+                                    Nombre
+                                </th>
+                                <th>
+                                    Resumen
+                                </th>
+                                <th>
+                                    Área
+                                </th>
+                                <th class="text-right">
+                                    Acción
+                                </th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let titulacion of listaTitulaciones">
+                                    <td>{{titulacion.imagen}}</td>
+                                    <td>{{titulacion.nombre}}</td>
+                                    <td>{{titulacion.resumen}}</td>
+                                    <td>{{titulacion.area}}</td>
+                                    <td class="text-right"><i class="fa fa-trash text-danger fa-lg micursor" (click)="eliminarTitulacion(titulacion.uid, titulacion.nombre)"></i></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

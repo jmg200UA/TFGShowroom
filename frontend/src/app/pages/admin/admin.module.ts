@@ -10,6 +10,8 @@ import { ComponentsModule } from '../../components/components.module';
 import { AdminComponent } from './admin.component';
 import { GestionTrabajosComponent } from './gestiontrabajos/gestiontrabajos.component';
 import { NuevotrabajoComponent } from './nuevotrabajo/nuevotrabajo.component';
+import { GestionTitulacionesComponent } from './gestiontitulaciones/gestiontitulaciones.component';
+import { NuevatitulacionComponent } from './nuevatitulacion/nuevatitulacion.component';
 
 @NgModule({
   imports: [
@@ -26,7 +28,9 @@ import { NuevotrabajoComponent } from './nuevotrabajo/nuevotrabajo.component';
     NuevousuarioComponent,
     AdminComponent,
     GestionTrabajosComponent,
-    NuevotrabajoComponent
+    NuevotrabajoComponent,
+    GestionTitulacionesComponent,
+    NuevatitulacionComponent
   ],
   // exports:[
   //   UserProfileComponent,
