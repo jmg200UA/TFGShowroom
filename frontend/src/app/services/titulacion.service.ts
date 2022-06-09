@@ -16,7 +16,7 @@ export class TitulacionService {
   constructor(private http: HttpClient,
                private router: Router) { }
 
-  nuevaTitulacion ( data: Titulacion) {
+  nuevaTitulacion ( data) {
     return this.http.post(`${environment.base_url}/titulaciones/`, data, this.cabeceras);
   }
 

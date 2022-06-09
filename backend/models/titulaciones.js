@@ -3,15 +3,15 @@ const { Schema, model } = require('mongoose');
 const TitulacionSchema = Schema({
     nombre: {
         type: String,
-        require: true
+        require: true,
+        unique: true
     },
     resumen: {
         type: String,
         require: true
     },
     imagen: {
-        type: String,
-        require: true
+        type: String
     },
     area: { // area de conocimiento
         type: String,

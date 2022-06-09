@@ -22,7 +22,7 @@ export class NuevatitulacionComponent implements OnInit {
     nombre: ['', Validators.required ], // hacer peticion a la BD para sacar en un desplegable todos los usuarios con ROL_ALUMNO
     resumen: ['', Validators.required ],
     area: ['', Validators.required ],
-    imagen: ['', Validators.required ],
+    imagen: [''],
   });
 
   constructor(private fb: FormBuilder,
@@ -92,7 +92,8 @@ export class NuevatitulacionComponent implements OnInit {
         Swal.fire({icon: 'error', title: 'Oops...', text: 'El archivo debe ser una imagen jpeg, jpg o png'});
         return;
       }
-        this.fileText = nombre;
+      this.foto = evento.target.files[0];
+      this.fileText = nombre;
   }
   }
 

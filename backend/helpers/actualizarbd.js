@@ -1,9 +1,12 @@
 const Usuario = require('../models/usuarios');
+const Titulacion = require('../models/titulaciones');
+const Trabajo = require('../models/trabajos');
 const fs = require('fs');
 const { infoToken } = require('../helpers/infotoken');
 
 const actualizarBD = async(tipo, path, nombreArchivo, id, token) => {
     let fotoAntigua, pathFotoAntigua;
+    console.log("Tipo que llega para actualizar: ", tipo);
     switch (tipo) {
 
         case 'fotoperfil':
@@ -39,6 +42,7 @@ const actualizarBD = async(tipo, path, nombreArchivo, id, token) => {
             if (!titulacionfoto) {
                 return false;
             }
+            console.log("Aqui se llega");
 
             // Comprobar que el id de usuario es un admin
             // if (infoToken(token).rol !== "ROL_ADMIN") {
