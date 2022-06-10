@@ -3,7 +3,15 @@
 
 <div class="main-content">
     <div class="row">
-        <div class="col-md-10"></div>
+        <div class="col-md-4 input-group no-border">
+            <input #txtQuery (keyup)="cargarTrabajos(txtQuery.value)" class="form-control" autocomplete="off" placeholder="Busca...">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <i class="now-ui-icons ui-1_zoom-bold"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6"></div>
         <div class="col-md-2 float-right"><button class="btn btn-primary btn-block float-right" routerLink="/admin/nuevotrabajo">Nuevo trabajo</button></div>
     </div>
     <div class="row">
@@ -38,7 +46,7 @@
                                 <tr *ngFor="let trabajo of listaTrabajos">
                                     <td>{{trabajo.autor.nombre_apellidos}}</td>
                                     <td>{{trabajo.titulo}}</td>
-                                    <td>{{trabajo.titulacion}}</td>
+                                    <td>{{trabajo.titulacion.nombre}}</td>
                                     <td class="text-right"><i class="fa fa-trash text-danger fa-lg micursor" (click)="eliminarTrabajo(trabajo.uid, trabajo.titulo)"></i></td>
                                 </tr>
                             </tbody>

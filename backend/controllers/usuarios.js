@@ -36,9 +36,19 @@ const obtenerUsuarios = async(req, res) => {
         }
         // Si no ha llegado ID, hacemos el get / paginado
         else {
+            let query = {};
+            if (texto) {
+                query = {
+                    $or: [
+                        { nombre_apellidos: textoBusqueda },
+                        { email: textoBusqueda },
+                        { rol: textoBusqueda },
+                    ],
+                };
+            }
             [usuarios, total] = await Promise.all([
-                Usuario.find({}).skip(desde).limit(registropp),
-                Usuario.countDocuments()
+                Usuario.find(query).skip(desde).limit(registropp),
+                Usuario.countDocuments(query)
             ]);
         }
 

@@ -46,13 +46,18 @@
                                 <span class=" ">Titulación</span>
                             </div>
                             <div class="col-lg-8 col-md-12 ">
-                                <select class="select2 form-control custom-select" formControlName="titulacion" [ngClass]="{'is-invalid' : campoNoValido('titulacion')}" style="width: 100%; height:36px;" id="titulacion">
-                              <option value="TFG" selected>TFG</option>
-                              <option value="TFM" >TFM</option>
-                          </select>
-                                <div class="invalid-feedback">
-                                    El campo es obligatorio
+                                <input #txtQuery2 (keyup)="cargarTitulaciones(txtQuery2.value)" autocomplete="off" class="form-control" type="text" name="titulacion" formControlName="titulacion" placeholder="Busca y selecciona una titulación" value={{nombreTitu}}>
+                                <!-- RESULTADOS -->
+                                <div *ngIf="loading2" class="alert alert-primary mt-2 text-center">
+                                    <h6>Cargando</h6>
+                                    <span>Espere por favor...</span>
                                 </div>
+                                <ul class="list-group mt-2 porencima" *ngIf="ultimaBusqueda2.length>2">
+                                    <li *ngFor="let titulacion of listaTitulaciones" class="list-group-item list-group-item-action micursor" (click)="esteLugar2( titulacion )">
+                                        <h6>{{ titulacion.nombre }}</h6>
+                                        <p>{{ titulacion.area }}</p>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                         <div class="d-flex justify-content-center m-t-10 ">

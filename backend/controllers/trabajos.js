@@ -12,14 +12,16 @@ get /
 --> devuleve todos los trabajos
 */
 const obtenerTrabajos = async(req, res) => {
-
-    // Para paginación
-    // Recibimos el desde si existe y establecemos el número de registros a devolver por pa´gina
+    // Para paginación y buscador
     const desde = Number(req.query.desde) || 0;
     const registropp = Number(process.env.DOCSPERPAGE);
-
-    // Obtenemos el ID del trabajo por si quiere buscar solo un trabajo
-    const id = req.query.id;
+    const texto = req.query.texto;
+    let textoBusqueda = "";
+    if (texto) {
+        textoBusqueda = new RegExp(texto, "i");
+    }
+    // Obtenemos el ID de usuario por si quiere buscar solo un trabajo
+    const id = req.query.id || "";
 
     try {
 
@@ -28,16 +30,26 @@ const obtenerTrabajos = async(req, res) => {
         if (id) {
 
             [trabajos, total] = await Promise.all([
-                Trabajo.findById(id).populate('autor'),
+                Trabajo.findById(id).populate('autor').populate('titulacion'),
                 Trabajo.countDocuments()
             ]);
 
         }
         // Si no ha llegado ID, hacemos el get / paginado
         else {
+            let query = {};
+            if (texto) {
+                query = {
+                    $or: [
+                        { autor: textoBusqueda },
+                        { titulo: textoBusqueda },
+                        { titulacion: textoBusqueda },
+                    ],
+                };
+            }
             [trabajos, total] = await Promise.all([
-                Trabajo.find({}).skip(desde).limit(registropp).populate('autor'),
-                Trabajo.countDocuments()
+                Trabajo.find(query).skip(desde).limit(registropp).populate('autor').populate('titulacion'),
+                Trabajo.countDocuments(query)
             ]);
         }
 

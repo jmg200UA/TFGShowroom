@@ -11,14 +11,16 @@ get /
 --> devuleve todos los titulaciones
 */
 const obtenerTitulaciones = async(req, res) => {
-
-    // Para paginación
-    // Recibimos el desde si existe y establecemos el número de registros a devolver por pa´gina
+    // Para paginación y buscador
     const desde = Number(req.query.desde) || 0;
     const registropp = Number(process.env.DOCSPERPAGE);
-
-    // Obtenemos el ID de la titulacion por si quiere buscar solo una titulación
-    const id = req.query.id;
+    const texto = req.query.texto;
+    let textoBusqueda = "";
+    if (texto) {
+        textoBusqueda = new RegExp(texto, "i");
+    }
+    // Obtenemos el ID de usuario por si quiere buscar solo una sola titulacion
+    const id = req.query.id || "";
 
     try {
 
@@ -34,9 +36,20 @@ const obtenerTitulaciones = async(req, res) => {
         }
         // Si no ha llegado ID, hacemos el get / paginado
         else {
+            let query = {};
+            if (texto) {
+                query = {
+                    $or: [
+                        { nombre: textoBusqueda },
+                        { area: textoBusqueda },
+                    ],
+                };
+            }
             [titulaciones, total] = await Promise.all([
-                Titulacion.find({}).skip(desde).limit(registropp),
-                Titulacion.countDocuments()
+                Titulacion.find(query).
+                skip(desde).
+                limit(registropp),
+                Titulacion.countDocuments(query)
             ]);
         }
 

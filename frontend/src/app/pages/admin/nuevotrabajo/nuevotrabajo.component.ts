@@ -6,7 +6,9 @@ import { environment } from '../../../../environments/environment';
 import Swal from 'sweetalert2';
 import { TrabajosService } from '../../../services/trabajos.service';
 import { UsuarioService } from '../../../services/usuario.service';
+import { TitulacionService } from '../../../services/titulacion.service';
 import { Usuario } from '../../../../../src/app/models/usuario.model';
+import { Titulacion } from '../../../../../src/app/models/titulacion.model';
 
 @Component({
   selector: 'nuevotrabajo',
@@ -17,7 +19,6 @@ export class NuevotrabajoComponent implements OnInit {
 
 
   private formSubmited = false;
-  private uid: string = '';
   public showOKP: boolean = false;
 
 
@@ -26,22 +27,31 @@ export class NuevotrabajoComponent implements OnInit {
     titulo: ['', Validators.required ],
     titulacion: ['', Validators.required ],
   });
-  //para cargar lista alumnos
-  public loading = false;
 
+  //Variables para el listado de Alumnos
+  public loading = false;
+  public ultimaBusqueda = '';
+  public listaAlumnos: Usuario[] = [];
   public totalalumnos = 0;
+  public nombreAlu: string = ''; // nombre alumno seleccionado en la select
   public posicionactual = 0;
   public registrosporpagina = environment.registros_por_pagina;
 
-  public ultimaBusqueda = '';
-  public listaAlumnos: Usuario[] = [];
-  public nombreAlu: string = ''; // nombre alumno seleccionado en la select
+  //Variables para el listado de Titulaciones
+  public loading2 = false;
+  public ultimaBusqueda2 = '';
+  public listaTitulaciones: Titulacion[] = [];
+  public totaltitulaciones = 0;
+  public nombreTitu: string = ''; // nombre alumno seleccionado en la select
+  public posicionactual2 = 0;
+  public registrosporpagina2 = environment.registros_por_pagina;
 
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
               private TrabajosService: TrabajosService,
-              private UsuarioService: UsuarioService) { }
+              private UsuarioService: UsuarioService,
+              private TitulacionService: TitulacionService) { }
 
   ngOnInit(): void {
     //this.cargarAlumnos(this.ultimaBusqueda);
@@ -118,10 +128,48 @@ export class NuevotrabajoComponent implements OnInit {
 
   }
 
-  esteLugar( alu ) {
+  cargarTitulaciones( textoBuscar: string ) {
+    this.ultimaBusqueda2 = textoBuscar;
+    console.log("Texto busqueda: ", this.ultimaBusqueda2);
+    if(this.ultimaBusqueda2.length>2){
+      this.loading2 = true;
+    this.TitulacionService.cargarTitulaciones( this.posicionactual, textoBuscar )
+      .subscribe( res => {
+        // Lo que nos llega lo asignamos a lista titulaciones para renderizar la tabla
+        // Comprobamos si estamos en un apágina vacia, si es así entonces retrocedemos una página si se puede
+        console.log("LA RES de titulaciones: ", res['titulaciones']);
+        if (res['titulaciones'].length === 0) {
+          if (this.posicionactual2 > 0) {
+            this.posicionactual2 = this.posicionactual2 - this.registrosporpagina2;
+            if (this.posicionactual2 < 0) { this.posicionactual2 = 0};
+            this.cargarTitulaciones(this.ultimaBusqueda2);
+          } else {
+            this.listaTitulaciones = [];
+            this.totaltitulaciones = 0;
+          }
+        } else {
+          this.listaTitulaciones = res['titulaciones'];
+          this.totaltitulaciones = res['page'].total;
+        }
+          this.loading2 = false;
+        }, (err) => {
+          Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
+          //console.warn('error:', err);
+          this.loading2 = false;
+        });
+      }
+    }
+
+  esteLugar( alu ) { // Funcion para establecer nombre del alumno en el input y reiniciar el listado
     this.nombreAlu = alu.nombre_apellidos;
     this.datosForm.get('autor').setValue(alu.uid);
     this.ultimaBusqueda='';
+  }
+
+  esteLugar2( titu ) { // Funcion para establecer nombre de la titulacion en el input y reiniciar el listado
+    this.nombreTitu = titu.nombre;
+    this.datosForm.get('titulacion').setValue(titu.uid);
+    this.ultimaBusqueda2='';
   }
 
 }

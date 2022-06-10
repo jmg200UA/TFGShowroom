@@ -35,7 +35,8 @@ const TrabajoSchema = Schema({
         type: String,
     }],
     titulacion: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'Titulacion',
         require: true
     },
 }, { collection: 'trabajos' });

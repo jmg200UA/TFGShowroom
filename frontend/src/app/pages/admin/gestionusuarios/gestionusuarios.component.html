@@ -4,7 +4,15 @@
 
 <div class="main-content">
     <div class="row">
-        <div class="col-md-10"></div>
+        <div class="col-md-4 input-group no-border">
+            <input #txtQuery (keyup)="cargarUsuarios(txtQuery.value)" class="form-control" autocomplete="off" placeholder="Busca...">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <i class="now-ui-icons ui-1_zoom-bold"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6"></div>
         <div class="col-md-2 float-right"><button class="btn btn-primary btn-block float-right" routerLink="/admin/nuevousu">Nuevo usuario</button></div>
     </div>
     <div class="row">
@@ -44,6 +52,9 @@
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                    <div class="mt-2 mr-2 float-right">
+                        <app-pagination (cambiarPagina)="cambiarPagina( $event ) " [texto]="true " [totalRegistros]="totalusuarios" [registroActual]="posicionactual+1 " [registrosPorPagina]="registrosporpagina "></app-pagination>
                     </div>
                 </div>
             </div>

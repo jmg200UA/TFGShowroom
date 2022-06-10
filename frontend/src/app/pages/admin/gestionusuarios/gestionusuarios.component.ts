@@ -84,4 +84,10 @@ export class GestionUsuariosComponent implements OnInit {
       });
   }
 
+  cambiarPagina( pagina: number ){
+    pagina = (pagina < 0 ? 0 : pagina);
+    this.posicionactual = ((pagina - 1) * this.registrosporpagina >=0 ? (pagina - 1) * this.registrosporpagina : 0);
+    this.cargarUsuarios(this.ultimaBusqueda);
+  }
+
 }
