@@ -44,6 +44,9 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="mt-2 mr-2 float-right">
+                        <app-pagination (cambiarPagina)="cambiarPagina( $event ) " [texto]="true " [totalRegistros]="totaltrabajos" [registroActual]="posicionactual+1 " [registrosPorPagina]="registrosporpagina "></app-pagination>
+                    </div>
                 </div>
             </div>
         </div>

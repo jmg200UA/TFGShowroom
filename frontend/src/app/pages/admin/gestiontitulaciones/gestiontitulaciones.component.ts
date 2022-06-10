@@ -81,4 +81,10 @@ export class GestionTitulacionesComponent implements OnInit {
     return this.TitulacionService.crearImagenUrl(imagen);
   }
 
+  cambiarPagina( pagina: number ){
+    pagina = (pagina < 0 ? 0 : pagina);
+    this.posicionactual = ((pagina - 1) * this.registrosporpagina >=0 ? (pagina - 1) * this.registrosporpagina : 0);
+    this.cargarTitulaciones(this.ultimaBusqueda);
+  }
+
 }
