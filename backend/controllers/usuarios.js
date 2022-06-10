@@ -11,14 +11,16 @@ get /
 --> devuleve todos los usuarios
 */
 const obtenerUsuarios = async(req, res) => {
-
-    // Para paginación
-    // Recibimos el desde si existe y establecemos el número de registros a devolver por pa´gina
+    // Para paginación y buscador
     const desde = Number(req.query.desde) || 0;
     const registropp = Number(process.env.DOCSPERPAGE);
-
+    const texto = req.query.texto;
+    let textoBusqueda = "";
+    if (texto) {
+        textoBusqueda = new RegExp(texto, "i");
+    }
     // Obtenemos el ID de usuario por si quiere buscar solo un usuario
-    const id = req.query.id;
+    const id = req.query.id || "";
 
     try {
 
@@ -56,6 +58,62 @@ const obtenerUsuarios = async(req, res) => {
         res.json({
             ok: false,
             msg: 'Error obteniedo usuarios'
+        });
+    }
+}
+
+//GET solo alumnos
+const obtenerAlumnos = async(req, res) => {
+
+    // Para paginación y buscador
+    const desde = Number(req.query.desde) || 0;
+    const registropp = Number(process.env.DOCSPERPAGE);
+    const texto = req.query.texto;
+    let textoBusqueda = "";
+    if (texto) {
+        textoBusqueda = new RegExp(texto, "i");
+    }
+
+    try {
+
+        let alumnos, total;
+        let query = {};
+        if (texto) {
+            query = {
+                $or: [
+                    { nombre_apellidos: textoBusqueda },
+                    { email: textoBusqueda },
+                ],
+            };
+        }
+
+        [alumnos] = await Promise.all([
+            Usuario.find(query).find({ "rol": "ROL_ALUMNO" })
+            .skip(desde)
+            .limit(registropp)
+            .collation({ locale: "es" })
+            .sort({ nombre_apellidos: 1 }),
+            Usuario.countDocuments(query)
+        ]);
+        total = alumnos.length;
+
+
+        res.json({
+            ok: true,
+            msg: 'getAlumnos',
+            alumnos,
+            page: {
+                desde,
+                registropp,
+                total
+            }
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.json({
+            ok: false,
+            msg: 'Error obteniedo alumnos'
         });
     }
 }
@@ -194,4 +252,4 @@ const borrarUsuario = async(req, res = response) => {
 }
 
 
-module.exports = { obtenerUsuarios, crearUsuario, actualizarUsuario, borrarUsuario }
+module.exports = { obtenerUsuarios, obtenerAlumnos, crearUsuario, actualizarUsuario, borrarUsuario }

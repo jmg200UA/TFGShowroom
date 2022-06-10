@@ -12,6 +12,10 @@ import { GestionTrabajosComponent } from './gestiontrabajos/gestiontrabajos.comp
 import { NuevotrabajoComponent } from './nuevotrabajo/nuevotrabajo.component';
 import { GestionTitulacionesComponent } from './gestiontitulaciones/gestiontitulaciones.component';
 import { NuevatitulacionComponent } from './nuevatitulacion/nuevatitulacion.component';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+
 
 @NgModule({
   imports: [
@@ -20,7 +24,10 @@ import { NuevatitulacionComponent } from './nuevatitulacion/nuevatitulacion.comp
     NgbModule,
     ReactiveFormsModule,
     RouterModule,
-    ComponentsModule
+    ComponentsModule,
+    NgxMatSelectSearchModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   declarations: [
     UserProfileComponent,

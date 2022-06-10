@@ -13,13 +13,22 @@
                             <div class="col-lg-3 col-md-12 text-lg-right">
                                 <span class="">Autor</span>
                             </div>
-                            <div class="col-lg-8 col-md-12">
-                                <input type="text" class="form-control" formControlName="autor" [ngClass]="{'is-invalid' : campoNoValido('autor')}" id="autor">
-                                <div class="invalid-feedback">
-                                    El campo es obligatorio
+                            <div class="col-lg-8 col-md-12 ">
+                                <input #txtQuery (keyup)="cargarAlumnos(txtQuery.value)" autocomplete="off" class="form-control" type="text" name="autor" formControlName="autor" placeholder="Busca o crea un alumno" value={{nombreAlu}}>
+                                <!-- RESULTADOS -->
+                                <div *ngIf="loading" class="alert alert-primary mt-2 text-center">
+                                    <h6>Cargando</h6>
+                                    <span>Espere por favor...</span>
                                 </div>
+                                <ul class="list-group mt-2 porencima" *ngIf="ultimaBusqueda.length>2">
+                                    <li *ngFor="let alumno of listaAlumnos" class="list-group-item list-group-item-action micursor" (click)="esteLugar( alumno )">
+                                        <h6>{{ alumno.nombre_apellidos }}</h6>
+                                        <p>{{ alumno.email }}</p>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
+
                         <div class=" row m-t-10 ">
                             <div class="col-lg-3 col-md-12 text-lg-right ">
                                 <span class=" ">Título</span>
@@ -37,9 +46,9 @@
                                 <span class=" ">Titulación</span>
                             </div>
                             <div class="col-lg-8 col-md-12 ">
-                                <select class="select2 form-control custom-select" formControlName="tipo" [ngClass]="{'is-invalid' : campoNoValido('tipo')}" style="width: 100%; height:36px;" id="tipo">
+                                <select class="select2 form-control custom-select" formControlName="titulacion" [ngClass]="{'is-invalid' : campoNoValido('titulacion')}" style="width: 100%; height:36px;" id="titulacion">
                               <option value="TFG" selected>TFG</option>
-                              <option value="TFM" selected>TFM</option>
+                              <option value="TFM" >TFM</option>
                           </select>
                                 <div class="invalid-feedback">
                                     El campo es obligatorio

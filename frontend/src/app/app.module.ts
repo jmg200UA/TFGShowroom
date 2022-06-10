@@ -14,6 +14,10 @@ import { AppComponent } from './app.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { PagesModule } from './pages/pages.module';
 
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -24,7 +28,11 @@ import { PagesModule } from './pages/pages.module';
     AppRoutingModule,
     NgbModule,
     ToastrModule.forRoot(),
-    PagesModule
+    PagesModule,
+    NgxMatSelectSearchModule,
+    MatFormFieldModule,
+    MatSelectModule
+
   ],
   declarations: [
     AppComponent,

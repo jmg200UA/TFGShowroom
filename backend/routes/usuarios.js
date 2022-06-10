@@ -3,7 +3,7 @@ Ruta base: /api/usuarios
 */
 
 const { Router } = require('express');
-const { obtenerUsuarios, crearUsuario, actualizarUsuario, borrarUsuario } = require('../controllers/usuarios');
+const { obtenerUsuarios, obtenerAlumnos, crearUsuario, actualizarUsuario, borrarUsuario } = require('../controllers/usuarios');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middleware/validar-campos');
 const { validarRol } = require('../middleware/validar-rol');
@@ -18,6 +18,13 @@ router.get('/', [
     check('desde', 'El desde debe ser un número').optional().isNumeric(),
     validarCampos,
 ], obtenerUsuarios);
+
+router.get('/alumnos', [
+    // validarJWT,
+    // Campos opcionales, si vienen los validamos
+    check('desde', 'El desde debe ser un número').optional().isNumeric(),
+    validarCampos,
+], obtenerAlumnos);
 
 router.post('/', [
     validarJWT,

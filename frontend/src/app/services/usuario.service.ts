@@ -47,6 +47,12 @@ export class UsuarioService {
     return this.http.get(`${environment.base_url}/usuarios/?desde=${desde}&texto=${textoBusqueda}` , this.cabeceras);
   }
 
+  cargarAlumnos( desde: number, textoBusqueda?: string ): Observable<object> {
+    if (!desde) { desde = 0;}
+    if (!textoBusqueda) {textoBusqueda = '';}
+    return this.http.get(`${environment.base_url}/usuarios/alumnos?desde=${desde}&texto=${textoBusqueda}` , this.cabeceras);
+  }
+
   borrarUsuario( uid: string) {
     if (!uid || uid === null) {uid = 'a'; }
     return this.http.delete(`${environment.base_url}/usuarios/${uid}` , this.cabeceras);
