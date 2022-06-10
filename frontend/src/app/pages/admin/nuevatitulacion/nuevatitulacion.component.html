@@ -20,13 +20,35 @@
                                 </div>
                             </div>
                         </div>
-                        <div class=" row m-t-10 ">
-                            <div class="col-lg-3 col-md-12 text-lg-right ">
-                                <span class=" ">Área</span>
+                        <div class="row m-t-10">
+                            <div class="col-lg-3 col-md-12 text-lg-right">
+                                <span class="">Tipo</span>
                             </div>
-                            <div class="col-lg-8 col-md-12 ">
-                                <input type="text " class="form-control " formControlName="area" [ngClass]="{ 'is-invalid' : campoNoValido( 'area')} " id="area ">
-                                <div class="invalid-feedback ">
+                            <div class="col-lg-8 col-md-12">
+                                <select (change)="salida($event.target.value)" class="form-control" formControlName="tipo" [ngClass]="{'is-invalid' : campoNoValido('tipo')}" id="tipo">
+                                <option *ngFor="let tip of Tipos" [ngValue]="tip">{{tip}} </option>
+                              </select>
+                                <div class="invalid-feedback">
+                                    El campo es obligatorio
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-t-10">
+                            <div class="col-lg-3 col-md-12 text-lg-right">
+                                <span class="">Área</span>
+                            </div>
+                            <div class="col-lg-8 col-md-12">
+                                <div *ngIf="tipo=='TFG'">
+                                    <select class="form-control" formControlName="area" [ngClass]="{'is-invalid' : campoNoValido('area')}" id="area">
+                                      <option [value]="item" *ngFor="let item of ListaTFG">{{item}}</option>
+                                  </select>
+                                </div>
+                                <div *ngIf="tipo=='TFM'">
+                                    <select class="form-control" formControlName="area" [ngClass]="{'is-invalid' : campoNoValido('area')}" id="area">
+                                    <option [value]="item" *ngFor="let item of ListaTFM">{{item}}</option>
+                                </select>
+                                </div>
+                                <div class="invalid-feedback">
                                     El campo es obligatorio
                                 </div>
                             </div>

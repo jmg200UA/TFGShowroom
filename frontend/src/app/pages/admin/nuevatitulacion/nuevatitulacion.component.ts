@@ -12,15 +12,21 @@ import { TitulacionService } from '../../../services/titulacion.service';
 })
 export class NuevatitulacionComponent implements OnInit {
 
+  public Tipos = ['TFG','TFM'];
+  public ListaTFG = ['Construcción','Tecnologías de la información y las comunicaciones', 'Industrial y aeronáutica', 'Ciencia y tecnologías para la salud'];
+  public ListaTFM = ['Construcción','Tecnologías de la información y las comunicaciones', 'Industrial y aeronáutica', 'Ciencia de la salud'];
+
   public foto: File = null;
   private formSubmited = false;
   private uid: string = '';
   public showOKP: boolean = false;
+  public tipo : string = '';
   public fileText = 'Seleccione archivo';
 
   public datosForm = this.fb.group({
     nombre: ['', Validators.required ], // hacer peticion a la BD para sacar en un desplegable todos los usuarios con ROL_ALUMNO
     resumen: ['', Validators.required ],
+    tipo: ['', Validators.required ],
     area: ['', Validators.required ],
     imagen: [''],
   });
@@ -80,7 +86,7 @@ export class NuevatitulacionComponent implements OnInit {
   cambioImagen( evento ): void {
     if (evento.target.files && evento.target.files[0]) {
       // Comprobamos si es una imagen jpg, jpet, png
-      const extensiones = ['jpeg','jpg','png'];
+      const extensiones = ['jpeg','jpg','png','PNG'];
       const nombre: string = evento.target.files[0].name;
       const nombrecortado: string[] = nombre.split('.');
       const extension = nombrecortado[nombrecortado.length - 1];
@@ -101,5 +107,9 @@ export class NuevatitulacionComponent implements OnInit {
 
   campoNoValido( campo: string) {
     return this.datosForm.get(campo).invalid && this.formSubmited;
+  }
+
+  salida(event){
+    this.tipo=event.split(": ",2)[1];
   }
 }

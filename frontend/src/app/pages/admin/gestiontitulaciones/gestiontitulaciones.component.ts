@@ -44,7 +44,7 @@ export class GestionTitulacionesComponent implements OnInit {
           }
         } else {
           this.listaTitulaciones = res['titulaciones'];
-          this.listaTitulaciones = res['page'].total;
+          this.totaltitulaciones = res['page'].total;
         }
           this.loading = false;
         }, (err) => {

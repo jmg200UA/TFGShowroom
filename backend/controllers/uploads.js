@@ -29,7 +29,7 @@ const subirArchivo = async(req, res = response) => {
 
     const archivosValidos = { //definir aqui todos los tipos posibles
         fotoperfil: ["jpeg", "jpg", "png"],
-        titulacionimg: ["jpeg", "jpg", "png"],
+        titulacionimg: ["jpeg", "jpg", "png", "PNG"],
         trabajoimg: ["jpeg", "jpg", "png"],
     };
 
