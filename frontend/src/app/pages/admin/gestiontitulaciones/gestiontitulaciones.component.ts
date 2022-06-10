@@ -46,13 +46,13 @@ export class GestionTitulacionesComponent implements OnInit {
           this.listaTitulaciones = res['titulaciones'];
           this.listaTitulaciones = res['page'].total;
         }
-        this.loading = false;
-      }, (err) => {
-        Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
-        //console.warn('error:', err);
-        this.loading = false;
-      });
-  }
+          this.loading = false;
+        }, (err) => {
+          Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
+          //console.warn('error:', err);
+          this.loading = false;
+        });
+    }
 
   eliminarTitulacion( uid: string, nombre: string) {
     Swal.fire({

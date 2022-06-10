@@ -13,7 +13,7 @@ const router = Router();
 
 router.get(
     "/:tipo/:nombrearchivo", [
-        validarJWT,
+        // validarJWT,
         check("nombrearchivo", "El nombrearchivo debe ser válido").trim(),
         validarCampos,
     ],
