@@ -33,7 +33,7 @@ this.uid = this.route.snapshot.params['uid'];
 }
 
 
-// enviar(){
+enviar(){
 //   const data = {
 //     nuevopassword: this.datosForm.get('password').value,
 //     nuevopassword2: this.datosForm.get('password').value
@@ -55,7 +55,7 @@ this.uid = this.route.snapshot.params['uid'];
 //       Swal.fire({icon: 'error', title: 'Oops...', text: errtext});
 //       return;
 //     });
-// }
+}
 
 campoNoValido( campo: string) {
  return this.datosForm.get(campo).invalid && this.formSubmited;

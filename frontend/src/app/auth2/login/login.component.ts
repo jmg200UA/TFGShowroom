@@ -65,18 +65,21 @@ export class LoginComponent implements OnInit {
         this.waiting = false;
         this.closeAddExpenseModal.nativeElement.click();
 
-        //Si rol_admin, te vas pa admin
+        //Si rol_admin, te vas al módulo del admin
         if (this.usuarioService.rol == 'ROL_ADMIN'){
-          this.router.navigateByUrl('/admin/dashboard');
+          this.router.navigateByUrl('/admin/usuarios');
 
-        //Pero si rol_fisio, te vas pa fisio
-        }else if(this.usuarioService.rol == 'ROL_FISIO'){
-          this.router.navigateByUrl('/fisio/dashboard');
-        }
+        //Si rol_editor, te vas al módulo del editor
+        }else if(this.usuarioService.rol == 'ROL_EDITOR'){
+          this.router.navigateByUrl('/editor/trabajos');
+          //Si rol_alumno, te vas al módulo del alumno
+      }else if(this.usuarioService.rol == 'ROL_FISIO'){
+        this.router.navigateByUrl('/alumno/trabajos');
+      }
 
-
+      //Sino o serás rol_empresa o visitante simplemente
         else{
-          this.router.navigateByUrl('/cliente/dashboard');
+          this.router.navigateByUrl('/landing');
         }
 
       }, (err) => {

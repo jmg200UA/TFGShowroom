@@ -75,10 +75,11 @@ input {
     font-family: inherit
 }
 
-.input-group {
+.input-group2 {
     position: relative;
     margin-bottom: 2vh;
-    border-bottom: 1px solid rgba(204, 204, 204, 0.459)
+    border-bottom: 1px solid rgba(204, 204, 204, 0.459);
+    z-index: 99;
 }
 
 .input--style-3,

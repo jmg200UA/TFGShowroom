@@ -17,7 +17,7 @@
                     <a class="nav-link" href="#">Categorías</a>
                 </li>
             </ul>
-            <div class="d-flex flex-column col-md-2">
+            <!-- <div class="d-flex flex-column col-md-2">
                 <div class="input-group no-border">
                     <input type="text" value="" class="form-control" placeholder="Search...">
                     <div class="input-group-append">
@@ -26,16 +26,20 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="d-flex flex-column col-md-2 ">
-                <div>
-                    <div>
-                        <div class="input-group">
-                            <i class="now-ui-icons users_single-02"></i>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="now-ui-icons users_single-02"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right user-dd animated">
+                            <a class="dropdown-item micursor justify-content-sm-center  " data-toggle="modal" data-target="#modalLogin"><strong>Login</strong></a>
+                            <!-- <a class="dropdown-item" routerLink="/cliente/perfil"><i class="fa fa-address-card m-r-5 m-l-5"></i> Mi Perfil</a>
+                                      <div class="dropdown-divider"></div>
+                                      <a class="dropdown-item micursor" (click)="logout()"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a> -->
                         </div>
-                    </div>
-                </div>
-
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -56,4 +60,9 @@
         <i class="fas fa-pause" id="pause-slider"></i>
     </div>
     <!-- <div class="dots"></div> -->
+</div>
+
+<!-- Modal Login -->
+<div class="container">
+    <app-login2></app-login2>
 </div>
