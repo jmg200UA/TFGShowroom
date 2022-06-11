@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-//import { loginForm  } from '../interfaces/login-form.interface';
+import { loginForm  } from '../interfaces/login-form.interface';
 import { tap, map, catchError } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -58,16 +58,16 @@ export class UsuarioService {
     return this.http.delete(`${environment.base_url}/usuarios/${uid}` , this.cabeceras);
   }
 
-  // login( formData: loginForm) {
-  //   return this.http.post(`${environment.base_url}/login`, formData)
-  //           .pipe(
-  //             tap( (res : any) => {
-  //               localStorage.setItem('token', res['token']);
-  //               const {uid, rol} = res;
-  //               this.usuario = new Usuario(uid, rol);
-  //             })
-  //           );
-  // }
+  login( formData: loginForm) {
+    return this.http.post(`${environment.base_url}/login`, formData)
+            .pipe(
+              tap( (res : any) => {
+                localStorage.setItem('token', res['token']);
+                const {uid, rol} = res;
+                this.usuario = new Usuario(uid, rol);
+              })
+            );
+  }
 
 
   logout(): void {
