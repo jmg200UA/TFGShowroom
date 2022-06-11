@@ -4,14 +4,14 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminModule } from './admin/admin.module';
 import { AdminComponent } from './admin/admin.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 @NgModule({
   declarations: [
-
+    UserProfileComponent
   ],
   exports: [
-
   ],
   imports: [
     CommonModule,

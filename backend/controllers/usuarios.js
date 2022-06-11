@@ -21,17 +21,26 @@ const obtenerUsuarios = async(req, res) => {
     }
     // Obtenemos el ID de usuario por si quiere buscar solo un usuario
     const id = req.query.id || "";
+    const idToken = req.uidToken;
+    const rolToken = req.rolToken;
 
     try {
 
         let usuarios, total;
         // Si ha llegado ID, hacemos el get /id
         if (id) {
+            if (rolToken == 'ROL_ADMIN') {
+                [usuarios, total] = await Promise.all([
+                    Usuario.findById(id),
+                    Usuario.findById(id).countDocuments()
+                ]);
+            } else if (idToken == id) { // comprobamos que el usuario que quiere obtener sus datos sea él mismo
+                [usuarios, total] = await Promise.all([
+                    Usuario.findById(id),
+                    Usuario.findById(id).countDocuments()
+                ]);
+            }
 
-            [usuarios, total] = await Promise.all([
-                Usuario.findById(id),
-                Usuario.countDocuments()
-            ]);
 
         }
         // Si no ha llegado ID, hacemos el get / paginado

@@ -47,6 +47,11 @@ export class UsuarioService {
     return this.http.get(`${environment.base_url}/usuarios/?desde=${desde}&texto=${textoBusqueda}` , this.cabeceras);
   }
 
+  //carga usuario único
+  cargarUsuario( id): Observable<object> {
+    return this.http.get(`${environment.base_url}/usuarios/?id=${id}` , this.cabeceras);
+  }
+
   cargarAlumnos( desde: number, textoBusqueda?: string ): Observable<object> {
     if (!desde) { desde = 0;}
     if (!textoBusqueda) {textoBusqueda = '';}
