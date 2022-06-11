@@ -7,6 +7,7 @@ const { obtenerTrabajos, crearTrabajo, actualizarTrabajo, borrarTrabajo } = requ
 const { check } = require('express-validator');
 const { validarCampos } = require('../middleware/validar-campos');
 const { validarRol } = require('../middleware/validar-rol');
+const { validarRolAdmin } = require('../middleware/validar-rol-admin');
 const { validarJWT } = require('../middleware/validar-jwt');
 
 const router = Router();
@@ -29,7 +30,7 @@ router.post('/', [
     // // campos que son opcionales que vengan pero que si vienen queremos validar el tipo
     // check('activo', 'El estado activo debe ser true/false').optional().isBoolean(),
     validarCampos,
-    validarRol,
+    validarRolAdmin,
 ], crearTrabajo);
 
 router.put('/:id', [
@@ -44,7 +45,8 @@ router.put('/:id', [
 router.delete('/:id', [
     validarJWT,
     check('id', 'El identificador no es válido').isMongoId(),
-    validarCampos
+    validarCampos,
+    validarRolAdmin,
 ], borrarTrabajo);
 
 

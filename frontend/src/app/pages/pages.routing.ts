@@ -10,6 +10,7 @@ import { NuevotrabajoComponent } from './admin/nuevotrabajo/nuevotrabajo.compone
 import { NuevatitulacionComponent } from './admin/nuevatitulacion/nuevatitulacion.component';
 import { LandingComponent } from './landing/landing.component';
 import { GestionTitulacionesComponent } from './admin/gestiontitulaciones/gestiontitulaciones.component';
+import { AuthGuard } from '../guards/auth.guard';
 
 
 
@@ -60,15 +61,43 @@ const routes: Routes = [
 
   //PATHS ADMIN
 
-  { path: 'admin', component: AdminComponent,
+  { path: 'admin', component: AdminComponent,canActivate: [ AuthGuard], data: {rol: 'ROL_ADMIN'},
   children:[
-    { path: 'usuarios', component: GestionUsuariosComponent},
-    { path: 'trabajos', component: GestionTrabajosComponent},
-    { path: 'titulaciones', component: GestionTitulacionesComponent},
-    { path: 'perfil', component: UserProfileComponent},
-    { path: 'nuevousu', component: NuevousuarioComponent},
-    { path: 'nuevotrabajo', component: NuevotrabajoComponent},
-    { path: 'nuevatitulacion', component: NuevatitulacionComponent},
+    { path: 'usuarios', component: GestionUsuariosComponent, canActivate: [ AuthGuard ], data: {
+                                                            rol: 'ROL_ADMIN',
+                                                            titulo: 'Showroom Admin - Gestión Usuarios',
+                                                            breadcrums: []
+                                                          },},
+    { path: 'trabajos', component: GestionTrabajosComponent, canActivate: [ AuthGuard ], data: {
+                                                            rol: 'ROL_ADMIN',
+                                                            titulo: 'Showroom Admin - Gestión Trabajos',
+                                                            breadcrums: []
+                                                          },},
+    { path: 'titulaciones', component: GestionTitulacionesComponent, canActivate: [ AuthGuard ], data: {
+                                                            rol: 'ROL_ADMIN',
+                                                            titulo: 'Showroom Admin - Gestión Titulaciones',
+                                                            breadcrums: []
+                                                          },},
+    { path: 'perfil', component: UserProfileComponent, canActivate: [ AuthGuard ], data: {
+                                                            rol: 'ROL_ADMIN',
+                                                            titulo: 'Showroom Admin - Perfil',
+                                                            breadcrums: []
+                                                          },},
+    { path: 'nuevousu', component: NuevousuarioComponent, canActivate: [ AuthGuard ], data: {
+                                                            rol: 'ROL_ADMIN',
+                                                            titulo: 'Showroom Admin - Nuevo Usuario',
+                                                            breadcrums: [{titulo: 'Usuarios', url: '/admin/usuarios'}]
+                                                          }},
+    { path: 'nuevotrabajo', component: NuevotrabajoComponent, canActivate: [ AuthGuard ], data: {
+                                                            rol: 'ROL_ADMIN',
+                                                            titulo: 'Showroom Admin - Nuevo Trabajo',
+                                                            breadcrums: [{titulo: 'Trabajos', url: '/admin/trabajos'}]
+                                                          }},
+    { path: 'nuevatitulacion', component: NuevatitulacionComponent, canActivate: [ AuthGuard ], data: {
+                                                            rol: 'ROL_ADMIN',
+                                                            titulo: 'Showroom Admin - Nueva Titulación',
+                                                            breadcrums: [{titulo: 'Titulaciones', url: '/admin/titulaciones'}]
+                                                          }},
 
     { path: '**', redirectTo: 'admin/usuarios'}
   ]},

@@ -44,11 +44,11 @@ const actualizarBD = async(tipo, path, nombreArchivo, id, token) => {
             }
             console.log("Aqui se llega");
 
-            // Comprobar que el id de usuario es un admin
-            // if (infoToken(token).rol !== "ROL_ADMIN") {
-            //     console.log('no tienes permisos de admin')
-            //     return false;
-            // }
+            //Comprobar que el id de usuario es un admin
+            if (infoToken(token).rol !== "ROL_ADMIN") {
+                console.log('no tienes permisos de admin')
+                return false;
+            }
 
             fotoAntigua = titulacionfoto.imagen;
             pathFotoAntigua = `${path}/${fotoAntigua}`;

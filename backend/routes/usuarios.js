@@ -7,6 +7,7 @@ const { obtenerUsuarios, obtenerAlumnos, crearUsuario, actualizarUsuario, borrar
 const { check } = require('express-validator');
 const { validarCampos } = require('../middleware/validar-campos');
 const { validarRol } = require('../middleware/validar-rol');
+const { validarRolAdmin } = require('../middleware/validar-rol-admin');
 const { validarJWT } = require('../middleware/validar-jwt');
 
 const router = Router();
@@ -20,10 +21,11 @@ router.get('/', [
 ], obtenerUsuarios);
 
 router.get('/alumnos', [
-    // validarJWT,
+    validarJWT,
     // Campos opcionales, si vienen los validamos
     check('desde', 'El desde debe ser un número').optional().isNumeric(),
     validarCampos,
+    validarRolAdmin,
 ], obtenerAlumnos);
 
 router.post('/', [
@@ -32,7 +34,7 @@ router.post('/', [
     check('email', 'El argumento email debe ser un email').isEmail(),
     check('password', 'El argumento password es obligatorio').not().isEmpty(),
     validarCampos,
-    validarRol,
+    validarRolAdmin
 ], crearUsuario);
 
 router.put('/:id', [
@@ -45,13 +47,14 @@ router.put('/:id', [
     // campos que son opcionales que vengan pero que si vienen queremos validar el tipo
     check('activo', 'El estado activo debe ser true/false').optional().isBoolean(),
     validarCampos,
-    validarRol,
+    validarRolAdmin,
 ], actualizarUsuario);
 
 router.delete('/:id', [
     validarJWT,
     check('id', 'El identificador no es válido').isMongoId(),
-    validarCampos
+    validarCampos,
+    validarRolAdmin
 ], borrarUsuario);
 
 

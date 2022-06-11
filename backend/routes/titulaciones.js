@@ -26,8 +26,7 @@ router.post('/', [
     check('resumen', 'El argumento resumen es obligatorio').not().isEmpty().trim(),
     check('area', 'El argumento area es obligatorio').not().isEmpty(),
     validarCampos,
-    // validarRol,
-    // validarRolAdmin
+    validarRolAdmin
 ], crearTitulacion);
 
 router.put('/:id', [
@@ -36,13 +35,14 @@ router.put('/:id', [
     check('id', 'El identificador no es válido').isMongoId(),
     // campos que son opcionales que vengan pero que si vienen queremos validar el tipo
     validarCampos,
-    validarRol,
+    validarRolAdmin,
 ], actualizarTitulacion);
 
 router.delete('/:id', [
     validarJWT,
     check('id', 'El identificador no es válido').isMongoId(),
-    validarCampos
+    validarCampos,
+    validarRolAdmin
 ], borrarTitulacion);
 
 
