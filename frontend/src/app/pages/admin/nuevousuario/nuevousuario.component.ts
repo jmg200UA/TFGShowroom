@@ -30,6 +30,7 @@ export class NuevousuarioComponent implements OnInit {
                private UsuarioService: UsuarioService) { }
 
   ngOnInit(): void {
+    this.generatePasswordRand(4);
   }
 
   cancelar(): void {
@@ -65,6 +66,18 @@ export class NuevousuarioComponent implements OnInit {
 
   campoNoValido( campo: string) {
     return this.datosForm.get(campo).invalid && this.formSubmited;
+  }
+
+  //Para generar una pass aleatoria para el usuario
+  generatePasswordRand(length){
+    let characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    var pass = "";
+    for (var i = 0; i < length; i++) {
+            pass += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    this.datosForm.get('password').setValue(pass);
+    this.datosForm.get('password').disabled;
+    return pass;
   }
 
 }
