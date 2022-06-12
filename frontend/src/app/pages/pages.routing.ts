@@ -1,16 +1,25 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-//import { AuthGuard } from '../guards/auth.guard';
-import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AuthGuard } from '../guards/auth.guard';
+//COMPONENTS ADMIN
+import { AdminComponent } from './admin/admin.component';
 import { GestionUsuariosComponent } from './admin/gestionusuarios/gestionusuarios.component';
 import { GestionTrabajosComponent } from './admin/gestiontrabajos/gestiontrabajos.component';
-import { AdminComponent } from './admin/admin.component';
+import { GestionTitulacionesComponent } from './admin/gestiontitulaciones/gestiontitulaciones.component';
 import { NuevousuarioComponent } from './admin/nuevousuario/nuevousuario.component';
 import { NuevotrabajoComponent } from './admin/nuevotrabajo/nuevotrabajo.component';
 import { NuevatitulacionComponent } from './admin/nuevatitulacion/nuevatitulacion.component';
+//COMPONENTS ALUMNO
+import { AlumnoComponent } from './alumno/alumno.component';
+import { TrabajosComponent } from './alumno/trabajos/trabajos.component';
+import { NuevostrabajosComponent } from './alumno/nuevostrabajos/nuevostrabajos.component';
+//COMPONENT PERFIL GENERAL
+import { UserProfileComponent } from './user-profile/user-profile.component';
+//COMPONENTS LANDING
 import { LandingComponent } from './landing/landing.component';
-import { GestionTitulacionesComponent } from './admin/gestiontitulaciones/gestiontitulaciones.component';
-import { AuthGuard } from '../guards/auth.guard';
+
+
+
 
 
 
@@ -100,6 +109,23 @@ export const routes: Routes = [
                                                           }},
 
     { path: '**', redirectTo: 'admin/usuarios'}
+  ]},
+
+  //PATHS ALUMNO
+  { path: 'alumno', component: AlumnoComponent,canActivate: [ AuthGuard], data: {rol: 'ROL_ALUMNO'},
+  children:[
+    { path: 'trabajos', component: TrabajosComponent, canActivate: [ AuthGuard ], data: {
+                                                            rol: 'ROL_ALUMNO',
+                                                            titulo: 'Showroom Alumno - Trabajos',
+                                                            breadcrums: []
+                                                          },},
+    { path: 'nuevostrabajos', component: NuevostrabajosComponent, canActivate: [ AuthGuard ], data: {
+                                                            rol: 'ROL_ALUMNO',
+                                                            titulo: 'Showroom Alumno - Nuevos Trabajos',
+                                                            breadcrums: []
+                                                          },},
+
+    { path: '**', redirectTo: 'alumno/trabajos'}
   ]},
 
   //PATHS LANDING

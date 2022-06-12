@@ -1,10 +1,10 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { ROUTES } from '../sidebar/sidebar.component';
+import { ROUTESADMIN, ROUTESALUMNOS } from '../sidebar/sidebar.component';
 import { routes } from '../../pages/pages.routing';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { Router } from '@angular/router';
 import Chart from 'chart.js';
-import {UsuarioService} from '../../services/usuario.service'
+import {UsuarioService} from '../../services/usuario.service';
 
 @Component({
   selector: 'app-navbar',
@@ -27,9 +27,7 @@ export class NavbarComponent implements OnInit {
     }
 
     ngOnInit(){
-      this.listTitles = ROUTES.filter(listTitle => listTitle);
       this.listaTitulos = routes.filter(listaTitulos => listaTitulos.children);
-      console.log("TITULOS: ", this.listTitles);
       console.log("TITULOS: ", this.listaTitulos);
       const navbar: HTMLElement = this.element.nativeElement;
       this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
@@ -160,11 +158,21 @@ export class NavbarComponent implements OnInit {
       //         return this.listTitles[item].title;
       //     }
       // }
-      for(var item = 0; item < this.listaTitulos[0].children.length; item++){
-        if(this.listaTitulos[0].children[item].path === titlee){
-            return this.listaTitulos[0].children[item].data.titulo;
+      if(this.UsuarioService.rol=="ROL_ADMIN"){
+        for(var item = 0; item < this.listaTitulos[0].children.length; item++){
+          if(this.listaTitulos[0].children[item].path === titlee){
+              return this.listaTitulos[0].children[item].data.titulo;
+          }
         }
-    }
+      }
+      else if(this.UsuarioService.rol=="ROL_ALUMNO"){
+        for(var item = 0; item < this.listaTitulos[1].children.length; item++){
+          if(this.listaTitulos[1].children[item].path === titlee){
+              return this.listaTitulos[1].children[item].data.titulo;
+          }
+        }
+      }
+
       return 'Dashboard';
     }
 }

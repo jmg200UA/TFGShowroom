@@ -76,7 +76,6 @@ export class NuevousuarioComponent implements OnInit {
             pass += characters.charAt(Math.floor(Math.random() * characters.length));
     }
     this.datosForm.get('password').setValue(pass);
-    this.datosForm.get('password').disable();
     return pass;
   }
 

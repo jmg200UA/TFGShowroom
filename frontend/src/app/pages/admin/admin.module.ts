@@ -1,19 +1,18 @@
+//MODULES
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { GestionUsuariosComponent } from './gestionusuarios/gestionusuarios.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NuevousuarioComponent } from './nuevousuario/nuevousuario.component';
 import { ComponentsModule } from '../../components/components.module';
+//COMPONENTS
+import { NuevousuarioComponent } from './nuevousuario/nuevousuario.component';
+import { GestionUsuariosComponent } from './gestionusuarios/gestionusuarios.component';
 import { AdminComponent } from './admin.component';
 import { GestionTrabajosComponent } from './gestiontrabajos/gestiontrabajos.component';
 import { NuevotrabajoComponent } from './nuevotrabajo/nuevotrabajo.component';
 import { GestionTitulacionesComponent } from './gestiontitulaciones/gestiontitulaciones.component';
 import { NuevatitulacionComponent } from './nuevatitulacion/nuevatitulacion.component';
-import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -23,10 +22,7 @@ import { MatSelectModule } from '@angular/material/select';
     NgbModule,
     ReactiveFormsModule,
     RouterModule,
-    ComponentsModule,
-    NgxMatSelectSearchModule,
-    MatFormFieldModule,
-    MatSelectModule
+    ComponentsModule
   ],
   declarations: [
     GestionUsuariosComponent,

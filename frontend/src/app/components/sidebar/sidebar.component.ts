@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UsuarioService } from '../../services/usuario.service';
+import { Usuario } from '../../models/usuario.model';
 
 declare interface RouteInfo {
     path: string;
@@ -6,28 +8,42 @@ declare interface RouteInfo {
     icon: string;
     class: string;
 }
-export const ROUTES: RouteInfo[] = [
+export const ROUTESADMIN: RouteInfo[] = [
   { path: 'usuarios', title: 'Gestión Usuarios',  icon:'users_single-02', class: '' },
   { path: 'trabajos', title: 'Gestión Trabajos',  icon:'design_bullet-list-67', class: '' },
   { path: 'titulaciones', title: 'Gestión Titulaciones',  icon:'design_bullet-list-67', class: '' },
   //{ path: 'perfil', title: 'Perfil',  icon:'users_single-02', class: '' },
-
     //{ path: '/upgrade', title: 'Upgrade to PRO',  icon:'objects_spaceship', class: 'active active-pro' }
-
 ];
+
+export const ROUTESALUMNOS: RouteInfo[] = [
+  { path: 'trabajos', title: 'Trabajos',  icon:'design_bullet-list-67', class: '' },
+  { path: 'nuevostrabajos', title: 'Nuevos Trabajos para subir',  icon:'design_bullet-list-67', class: '' }
+];
+
+
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
+
+
 export class SidebarComponent implements OnInit {
   menuItems: any[];
-
-  constructor() { }
+  public rollog;
+  constructor(private UsuarioService: UsuarioService) { }
 
   ngOnInit() {
-    this.menuItems = ROUTES.filter(menuItem => menuItem);
+    this.rollog= this.UsuarioService.rol;
+    if(this.UsuarioService.rol=="ROL_ADMIN"){
+      this.menuItems = ROUTESADMIN.filter(menuItem => menuItem);
+    }
+    else if(this.UsuarioService.rol=="ROL_ALUMNO"){
+      this.menuItems = ROUTESALUMNOS.filter(menuItem => menuItem);
+    }
+
   }
   isMobileMenu() {
       if ( window.innerWidth > 991) {

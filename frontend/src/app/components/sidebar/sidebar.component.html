@@ -4,9 +4,12 @@
             <img src="./assets/img/favicon.png" />
         </div>
     </a>
-    <a class="simple-text logo-normal">
+    <a class="simple-text logo-normal" *ngIf="rollog=='ROL_ADMIN'">
         Admin
     </a>
+    <a class="simple-text logo-normal" *ngIf="rollog=='ROL_ALUMNO'">
+      Alumno
+  </a>
 </div>
 <div class="sidebar-wrapper">
     <ul class="nav">
