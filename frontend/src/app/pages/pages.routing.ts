@@ -14,7 +14,7 @@ import { AuthGuard } from '../guards/auth.guard';
 
 
 
-const routes: Routes = [
+export const routes: Routes = [
 
   //Comentado de ejemplo
   // { path: 'admin', component: AdminLayoutComponent, canActivate: [ AuthGuard], data: {rol: 'ROL_ADMIN'},
@@ -78,9 +78,9 @@ const routes: Routes = [
                                                             titulo: 'Showroom Admin - Gestión Titulaciones',
                                                             breadcrums: []
                                                           },},
-    { path: 'perfil', component: UserProfileComponent, canActivate: [ AuthGuard ], data: {
+    { path: 'perfil',  component: UserProfileComponent, canActivate: [ AuthGuard ], data: {
                                                             rol: 'ROL_ADMIN',
-                                                            titulo: 'Showroom Admin - Perfil',
+                                                            titulo: 'Perfil',
                                                             breadcrums: []
                                                           },},
     { path: 'nuevousu', component: NuevousuarioComponent, canActivate: [ AuthGuard ], data: {

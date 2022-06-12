@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
+import { routes } from '../../pages/pages.routing';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { Router } from '@angular/router';
 import Chart from 'chart.js';
@@ -12,6 +13,7 @@ import {UsuarioService} from '../../services/usuario.service'
 })
 export class NavbarComponent implements OnInit {
     private listTitles: any[];
+    private listaTitulos: any[];
     location: Location;
       mobile_menu_visible: any = 0;
     private toggleButton: any;
@@ -26,6 +28,9 @@ export class NavbarComponent implements OnInit {
 
     ngOnInit(){
       this.listTitles = ROUTES.filter(listTitle => listTitle);
+      this.listaTitulos = routes.filter(listaTitulos => listaTitulos.children);
+      console.log("TITULOS: ", this.listTitles);
+      console.log("TITULOS: ", this.listaTitulos);
       const navbar: HTMLElement = this.element.nativeElement;
       this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
       this.router.events.subscribe((event) => {
@@ -150,11 +155,16 @@ export class NavbarComponent implements OnInit {
       }
       titlee = titlee.split('/').pop();
 
-      for(var item = 0; item < this.listTitles.length; item++){
-          if(this.listTitles[item].path === titlee){
-              return this.listTitles[item].title;
-          }
-      }
+      // for(var item = 0; item < this.listTitles.length; item++){
+      //     if(this.listTitles[item].path === titlee){
+      //         return this.listTitles[item].title;
+      //     }
+      // }
+      for(var item = 0; item < this.listaTitulos[0].children.length; item++){
+        if(this.listaTitulos[0].children[item].path === titlee){
+            return this.listaTitulos[0].children[item].data.titulo;
+        }
+    }
       return 'Dashboard';
     }
 }
