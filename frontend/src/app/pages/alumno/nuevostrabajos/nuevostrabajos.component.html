@@ -38,8 +38,8 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let trabajo of listaTrabajos">
-                                    <td class="micursor">{{trabajo.titulo}}</td>
-                                    <td>{{trabajo.titulacion}}</td>
+                                    <td (click)="subirTrabajo(trabajo.uid)" class="micursor">{{trabajo.titulo}}</td>
+                                    <td>{{trabajo.titulacion.nombre}}</td>
                                 </tr>
                             </tbody>
                         </table>

@@ -13,6 +13,7 @@ import { NuevatitulacionComponent } from './admin/nuevatitulacion/nuevatitulacio
 import { AlumnoComponent } from './alumno/alumno.component';
 import { TrabajosComponent } from './alumno/trabajos/trabajos.component';
 import { NuevostrabajosComponent } from './alumno/nuevostrabajos/nuevostrabajos.component';
+import { SubirtrabajoComponent } from './alumno/subirtrabajo/subirtrabajo.component';
 //COMPONENT PERFIL GENERAL
 import { UserProfileComponent } from './user-profile/user-profile.component';
 //COMPONENTS LANDING
@@ -122,6 +123,11 @@ export const routes: Routes = [
     { path: 'nuevostrabajos', component: NuevostrabajosComponent, canActivate: [ AuthGuard ], data: {
                                                             rol: 'ROL_ALUMNO',
                                                             titulo: 'Showroom Alumno - Nuevos Trabajos',
+                                                            breadcrums: []
+                                                          },},
+    { path: 'subirtrabajo/:uid', component: SubirtrabajoComponent, canActivate: [ AuthGuard ], data: {
+                                                            rol: 'ROL_ALUMNO',
+                                                            titulo: 'Showroom Alumno - Subir Trabajo',
                                                             breadcrums: []
                                                           },},
 

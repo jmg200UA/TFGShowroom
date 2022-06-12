@@ -9,13 +9,15 @@ import { ComponentsModule } from '../../components/components.module';
 import { AlumnoComponent } from './alumno.component';
 import { TrabajosComponent } from './trabajos/trabajos.component';
 import { NuevostrabajosComponent } from './nuevostrabajos/nuevostrabajos.component';
+import { SubirtrabajoComponent } from './subirtrabajo/subirtrabajo.component';
 
 
 @NgModule({
   declarations: [
     AlumnoComponent,
     TrabajosComponent,
-    NuevostrabajosComponent
+    NuevostrabajosComponent,
+    SubirtrabajoComponent
   ],
   imports: [
     CommonModule,

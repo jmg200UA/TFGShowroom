@@ -17,6 +17,9 @@ const TrabajoSchema = Schema({
     imagen: {
         type: String,
     },
+    url: {
+        type: String
+    },
     area: { // area de conocimiento
         type: String, // comprobar por middleware segun la carrera
     },
@@ -29,9 +32,19 @@ const TrabajoSchema = Schema({
         require: true
     },
     valoracion: {
-        type: Number
+        type: Number,
+        default: 0
     },
     imagenes: [{
+        type: String,
+    }],
+    videos: [{
+        type: String,
+    }],
+    audios: [{
+        type: String,
+    }],
+    documentos: [{
         type: String,
     }],
     titulacion: {
