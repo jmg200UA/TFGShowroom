@@ -1,10 +1,11 @@
 <div class="panel-header panel-header-sm">
+
 </div>
 
 <div class="main-content">
     <div class="row">
         <div class="col-md-4 input-group no-border">
-            <input #txtQuery class="form-control" autocomplete="off" placeholder="Busca...">
+            <input #txtQuery (keyup)="cargarTrabajos(txtQuery.value)" class="form-control" autocomplete="off" placeholder="Busca...">
             <div class="input-group-append">
                 <div class="input-group-text">
                     <i class="now-ui-icons ui-1_zoom-bold"></i>
@@ -12,7 +13,6 @@
             </div>
         </div>
         <div class="col-md-6"></div>
-        <div class="col-md-2 float-right"><button class="btn btn-primary btn-block float-right" routerLink="/admin/nuevotrabajo">Nuevo trabajo</button></div>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -21,7 +21,7 @@
                     <h4 class="card-title"> Trabajos</h4>
                 </div>
                 <div class="card-body">
-                    <div class="alert alert-primary text-center">
+                    <div class="alert alert-primary text-center" *ngIf="loading">
                         <h4 class="alert-heading">Cargando!</h4>
                         <i class="fa fa-spin fa-spinner fa-3x"></i>
                         <p>Por favor, espere</p>
@@ -30,21 +30,26 @@
                         <table class="table">
                             <thead class=" text-primary">
                                 <th>
-                                    Autor
-                                </th>
-                                <th>
                                     Título
                                 </th>
                                 <th>
                                     Titulación
                                 </th>
-                                <th class="text-right">
-                                    Acción
+                                <th>
+                                    Director
                                 </th>
                             </thead>
+                            <tbody>
+                                <tr *ngFor="let trabajo of listaTrabajos">
+                                    <td class="micursor">{{trabajo.titulo}}</td>
+                                    <td>{{trabajo.titulacion.nombre}}</td>
+                                    <td>{{trabajo.director}}</td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                     <div class="mt-2 mr-2 float-right">
+                        <app-pagination (cambiarPagina)="cambiarPagina( $event ) " [texto]="true " [totalRegistros]="totaltrabajos" [registroActual]="posicionactual+1 " [registrosPorPagina]="registrosporpagina "></app-pagination>
                     </div>
                 </div>
             </div>

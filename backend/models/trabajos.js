@@ -31,7 +31,7 @@ const TrabajoSchema = Schema({
     valoracion: {
         type: Number
     },
-    multimedia: [{
+    imagenes: [{
         type: String,
     }],
     titulacion: {
@@ -39,6 +39,10 @@ const TrabajoSchema = Schema({
         ref: 'Titulacion',
         require: true
     },
+    visible: {
+        type: Boolean,
+        default: false
+    }
 }, { collection: 'trabajos' });
 
 TrabajoSchema.method('toJSON', function() {

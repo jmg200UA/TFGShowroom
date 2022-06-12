@@ -6,6 +6,7 @@ export class Trabajo {
 
     constructor( // opcionales
                  public imagen: string,
+                 public visible: Boolean,
                  // obligatorios
                  public titulo?: string,
                  public autor?,

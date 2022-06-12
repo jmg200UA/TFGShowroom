@@ -35,6 +35,18 @@ export class TrabajosService {
     return this.http.get(`${environment.base_url}/trabajos/?desde=${desde}&texto=${textoBusqueda}` , this.cabeceras);
   }
 
+  cargarTrabajosAluVisibles(uid: string, desde: number, textoBusqueda?: string ): Observable<object> {
+    if (!desde) { desde = 0;}
+    if (!textoBusqueda) {textoBusqueda = '';}
+    return this.http.get(`${environment.base_url}/trabajos/v/?id=${uid}&?desde=${desde}&texto=${textoBusqueda}` , this.cabeceras);
+  }
+
+  cargarTrabajosAluNoVisibles(uid: string, desde: number, textoBusqueda?: string ): Observable<object> {
+    if (!desde) { desde = 0;}
+    if (!textoBusqueda) {textoBusqueda = '';}
+    return this.http.get(`${environment.base_url}/trabajos/nv/?id=${uid}&?desde=${desde}&texto=${textoBusqueda}` , this.cabeceras);
+  }
+
   borrarTrabajo( uid: string) {
     if (!uid || uid === null) {uid = 'a'; }
     return this.http.delete(`${environment.base_url}/trabajos/${uid}` , this.cabeceras);
