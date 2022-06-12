@@ -12,9 +12,9 @@ import { TitulacionService } from '../../../services/titulacion.service';
 })
 export class NuevatitulacionComponent implements OnInit {
 
-  public Tipos = ['TFG','TFM'];
-  public ListaTFG = ['Construcción','Tecnologías de la información y las comunicaciones', 'Industrial y aeronáutica', 'Ciencia y tecnologías para la salud'];
-  public ListaTFM = ['Construcción','Tecnologías de la información y las comunicaciones', 'Industrial y aeronáutica', 'Ciencia de la salud'];
+  public Tipos = ['Grado','Máster'];
+  public ListaGrados = ['Construcción','Tecnologías de la información y las comunicaciones', 'Industrial y aeronáutica', 'Ciencia y tecnologías para la salud'];
+  public ListaMasters = ['Construcción','Tecnologías de la información y las comunicaciones', 'Industrial y aeronáutica', 'Ciencia de la salud'];
 
   public foto: File = null;
   private formSubmited = false;
