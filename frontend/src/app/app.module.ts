@@ -23,7 +23,7 @@ import { MatSelectModule } from '@angular/material/select';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    ComponentsModule,
+    // ComponentsModule,
     RouterModule,
     AppRoutingModule,
     NgbModule,

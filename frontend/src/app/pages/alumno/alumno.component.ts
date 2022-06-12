@@ -30,7 +30,7 @@ export class AlumnoComponent implements OnInit {
           document.getElementsByTagName('body')[0].classList.remove('perfect-scrollbar-off');
       }
       const elemMainPanel = <HTMLElement>document.querySelector('.main-panel');
-      const elemSidebar = <HTMLElement>document.querySelector('.sidebar .sidebar-wrapper');
+      const elemSidebar = <HTMLElement>document.querySelector('.sidebar .wrapper');
 
       this.location.subscribe((ev:PopStateEvent) => {
           this.lastPoppedUrl = ev.url;

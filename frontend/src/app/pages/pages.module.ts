@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminModule } from './admin/admin.module';
+import { AlumnoModule } from './alumno/alumno.module';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
@@ -17,7 +18,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    AdminModule
+    AdminModule,
+    AlumnoModule
 
   ]
 })
