@@ -28,6 +28,13 @@ export class NuevotrabajoComponent implements OnInit {
     titulacion: ['', Validators.required ],
   });
 
+  public datosForm2 = this.fb.group({ // para el registro de un alumno nuevo
+    email: [ '', [Validators.required, Validators.email] ],
+    nombre_apellidos: ['', Validators.required ],
+    password: ['', Validators.required],
+    rol: ['ROL_ALUMNO', Validators.required ],
+  });
+
   //Variables para el listado de Alumnos
   public loading = false;
   public ultimaBusqueda = '';
@@ -45,6 +52,13 @@ export class NuevotrabajoComponent implements OnInit {
   public nombreTitu: string = ''; // nombre alumno seleccionado en la select
   public posicionactual2 = 0;
   public registrosporpagina2 = environment.registros_por_pagina;
+
+  //Variables para el nuevo alumno
+  public loadingModal= false;
+  public idnewalu;
+  private formSubmited2 = false;
+  public nomnewalu;
+  private passaleatoria;
 
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
@@ -170,6 +184,77 @@ export class NuevotrabajoComponent implements OnInit {
     this.nombreTitu = titu.nombre;
     this.datosForm.get('titulacion').setValue(titu.uid);
     this.ultimaBusqueda2='';
+  }
+
+  // Funciones para crear un nuevo alumno si no existe
+
+  cancelar2(): void {
+    // Si estamos creando uno nuevo, vamos a la lista
+      this.router.navigateByUrl('/admin/dashboard');
+  }
+
+
+  enviar2(): void {
+    this.formSubmited2 = true;
+    if (this.datosForm2.invalid) { return; }
+    this.datosForm2.get('rol').setValue('ROL_ALUMNO');
+    console.log("DATOS FORM ALU NEW: ", this.datosForm2);
+    console.log("PASS: ", this.passaleatoria);
+
+      this.UsuarioService.nuevoUsuario( this.datosForm2.value )
+        .subscribe( res => {
+          this.datosForm2.markAsPristine();
+
+          Swal.fire({
+            icon: 'success',
+            title: 'Usuario creado correctamente',
+            showConfirmButton: false,
+            timer: 2000
+          })
+          this.idnewalu= res['usuario'].uid;
+          //cargar usuario nuevo creado
+          this.UsuarioService.cargarUsuario(this.idnewalu)
+            .subscribe( res => {
+              //Guardamos en la variable nombreAlu para mostrar el alumno en el frontend
+              this.nombreAlu= res['usuarios'].nombre_apellidos;
+              this.idnewalu= res['usuarios'].uid;
+          }, (err) => {
+            const errtext = err.error.msg || 'No se pudo completar la acción, vuelva a intentarlo.';
+            Swal.fire({icon: 'error', title: 'Oops...', text: errtext,});
+            return;
+          });
+          //Cambiamos el valor del autor por el ID del nuevo alumno
+          this.datosForm.get('autor').setValue(this.idnewalu);
+
+        }, (err) => {
+          const errtext = err.error.msg || 'No se pudo completar la acción, vuelva a intentarlo.';
+          Swal.fire({icon: 'error', title: 'Oops...', text: errtext,});
+          return;
+        });
+
+
+  }
+
+  campoNoValido2( campo: string) {
+    return this.datosForm2.get(campo).invalid && this.formSubmited2;
+  }
+
+  clickModal(){
+    this.loadingModal= false;
+    console.log("DATOS FORM USU INICIO: ", this.datosForm2.value);
+    this.generatePasswordRand(4);
+  }
+
+
+  //Para generar una pass aleatoria para el usuario
+  generatePasswordRand(length){
+    let characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    var pass = "";
+    for (var i = 0; i < length; i++) {
+            pass += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    this.datosForm2.get('password').setValue(pass);
+    this.passaleatoria= pass;
   }
 
 }
