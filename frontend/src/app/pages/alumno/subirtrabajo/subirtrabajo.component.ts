@@ -20,15 +20,15 @@ export class SubirtrabajoComponent implements OnInit {
   public loading = true;
 
   //Arrays para guardar el contenido que se copiará a los campos del form group
-  public imagenes=[];
-  public videos=[];
-  public audios=[];
-  public documentos=[];
+  public imagenes: File [] = [];
+  public videos: File [] = [];
+  public audios: File [] = [];
+  public documentos: File [] = [];
   //Arrays para guardar los nombres de estos contenidos
-  public nomimagenes=[];
-  public nomvideos=[];
-  public nomaudios=[];
-  public nomdocumentos=[];
+  public nomimagenes: String [] = [];
+  public nomvideos: String [] = [];
+  public nomaudios: String [] = [];
+  public nomdocumentos: String [] = [];
 
 
 
@@ -156,14 +156,12 @@ export class SubirtrabajoComponent implements OnInit {
       const extension = nombrecortado[nombrecortado.length - 1];
       if (!extensiones.includes(extension)) {
         // Si no teniamos ningúna foto ya seleccionada antes, dejamos el campo pristine
-        if (this.foto === null) {
           this.datosForm.get('imagen').markAsPristine();
-        }
         Swal.fire({icon: 'error', title: 'Oops...', text: 'El archivo debe ser una imagen jpeg, jpg o png'});
         return;
       }
-      this.foto = evento.target.files[0];
-      this.fileText = nombre;
+      this.imagenes.push(evento.target.files[0]);
+      this.nomimagenes.push(nombre);
   }
   }
 
