@@ -151,23 +151,36 @@ export class NavbarComponent implements OnInit {
       if(titlee.charAt(0) === '#'){
           titlee = titlee.slice( 2 );
       }
-      titlee = titlee.split('/').pop();
+      //vamos a comprobar que no inicie por numero, para que no pille el nombre de ruta que no debe
+      let numeros = ['0','1','2','3','4','5','6','7','8','9'];
+      let title = titlee.split('/').pop();
+      let boolnum= false;
+      for(var i=0; i<numeros.length;i++){
+        if(title.charAt(0)==numeros[i]) boolnum=true;
+      }
+      if(boolnum){
+        let titlesplit = titlee.split('/');
+        titlee = titlesplit[titlesplit.length - 2];
+      }
+      else titlee=title;
 
-      // for(var item = 0; item < this.listTitles.length; item++){
-      //     if(this.listTitles[item].path === titlee){
-      //         return this.listTitles[item].title;
-      //     }
-      // }
+      //Reiniciamos variable bool para hacer la misma comprobación para las paths
+      boolnum= false;
+      let pathbueno; //Variable para almacenar el nombre del path de la ruta
       if(this.UsuarioService.rol=="ROL_ADMIN"){
-        for(var item = 0; item < this.listaTitulos[0].children.length; item++){
-          if(this.listaTitulos[0].children[item].path === titlee){
+        for(var item = 0; item < this.listaTitulos[1].children.length; item++){
+          pathbueno = this.listaTitulos[0].children[item].path.split('/');
+          pathbueno=pathbueno[0];
+          if(pathbueno === titlee){
               return this.listaTitulos[0].children[item].data.titulo;
           }
         }
       }
       else if(this.UsuarioService.rol=="ROL_ALUMNO"){
         for(var item = 0; item < this.listaTitulos[1].children.length; item++){
-          if(this.listaTitulos[1].children[item].path === titlee){
+          pathbueno = this.listaTitulos[1].children[item].path.split('/');
+          pathbueno=pathbueno[0];
+          if(pathbueno === titlee){
               return this.listaTitulos[1].children[item].data.titulo;
           }
         }
