@@ -40,12 +40,12 @@
                             <div class="col-lg-8 col-md-12">
                                 <div *ngIf="tipo=='Grado'">
                                     <select class="form-control" formControlName="area" [ngClass]="{'is-invalid' : campoNoValido('area')}" id="area">
-                                      <option [value]="item" *ngFor="let item of ListaTFG">{{item}}</option>
+                                      <option [value]="item" *ngFor="let item of ListaGrados">{{item}}</option>
                                   </select>
                                 </div>
                                 <div *ngIf="tipo=='Máster'">
                                     <select class="form-control" formControlName="area" [ngClass]="{'is-invalid' : campoNoValido('area')}" id="area">
-                                    <option [value]="item" *ngFor="let item of ListaTFM">{{item}}</option>
+                                    <option [value]="item" *ngFor="let item of ListaMasters">{{item}}</option>
                                 </select>
                                 </div>
                                 <div class="invalid-feedback">
