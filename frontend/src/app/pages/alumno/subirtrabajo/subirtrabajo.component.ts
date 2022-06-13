@@ -38,15 +38,16 @@ export class SubirtrabajoComponent implements OnInit {
     autor: ['', Validators.required ],
     area: ['', Validators.required ],
     titulacion: ['', Validators.required ],
+    tipo: ['', Validators.required ],
     //********************** */
     resumen: ['', Validators.required ],
     imagen: [''],
     director: ['', Validators.required ],
     //Contenido multimedia que quiera adjuntar el alumno
-    imagenes: [''],
-    videos: [''],
-    audios: [''],
-    documentos: [''],
+    // imagenes: [''],
+    // videos: [''],
+    // audios: [''],
+    // documentos: [''],
 
   });
 
@@ -72,35 +73,88 @@ export class SubirtrabajoComponent implements OnInit {
 
     //Llamar a actualizar trabajo
     //Hacer bucle para cada array de archivos para subirlos uno a uno
-      // this.TitulacionService.nuevaTitulacion( this.datosForm.value )
-      //   .subscribe( res => {
-      //     console.log("Titulacion creada: ", res['titulacion']);
-      //     if (this.foto ) {
-      //       this.TitulacionService.subirFoto( res['titulacion'].uid, this.foto)
-      //       .subscribe( res => {
-      //         console.log("Respuesta a la subida de la foto: ", res);
-      //       }, (err) => {
-      //         const errtext = err.error.msg || 'No se pudo cargar la imagen';
-      //         Swal.fire({icon: 'error', title: 'Oops...', text: errtext});
-      //         return;
-      //       });
-      //     }
+      this.TrabajosService.actualizarTrabajo( this.uid,this.datosForm.value )
+        .subscribe( res => {
+          console.log("Trabajo creado: ", res['trabajo']);
+          //Subida imagen del trabajo
+          if (this.foto ) {
+            this.TrabajosService.subirFoto( res['trabajo'].uid, this.foto)
+            .subscribe( res => {
+              console.log("Respuesta a la subida de la foto: ", res);
+            }, (err) => {
+              const errtext = err.error.msg || 'No se pudo cargar la imagen';
+              Swal.fire({icon: 'error', title: 'Oops...', text: errtext});
+              return;
+            });
+          }
+          //Subida imagenes adicional
+          if(this.imagenes.length>0){
+            for(var i=0; i<this.imagenes.length; i++){
+              this.TrabajosService.subirFotos( res['trabajo'].uid, this.imagenes[i])
+            .subscribe( res => {
+              console.log("Respuesta a la subida de la foto: ", res);
+            }, (err) => {
+              const errtext = err.error.msg || 'No se pudo cargar la imagen';
+              Swal.fire({icon: 'error', title: 'Oops...', text: errtext});
+              return;
+            });
+            }
+          }
+          //Subida videos adicional
+          if(this.videos.length>0){
+            for(var i=0; i<this.videos.length; i++){
+              this.TrabajosService.subirVideos( res['trabajo'].uid, this.videos[i])
+            .subscribe( res => {
+              console.log("Respuesta a la subida del video: ", res);
+            }, (err) => {
+              const errtext = err.error.msg || 'No se pudo cargar el video';
+              Swal.fire({icon: 'error', title: 'Oops...', text: errtext});
+              return;
+            });
+            }
+          }
+          //Subida audios adicional
+          if(this.audios.length>0){
+            for(var i=0; i<this.audios.length; i++){
+              this.TrabajosService.subirAudios( res['trabajo'].uid, this.audios[i])
+            .subscribe( res => {
+              console.log("Respuesta a la subida del audio: ", res);
+            }, (err) => {
+              const errtext = err.error.msg || 'No se pudo cargar el audio';
+              Swal.fire({icon: 'error', title: 'Oops...', text: errtext});
+              return;
+            });
+            }
+          }
+          //Subida documentos adicional
+          if(this.documentos.length>0){
+            for(var i=0; i<this.documentos.length; i++){
+              this.TrabajosService.subirDocs( res['trabajo'].uid, this.documentos[i])
+            .subscribe( res => {
+              console.log("Respuesta a la subida del documento: ", res);
+            }, (err) => {
+              const errtext = err.error.msg || 'No se pudo cargar el documento';
+              Swal.fire({icon: 'error', title: 'Oops...', text: errtext});
+              return;
+            });
+            }
+          }
 
-      //     this.datosForm.markAsPristine();
+          this.datosForm.markAsPristine();
 
-      //     Swal.fire({
-      //       icon: 'success',
-      //       title: 'Titulacion creada correctamente',
-      //       showConfirmButton: false,
-      //       timer: 2000
-      //     })
-      //     this.router.navigateByUrl('/admin/titulaciones');
+          Swal.fire({
+            icon: 'success',
+            title: 'Trabajo subido correctamente',
+            showConfirmButton: false,
+            timer: 2000
+          })
+          this.router.navigateByUrl('/alumno/trabajos');
 
-      //   }, (err) => {
-      //     const errtext = err.error.msg || 'No se pudo completar la acción, vuelva a intentarlo.';
-      //     Swal.fire({icon: 'error', title: 'Oops...', text: errtext,});
-      //     return;
-      //   });
+        }, (err) => {
+          const errtext = err.error.msg || 'No se pudo completar la acción, vuelva a intentarlo.';
+          Swal.fire({icon: 'error', title: 'Oops...', text: errtext,});
+          return;
+        });
 
 
   }
@@ -119,6 +173,8 @@ export class SubirtrabajoComponent implements OnInit {
         this.datosForm.get('area').disable();
         this.datosForm.get('titulacion').setValue(res['trabajos'].titulacion.nombre);
         this.datosForm.get('titulacion').disable();
+        this.datosForm.get('tipo').setValue(res['trabajos'].tipo);
+        this.datosForm.get('tipo').disable();
 
       }, (err) => {
         Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});

@@ -52,6 +52,43 @@ export class TrabajosService {
     return this.http.delete(`${environment.base_url}/trabajos/${uid}` , this.cabeceras);
   }
 
+  //Llamadas subida archivos
+
+  subirFoto( uid: string, foto: File) {
+    const url = `${environment.base_url}/upload/trabajoimg/${uid}`;
+    const datos: FormData = new FormData();
+    datos.append('archivo', foto, foto.name);
+    return this.http.post(`${environment.base_url}/upload/trabajoimg/${uid}`, datos, this.cabeceras);
+  }
+
+  subirFotos( uid: string, foto: File) {
+    const url = `${environment.base_url}/upload/trabajoimgs/${uid}`;
+    const datos: FormData = new FormData();
+    datos.append('archivo', foto, foto.name);
+    return this.http.post(`${environment.base_url}/upload/trabajoimgs/${uid}`, datos, this.cabeceras);
+  }
+
+  subirVideos( uid: string, video: File) {
+    const url = `${environment.base_url}/upload/trabajovideos/${uid}`;
+    const datos: FormData = new FormData();
+    datos.append('archivo', video, video.name);
+    return this.http.post(`${environment.base_url}/upload/trabajovideos/${uid}`, datos, this.cabeceras);
+  }
+
+  subirAudios( uid: string, audio: File) {
+    const url = `${environment.base_url}/upload/trabajoaudios/${uid}`;
+    const datos: FormData = new FormData();
+    datos.append('archivo', audio, audio.name);
+    return this.http.post(`${environment.base_url}/upload/trabajoaudios/${uid}`, datos, this.cabeceras);
+  }
+
+  subirDocs( uid: string, doc: File) {
+    const url = `${environment.base_url}/upload/trabajodocs/${uid}`;
+    const datos: FormData = new FormData();
+    datos.append('archivo', doc, doc.name);
+    return this.http.post(`${environment.base_url}/upload/trabajodocs/${uid}`, datos, this.cabeceras);
+  }
+
   get cabeceras() {
     return {
       headers: {

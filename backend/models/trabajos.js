@@ -21,7 +21,10 @@ const TrabajoSchema = Schema({
         type: String
     },
     area: { // area de conocimiento
-        type: String, // comprobar por middleware segun la carrera
+        type: String,
+    },
+    tipo: { // TFG o TFM segun la titulacion
+        type: String,
     },
     alta: {
         type: Date,

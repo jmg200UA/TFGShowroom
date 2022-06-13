@@ -53,6 +53,17 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row m-t-10">
+                            <div class="col-lg-3 col-md-12 text-lg-right">
+                                <span class="">Tipo</span>
+                            </div>
+                            <div class="col-lg-8 col-md-12">
+                                <input type="text" class="form-control" formControlName="tipo" [ngClass]="{'is-invalid' : campoNoValido('tipo')}" id="tipo">
+                                <div class="invalid-feedback">
+                                    El campo es obligatorio
+                                </div>
+                            </div>
+                        </div>
                         <!-- Campos que debe introducir el alumno -->
                         <div class="row m-t-10">
                             <div class="col-lg-3 col-md-12 text-lg-right">
@@ -105,7 +116,7 @@
                                     <li *ngFor="let imagen of nomimagenes; let i=index" class="list-group-item list-group-item-action micursor">
                                         <div class="row">
                                             <h6 class="col-md-10" id={{i}}>{{ imagen }}</h6>
-                                            <i class="col-md-2 fa fa-times text-danger text-right"></i>
+                                            <i class="col-md-2 fa fa-times text-danger text-right" (click)="quitarImagen(i)"></i>
                                         </div>
                                     </li>
                                 </ul>
@@ -128,7 +139,7 @@
                                     <li *ngFor="let video of nomvideos; let i=index" class="list-group-item list-group-item-action micursor">
                                         <div class="row">
                                             <h6 class="col-md-10" id={{i}}>{{ video }}</h6>
-                                            <i class="col-md-2 fa fa-times text-danger text-right"></i>
+                                            <i class="col-md-2 fa fa-times text-danger text-right" (click)="quitarVideo(i)"></i>
                                         </div>
                                     </li>
                                 </ul>
@@ -150,7 +161,7 @@
                                     <li *ngFor="let audio of nomaudios; let i=index" class="list-group-item list-group-item-action micursor">
                                         <div class="row">
                                             <h6 class="col-md-10" id={{i}}>{{ audio }}</h6>
-                                            <i class="col-md-2 fa fa-times text-danger text-right"></i>
+                                            <i class="col-md-2 fa fa-times text-danger text-right" (click)="quitarAudio(i)"></i>
                                         </div>
                                     </li>
                                 </ul>
@@ -172,7 +183,7 @@
                                     <li *ngFor="let documento of nomdocumentos; let i=index" class="list-group-item list-group-item-action micursor">
                                         <div class="row">
                                             <h6 class="col-md-10" id={{i}}>{{ documento }}</h6>
-                                            <i class="col-md-2 fa fa-times text-danger text-right"></i>
+                                            <i class="col-md-2 fa fa-times text-danger text-right" (click)="quitarAudio(i)"></i>
                                         </div>
                                     </li>
                                 </ul>

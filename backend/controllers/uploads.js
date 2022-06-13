@@ -28,9 +28,13 @@ const subirArchivo = async(req, res = response) => {
     const id = req.params.id;
 
     const archivosValidos = { //definir aqui todos los tipos posibles
-        fotoperfil: ["jpeg", "jpg", "png"],
+        fotoperfil: ["jpeg", "jpg", "png", "PNG"],
         titulacionimg: ["jpeg", "jpg", "png", "PNG"],
-        trabajoimg: ["jpeg", "jpg", "png"],
+        trabajoimg: ["jpeg", "jpg", "png", "PNG"],
+        trabajoimgs: ["jpeg", "jpg", "png", "PNG"],
+        trabajovideos: ['mp4', 'MP4', 'avi', 'AVI'],
+        trabajoaudios: ['mp3', 'MP3', 'wav', 'WAV'],
+        trabajodocs: ['pdf', 'PDF'],
     };
 
     const archivo = req.files.archivo;
@@ -62,6 +66,38 @@ const subirArchivo = async(req, res = response) => {
                 return res.status(400).json({
                     ok: false,
                     msg: `El tipo de archivo '${extension}' no está permitido (${archivosValidos.trabajoimg})`,
+                });
+            }
+            break;
+        case "trabajoimgs":
+            if (!archivosValidos.trabajoimgs.includes(extension)) {
+                return res.status(400).json({
+                    ok: false,
+                    msg: `El tipo de archivo '${extension}' no está permitido (${archivosValidos.trabajoimgs})`,
+                });
+            }
+            break;
+        case "trabajovideos":
+            if (!archivosValidos.trabajovideos.includes(extension)) {
+                return res.status(400).json({
+                    ok: false,
+                    msg: `El tipo de archivo '${extension}' no está permitido (${archivosValidos.trabajovideos})`,
+                });
+            }
+            break;
+        case "trabajoaudios":
+            if (!archivosValidos.trabajoaudios.includes(extension)) {
+                return res.status(400).json({
+                    ok: false,
+                    msg: `El tipo de archivo '${extension}' no está permitido (${archivosValidos.trabajoaudios})`,
+                });
+            }
+            break;
+        case "trabajodocs":
+            if (!archivosValidos.trabajodocs.includes(extension)) {
+                return res.status(400).json({
+                    ok: false,
+                    msg: `El tipo de archivo '${extension}' no está permitido (${archivosValidos.trabajodocs})`,
                 });
             }
             break;

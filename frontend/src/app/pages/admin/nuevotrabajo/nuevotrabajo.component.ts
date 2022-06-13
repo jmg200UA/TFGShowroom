@@ -26,6 +26,8 @@ export class NuevotrabajoComponent implements OnInit {
     autor: ['', Validators.required ], // hacer peticion a la BD para sacar en un desplegable todos los usuarios con ROL_ALUMNO
     titulo: ['', Validators.required ],
     titulacion: ['', Validators.required ],
+    tipo: ['', Validators.required],
+    area: ['', Validators.required],
   });
 
   public datosForm2 = this.fb.group({ // para el registro de un alumno nuevo
@@ -68,7 +70,6 @@ export class NuevotrabajoComponent implements OnInit {
               private TitulacionService: TitulacionService) { }
 
   ngOnInit(): void {
-    //this.cargarAlumnos(this.ultimaBusqueda);
   }
 
 
@@ -110,14 +111,10 @@ export class NuevotrabajoComponent implements OnInit {
   // BUSQUEDA ALUMNOS
   cargarAlumnos( textoBuscar: string ) {
     this.ultimaBusqueda = textoBuscar;
-    console.log("Texto busqueda: ", this.ultimaBusqueda);
     if(this.ultimaBusqueda.length>2){
       this.loading = true;
       this.UsuarioService.cargarAlumnos( this.posicionactual, textoBuscar )
       .subscribe( res => {
-        // Lo que nos llega lo asignamos a lista usuarios para renderizar la tabla
-        // Comprobamos si estamos en un apágina vacia, si es así entonces retrocedemos una página si se puede
-
         if (res['alumnos'].length === 0) {
           if (this.posicionactual > 0) {
             this.posicionactual = this.posicionactual - this.registrosporpagina;
@@ -131,11 +128,9 @@ export class NuevotrabajoComponent implements OnInit {
           this.listaAlumnos = res['alumnos'];
           this.totalalumnos = res['page'].total;
         }
-        console.log("Total alus: ", res['page'].total);
         this.loading = false;
       }, (err) => {
         Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
-        //console.warn('error:', err);
         this.loading = false;
       });
     }
@@ -144,14 +139,10 @@ export class NuevotrabajoComponent implements OnInit {
 
   cargarTitulaciones( textoBuscar: string ) {
     this.ultimaBusqueda2 = textoBuscar;
-    console.log("Texto busqueda: ", this.ultimaBusqueda2);
     if(this.ultimaBusqueda2.length>2){
       this.loading2 = true;
     this.TitulacionService.cargarTitulaciones( this.posicionactual, textoBuscar )
       .subscribe( res => {
-        // Lo que nos llega lo asignamos a lista titulaciones para renderizar la tabla
-        // Comprobamos si estamos en un apágina vacia, si es así entonces retrocedemos una página si se puede
-        console.log("LA RES de titulaciones: ", res['titulaciones']);
         if (res['titulaciones'].length === 0) {
           if (this.posicionactual2 > 0) {
             this.posicionactual2 = this.posicionactual2 - this.registrosporpagina2;
@@ -168,7 +159,6 @@ export class NuevotrabajoComponent implements OnInit {
           this.loading2 = false;
         }, (err) => {
           Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
-          //console.warn('error:', err);
           this.loading2 = false;
         });
       }
@@ -183,7 +173,10 @@ export class NuevotrabajoComponent implements OnInit {
   esteLugar2( titu ) { // Funcion para establecer nombre de la titulacion en el input y reiniciar el listado
     this.nombreTitu = titu.nombre;
     this.datosForm.get('titulacion').setValue(titu.uid);
+    this.datosForm.get('tipo').setValue(titu.tipo);
+    this.datosForm.get('area').setValue(titu.area);
     this.ultimaBusqueda2='';
+    console.log("Titulacion: ", titu);
   }
 
   // Funciones para crear un nuevo alumno si no existe
@@ -198,8 +191,6 @@ export class NuevotrabajoComponent implements OnInit {
     this.formSubmited2 = true;
     if (this.datosForm2.invalid) { return; }
     this.datosForm2.get('rol').setValue('ROL_ALUMNO');
-    console.log("DATOS FORM ALU NEW: ", this.datosForm2);
-    console.log("PASS: ", this.passaleatoria);
 
       this.UsuarioService.nuevoUsuario( this.datosForm2.value )
         .subscribe( res => {

@@ -331,13 +331,16 @@ const actualizarTrabajo = async(req, res = response) => {
     const uid = req.params.id;
     const idToken = req.uidToken;
     const rolToken = req.rolToken;
+    var ObjectId = require('mongodb').ObjectId;
 
     try {
 
         const usu = await Usuario.findById(idToken);
         let trabajo = await Trabajo.findById(uid);
         //comprobamos que ese trabajo sea suyo
-        if (trabajo.autor != usu._id) {
+        console.log("USU: ", usu);
+        console.log("Autor trabajo: " + trabajo.autor + " y usuario: ", ObjectId(usu._id).toString());
+        if (trabajo.autor != ObjectId(usu._id).toString()) {
             return res.status(400).json({
                 ok: true,
                 msg: 'El usuario no es el autor del trabajo'
