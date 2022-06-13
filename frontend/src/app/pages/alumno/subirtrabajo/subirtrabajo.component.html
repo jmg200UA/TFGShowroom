@@ -96,7 +96,7 @@
                             <div class="col-lg-8 col-md-12">
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" formControlName="imagenes" id="imagenes" (change)="cambioImagenes( $event )">
-                                    <label class="custom-file-label" for="imagenes" data-browse="Elegir"></label>
+                                    <label class="custom-file-label" for="imagenes" data-browse="Elegir">Seleccione imágenes</label>
                                 </div>
                             </div>
                             <div class="col-lg-3 text-lg-right"></div>
@@ -118,9 +118,20 @@
                             </div>
                             <div class="col-lg-8 col-md-12">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" formControlName="videos" id="videos" (change)="cambioImagen( $event )">
-                                    <label class="custom-file-label" for="videos" data-browse="Elegir">{{fileText}}</label>
+                                    <input type="file" class="custom-file-input" formControlName="videos" id="videos" (change)="cambioVideos( $event )">
+                                    <label class="custom-file-label" for="videos" data-browse="Elegir">Seleccione vídeos</label>
                                 </div>
+                            </div>
+                            <div class="col-lg-3 text-lg-right"></div>
+                            <div class="col-lg-8 col-md-12">
+                                <ul class="list-group mt-2 porencima" *ngIf="videos.length>0">
+                                    <li *ngFor="let video of nomvideos; let i=index" class="list-group-item list-group-item-action micursor">
+                                        <div class="row">
+                                            <h6 class="col-md-10" id={{i}}>{{ video }}</h6>
+                                            <i class="col-md-2 fa fa-times text-danger text-right"></i>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                         <div class="form-group row m-t-10">
@@ -129,9 +140,20 @@
                             </div>
                             <div class="col-lg-8 col-md-12">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" formControlName="audios" id="audios" (change)="cambioImagen( $event )">
-                                    <label class="custom-file-label" for="audios" data-browse="Elegir">{{fileText}}</label>
+                                    <input type="file" class="custom-file-input" formControlName="audios" id="audios" (change)="cambioAudios( $event )">
+                                    <label class="custom-file-label" for="audios" data-browse="Elegir">Seleccione audios</label>
                                 </div>
+                            </div>
+                            <div class="col-lg-3 text-lg-right"></div>
+                            <div class="col-lg-8 col-md-12">
+                                <ul class="list-group mt-2 porencima" *ngIf="audios.length>0">
+                                    <li *ngFor="let audio of nomaudios; let i=index" class="list-group-item list-group-item-action micursor">
+                                        <div class="row">
+                                            <h6 class="col-md-10" id={{i}}>{{ audio }}</h6>
+                                            <i class="col-md-2 fa fa-times text-danger text-right"></i>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                         <div class="form-group row m-t-10">
@@ -140,9 +162,20 @@
                             </div>
                             <div class="col-lg-8 col-md-12">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" formControlName="documentos" id="documentos" (change)="cambioImagen( $event )">
-                                    <label class="custom-file-label" for="documentos" data-browse="Elegir">{{fileText}}</label>
+                                    <input type="file" class="custom-file-input" formControlName="documentos" id="documentos" (change)="cambioDocumentos( $event )">
+                                    <label class="custom-file-label" for="documentos" data-browse="Elegir">Seleccione documentos</label>
                                 </div>
+                            </div>
+                            <div class="col-lg-3 text-lg-right"></div>
+                            <div class="col-lg-8 col-md-12">
+                                <ul class="list-group mt-2 porencima" *ngIf="documentos.length>0">
+                                    <li *ngFor="let documento of nomdocumentos; let i=index" class="list-group-item list-group-item-action micursor">
+                                        <div class="row">
+                                            <h6 class="col-md-10" id={{i}}>{{ documento }}</h6>
+                                            <i class="col-md-2 fa fa-times text-danger text-right"></i>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                         <div class="d-flex justify-content-center m-t-10 ">

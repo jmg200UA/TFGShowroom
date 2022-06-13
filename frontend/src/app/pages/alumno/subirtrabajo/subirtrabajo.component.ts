@@ -144,9 +144,10 @@ export class SubirtrabajoComponent implements OnInit {
       }
       this.foto = evento.target.files[0];
       this.fileText = nombre;
-  }
+    }
   }
 
+  //Funciones para ir agregando los contenidos al array y mostrarlos en el front
   cambioImagenes( evento ): void {
     if (evento.target.files && evento.target.files[0]) {
       // Comprobamos si es una imagen jpg, jpet, png
@@ -156,13 +157,90 @@ export class SubirtrabajoComponent implements OnInit {
       const extension = nombrecortado[nombrecortado.length - 1];
       if (!extensiones.includes(extension)) {
         // Si no teniamos ningúna foto ya seleccionada antes, dejamos el campo pristine
-          this.datosForm.get('imagen').markAsPristine();
+          this.datosForm.get('imagenes').markAsPristine();
         Swal.fire({icon: 'error', title: 'Oops...', text: 'El archivo debe ser una imagen jpeg, jpg o png'});
         return;
       }
       this.imagenes.push(evento.target.files[0]);
       this.nomimagenes.push(nombre);
+    }
   }
+
+  cambioVideos( evento ): void {
+    if (evento.target.files && evento.target.files[0]) {
+      // Comprobamos si es una imagen jpg, jpet, png
+      const extensiones = ['mp4','MP4','avi','AVI'];
+      const nombre: string = evento.target.files[0].name;
+      const nombrecortado: string[] = nombre.split('.');
+      const extension = nombrecortado[nombrecortado.length - 1];
+      if (!extensiones.includes(extension)) {
+        // Si no teniamos ningúna foto ya seleccionada antes, dejamos el campo pristine
+          this.datosForm.get('videos').markAsPristine();
+        Swal.fire({icon: 'error', title: 'Oops...', text: 'El archivo debe ser un video mp4 o avi'});
+        return;
+      }
+      this.videos.push(evento.target.files[0]);
+      this.nomvideos.push(nombre);
+    }
+  }
+
+  cambioDocumentos( evento ): void {
+    if (evento.target.files && evento.target.files[0]) {
+      // Comprobamos si es una imagen jpg, jpet, png
+      const extensiones = ['pdf','PDF'];
+      const nombre: string = evento.target.files[0].name;
+      const nombrecortado: string[] = nombre.split('.');
+      const extension = nombrecortado[nombrecortado.length - 1];
+      if (!extensiones.includes(extension)) {
+        // Si no teniamos ningúna foto ya seleccionada antes, dejamos el campo pristine
+          this.datosForm.get('documentos').markAsPristine();
+        Swal.fire({icon: 'error', title: 'Oops...', text: 'El archivo debe ser un documento pdf'});
+        return;
+      }
+      this.documentos.push(evento.target.files[0]);
+      this.nomdocumentos.push(nombre);
+    }
+  }
+
+  cambioAudios( evento ): void {
+    if (evento.target.files && evento.target.files[0]) {
+      // Comprobamos si es una imagen jpg, jpet, png
+      const extensiones = ['mp3','MP3','wav','WAV'];
+      const nombre: string = evento.target.files[0].name;
+      const nombrecortado: string[] = nombre.split('.');
+      const extension = nombrecortado[nombrecortado.length - 1];
+      if (!extensiones.includes(extension)) {
+        // Si no teniamos ningúna foto ya seleccionada antes, dejamos el campo pristine
+          this.datosForm.get('audios').markAsPristine();
+        Swal.fire({icon: 'error', title: 'Oops...', text: 'El archivo debe ser un audio mp3 o wav'});
+        return;
+      }
+      this.audios.push(evento.target.files[0]);
+      this.nomaudios.push(nombre);
+      console.log("Nombre audios: ", this.nomaudios);
+    }
+  }
+
+  //Funciones para si se quiere quitar algun contenido
+
+  quitarImagen(num){
+    this.imagenes.splice(num,1);
+    this.nomimagenes.splice(num,1);
+  }
+
+  quitarVideo(num){
+    this.videos.splice(num,1);
+    this.nomvideos.splice(num,1);
+  }
+
+  quitarDocumentos(num){
+    this.documentos.splice(num,1);
+    this.nomdocumentos.splice(num,1);
+  }
+
+  quitarAudio(num){
+    this.audios.splice(num,1);
+    this.nomaudios.splice(num,1);
   }
 
 
