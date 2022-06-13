@@ -17,6 +17,8 @@ export class SubirtrabajoComponent implements OnInit {
   public showOKP: boolean = false;
   public tipo : string = '';
   public fileText = 'Seleccione imagen';
+  public loading = true;
+
 
 
   public datosForm = this.fb.group({
@@ -43,6 +45,9 @@ export class SubirtrabajoComponent implements OnInit {
               private TrabajosService: TrabajosService) { }
 
   ngOnInit(): void {
+    this.uid = this.route.snapshot.params['uid'];
+    console.log("UID: ", this.uid);
+    this.cargarTrabajo();
   }
 
   cancelar(): void {
@@ -86,6 +91,28 @@ export class SubirtrabajoComponent implements OnInit {
       //   });
 
 
+  }
+
+  cargarTrabajo(){
+    this.loading = true;
+    this.TrabajosService.obtenerTrabajo(this.uid)
+      .subscribe( res => {
+        // Obtenemos los trabajos del alumno que han sido aceptados por el editor y por lo tanto publicados
+        console.log("LA RES de trabajos: ", res['trabajos']);
+        this.datosForm.get('titulo').setValue(res['trabajos'].titulo);
+        this.datosForm.get('titulo').disable();
+        this.datosForm.get('autor').setValue(res['trabajos'].autor.nombre_apellidos);
+        this.datosForm.get('autor').disable();
+        this.datosForm.get('area').setValue(res['trabajos'].area);
+        this.datosForm.get('area').disable();
+        this.datosForm.get('titulacion').setValue(res['trabajos'].titulacion.nombre);
+        this.datosForm.get('titulacion').disable();
+
+      }, (err) => {
+        Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
+        //console.warn('error:', err);
+        this.loading = false;
+      });
   }
 
   cambioImagen( evento ): void {
