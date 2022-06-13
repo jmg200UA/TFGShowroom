@@ -19,6 +19,17 @@ export class SubirtrabajoComponent implements OnInit {
   public fileText = 'Seleccione imagen';
   public loading = true;
 
+  //Arrays para guardar el contenido que se copiará a los campos del form group
+  public imagenes=[];
+  public videos=[];
+  public audios=[];
+  public documentos=[];
+  //Arrays para guardar los nombres de estos contenidos
+  public nomimagenes=[];
+  public nomvideos=[];
+  public nomaudios=[];
+  public nomdocumentos=[];
+
 
 
   public datosForm = this.fb.group({
@@ -60,6 +71,7 @@ export class SubirtrabajoComponent implements OnInit {
     if (this.datosForm.invalid) { return; }
 
     //Llamar a actualizar trabajo
+    //Hacer bucle para cada array de archivos para subirlos uno a uno
       // this.TitulacionService.nuevaTitulacion( this.datosForm.value )
       //   .subscribe( res => {
       //     console.log("Titulacion creada: ", res['titulacion']);
@@ -116,6 +128,26 @@ export class SubirtrabajoComponent implements OnInit {
   }
 
   cambioImagen( evento ): void {
+    if (evento.target.files && evento.target.files[0]) {
+      // Comprobamos si es una imagen jpg, jpet, png
+      const extensiones = ['jpeg','jpg','png','PNG'];
+      const nombre: string = evento.target.files[0].name;
+      const nombrecortado: string[] = nombre.split('.');
+      const extension = nombrecortado[nombrecortado.length - 1];
+      if (!extensiones.includes(extension)) {
+        // Si no teniamos ningúna foto ya seleccionada antes, dejamos el campo pristine
+        if (this.foto === null) {
+          this.datosForm.get('imagen').markAsPristine();
+        }
+        Swal.fire({icon: 'error', title: 'Oops...', text: 'El archivo debe ser una imagen jpeg, jpg o png'});
+        return;
+      }
+      this.foto = evento.target.files[0];
+      this.fileText = nombre;
+  }
+  }
+
+  cambioImagenes( evento ): void {
     if (evento.target.files && evento.target.files[0]) {
       // Comprobamos si es una imagen jpg, jpet, png
       const extensiones = ['jpeg','jpg','png','PNG'];
