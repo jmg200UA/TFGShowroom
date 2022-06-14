@@ -21,6 +21,10 @@ export const ROUTESALUMNOS: RouteInfo[] = [
   { path: 'nuevostrabajos', title: 'Nuevos Trabajos para subir',  icon:'design_bullet-list-67', class: '' }
 ];
 
+export const ROUTESEDITOR: RouteInfo[] = [
+  { path: 'revisiontrabajos', title: 'Revisión Trabajos',  icon:'design_bullet-list-67', class: '' }
+];
+
 
 
 @Component({

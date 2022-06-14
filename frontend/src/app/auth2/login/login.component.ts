@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
 
         //Si rol_editor, te vas al módulo del editor
         }else if(this.usuarioService.rol == 'ROL_EDITOR'){
-          this.router.navigateByUrl('/editor/trabajos');
+          this.router.navigateByUrl('/editor/revisiontrabajos');
           //Si rol_alumno, te vas al módulo del alumno
       }else if(this.usuarioService.rol == 'ROL_ALUMNO'){
         this.router.navigateByUrl('/alumno/trabajos');

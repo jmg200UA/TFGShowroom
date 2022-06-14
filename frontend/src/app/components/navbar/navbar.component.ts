@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { ROUTESADMIN, ROUTESALUMNOS } from '../sidebar/sidebar.component';
+import { ROUTESADMIN, ROUTESALUMNOS, ROUTESEDITOR } from '../sidebar/sidebar.component';
 import { routes } from '../../pages/pages.routing';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { Router } from '@angular/router';
@@ -185,6 +185,16 @@ export class NavbarComponent implements OnInit {
           }
         }
       }
+      else if(this.UsuarioService.rol=="ROL_EDITOR"){
+        for(var item = 0; item < this.listaTitulos[2].children.length; item++){
+          pathbueno = this.listaTitulos[2].children[item].path.split('/');
+          pathbueno=pathbueno[0];
+          if(pathbueno === titlee){
+              return this.listaTitulos[2].children[item].data.titulo;
+          }
+        }
+      }
+
 
       return 'Dashboard';
     }
