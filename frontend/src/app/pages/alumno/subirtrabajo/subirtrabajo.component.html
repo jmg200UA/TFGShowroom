@@ -14,10 +14,7 @@
                                 <span class="">Título</span>
                             </div>
                             <div class="col-lg-8 col-md-12">
-                                <input type="text" class="form-control" formControlName="titulo" [ngClass]="{'is-invalid' : campoNoValido('titulo')}" id="titulo">
-                                <div class="invalid-feedback">
-                                    El campo es obligatorio
-                                </div>
+                                <input type="text" class="form-control" formControlName="titulo" id="titulo">
                             </div>
                         </div>
                         <div class="row m-t-10">
@@ -25,10 +22,7 @@
                                 <span class="">Autor</span>
                             </div>
                             <div class="col-lg-8 col-md-12">
-                                <input type="text" class="form-control" formControlName="autor" [ngClass]="{'is-invalid' : campoNoValido('autor')}" id="autor">
-                                <div class="invalid-feedback">
-                                    El campo es obligatorio
-                                </div>
+                                <input type="text" class="form-control" formControlName="autor" id="autor">
                             </div>
                         </div>
                         <div class="row m-t-10">
@@ -36,10 +30,7 @@
                                 <span class="">Titulación</span>
                             </div>
                             <div class="col-lg-8 col-md-12">
-                                <input type="text" class="form-control" formControlName="titulacion" [ngClass]="{'is-invalid' : campoNoValido('titulacion')}" id="titulacion">
-                                <div class="invalid-feedback">
-                                    El campo es obligatorio
-                                </div>
+                                <input type="text" class="form-control" formControlName="titulacion" id="titulacion">
                             </div>
                         </div>
                         <div class="row m-t-10">
@@ -47,10 +38,7 @@
                                 <span class="">Area</span>
                             </div>
                             <div class="col-lg-8 col-md-12">
-                                <input type="text" class="form-control" formControlName="area" [ngClass]="{'is-invalid' : campoNoValido('area')}" id="area">
-                                <div class="invalid-feedback">
-                                    El campo es obligatorio
-                                </div>
+                                <input type="text" class="form-control" formControlName="area" id="area">
                             </div>
                         </div>
                         <div class="row m-t-10">
@@ -58,10 +46,7 @@
                                 <span class="">Tipo</span>
                             </div>
                             <div class="col-lg-8 col-md-12">
-                                <input type="text" class="form-control" formControlName="tipo" [ngClass]="{'is-invalid' : campoNoValido('tipo')}" id="tipo">
-                                <div class="invalid-feedback">
-                                    El campo es obligatorio
-                                </div>
+                                <input type="text" class="form-control" formControlName="tipo" id="tipo">
                             </div>
                         </div>
                         <!-- Campos que debe introducir el alumno -->
@@ -106,7 +91,7 @@
                             </div>
                             <div class="col-lg-8 col-md-12">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" formControlName="imagenes" id="imagenes" (change)="cambioImagenes( $event )">
+                                    <input type="file" class="custom-file-input" id="imagenes" (change)="cambioImagenes( $event )">
                                     <label class="custom-file-label" for="imagenes" data-browse="Elegir">Seleccione imágenes</label>
                                 </div>
                             </div>
@@ -129,7 +114,7 @@
                             </div>
                             <div class="col-lg-8 col-md-12">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" formControlName="videos" id="videos" (change)="cambioVideos( $event )">
+                                    <input type="file" class="custom-file-input" id="videos" (change)="cambioVideos( $event )">
                                     <label class="custom-file-label" for="videos" data-browse="Elegir">Seleccione vídeos</label>
                                 </div>
                             </div>
@@ -151,7 +136,7 @@
                             </div>
                             <div class="col-lg-8 col-md-12">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" formControlName="audios" id="audios" (change)="cambioAudios( $event )">
+                                    <input type="file" class="custom-file-input" id="audios" (change)="cambioAudios( $event )">
                                     <label class="custom-file-label" for="audios" data-browse="Elegir">Seleccione audios</label>
                                 </div>
                             </div>
@@ -173,7 +158,7 @@
                             </div>
                             <div class="col-lg-8 col-md-12">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" formControlName="documentos" id="documentos" (change)="cambioDocumentos( $event )">
+                                    <input type="file" class="custom-file-input" id="documentos" (change)="cambioDocumentos( $event )">
                                     <label class="custom-file-label" for="documentos" data-browse="Elegir">Seleccione documentos</label>
                                 </div>
                             </div>

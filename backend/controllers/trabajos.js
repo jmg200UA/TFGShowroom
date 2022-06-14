@@ -92,7 +92,6 @@ const obtenerTrabajosAluVisibles = async(req, res) => {
         let trabajos, total;
         if (id) {
             if (idToken == id) { // Comprobamos que sea un alumno quien cargue sus trabajos
-                console.log("Query alumno2");
                 if (texto) { // si hay texto es que el alumno quiere buscar entre sus trabajos
                     query = {
                         $and: [
@@ -196,7 +195,6 @@ const obtenerTrabajosAluNoVisibles = async(req, res) => {
         let trabajos, total;
         if (id) {
             if (idToken == id) { // Comprobamos que sea un alumno quien cargue sus trabajos
-                console.log("Query alumno2");
                 if (texto) { // si hay texto es que el alumno quiere buscar entre sus trabajos
                     query = {
                         $and: [

@@ -35,11 +35,16 @@
                                 <th>
                                     Titulación
                                 </th>
+                                <th>
+                                    Estado
+                                </th>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let trabajo of listaTrabajos">
-                                    <td (click)="subirTrabajo(trabajo.uid)" class="micursor">{{trabajo.titulo}}</td>
+                                    <td>{{trabajo.titulo}}</td>
                                     <td>{{trabajo.titulacion.nombre}}</td>
+                                    <td *ngIf="trabajo.estado=='Para editar'" (click)="subirTrabajo(trabajo.uid)" class="micursor text-warning">{{trabajo.estado}}</td>
+                                    <td *ngIf="trabajo.estado=='Pendiente de revisión'" (click)="subirTrabajo(trabajo.uid)" class="micursor text-primary">{{trabajo.estado}}</td>
                                 </tr>
                             </tbody>
                         </table>

@@ -58,6 +58,10 @@ const TrabajoSchema = Schema({
     visible: {
         type: Boolean,
         default: false
+    },
+    estado: { // para editar, pendiente de revisión, visible
+        type: String,
+        default: "Para editar"
     }
 }, { collection: 'trabajos' });
 

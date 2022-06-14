@@ -34,15 +34,16 @@ export class SubirtrabajoComponent implements OnInit {
 
   public datosForm = this.fb.group({
     //Ya registrados, pero para mostrar
-    titulo: ['', Validators.required ],
-    autor: ['', Validators.required ],
-    area: ['', Validators.required ],
-    titulacion: ['', Validators.required ],
-    tipo: ['', Validators.required ],
+    titulo: [''],
+    autor: [''],
+    area: [''],
+    titulacion: [''],
+    tipo: [''],
     //********************** */
     resumen: ['', Validators.required ],
     imagen: [''],
     director: ['', Validators.required ],
+    estado: [''], // cambiar a revisión por los editores
     //Contenido multimedia que quiera adjuntar el alumno
     // imagenes: [''],
     // videos: [''],
@@ -70,7 +71,7 @@ export class SubirtrabajoComponent implements OnInit {
   enviar(): void {
     this.formSubmited = true;
     if (this.datosForm.invalid) { return; }
-
+    this.datosForm.get('estado').setValue('Pendiente de revisión');
     //Llamar a actualizar trabajo
     //Hacer bucle para cada array de archivos para subirlos uno a uno
       this.TrabajosService.actualizarTrabajo( this.uid,this.datosForm.value )
@@ -174,16 +175,17 @@ export class SubirtrabajoComponent implements OnInit {
       .subscribe( res => {
         // Obtenemos los trabajos del alumno que han sido aceptados por el editor y por lo tanto publicados
         console.log("LA RES de trabajos: ", res['trabajos']);
-        this.datosForm.get('titulo').setValue(res['trabajos'].titulo);
-        this.datosForm.get('titulo').disable();
-        this.datosForm.get('autor').setValue(res['trabajos'].autor.nombre_apellidos);
-        this.datosForm.get('autor').disable();
-        this.datosForm.get('area').setValue(res['trabajos'].area);
-        this.datosForm.get('area').disable();
-        this.datosForm.get('titulacion').setValue(res['trabajos'].titulacion.nombre);
-        this.datosForm.get('titulacion').disable();
-        this.datosForm.get('tipo').setValue(res['trabajos'].tipo);
-        this.datosForm.get('tipo').disable();
+          this.datosForm.get('titulo').setValue(res['trabajos'].titulo);
+          this.datosForm.get('titulo').disable();
+          this.datosForm.get('autor').setValue(res['trabajos'].autor.nombre_apellidos);
+          this.datosForm.get('autor').disable();
+          this.datosForm.get('area').setValue(res['trabajos'].area);
+          this.datosForm.get('area').disable();
+          this.datosForm.get('titulacion').setValue(res['trabajos'].titulacion.nombre);
+          this.datosForm.get('titulacion').disable();
+          this.datosForm.get('tipo').setValue(res['trabajos'].tipo);
+          this.datosForm.get('tipo').disable();
+
 
       }, (err) => {
         Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
@@ -223,7 +225,7 @@ export class SubirtrabajoComponent implements OnInit {
       const extension = nombrecortado[nombrecortado.length - 1];
       if (!extensiones.includes(extension)) {
         // Si no teniamos ningúna foto ya seleccionada antes, dejamos el campo pristine
-          this.datosForm.get('imagenes').markAsPristine();
+          //this.datosForm.get('imagenes').markAsPristine();
         Swal.fire({icon: 'error', title: 'Oops...', text: 'El archivo debe ser una imagen jpeg, jpg o png'});
         return;
       }
@@ -242,7 +244,7 @@ export class SubirtrabajoComponent implements OnInit {
       const extension = nombrecortado[nombrecortado.length - 1];
       if (!extensiones.includes(extension)) {
         // Si no teniamos ningúna foto ya seleccionada antes, dejamos el campo pristine
-          this.datosForm.get('videos').markAsPristine();
+          //this.datosForm.get('videos').markAsPristine();
         Swal.fire({icon: 'error', title: 'Oops...', text: 'El archivo debe ser un video mp4 o avi'});
         return;
       }
@@ -261,7 +263,7 @@ export class SubirtrabajoComponent implements OnInit {
       const extension = nombrecortado[nombrecortado.length - 1];
       if (!extensiones.includes(extension)) {
         // Si no teniamos ningúna foto ya seleccionada antes, dejamos el campo pristine
-          this.datosForm.get('documentos').markAsPristine();
+          //this.datosForm.get('documentos').markAsPristine();
         Swal.fire({icon: 'error', title: 'Oops...', text: 'El archivo debe ser un documento pdf'});
         return;
       }
@@ -280,7 +282,7 @@ export class SubirtrabajoComponent implements OnInit {
       const extension = nombrecortado[nombrecortado.length - 1];
       if (!extensiones.includes(extension)) {
         // Si no teniamos ningúna foto ya seleccionada antes, dejamos el campo pristine
-          this.datosForm.get('audios').markAsPristine();
+          //this.datosForm.get('audios').markAsPristine();
         Swal.fire({icon: 'error', title: 'Oops...', text: 'El archivo debe ser un audio mp3 o wav'});
         return;
       }
