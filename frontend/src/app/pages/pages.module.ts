@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminModule } from './admin/admin.module';
 import { AlumnoModule } from './alumno/alumno.module';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { EditorModule } from './editor/editor.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     FormsModule,
     ReactiveFormsModule,
     AdminModule,
-    AlumnoModule
+    AlumnoModule,
+    EditorModule
 
   ]
 })

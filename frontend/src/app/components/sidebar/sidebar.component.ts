@@ -47,6 +47,9 @@ export class SidebarComponent implements OnInit {
     else if(this.UsuarioService.rol=="ROL_ALUMNO"){
       this.menuItems = ROUTESALUMNOS.filter(menuItem => menuItem);
     }
+    else if(this.UsuarioService.rol=="ROL_EDITOR"){
+      this.menuItems = ROUTESEDITOR.filter(menuItem => menuItem);
+    }
 
   }
   isMobileMenu() {

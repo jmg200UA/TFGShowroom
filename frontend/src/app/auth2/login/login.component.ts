@@ -64,13 +64,14 @@ export class LoginComponent implements OnInit {
         }
         this.waiting = false;
         this.closeAddExpenseModal.nativeElement.click();
-
+        console.log("ROL LOGIN: ", this.usuarioService.rol);
         //Si rol_admin, te vas al módulo del admin
         if (this.usuarioService.rol == 'ROL_ADMIN'){
           this.router.navigateByUrl('/admin/usuarios');
 
         //Si rol_editor, te vas al módulo del editor
         }else if(this.usuarioService.rol == 'ROL_EDITOR'){
+          console.log("Entra editor");
           this.router.navigateByUrl('/editor/revisiontrabajos');
           //Si rol_alumno, te vas al módulo del alumno
       }else if(this.usuarioService.rol == 'ROL_ALUMNO'){

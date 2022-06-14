@@ -141,7 +141,7 @@ export const routes: Routes = [
   { path: 'editor', component: EditorComponent,canActivate: [ AuthGuard], data: {rol: 'ROL_EDITOR'},
   children:[
     { path: 'revisiontrabajos', component: RevisiontrabajosComponent, canActivate: [ AuthGuard ], data: {
-                                                            rol: 'ROL_ALUMNO',
+                                                            rol: 'ROL_EDITOR',
                                                             titulo: 'Showroom Editor - Gestión Trabajos',
                                                             breadcrums: []
                                                           },},
