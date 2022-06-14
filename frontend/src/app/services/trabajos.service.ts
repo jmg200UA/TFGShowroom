@@ -25,6 +25,11 @@ export class TrabajosService {
     return this.http.put(`${environment.base_url}/trabajos/${uid}`, data, this.cabeceras);
   }
 
+  limpiarMultimediaTrabajo ( uid: string) {
+
+    return this.http.put(`${environment.base_url}/trabajos/lm/${uid}`, '', this.cabeceras);
+  }
+
   obtenerTrabajo (uid: string){
     return this.http.get(`${environment.base_url}/trabajos/?id=${uid}`, this.cabeceras);
   }

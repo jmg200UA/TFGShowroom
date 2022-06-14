@@ -76,6 +76,15 @@ export class SubirtrabajoComponent implements OnInit {
       this.TrabajosService.actualizarTrabajo( this.uid,this.datosForm.value )
         .subscribe( res => {
           console.log("Trabajo creado: ", res['trabajo']);
+          //Borramos el contenido multimedia que tuviese previamente el trabajo
+          this.TrabajosService.limpiarMultimediaTrabajo(this.uid)
+            .subscribe( res => {
+              console.log("Respuesta limpieza multimedia: ", res);
+            }, (err) => {
+              const errtext = err.error.msg || 'No se pudo realizar la limpieza';
+              Swal.fire({icon: 'error', title: 'Oops...', text: errtext});
+              return;
+            });
           //Subida imagen del trabajo
           if (this.foto ) {
             this.TrabajosService.subirFoto( res['trabajo'].uid, this.foto)
@@ -200,6 +209,7 @@ export class SubirtrabajoComponent implements OnInit {
       }
       this.foto = evento.target.files[0];
       this.fileText = nombre;
+      console.log("Foto: ", this.foto);
     }
   }
 
@@ -219,6 +229,7 @@ export class SubirtrabajoComponent implements OnInit {
       }
       this.imagenes.push(evento.target.files[0]);
       this.nomimagenes.push(nombre);
+      console.log("Imagenes: ", this.imagenes);
     }
   }
 
@@ -237,6 +248,7 @@ export class SubirtrabajoComponent implements OnInit {
       }
       this.videos.push(evento.target.files[0]);
       this.nomvideos.push(nombre);
+      console.log("Videos: ", this.videos);
     }
   }
 
@@ -255,6 +267,7 @@ export class SubirtrabajoComponent implements OnInit {
       }
       this.documentos.push(evento.target.files[0]);
       this.nomdocumentos.push(nombre);
+      console.log("Docs: ", this.documentos);
     }
   }
 
@@ -273,7 +286,7 @@ export class SubirtrabajoComponent implements OnInit {
       }
       this.audios.push(evento.target.files[0]);
       this.nomaudios.push(nombre);
-      console.log("Nombre audios: ", this.nomaudios);
+      console.log("Audios: ", this.audios);
     }
   }
 

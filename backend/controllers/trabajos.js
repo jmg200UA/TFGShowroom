@@ -338,8 +338,6 @@ const actualizarTrabajo = async(req, res = response) => {
         const usu = await Usuario.findById(idToken);
         let trabajo = await Trabajo.findById(uid);
         //comprobamos que ese trabajo sea suyo
-        console.log("USU: ", usu);
-        console.log("Autor trabajo: " + trabajo.autor + " y usuario: ", ObjectId(usu._id).toString());
         if (trabajo.autor != ObjectId(usu._id).toString()) {
             return res.status(400).json({
                 ok: true,
@@ -353,6 +351,49 @@ const actualizarTrabajo = async(req, res = response) => {
         res.json({
             ok: true,
             msg: 'Trabajo actualizado',
+            trabajo
+        });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: 'Error actualizando trabajo'
+        });
+    }
+
+}
+
+const limpiarMultimediaTrabajo = async(req, res = response) => {
+
+    const uid = req.params.id;
+    const idToken = req.uidToken;
+    const rolToken = req.rolToken;
+    var ObjectId = require('mongodb').ObjectId;
+
+    try {
+
+        const usu = await Usuario.findById(idToken);
+        let trabajo = await Trabajo.findById(uid);
+        //comprobamos que ese trabajo sea suyo
+        if (trabajo.autor != ObjectId(usu._id).toString()) {
+            return res.status(400).json({
+                ok: true,
+                msg: 'El usuario no es el autor del trabajo'
+            });
+        }
+
+
+        trabajo.imagenes = [];
+        trabajo.videos = [];
+        trabajo.documentos = [];
+        trabajo.audios = [];
+
+        await trabajo.save();
+
+        res.json({
+            ok: true,
+            msg: 'Contenidos multimedia del trabajo limpiados',
             trabajo
         });
 
@@ -403,4 +444,4 @@ const borrarTrabajo = async(req, res = response) => {
 }
 
 
-module.exports = { obtenerTrabajos, obtenerTrabajosAluVisibles, obtenerTrabajosAluNoVisibles, crearTrabajo, actualizarTrabajo, borrarTrabajo }
+module.exports = { obtenerTrabajos, obtenerTrabajosAluVisibles, obtenerTrabajosAluNoVisibles, crearTrabajo, actualizarTrabajo, limpiarMultimediaTrabajo, borrarTrabajo }

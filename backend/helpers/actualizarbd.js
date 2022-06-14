@@ -6,11 +6,7 @@ const { infoToken } = require('../helpers/infotoken');
 
 const actualizarBD = async(tipo, path, nombreArchivo, id, token) => {
     let fotoAntigua, pathFotoAntigua;
-    const idToken = req.uidToken;
-    const rolToken = req.rolToken;
     //Comprobar que el trabajo sea suyo
-    let usuario = await Usuario.findById(idToken);
-    if (!usuario) return false;
     console.log("Tipo que llega para actualizar: ", tipo);
     switch (tipo) {
 
@@ -74,8 +70,8 @@ const actualizarBD = async(tipo, path, nombreArchivo, id, token) => {
             if (!trabajofoto) {
                 return false;
             }
-
-            if (trabajofoto.autor != usuario.uid) {
+            const usuariofototrabajo = await Usuario.findById(infoToken(token).uid);
+            if (trabajofoto.autor != usuariofototrabajo.uid) {
                 console.log("el usuario no es el propietario del trabajo que quiere actualizar");
             }
 
@@ -99,7 +95,8 @@ const actualizarBD = async(tipo, path, nombreArchivo, id, token) => {
                 return false;
             }
 
-            if (trabajofotos.autor != usuario.uid) {
+            const usuariofotostrabajo = await Usuario.findById(infoToken(token).uid);
+            if (trabajofotos.autor != usuariofotostrabajo.uid) {
                 console.log("el usuario no es el propietario del trabajo que quiere actualizar");
             }
 
@@ -116,12 +113,12 @@ const actualizarBD = async(tipo, path, nombreArchivo, id, token) => {
                 return false;
             }
 
-            if (trabajovideos.autor != usuario.uid) {
+            const usuariovideostrabajo = await Usuario.findById(infoToken(token).uid);
+            if (trabajovideos.autor != usuariovideostrabajo.uid) {
                 console.log("el usuario no es el propietario del trabajo que quiere actualizar");
             }
 
-
-            trabajovideos.imagenes.push(nombreArchivo);
+            trabajovideos.videos.push(nombreArchivo);
             await trabajovideos.save();
 
             return true;
@@ -134,12 +131,12 @@ const actualizarBD = async(tipo, path, nombreArchivo, id, token) => {
                 return false;
             }
 
-            if (trabajoaudios.autor != usuario.uid) {
+            const usuarioaudiostrabajo = await Usuario.findById(infoToken(token).uid);
+            if (trabajoaudios.autor != usuarioaudiostrabajo.uid) {
                 console.log("el usuario no es el propietario del trabajo que quiere actualizar");
             }
 
-
-            trabajoaudios.imagenes.push(nombreArchivo);
+            trabajoaudios.audios.push(nombreArchivo);
             await trabajoaudios.save();
 
             return true;
@@ -152,12 +149,12 @@ const actualizarBD = async(tipo, path, nombreArchivo, id, token) => {
                 return false;
             }
 
-            if (trabajodocs.autor != usuario.uid) {
+            const usuariodocstrabajo = await Usuario.findById(infoToken(token).uid);
+            if (trabajodocs.autor != usuariodocstrabajo.uid) {
                 console.log("el usuario no es el propietario del trabajo que quiere actualizar");
             }
 
-
-            trabajodocs.imagenes.push(nombreArchivo);
+            trabajodocs.documentos.push(nombreArchivo);
             await trabajodocs.save();
 
             return true;
