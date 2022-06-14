@@ -59,7 +59,7 @@ const TrabajoSchema = Schema({
         type: Boolean,
         default: false
     },
-    estado: { // para editar, pendiente de revisión, visible
+    estado: { // para editar, pendiente de revisión, aceptado, denergado
         type: String,
         default: "Para editar"
     }

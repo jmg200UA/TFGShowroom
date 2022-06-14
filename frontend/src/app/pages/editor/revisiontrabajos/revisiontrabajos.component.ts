@@ -4,7 +4,7 @@ import { TrabajosService } from '../../../services/trabajos.service';
 import { UsuarioService } from '../../../services/usuario.service';
 import { Trabajo } from '../../../models/trabajo.model';
 import Swal from 'sweetalert2';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'revisiontrabajos',
@@ -33,7 +33,7 @@ export class RevisiontrabajosComponent implements OnInit {
     this.ultimaBusqueda = textoBuscar;
     this.loading = true;
     //Hacer funcion que devuelva los no visibles con estado de revisión
-    this.TrabajosService.cargarTrabajosAluNoVisibles( this.UsuarioService.uid,this.posicionactual, textoBuscar )
+    this.TrabajosService.cargarTrabajosEditor( this.posicionactual, textoBuscar )
       .subscribe( res => {
         // Obtenemos los trabajos del alumno que han sido aceptados por el editor y por lo tanto publicados
         console.log("LA RES de trabajos: ", res['trabajos']);
@@ -62,6 +62,10 @@ export class RevisiontrabajosComponent implements OnInit {
     pagina = (pagina < 0 ? 0 : pagina);
     this.posicionactual = ((pagina - 1) * this.registrosporpagina >=0 ? (pagina - 1) * this.registrosporpagina : 0);
     this.cargarTrabajos(this.ultimaBusqueda);
+  }
+
+  irRevision(uid){
+    this.router.navigateByUrl('/editor/revisartrabajo/'+ uid);
   }
 
 }

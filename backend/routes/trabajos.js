@@ -3,11 +3,12 @@ Ruta base: /api/trabajos
 */
 
 const { Router } = require('express');
-const { obtenerTrabajos, obtenerTrabajosAluVisibles, obtenerTrabajosAluNoVisibles, crearTrabajo, actualizarTrabajo, borrarTrabajo, limpiarMultimediaTrabajo } = require('../controllers/trabajos');
+const { obtenerTrabajos, obtenerTrabajosAluVisibles, obtenerTrabajosAluNoVisibles, crearTrabajo, actualizarTrabajo, borrarTrabajo, limpiarMultimediaTrabajo, obtenerTrabajosEditor } = require('../controllers/trabajos');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middleware/validar-campos');
 const { validarRol } = require('../middleware/validar-rol');
 const { validarRolAdmin } = require('../middleware/validar-rol-admin');
+const { validarRolEditor } = require('../middleware/validar-rol-editor');
 const { validarJWT } = require('../middleware/validar-jwt');
 
 const router = Router();
@@ -19,6 +20,15 @@ router.get('/', [
     check('desde', 'El desde debe ser un número').optional().isNumeric(),
     validarCampos,
 ], obtenerTrabajos);
+
+router.get('/tr/', [ // trabajos revisión
+    validarJWT,
+    // Campos opcionales, si vienen los validamos
+    check('id', 'El id de usuario debe ser válido').optional().isMongoId(),
+    check('desde', 'El desde debe ser un número').optional().isNumeric(),
+    validarCampos,
+    validarRolEditor
+], obtenerTrabajosEditor);
 
 router.get('/v/', [ // trabajos visibles
     validarJWT,

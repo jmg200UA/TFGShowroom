@@ -40,6 +40,12 @@ export class TrabajosService {
     return this.http.get(`${environment.base_url}/trabajos/?desde=${desde}&texto=${textoBusqueda}` , this.cabeceras);
   }
 
+  cargarTrabajosEditor( desde: number, textoBusqueda?: string ): Observable<object> { // get trabajos para revisar
+    if (!desde) { desde = 0;}
+    if (!textoBusqueda) {textoBusqueda = '';}
+    return this.http.get(`${environment.base_url}/trabajos/tr/?desde=${desde}&texto=${textoBusqueda}` , this.cabeceras);
+  }
+
   cargarTrabajosAluVisibles(uid: string, desde: number, textoBusqueda?: string ): Observable<object> {
     if (!desde) { desde = 0;}
     if (!textoBusqueda) {textoBusqueda = '';}

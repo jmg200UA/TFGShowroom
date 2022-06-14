@@ -73,6 +73,80 @@ const obtenerTrabajos = async(req, res) => {
     }
 }
 
+const obtenerTrabajosEditor = async(req, res) => {
+    // Para paginación y buscador
+    const desde = Number(req.query.desde) || 0;
+    const registropp = Number(process.env.DOCSPERPAGE);
+    const texto = req.query.texto;
+    let textoBusqueda = "";
+    let revisar = new RegExp("Pendiente de revisión", "i");
+    if (texto) {
+        textoBusqueda = new RegExp(texto, "i");
+    }
+    // Obtenemos el ID de usuario por si quiere buscar solo un trabajo
+    const id = req.query.id || "";
+
+    try {
+
+        let trabajos, total;
+        // Si ha llegado ID, hacemos el get /id
+        if (id) {
+
+            [trabajos, total] = await Promise.all([
+                Trabajo.findById(id).populate('autor').populate('titulacion'),
+                Trabajo.countDocuments()
+            ]);
+
+        }
+        // Si no ha llegado ID, hacemos el get / paginado
+        else {
+            let query = {};
+            if (texto) { // si hay texto es que el alumno quiere buscar entre sus trabajos
+                query = {
+                    $and: [
+                        { estado: revisar },
+                        {
+                            $or: [
+                                { titulo: textoBusqueda },
+                            ],
+                        }
+                    ]
+
+                };
+            } else {
+                query = {
+                    $and: [
+                        { estado: revisar },
+                    ]
+
+                };
+            }
+            [trabajos, total] = await Promise.all([
+                Trabajo.find(query).skip(desde).limit(registropp).populate('autor').populate('titulacion'),
+                Trabajo.countDocuments(query)
+            ]);
+        }
+
+        res.json({
+            ok: true,
+            msg: 'getTrabajosEditor',
+            trabajos,
+            page: {
+                desde,
+                registropp,
+                total
+            }
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.json({
+            ok: false,
+            msg: 'Error obteniendo trabajos para revisar'
+        });
+    }
+}
+
 const obtenerTrabajosAluVisibles = async(req, res) => {
     // Para paginación y buscador
     const desde = Number(req.query.desde) || 0;
@@ -442,4 +516,4 @@ const borrarTrabajo = async(req, res = response) => {
 }
 
 
-module.exports = { obtenerTrabajos, obtenerTrabajosAluVisibles, obtenerTrabajosAluNoVisibles, crearTrabajo, actualizarTrabajo, limpiarMultimediaTrabajo, borrarTrabajo }
+module.exports = { obtenerTrabajos, obtenerTrabajosEditor, obtenerTrabajosAluVisibles, obtenerTrabajosAluNoVisibles, crearTrabajo, actualizarTrabajo, limpiarMultimediaTrabajo, borrarTrabajo }

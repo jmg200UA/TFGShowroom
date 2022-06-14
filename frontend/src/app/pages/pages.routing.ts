@@ -152,7 +152,7 @@ export const routes: Routes = [
   //PATHS LANDING
   { path: 'landing', component: LandingComponent,},
 
-  { path: '**', redirectTo: 'admin/usuarios'}
+  { path: '**', redirectTo: 'landing'}
 
 ];
 

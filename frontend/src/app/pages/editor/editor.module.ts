@@ -8,12 +8,14 @@ import { ComponentsModule } from '../../components/components.module';
 //COMPONENTS
 import { EditorComponent } from './editor.component';
 import { RevisiontrabajosComponent } from './revisiontrabajos/revisiontrabajos.component';
+import { RevisartrabajoComponent } from './revisartrabajo/revisartrabajo.component';
 
 
 @NgModule({
   declarations: [
     EditorComponent,
     RevisiontrabajosComponent,
+    RevisartrabajoComponent,
   ],
   imports: [
     CommonModule,
