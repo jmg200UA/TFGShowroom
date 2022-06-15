@@ -53,7 +53,7 @@ export class RevisartrabajoComponent implements OnInit {
         config.showNavigationArrows = true;
     config.showNavigationIndicators = true;
   }
-    }
+
 
 ngOnInit(): void {
 this.uid = this.route.snapshot.params['uid'];
