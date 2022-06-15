@@ -100,6 +100,44 @@ export class TrabajosService {
     return this.http.post(`${environment.base_url}/upload/trabajodocs/${uid}`, datos, this.cabeceras);
   }
 
+  //Llamadas obtención archivos
+
+  crearImagenUrl( imagen: string) { // imagen trabajo
+
+    const token = localStorage.getItem('token') || '';
+    if (!imagen) {
+      return `${environment.base_url}/upload/trabajoimg/no-imagen.jpg?token=${token}`;
+    }
+    return `${environment.base_url}/upload/trabajoimg/${imagen}?token=${token}`;
+  }
+
+  crearImagenesUrl( imagen: string) { // imagenes adicionales trabajo
+
+    const token = localStorage.getItem('token') || '';
+    if (!imagen) {
+      return `${environment.base_url}/upload/trabajoimgs/no-imagen.jpg?token=${token}`;
+    }
+    return `${environment.base_url}/upload/trabajoimgs/${imagen}?token=${token}`;
+  }
+
+  crearVideoUrl( video: string) { // videos adicionales trabajo
+
+    const token = localStorage.getItem('token') || '';
+    return `${environment.base_url}/upload/trabajovideos/${video}?token=${token}`;
+  }
+
+  crearDocUrl( doc: string) { // docs adicionales trabajo
+
+    const token = localStorage.getItem('token') || '';
+    return `${environment.base_url}/upload/trabajodocs/${doc}?token=${token}`;
+  }
+
+  crearAudioUrl( audio: string) { // audios adicionales trabajo
+
+    const token = localStorage.getItem('token') || '';
+    return `${environment.base_url}/upload/trabajoaudios/${audio}?token=${token}`;
+  }
+
   get cabeceras() {
     return {
       headers: {

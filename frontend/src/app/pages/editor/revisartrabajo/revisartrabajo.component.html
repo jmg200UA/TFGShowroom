@@ -1,1 +1,145 @@
-<p>revisartrabajo works!</p>
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-content">
+    <div class="animate__animated animate__fadeInRight animate__faster">
+        <div class="d-flex justify-content-center">
+            <div class="card col-md-10">
+                <div class="card-body">
+                    <div>
+                        <button class="btn btn-info m-r-10" [disabled]="!datosForm.pristine" routerLink="/editor/revisiontrabajos">Volver</button>
+                    </div>
+                    <form class="form-horizontal m-t-20" [formGroup]="datosForm">
+                        <div class="row m-t-10">
+                            <div class="col-lg-3 col-md-12 text-lg-right">
+                                <span class="">Título</span>
+                            </div>
+                            <div class="col-lg-8 col-md-12">
+                                <input type="text" class="form-control" formControlName="titulo" id="titulo">
+                            </div>
+                        </div>
+                        <div class="row m-t-10">
+                            <div class="col-lg-3 col-md-12 text-lg-right">
+                                <span class="">Autor</span>
+                            </div>
+                            <div class="col-lg-8 col-md-12">
+                                <input type="text" class="form-control" formControlName="autor" id="autor">
+                            </div>
+                        </div>
+                        <div class="row m-t-10">
+                            <div class="col-lg-3 col-md-12 text-lg-right">
+                                <span class="">Titulación</span>
+                            </div>
+                            <div class="col-lg-8 col-md-12">
+                                <input type="text" class="form-control" formControlName="titulacion" id="titulacion">
+                            </div>
+                        </div>
+                        <div class="row m-t-10">
+                            <div class="col-lg-3 col-md-12 text-lg-right">
+                                <span class="">Area</span>
+                            </div>
+                            <div class="col-lg-8 col-md-12">
+                                <input type="text" class="form-control" formControlName="area" id="area">
+                            </div>
+                        </div>
+                        <div class="row m-t-10">
+                            <div class="col-lg-3 col-md-12 text-lg-right">
+                                <span class="">Tipo</span>
+                            </div>
+                            <div class="col-lg-8 col-md-12">
+                                <input type="text" class="form-control" formControlName="tipo" id="tipo">
+                            </div>
+                        </div>
+                        <!-- Campos que debe introducir el alumno -->
+                        <div class="row m-t-10">
+                            <div class="col-lg-3 col-md-12 text-lg-right">
+                                <span class="">Director de investigación</span>
+                            </div>
+                            <div class="col-lg-8 col-md-12">
+                                <input type="text" class="form-control" formControlName="director" id="director">
+                                <div class="invalid-feedback">
+                                    El campo es obligatorio
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" row m-t-10 ">
+                            <div class="col-lg-3 col-md-12 text-lg-right ">
+                                <span class=" ">Resumen</span>
+                            </div>
+                            <div class="col-lg-8 col-md-12 ">
+                                <textarea class="form-control" formControlName="resumen" id="resumen" rows="4"></textarea>
+                                <div class="invalid-feedback ">
+                                    El campo es obligatorio
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Imagen trabajo -->
+                        <!-- <div class="form-group row m-t-10">
+                            <div class="col-lg-3 text-lg-right">
+                                <span class=" ">Imagen trabajo</span>
+                            </div>
+                            <div class="col-lg-8 col-md-12">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="imagen" id="fotoperfil" (change)="cambioImagen( $event )">
+                                    <label class="custom-file-label" for="fotoperfil" data-browse="Elegir">{{fileText}}</label>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- Contenido multimedia en slider -->
+                        <br>
+                        <div *ngIf="imagenes.length >0" class=" row m-t-10 justify-content-center">
+                            <h3 class="text-center">Imágenes</h3>
+                            <ngb-carousel class="mh-100" style="width: 100%; height: 50vh">
+                                <ng-template ngbSlide *ngFor="let imagen of imagenes">
+                                    <center>
+                                        <img [src]="crearImagenesUrl(imagen)" class="imgajustada" alt="Random slide">
+                                    </center>
+                                </ng-template>
+                            </ngb-carousel>
+                        </div>
+
+                        <div *ngIf="videos.length >0" class=" row m-t-10 justify-content-center">
+                            <h3 class="text-center">Videos</h3>
+                            <ngb-carousel [showNavigationArrows]="showNavigationArrows" [showNavigationIndicators]="showNavigationIndicators" class="mh-100" style="width: 100%; height: 50vh">
+                                <ng-template ngbSlide *ngFor="let video of videos">
+                                    <center>
+                                        <video [src]="crearVideoUrl(video)" width="320" height="240" alt="Random slide"></video>
+                                    </center>
+                                </ng-template>
+                            </ngb-carousel>
+                        </div>
+                        <div *ngIf="audios.length >0" class=" row m-t-10 justify-content-center">
+                            <h3 class="text-center">Audios</h3>
+                            <ngb-carousel [showNavigationArrows]="showNavigationArrows" [showNavigationIndicators]="showNavigationIndicators" class="mh-100" style="width: 100%; height: 50vh">
+                                <ng-template ngbSlide *ngFor="let audio of audios">
+                                    <center>
+                                        <audio [src]="crearAudioUrl(audio)" controls alt="Random slide"></audio>
+                                    </center>
+                                </ng-template>
+                            </ngb-carousel>
+                        </div>
+                        <!-- <div *ngIf="documentos.length >0" class=" row m-t-10 justify-content-center">
+                            <h3 class="text-center">Documentos</h3>
+                            <ngb-carousel [showNavigationArrows]="showNavigationArrows" [showNavigationIndicators]="showNavigationIndicators" class="mh-100" style="width: 100%; height: 50vh">
+                                <ng-template ngbSlide *ngFor="let documento of documentos">
+                                    <center>
+                                        <embed [src]="crearDocUrl(documento)" type="application/pdf" width="100%" height="100%" controls alt="Random slide" />
+                                    </center>
+                                </ng-template>
+                            </ngb-carousel>
+                        </div> -->
+
+
+
+                        <div class="d-flex justify-content-center m-t-10 ">
+                            <div class="align-content-center ">
+                                <!-- Botones aceptar denegar trabajo -->
+                                <!-- <button class="btn btn-primary m-r-20 " type="submit " id="enviar" [disabled]="datosForm.pristine">Enviar</button>
+                                <button class="btn btn-danger " type="button" (click)="cancelar()" id="cancelar" [disabled]="datosForm.pristine">Cancelar</button> -->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

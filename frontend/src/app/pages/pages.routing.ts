@@ -17,6 +17,7 @@ import { SubirtrabajoComponent } from './alumno/subirtrabajo/subirtrabajo.compon
 //COMPONENTS EDITOR
 import { EditorComponent } from './editor/editor.component';
 import { RevisiontrabajosComponent } from './editor/revisiontrabajos/revisiontrabajos.component';
+import { RevisartrabajoComponent } from './editor/revisartrabajo/revisartrabajo.component';
 //COMPONENT PERFIL GENERAL
 import { UserProfileComponent } from './user-profile/user-profile.component';
 //COMPONENTS LANDING
@@ -142,7 +143,12 @@ export const routes: Routes = [
   children:[
     { path: 'revisiontrabajos', component: RevisiontrabajosComponent, canActivate: [ AuthGuard ], data: {
                                                             rol: 'ROL_EDITOR',
-                                                            titulo: 'Showroom Editor - Gestión Trabajos',
+                                                            titulo: 'Showroom Editor - Trabajos para revisar',
+                                                            breadcrums: []
+                                                          },},
+    { path: 'revisartrabajo/:uid', component: RevisartrabajoComponent, canActivate: [ AuthGuard ], data: {
+                                                            rol: 'ROL_EDITOR',
+                                                            titulo: 'Showroom Editor - Revisión Trabajo',
                                                             breadcrums: []
                                                           },},
 
