@@ -53,6 +53,13 @@ ngb-carousel .picsum-img-wrapper>img {
 .imgajustada {
     height: auto;
     width: auto;
-    max-height: 200px;
+    max-height: 25vh;
     max-width: 200px;
+}
+
+
+/* Letra form controls negrita */
+
+div>span {
+    font-weight: bold;
 }

@@ -16,6 +16,7 @@ export class RevisartrabajoComponent implements OnInit {
   private uid: string = '';
   public loading = true;
 
+  public imagen; // para cargar la imagen principal del trabajo
   //Arrays para cargar los contenidos multimedia
   public imagenes: String [] = [];
   public videos: String [] = [];
@@ -32,8 +33,11 @@ export class RevisartrabajoComponent implements OnInit {
     resumen: [''],
     imagen: [''],
     director: [''],
-    estado: [''],
 
+  });
+
+  public dataEstado = this.fb.group({ // para enviar el estado como aceptado o denegado
+    estado: [''],
   });
 
   showNavigationArrows = false;
@@ -51,7 +55,7 @@ export class RevisartrabajoComponent implements OnInit {
         config.pauseOnHover = false;
         config.showNavigationIndicators = false;
         config.showNavigationArrows = true;
-    config.showNavigationIndicators = true;
+        config.showNavigationIndicators = true;
   }
 
 
@@ -81,6 +85,8 @@ cargarTrabajo(){
         this.datosForm.get('director').disable();
         this.datosForm.get('resumen').setValue(res['trabajos'].resumen);
         this.datosForm.get('resumen').disable();
+
+        this.imagen = res['trabajos'].imagen;
 
         this.imagenes = res['trabajos'].imagenes;
         this.videos = res['trabajos'].videos;
@@ -114,6 +120,28 @@ crearDocUrl(doc: string) {
 
 crearAudioUrl(audio: string) {
   return this.TrabajosService.crearAudioUrl(audio);
+}
+
+actualizarEstado(estado){
+  this.dataEstado.get('estado').setValue(estado);
+  this.loading = true;
+  this.TrabajosService.actualizarEstadoTrabajo(this.uid, this.dataEstado.value)
+    .subscribe( res => {
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Estado actualizado correctamente',
+        showConfirmButton: false,
+        timer: 2000
+      })
+
+      this.router.navigateByUrl('/editor/revisiontrabajos');
+
+    }, (err) => {
+      Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
+      //console.warn('error:', err);
+      this.loading = false;
+    });
 }
 
 }

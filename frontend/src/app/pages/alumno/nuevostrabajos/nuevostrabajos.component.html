@@ -45,6 +45,7 @@
                                     <td>{{trabajo.titulacion.nombre}}</td>
                                     <td *ngIf="trabajo.estado=='Para editar'" (click)="subirTrabajo(trabajo.uid)" class="micursor text-warning">{{trabajo.estado}}</td>
                                     <td *ngIf="trabajo.estado=='Pendiente de revisión'" (click)="subirTrabajo(trabajo.uid)" class="micursor text-primary">{{trabajo.estado}}</td>
+                                    <td *ngIf="trabajo.estado=='Denegado'" (click)="subirTrabajo(trabajo.uid)" class="micursor text-danger">{{trabajo.estado}}</td>
                                 </tr>
                             </tbody>
                         </table>

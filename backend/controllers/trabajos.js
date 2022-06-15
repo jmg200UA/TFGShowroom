@@ -436,6 +436,40 @@ const actualizarTrabajo = async(req, res = response) => {
 
 }
 
+const actualizarEstadoTrabajo = async(req, res = response) => {
+
+    const { estado } = req.body;
+    const uid = req.params.id;
+    const idToken = req.uidToken;
+    const rolToken = req.rolToken;
+
+    try {
+
+        let trabajo = await Trabajo.findById(uid);
+
+        trabajo.estado = estado;
+        if (estado == "Aceptado") {
+            trabajo.visible = true;
+        }
+
+        await trabajo.save();
+
+        res.json({
+            ok: true,
+            msg: 'Estado Trabajo actualizado',
+            trabajo
+        });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: 'Error actualizando trabajo'
+        });
+    }
+
+}
+
 const limpiarMultimediaTrabajo = async(req, res = response) => {
 
     const uid = req.params.id;
@@ -516,4 +550,4 @@ const borrarTrabajo = async(req, res = response) => {
 }
 
 
-module.exports = { obtenerTrabajos, obtenerTrabajosEditor, obtenerTrabajosAluVisibles, obtenerTrabajosAluNoVisibles, crearTrabajo, actualizarTrabajo, limpiarMultimediaTrabajo, borrarTrabajo }
+module.exports = { obtenerTrabajos, obtenerTrabajosEditor, obtenerTrabajosAluVisibles, obtenerTrabajosAluNoVisibles, crearTrabajo, actualizarTrabajo, actualizarEstadoTrabajo, limpiarMultimediaTrabajo, borrarTrabajo }

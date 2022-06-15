@@ -25,6 +25,11 @@ export class TrabajosService {
     return this.http.put(`${environment.base_url}/trabajos/${uid}`, data, this.cabeceras);
   }
 
+  actualizarEstadoTrabajo ( uid: string, data) {
+    console.log("Actualizar con: ", data);
+    return this.http.put(`${environment.base_url}/trabajos/et/${uid}`, data, this.cabeceras);
+  }
+
   limpiarMultimediaTrabajo ( uid: string) {
 
     return this.http.put(`${environment.base_url}/trabajos/lm/${uid}`, '', this.cabeceras);
