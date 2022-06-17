@@ -35,7 +35,7 @@ export class NuevousuarioComponent implements OnInit {
 
   cancelar(): void {
     // Si estamos creando uno nuevo, vamos a la lista
-      this.router.navigateByUrl('/admin/dashboard');
+      this.router.navigateByUrl('/admin/usuarios');
   }
 
 
@@ -53,7 +53,7 @@ export class NuevousuarioComponent implements OnInit {
             showConfirmButton: false,
             timer: 2000
           })
-          this.router.navigateByUrl('/admin/dashboard');
+          this.router.navigateByUrl('/admin/usuarios');
 
         }, (err) => {
           const errtext = err.error.msg || 'No se pudo completar la acción, vuelva a intentarlo.';
