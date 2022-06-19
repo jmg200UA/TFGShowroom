@@ -14,7 +14,7 @@
                                 <span class="">Autor</span>
                             </div>
                             <div class="col-lg-4 col-md-12 ">
-                                <input type="text " class="form-control " formControlName="autor" [ngClass]="{ 'is-invalid' : campoNoValido( 'autor')} " id="autor">
+                                <input type="text " class="form-control " disabled="true" formControlName="autor" [ngClass]="{ 'is-invalid' : campoNoValido( 'autor')} " id="autor" value="{{nombreAlu}}">
                                 <div class="invalid-feedback ">
                                     El campo es obligatorio
                                 </div>
@@ -45,7 +45,7 @@
                             </div>
                             <div class="col-lg-4 col-md-12 ">
                                 <input #txtQuery2 (keyup)="cargarTitulaciones(txtQuery2.value)" autocomplete="off" class="form-control" type="text" name="titulacion" formControlName="titulacion" placeholder="Busca y selecciona una titulación" value={{nombreTitu}}>
-                                <!-- RESULTADOS -->
+
                                 <div *ngIf="loading2" class="alert alert-primary mt-2 text-center">
                                     <h6>Cargando</h6>
                                     <span>Espere por favor...</span>
@@ -56,6 +56,16 @@
                                         <p>{{ titulacion.area }}</p>
                                     </li>
                                 </ul>
+                                <!-- <div *ngIf="loading2 " class="alert alert-primary mt-2 text-center ">
+                                    <h6>Cargando</h6>
+                                    <span>Espere por favor...</span>
+                                </div>
+                                <select class="select2 form-control custom-select" style="width: 100%; height:36px;" formControlName="titulacion" [ngClass]="{'is-invalid' : campoNoValido('titulacion')}" id="titulacion">
+                                  <option *ngFor="let titulacion of listaTitulaciones" [ngValue]="titulacion.uid">{{titulacion.nombre}}</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    El campo es obligatorio
+                                </div> -->
                             </div>
                         </div>
                         <div class="d-flex justify-content-center m-t-10 ">
@@ -93,7 +103,7 @@
                             <span>Espere por favor...</span>
                         </div>
                         <ul class="list-group mt-2 porencima " *ngIf="ultimaBusqueda.length>2">
-                            <li *ngFor="let alumno of listaAlumnos" class="list-group-item list-group-item-action micursor" (click)="esteLugar( alumno )">
+                            <li *ngFor="let alumno of listaAlumnos" class="list-group-item list-group-item-action micursor" data-dismiss="modal" type="close" data-target="#" (click)="esteLugar( alumno )">
                                 <h6>{{ alumno.nombre_apellidos }}</h6>
                                 <p>{{ alumno.email }}</p>
                             </li>
@@ -101,63 +111,67 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Modal por si se quiere registrar un nuevo usuario -->
-    <div class="modal fade" id="modalAlu">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <div class="modal-title">
-                        <h4 class="modal-title w-100 font-weight-bold">NUEVO ALUMNO</h4>
-                    </div>
-                </div>
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <form id="datosForm2" [formGroup]="datosForm2">
-
-                        <div class="row m-t-10">
-                            <div class="col-lg-3 col-md-12 text-lg-right">
-                                <span class="">Nombre y apellidos</span>
-                            </div>
-                            <div class="col-lg-8 col-md-12">
-                                <input type="text" class="form-control" formControlName="nombre_apellidos" [ngClass]="{'is-invalid' : campoNoValido2('nombre_apellidos')}" id="nombre_apellidos">
-                                <div class="invalid-feedback">
-                                    El campo es obligatorio
-                                </div>
-                            </div>
-                        </div>
-                        <div class=" row m-t-10 ">
-                            <div class="col-lg-3 col-md-12 text-lg-right ">
-                                <span class=" ">Email</span>
-                            </div>
-                            <div class="col-lg-8 col-md-12 ">
-                                <input type="text " class="form-control " formControlName="email" [ngClass]="{ 'is-invalid' : campoNoValido2( 'email')} " id="email ">
-                                <div class="invalid-feedback ">
-                                    El campo es obligatorio
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row m-t-10">
-                            <div class="col-lg-3 col-md-12 text-lg-right">
-                                <span class="">Password</span>
-                            </div>
-                            <div class="col-lg-8 col-md-12">
-                                <input type="text" class="form-control " disabled="true" formControlName="password" [ngClass]="{'is-invalid' : campoNoValido2('password')}" id="password">
-                                <div class="invalid-feedback">
-                                    El campo es obligatorio
-                                </div>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-center m-t-10 ">
-                            <div class="align-content-center ">
-                                <button class="btn btn-primary m-r-20 " type="submit " id="enviar" [disabled]="datosForm2.pristine" (click)="enviar2()">Enviar</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+            <div class="p-t-10 text-center">
+                <button class="btn btn--pill btn--signin cerrar" id="cerrar" data-dismiss="modal" type="close" data-target="#">Cerrar</button>
             </div>
         </div>
     </div>
+</div>
+
+<!-- Modal por si se quiere registrar un nuevo usuario -->
+<div class="modal fade" id="modalAlu">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <div class="modal-title">
+                    <h4 class="modal-title w-100 font-weight-bold">NUEVO ALUMNO</h4>
+                </div>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form id="datosForm2" [formGroup]="datosForm2">
+
+                    <div class="row m-t-10">
+                        <div class="col-lg-3 col-md-12 text-lg-right">
+                            <span class="">Nombre y apellidos</span>
+                        </div>
+                        <div class="col-lg-8 col-md-12">
+                            <input type="text" class="form-control" formControlName="nombre_apellidos" [ngClass]="{'is-invalid' : campoNoValido2('nombre_apellidos')}" id="nombre_apellidos">
+                            <div class="invalid-feedback">
+                                El campo es obligatorio
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-t-10">
+                        <div class="col-lg-3 col-md-12 text-lg-right">
+                            <span class=" ">Email</span>
+                        </div>
+                        <div class="col-lg-8 col-md-12 ">
+                            <input type="text" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid' : campoNoValido2( 'email')} " id="email">
+                            <div class="invalid-feedback ">
+                                El campo es obligatorio
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-t-10">
+                        <div class="col-lg-3 col-md-12 text-lg-right">
+                            <span class="">Password</span>
+                        </div>
+                        <div class="col-lg-8 col-md-12">
+                            <input type="text" class="form-control" formControlName="password" [ngClass]="{'is-invalid' : campoNoValido2('password')}" id="password">
+                            <div class="invalid-feedback">
+                                El campo es obligatorio
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center m-t-10">
+                        <div class="align-content-center">
+                            <button class="btn btn-primary m-r-20 " type="submit" id="enviar" [disabled]="datosForm2.pristine" (click)="enviar2()">Enviar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -70,6 +70,7 @@ export class NuevotrabajoComponent implements OnInit {
               private TitulacionService: TitulacionService) { }
 
   ngOnInit(): void {
+    //this.cargarTitulaciones("");
   }
 
 
@@ -139,7 +140,6 @@ export class NuevotrabajoComponent implements OnInit {
 
   cargarTitulaciones( textoBuscar: string ) {
     this.ultimaBusqueda2 = textoBuscar;
-    if(this.ultimaBusqueda2.length>2){
       this.loading2 = true;
     this.TitulacionService.cargarTitulaciones( this.posicionactual, textoBuscar )
       .subscribe( res => {
@@ -161,13 +161,14 @@ export class NuevotrabajoComponent implements OnInit {
           Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
           this.loading2 = false;
         });
-      }
     }
 
   esteLugar( alu ) { // Funcion para establecer nombre del alumno en el input y reiniciar el listado
     this.nombreAlu = alu.nombre_apellidos;
     this.datosForm.get('autor').setValue(alu.uid);
     this.ultimaBusqueda='';
+    document.getElementById('cerrar').click();
+
   }
 
   esteLugar2( titu ) { // Funcion para establecer nombre de la titulacion en el input y reiniciar el listado
