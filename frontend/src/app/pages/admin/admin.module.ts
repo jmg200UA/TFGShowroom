@@ -13,6 +13,9 @@ import { GestionTrabajosComponent } from './gestiontrabajos/gestiontrabajos.comp
 import { NuevotrabajoComponent } from './nuevotrabajo/nuevotrabajo.component';
 import { GestionTitulacionesComponent } from './gestiontitulaciones/gestiontitulaciones.component';
 import { NuevatitulacionComponent } from './nuevatitulacion/nuevatitulacion.component';
+import { ActualizarusuarioComponent } from './actualizarusuario/actualizarusuario.component';
+import { ActualizartrabajoComponent } from './actualizartrabajo/actualizartrabajo.component';
+import { ActualizartitulacionComponent } from './actualizartitulacion/actualizartitulacion.component';
 
 
 @NgModule({
@@ -31,7 +34,10 @@ import { NuevatitulacionComponent } from './nuevatitulacion/nuevatitulacion.comp
     GestionTrabajosComponent,
     NuevotrabajoComponent,
     GestionTitulacionesComponent,
-    NuevatitulacionComponent
+    NuevatitulacionComponent,
+    ActualizarusuarioComponent,
+    ActualizartrabajoComponent,
+    ActualizartitulacionComponent
   ],
   // exports:[
   //   UserProfileComponent,
