@@ -52,7 +52,10 @@
                                     <td>{{titulacion.nombre}}</td>
                                     <td>{{titulacion.resumen}}</td>
                                     <td>{{titulacion.area}}</td>
-                                    <td class="text-right"><i class="fa fa-trash text-danger fa-lg micursor" (click)="eliminarTitulacion(titulacion.uid, titulacion.nombre)"></i></td>
+                                    <td class="text-right">
+                                        <i class="fa fa-pencil-alt text-success fa-lg mr-5 micursor" [routerLink]="['/admin/actualizartitulacion', titulacion.uid]"></i>
+                                        <i class="fa fa-trash text-danger fa-lg micursor" (click)="eliminarTitulacion(titulacion.uid, titulacion.nombre)"></i>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

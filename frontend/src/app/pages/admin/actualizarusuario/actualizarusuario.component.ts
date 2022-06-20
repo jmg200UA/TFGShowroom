@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { UsuarioService } from '../../../services/usuario.service';
 
 @Component({
   selector: 'actualizarusuario',
@@ -7,9 +11,79 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActualizarusuarioComponent implements OnInit {
 
-  constructor() { }
+  private formSubmited = false;
+  private uid: string = '';
+  public showOKP: boolean = false;
+  public loading: boolean = true;
+
+  public datosForm = this.fb.group({
+    email: [ '', [Validators.required, Validators.email] ],
+    nombre_apellidos: ['', Validators.required ],
+    password: ['', Validators.required ],
+    rol: ['ROL_ALUMNO', Validators.required ],
+  });
+
+  constructor( private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private UsuarioService: UsuarioService) { }
 
   ngOnInit(): void {
+    this.uid = this.route.snapshot.params['uid'];
+    console.log("UID: ", this.uid);
+    this.cargarUsuario();
+  }
+
+  cancelar(): void {
+    // Si estamos creando uno nuevo, vamos a la lista
+      this.router.navigateByUrl('/admin/usuarios');
+  }
+
+
+  enviar(): void {
+    this.formSubmited = true;
+    if (this.datosForm.invalid) { return; }
+
+      this.UsuarioService.actualizarUsuario(this.uid, this.datosForm.value )
+        .subscribe( res => {
+          this.datosForm.markAsPristine();
+
+          Swal.fire({
+            icon: 'success',
+            title: 'Usuario actualizado correctamente',
+            showConfirmButton: false,
+            timer: 2000
+          })
+          this.router.navigateByUrl('/admin/usuarios');
+
+        }, (err) => {
+          const errtext = err.error.msg || 'No se pudo completar la acción, vuelva a intentarlo.';
+          Swal.fire({icon: 'error', title: 'Oops...', text: errtext,});
+          return;
+        });
+
+
+  }
+
+  campoNoValido( campo: string) {
+    return this.datosForm.get(campo).invalid && this.formSubmited;
+  }
+
+  cargarUsuario(){
+    this.loading = true;
+    this.UsuarioService.cargarUsuario(this.uid)
+      .subscribe( res => {
+          this.datosForm.get('nombre_apellidos').setValue(res['usuarios'].nombre_apellidos);
+          this.datosForm.get('email').setValue(res['usuarios'].email);
+          this.datosForm.get('password').setValue(res['usuarios'].password);
+          this.datosForm.get('rol').setValue(res['usuarios'].rol);
+
+
+      }, (err) => {
+        Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
+        //console.warn('error:', err);
+        this.loading = false;
+      });
   }
 
 }

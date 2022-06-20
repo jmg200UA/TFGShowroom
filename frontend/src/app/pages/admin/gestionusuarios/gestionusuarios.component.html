@@ -48,7 +48,10 @@
                                     <td class="micursor">{{usuario.nombre_apellidos}}</td>
                                     <td>{{usuario.email}}</td>
                                     <td>{{usuario.rol}}</td>
-                                    <td class="text-right micursor"><i class="fa fa-trash text-danger fa-lg micursor" (click)="eliminarUsuario(usuario.uid, usuario.nombre_apellidos)"></i></td>
+                                    <td class="text-right micursor">
+                                        <i class="fa fa-pencil-alt text-success fa-lg mr-5 micursor" [routerLink]="['/admin/actualizarusuario', usuario.uid]"></i>
+                                        <i class="fa fa-trash text-danger fa-lg micursor" (click)="eliminarUsuario(usuario.uid, usuario.nombre_apellidos)"></i>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

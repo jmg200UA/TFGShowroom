@@ -204,6 +204,7 @@ const actualizarUsuario = async(req, res = response) => {
         // Comprobar si está intentando cambiar el email, que no coincida con alguno que ya esté en BD
         // Obtenemos si hay un usuaruio en BD con el email que nos llega en post
         const existeEmail = await Usuario.findOne({ email: email });
+        console.log("EMAILS: " + existeEmail._id + " y: " + uid);
 
         if (existeEmail) {
             // Si existe un usuario con ese email

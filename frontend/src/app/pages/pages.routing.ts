@@ -9,6 +9,9 @@ import { GestionTitulacionesComponent } from './admin/gestiontitulaciones/gestio
 import { NuevousuarioComponent } from './admin/nuevousuario/nuevousuario.component';
 import { NuevotrabajoComponent } from './admin/nuevotrabajo/nuevotrabajo.component';
 import { NuevatitulacionComponent } from './admin/nuevatitulacion/nuevatitulacion.component';
+import { ActualizarusuarioComponent } from './admin/actualizarusuario/actualizarusuario.component';
+import { ActualizartrabajoComponent } from './admin/actualizartrabajo/actualizartrabajo.component';
+import { ActualizartitulacionComponent } from './admin/actualizartitulacion/actualizartitulacion.component';
 //COMPONENTS ALUMNO
 import { AlumnoComponent } from './alumno/alumno.component';
 import { TrabajosComponent } from './alumno/trabajos/trabajos.component';
@@ -28,50 +31,9 @@ import { LandingComponent } from './landing/landing.component';
 
 
 
+
 export const routes: Routes = [
 
-  //Comentado de ejemplo
-  // { path: 'admin', component: AdminLayoutComponent, canActivate: [ AuthGuard], data: {rol: 'ROL_ADMIN'},
-  //   children: [
-  //   { path: 'dashboard', component: DashboardComponent, canActivate: [ AuthGuard ], data: {
-  //                                                       rol: 'ROL_ADMIN',
-  //                                                       titulo: '¡Bienvenido Administrador!',
-  //                                                       breadcrums: []
-  //                                                     },},
-  //   { path: 'usuarios', component: UsuariosComponent, canActivate: [ AuthGuard ], data: {
-  //                                                       rol: 'ROL_ADMIN',
-  //                                                       titulo: 'Usuarios',
-  //                                                       breadcrums: [ ],
-  //                                                     },},
-  //   { path: 'usuarios/usuario/:uid', component: UsuarioComponent, canActivate: [ AuthGuard ], data: {
-  //                                                       rol: 'ROL_ADMIN',
-  //                                                       titulo: 'Usuario',
-  //                                                       breadcrums: [ {titulo: 'Usuarios', url: '/admin/usuarios'} ],
-  //                                                     },},
-
-  //   { path: 'estadisticas', component: EstadisticasComponent, canActivate: [ AuthGuard ], data: {
-  //                                                       rol: 'ROL_ADMIN',
-  //                                                       titulo: 'Estadisticas',
-  //                                                       breadcrums: [ ],
-  //                                                     },},
-  //   { path: 'motor-grafico', component: MotorGraficoComponent, canActivate: [ AuthGuard ], data: {
-  //                                                       rol: 'ROL_ADMIN',
-  //                                                       titulo: 'Motor gráfico',
-  //                                                       breadcrums: [ ],
-  //   },},
-  //   { path: 'ejercicios/ejercicio/:uid', component: EjercicioComponent, canActivate: [ AuthGuard ], data: {
-  //                                                       rol: 'ROL_ADMIN',
-  //                                                       titulo: 'Ejercicio',
-  //                                                       breadcrums: [ {titulo: 'Ejercicios', url: '/fisio/ejercicios'}],
-  //                                                 },},
-  //   { path: 'ejercicios', component: EjerciciosComponent, canActivate: [ AuthGuard ], data: {
-  //                                                       rol: 'ROL_ADMIN',
-  //                                                       titulo: 'Ejercicios',
-  //                                                       breadcrums: [ ],
-  //                                                     },},
-
-  //   { path: '**', redirectTo: 'dashboard'}
-  // ]},
 
   //PATHS ADMIN
 
@@ -110,6 +72,21 @@ export const routes: Routes = [
     { path: 'nuevatitulacion', component: NuevatitulacionComponent, canActivate: [ AuthGuard ], data: {
                                                             rol: 'ROL_ADMIN',
                                                             titulo: 'Showroom Admin - Nueva Titulación',
+                                                            breadcrums: [{titulo: 'Titulaciones', url: '/admin/titulaciones'}]
+                                                          }},
+    { path: 'actualizarusuario/:uid', component: ActualizarusuarioComponent, canActivate: [ AuthGuard ], data: {
+                                                            rol: 'ROL_ADMIN',
+                                                            titulo: 'Showroom Admin - Actualizar Usuario',
+                                                            breadcrums: [{titulo: 'Usuarios', url: '/admin/usuarios'}]
+                                                          }},
+    { path: 'actualizartrabajo/:uid', component: ActualizartrabajoComponent, canActivate: [ AuthGuard ], data: {
+                                                            rol: 'ROL_ADMIN',
+                                                            titulo: 'Showroom Admin - Actualizar Trabajo',
+                                                            breadcrums: [{titulo: 'Trabajos', url: '/admin/trabajos'}]
+                                                          }},
+    { path: 'actualizartitulacion/:uid', component: ActualizartitulacionComponent, canActivate: [ AuthGuard ], data: {
+                                                            rol: 'ROL_ADMIN',
+                                                            titulo: 'Showroom Admin - Actualizar Titulación',
                                                             breadcrums: [{titulo: 'Titulaciones', url: '/admin/titulaciones'}]
                                                           }},
 
