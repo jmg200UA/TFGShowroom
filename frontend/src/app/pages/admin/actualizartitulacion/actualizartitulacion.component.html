@@ -29,7 +29,8 @@
                             </div>
                             <div class="col-lg-8 col-md-12">
                                 <select (change)="salida($event.target.value)" class="form-control" formControlName="tipo" [ngClass]="{'is-invalid' : campoNoValido('tipo')}" id="tipo">
-                                <option *ngFor="let tip of Tipos" [ngValue]="tip">{{tip}} </option>
+                                <option value="Grado">Grado</option>
+                                <option value="Máster">Máster</option>
                               </select>
                                 <div class="invalid-feedback">
                                     El campo es obligatorio

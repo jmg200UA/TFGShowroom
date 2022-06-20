@@ -133,11 +133,12 @@ export class ActualizartitulacionComponent implements OnInit {
       .subscribe( res => {
           this.datosForm.get('nombre').setValue(res['titulaciones'].nombre);
           this.datosForm.get('tipo').setValue(res['titulaciones'].tipo);
-          this.tipo= this.datosForm.get('tipo').setValue(res['titulaciones'].tipo);
+          this.tipo= res['titulaciones'].tipo;
           this.datosForm.get('area').setValue(res['titulaciones'].area);
           this.datosForm.get('resumen').setValue(res['titulaciones'].resumen);
-          this.datosForm.get('imagen').setValue(res['titulaciones'].imagen);
+          //this.datosForm.get('imagen').setValue(res['titulaciones'].imagen);
           this.imagenUrl = this.TitulacionService.crearImagenUrl(res['titulaciones'].imagen);
+          console.log("Tipo: ",this.tipo);
 
       }, (err) => {
         Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});

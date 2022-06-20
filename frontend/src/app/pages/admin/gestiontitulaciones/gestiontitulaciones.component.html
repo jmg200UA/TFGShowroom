@@ -50,7 +50,7 @@
                                 <tr *ngFor="let titulacion of listaTitulaciones">
                                     <td><img [src]="crearImagenUrl(titulacion.imagen)" width="30px" class="rounded-circle"></td>
                                     <td>{{titulacion.nombre}}</td>
-                                    <td>{{titulacion.resumen}}</td>
+                                    <td class="col-md-4">{{titulacion.resumen}}</td>
                                     <td>{{titulacion.area}}</td>
                                     <td class="text-right">
                                         <i class="fa fa-pencil-alt text-success fa-lg mr-5 micursor" [routerLink]="['/admin/actualizartitulacion', titulacion.uid]"></i>
