@@ -3,7 +3,7 @@
 </div>
 
 <div class="main-content">
-    <div class="row">
+    <div class="row primerafila">
         <div class="col-md-4 input-group no-border">
             <input #txtQuery (keyup)="cargarTrabajos(txtQuery.value)" class="form-control" autocomplete="off" placeholder="Busca...">
             <div class="input-group-append">
@@ -38,6 +38,9 @@
                                 <th>
                                     Estado
                                 </th>
+                                <th>
+                                    Acción
+                                </th>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let trabajo of listaTrabajos">
@@ -46,6 +49,10 @@
                                     <td *ngIf="trabajo.estado=='Para editar'" (click)="subirTrabajo(trabajo.uid)" class="micursor text-warning">{{trabajo.estado}}</td>
                                     <td *ngIf="trabajo.estado=='Pendiente de revisión'" (click)="subirTrabajo(trabajo.uid)" class="micursor text-primary">{{trabajo.estado}}</td>
                                     <td *ngIf="trabajo.estado=='Denegado'" (click)="subirTrabajo(trabajo.uid)" class="micursor text-danger">{{trabajo.estado}}</td>
+                                    <td>
+                                        <i class="fa fa-pencil-alt text-success fa-lg mr-5 micursor" [routerLink]="['/alumno/subirtrabajo, trabajo.uid']"></i>
+                                        <i class="fa fa-trash text-danger fa-lg micursor" [routerLink]="['/alumno/subirtrabajo, trabajo.uid']"></i>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

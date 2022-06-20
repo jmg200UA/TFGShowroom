@@ -38,18 +38,35 @@ const TrabajoSchema = Schema({
         type: Number,
         default: 0
     },
-    imagenes: [{
-        type: String,
+
+    contenidos: [{
+        nombre: {
+            type: String,
+            default: ''
+        },
+        tipo: {
+            type: String,
+
+        },
+        descripcion: {
+            type: String,
+        },
+        url: { // para los videos de youtube
+            type: String,
+        }
     }],
-    videos: [{
-        type: String,
-    }],
-    audios: [{
-        type: String,
-    }],
-    documentos: [{
-        type: String,
-    }],
+    // imagenes: [{
+    //     type: String,
+    // }],
+    // videos: [{
+    //     type: String,
+    // }],
+    // audios: [{
+    //     type: String,
+    // }],
+    // documentos: [{
+    //     type: String,
+    // }],
     titulacion: {
         type: Schema.Types.ObjectId,
         ref: 'Titulacion',

@@ -17,6 +17,7 @@ import { AlumnoComponent } from './alumno/alumno.component';
 import { TrabajosComponent } from './alumno/trabajos/trabajos.component';
 import { NuevostrabajosComponent } from './alumno/nuevostrabajos/nuevostrabajos.component';
 import { SubirtrabajoComponent } from './alumno/subirtrabajo/subirtrabajo.component';
+import { SubircontenidosComponent } from './alumno/subircontenidos/subircontenidos.component';
 //COMPONENTS EDITOR
 import { EditorComponent } from './editor/editor.component';
 import { RevisiontrabajosComponent } from './editor/revisiontrabajos/revisiontrabajos.component';
@@ -25,6 +26,7 @@ import { RevisartrabajoComponent } from './editor/revisartrabajo/revisartrabajo.
 import { UserProfileComponent } from './user-profile/user-profile.component';
 //COMPONENTS LANDING
 import { LandingComponent } from './landing/landing.component';
+
 
 
 
@@ -109,6 +111,11 @@ export const routes: Routes = [
     { path: 'subirtrabajo/:uid', component: SubirtrabajoComponent, canActivate: [ AuthGuard ], data: {
                                                             rol: 'ROL_ALUMNO',
                                                             titulo: 'Showroom Alumno - Subir Trabajo',
+                                                            breadcrums: []
+                                                          },},
+    { path: 'subircontenidos/:uid', component: SubircontenidosComponent, canActivate: [ AuthGuard ], data: {
+                                                            rol: 'ROL_ALUMNO',
+                                                            titulo: 'Showroom Alumno - Subir Contenidos Trabajo',
                                                             breadcrums: []
                                                           },},
 

@@ -10,6 +10,7 @@ import { AlumnoComponent } from './alumno.component';
 import { TrabajosComponent } from './trabajos/trabajos.component';
 import { NuevostrabajosComponent } from './nuevostrabajos/nuevostrabajos.component';
 import { SubirtrabajoComponent } from './subirtrabajo/subirtrabajo.component';
+import { SubircontenidosComponent } from './subircontenidos/subircontenidos.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { SubirtrabajoComponent } from './subirtrabajo/subirtrabajo.component';
     AlumnoComponent,
     TrabajosComponent,
     NuevostrabajosComponent,
-    SubirtrabajoComponent
+    SubirtrabajoComponent,
+    SubircontenidosComponent
   ],
   imports: [
     CommonModule,
