@@ -10,15 +10,21 @@
                     </div>
                     <div class="row">
                         <div class="col-md-10">
+                            <div *ngFor="let contenido of contenidos; let i=index" class="card archivo col-md-3 text-center justify-content-center">
+                                <form class="contenido text-center">
+                                    <input type="text" name="nombre" id="{{'nombre'+i}}" class="form-control" placeholder="Introduce nombre">
+                                    <input type="text" name="descripcion" id="{{'descripcion'+i}}" class="form-control input-lg" placeholder="Introduce descripción">
+                                    <input type="text" disabled name="tipo" id="tipo" class="form-control text-center" value={{contenido.tipo}}>
+                                    <button class="btn align-content-center" (click)="addDatosContenido(i)"></button>
+                                </form>
+                            </div>
+                            <!-- <div class="card archivo col-md-2">a</div>
                             <div class="card archivo col-md-2">a</div>
-                            <div class="card archivo col-md-2">a</div>
-                            <div class="card archivo col-md-2">a</div>
-                            <div class="card archivo col-md-2">a</div>
+                            <div class="card archivo col-md-2">a</div> -->
                         </div>
                         <div class="col-md-2">
                             <input type="file" class="custom-file-input" formControlName="imagen" id="fotoperfil" (change)="cambioContenido( $event )">
                             <label class="custom-file-label" for="fotoperfil" data-browse="Elegir"></label>
-                            <button class="subidas btn btn-submit">Subir todo</button>
                         </div>
                     </div>
 

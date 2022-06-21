@@ -11,7 +11,8 @@ import { TrabajosService } from '../../../services/trabajos.service';
 })
 export class SubircontenidosComponent implements OnInit {
 
-  public contenidos;
+  public contenidos: {nombre:string, descripcion:string, tipo:string, contenido:string}[]=[];
+  public ejercicioarray: {ejercicio:string, repeticiones:number}[]= [];
 
   constructor(private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -34,10 +35,20 @@ export class SubircontenidosComponent implements OnInit {
         Swal.fire({icon: 'error', title: 'Oops...', text: 'El archivo debe ser una imagen jpeg, jpg o png'});
         return;
       }
-      this.contenidos.push(evento.target.files[0]);
+      //this.contenidos.contenido(evento.target.files[0]);
+      this.contenidos.push({nombre:"",descripcion:"",tipo:extension,contenido:evento.target.files[0]});
       //this.nomimagenes.push(nombre);
       //mirar arrays con campos proyecto
     }
+  }
+
+  cambioVideo(){ // para videos de youtube
+
+  }
+
+  addDatosContenido(num){
+    this.contenidos[num].nombre= (document.getElementById("nombre"+num) as HTMLInputElement).value;
+    this.contenidos[num].descripcion = (document.getElementById("nombre"+num) as HTMLInputElement).value;
   }
 
 }

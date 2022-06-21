@@ -1,7 +1,15 @@
+.subidas {
+    margin-left: .2em;
+}
+
 .archivo {
     margin: 1em;
 }
 
-.subidas {
-    margin-left: .2em;
+.contenido:first-child {
+    margin-top: 2em;
+}
+
+.contenido>input {
+    margin: .2em;
 }

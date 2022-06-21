@@ -51,7 +51,7 @@ const TrabajoSchema = Schema({
         descripcion: {
             type: String,
         },
-        url: { // para los videos de youtube
+        contenido: { // para youtube será la url
             type: String,
         }
     }],
