@@ -68,4 +68,8 @@ export class NuevostrabajosComponent implements OnInit {
     this.router.navigateByUrl('/alumno/subirtrabajo/'+id);
   }
 
+  subirContenidos(id){
+    this.router.navigateByUrl('/alumno/subircontenidos/'+id);
+  }
+
 }
