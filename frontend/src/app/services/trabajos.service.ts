@@ -30,6 +30,11 @@ export class TrabajosService {
     return this.http.put(`${environment.base_url}/trabajos/et/${uid}`, data, this.cabeceras);
   }
 
+  actualizarContenidoTrabajo ( uid: string, data) { // llamada despues de subir el contenido correctamente
+    console.log("Actualizar con: ", data);
+    return this.http.put(`${environment.base_url}/trabajos/ac/${uid}`, data, this.cabeceras);
+  }
+
   limpiarMultimediaTrabajo ( uid: string) {
 
     return this.http.put(`${environment.base_url}/trabajos/lm/${uid}`, '', this.cabeceras);
@@ -77,6 +82,15 @@ export class TrabajosService {
     return this.http.post(`${environment.base_url}/upload/trabajoimg/${uid}`, datos, this.cabeceras);
   }
 
+  subirConts( uid: string, foto: File) {
+    const url = `${environment.base_url}/upload/trabajoconts/${uid}`;
+    const datos: FormData = new FormData();
+    datos.append('archivo', foto, foto.name);
+    return this.http.post(`${environment.base_url}/upload/trabajoconts/${uid}`, datos, this.cabeceras);
+  }
+
+
+  //quitar luego estas llamadas
   subirFotos( uid: string, foto: File) {
     const url = `${environment.base_url}/upload/trabajoimgs/${uid}`;
     const datos: FormData = new FormData();
@@ -116,6 +130,16 @@ export class TrabajosService {
     return `${environment.base_url}/upload/trabajoimg/${imagen}?token=${token}`;
   }
 
+  crearContenidosUrl( imagen: string) { // imagenes adicionales trabajo
+
+    const token = localStorage.getItem('token') || '';
+    if (!imagen) {
+      return `${environment.base_url}/upload/trabajoconts/no-imagen.jpg?token=${token}`;
+    }
+    return `${environment.base_url}/upload/trabajoxonts/${imagen}?token=${token}`;
+  }
+
+  // quitar mas tarde estas llamadas
   crearImagenesUrl( imagen: string) { // imagenes adicionales trabajo
 
     const token = localStorage.getItem('token') || '';

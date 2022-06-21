@@ -470,6 +470,56 @@ const actualizarEstadoTrabajo = async(req, res = response) => {
 
 }
 
+const agregarContenidoTrabajo = async(req, res = response) => {
+
+    const { contenido } = req.body;
+    const uid = req.params.id;
+    const idToken = req.uidToken;
+    const rolToken = req.rolToken;
+    var ObjectId = require('mongodb').ObjectId;
+
+    try {
+        const usu = await Usuario.findById(idToken);
+        let trabajo = await Trabajo.findById(uid);
+
+        if (!trabajo) {
+            return res.status(400).json({
+                ok: true,
+                msg: 'El trabajo no existe'
+            });
+        }
+
+        //comprobamos que ese trabajo sea suyo o sea un admin
+        if (trabajo.autor != ObjectId(usu._id).toString() && rolToken != "ROL_ADMIN") {
+            return res.status(400).json({
+                ok: true,
+                msg: 'No tienes permisos para actualizar este trabajo'
+            });
+        }
+
+        console.log("Contenido: ", contenido);
+        console.log("La REQ que llega: ", req.body);
+
+        trabajo.contenidos.push(req.body);
+
+        await trabajo.save();
+
+        res.json({
+            ok: true,
+            msg: 'Contenidos Trabajo actualizado',
+            trabajo
+        });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: 'Error actualizando trabajo'
+        });
+    }
+
+}
+
 const limpiarMultimediaTrabajo = async(req, res = response) => {
 
     const uid = req.params.id;
@@ -550,4 +600,4 @@ const borrarTrabajo = async(req, res = response) => {
 }
 
 
-module.exports = { obtenerTrabajos, obtenerTrabajosEditor, obtenerTrabajosAluVisibles, obtenerTrabajosAluNoVisibles, crearTrabajo, actualizarTrabajo, actualizarEstadoTrabajo, limpiarMultimediaTrabajo, borrarTrabajo }
+module.exports = { obtenerTrabajos, obtenerTrabajosEditor, obtenerTrabajosAluVisibles, obtenerTrabajosAluNoVisibles, crearTrabajo, actualizarTrabajo, actualizarEstadoTrabajo, agregarContenidoTrabajo, limpiarMultimediaTrabajo, borrarTrabajo }

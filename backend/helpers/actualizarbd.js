@@ -88,78 +88,67 @@ const actualizarBD = async(tipo, path, nombreArchivo, id, token) => {
 
             break;
 
-        case 'trabajoimgs':
+        case 'trabajoconts':
 
-            const trabajofotos = await Trabajo.findById(id);
-            if (!trabajofotos) {
-                return false;
-            }
-
-            const usuariofotostrabajo = await Usuario.findById(infoToken(token).uid);
-            if (trabajofotos.autor != usuariofotostrabajo.uid) {
-                console.log("el usuario no es el propietario del trabajo que quiere actualizar");
-            }
-
-            trabajofotos.imagenes.push(nombreArchivo);
-            await trabajofotos.save();
+            console.log("Aqui no se actualiza nada, se hace con la peticion de trabajos");
 
             return true;
 
             break;
-        case 'trabajovideos':
+            // case 'trabajovideos':
 
-            const trabajovideos = await Trabajo.findById(id);
-            if (!trabajovideos) {
-                return false;
-            }
+            //     const trabajovideos = await Trabajo.findById(id);
+            //     if (!trabajovideos) {
+            //         return false;
+            //     }
 
-            const usuariovideostrabajo = await Usuario.findById(infoToken(token).uid);
-            if (trabajovideos.autor != usuariovideostrabajo.uid) {
-                console.log("el usuario no es el propietario del trabajo que quiere actualizar");
-            }
+            //     const usuariovideostrabajo = await Usuario.findById(infoToken(token).uid);
+            //     if (trabajovideos.autor != usuariovideostrabajo.uid) {
+            //         console.log("el usuario no es el propietario del trabajo que quiere actualizar");
+            //     }
 
-            trabajovideos.videos.push(nombreArchivo);
-            await trabajovideos.save();
+            //     trabajovideos.videos.push(nombreArchivo);
+            //     await trabajovideos.save();
 
-            return true;
+            //     return true;
 
-            break;
-        case 'trabajoaudios':
+            //     break;
+            // case 'trabajoaudios':
 
-            const trabajoaudios = await Trabajo.findById(id);
-            if (!trabajoaudios) {
-                return false;
-            }
+            //     const trabajoaudios = await Trabajo.findById(id);
+            //     if (!trabajoaudios) {
+            //         return false;
+            //     }
 
-            const usuarioaudiostrabajo = await Usuario.findById(infoToken(token).uid);
-            if (trabajoaudios.autor != usuarioaudiostrabajo.uid) {
-                console.log("el usuario no es el propietario del trabajo que quiere actualizar");
-            }
+            //     const usuarioaudiostrabajo = await Usuario.findById(infoToken(token).uid);
+            //     if (trabajoaudios.autor != usuarioaudiostrabajo.uid) {
+            //         console.log("el usuario no es el propietario del trabajo que quiere actualizar");
+            //     }
 
-            trabajoaudios.audios.push(nombreArchivo);
-            await trabajoaudios.save();
+            //     trabajoaudios.audios.push(nombreArchivo);
+            //     await trabajoaudios.save();
 
-            return true;
+            //     return true;
 
-            break;
-        case 'trabajodocs':
+            //     break;
+            // case 'trabajodocs':
 
-            const trabajodocs = await Trabajo.findById(id);
-            if (!trabajodocs) {
-                return false;
-            }
+            //     const trabajodocs = await Trabajo.findById(id);
+            //     if (!trabajodocs) {
+            //         return false;
+            //     }
 
-            const usuariodocstrabajo = await Usuario.findById(infoToken(token).uid);
-            if (trabajodocs.autor != usuariodocstrabajo.uid) {
-                console.log("el usuario no es el propietario del trabajo que quiere actualizar");
-            }
+            //     const usuariodocstrabajo = await Usuario.findById(infoToken(token).uid);
+            //     if (trabajodocs.autor != usuariodocstrabajo.uid) {
+            //         console.log("el usuario no es el propietario del trabajo que quiere actualizar");
+            //     }
 
-            trabajodocs.documentos.push(nombreArchivo);
-            await trabajodocs.save();
+            //     trabajodocs.documentos.push(nombreArchivo);
+            //     await trabajodocs.save();
 
-            return true;
+            //     return true;
 
-            break;
+            //     break;
 
         default:
             return false;

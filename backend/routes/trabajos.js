@@ -3,7 +3,7 @@ Ruta base: /api/trabajos
 */
 
 const { Router } = require('express');
-const { obtenerTrabajos, obtenerTrabajosAluVisibles, obtenerTrabajosAluNoVisibles, crearTrabajo, actualizarTrabajo, borrarTrabajo, limpiarMultimediaTrabajo, obtenerTrabajosEditor, actualizarEstadoTrabajo } = require('../controllers/trabajos');
+const { obtenerTrabajos, obtenerTrabajosAluVisibles, obtenerTrabajosAluNoVisibles, crearTrabajo, actualizarTrabajo, borrarTrabajo, limpiarMultimediaTrabajo, obtenerTrabajosEditor, actualizarEstadoTrabajo, agregarContenidoTrabajo } = require('../controllers/trabajos');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middleware/validar-campos');
 const { validarRol } = require('../middleware/validar-rol');
@@ -74,6 +74,11 @@ router.put('/et/:id', [ // estado trabajo
     validarCampos,
     validarRolEditor,
 ], actualizarEstadoTrabajo);
+
+router.put('/ac/:id', [ // ac agregar contenido
+    validarJWT,
+    check('id', 'El identificador no es válido').isMongoId(),
+], agregarContenidoTrabajo);
 
 router.put('/lm/:id', [
     validarJWT,

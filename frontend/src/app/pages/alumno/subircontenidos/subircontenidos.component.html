@@ -27,6 +27,23 @@
                             <label class="custom-file-label" for="fotoperfil" data-browse="Elegir"></label>
                         </div>
                     </div>
+                    <!-- Segunda fila donde estarán los archivo subidos del trabajo en la BD -->
+                    <div class="row segundafila">
+                        <div class="col-md-10">
+                            <h2 *ngIf="contenidossubidos">Contenidos subidos</h2>
+                            <div *ngFor="let contenido of contenidossubidos; let i=index" class="card archivo col-md-3 text-center justify-content-center">
+                                <form class="contenido text-center">
+                                    <input type="text" name="nombre" id="{{'nombre'+i}}" class="form-control" placeholder="Introduce nombre" value={{contenido.nombre}}>
+                                    <input type="text" name="descripcion" id="{{'descripcion'+i}}" class="form-control input-lg" placeholder="Introduce descripción" value={{contenido.descripcion}>
+                                    <input type="text" disabled name="tipo" id="tipo" class="form-control text-center" value={{contenido.tipo}}>
+                                    <button class="btn align-content-center" (click)="addDatosContenidoAct(i)"></button>
+                                </form>
+                            </div>
+                            <!-- <div class="card archivo col-md-2">a</div>
+                          <div class="card archivo col-md-2">a</div>
+                          <div class="card archivo col-md-2">a</div> -->
+                        </div>
+                    </div>
 
                 </div>
             </div>

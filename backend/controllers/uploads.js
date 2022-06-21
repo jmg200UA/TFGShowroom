@@ -31,15 +31,17 @@ const subirArchivo = async(req, res = response) => {
         fotoperfil: ["jpeg", "jpg", "png", "PNG"],
         titulacionimg: ["jpeg", "jpg", "png", "PNG"],
         trabajoimg: ["jpeg", "jpg", "png", "PNG"],
-        trabajoimgs: ["jpeg", "jpg", "png", "PNG"],
-        trabajovideos: ['mp4', 'MP4', 'avi', 'AVI'],
-        trabajoaudios: ['mp3', 'MP3', 'wav', 'WAV'],
-        trabajodocs: ['pdf', 'PDF'],
+        trabajoconts: ["jpeg", "jpg", "png", "PNG"],
+        // trabajovideos: ['mp4', 'MP4', 'avi', 'AVI'],
+        // trabajoaudios: ['mp3', 'MP3', 'wav', 'WAV'],
+        // trabajodocs: ['pdf', 'PDF'],
     };
 
     const archivo = req.files.archivo;
     const nombrePartido = archivo.name.split(".");
     const extension = nombrePartido[nombrePartido.length - 1];
+
+    console.log("Extension: ", extension);
 
     switch (tipo) {
         case "fotoperfil":
@@ -69,38 +71,38 @@ const subirArchivo = async(req, res = response) => {
                 });
             }
             break;
-        case "trabajoimgs":
-            if (!archivosValidos.trabajoimgs.includes(extension)) {
+        case "trabajoconts":
+            if (!archivosValidos.trabajoconts.includes(extension)) {
                 return res.status(400).json({
                     ok: false,
                     msg: `El tipo de archivo '${extension}' no está permitido (${archivosValidos.trabajoimgs})`,
                 });
             }
             break;
-        case "trabajovideos":
-            if (!archivosValidos.trabajovideos.includes(extension)) {
-                return res.status(400).json({
-                    ok: false,
-                    msg: `El tipo de archivo '${extension}' no está permitido (${archivosValidos.trabajovideos})`,
-                });
-            }
-            break;
-        case "trabajoaudios":
-            if (!archivosValidos.trabajoaudios.includes(extension)) {
-                return res.status(400).json({
-                    ok: false,
-                    msg: `El tipo de archivo '${extension}' no está permitido (${archivosValidos.trabajoaudios})`,
-                });
-            }
-            break;
-        case "trabajodocs":
-            if (!archivosValidos.trabajodocs.includes(extension)) {
-                return res.status(400).json({
-                    ok: false,
-                    msg: `El tipo de archivo '${extension}' no está permitido (${archivosValidos.trabajodocs})`,
-                });
-            }
-            break;
+            // case "trabajovideos":
+            //     if (!archivosValidos.trabajovideos.includes(extension)) {
+            //         return res.status(400).json({
+            //             ok: false,
+            //             msg: `El tipo de archivo '${extension}' no está permitido (${archivosValidos.trabajovideos})`,
+            //         });
+            //     }
+            //     break;
+            // case "trabajoaudios":
+            //     if (!archivosValidos.trabajoaudios.includes(extension)) {
+            //         return res.status(400).json({
+            //             ok: false,
+            //             msg: `El tipo de archivo '${extension}' no está permitido (${archivosValidos.trabajoaudios})`,
+            //         });
+            //     }
+            //     break;
+            // case "trabajodocs":
+            //     if (!archivosValidos.trabajodocs.includes(extension)) {
+            //         return res.status(400).json({
+            //             ok: false,
+            //             msg: `El tipo de archivo '${extension}' no está permitido (${archivosValidos.trabajodocs})`,
+            //         });
+            //     }
+            //     break;
         default:
             return res.status(400).json({
                 ok: false,
