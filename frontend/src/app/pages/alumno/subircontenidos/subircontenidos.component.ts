@@ -14,7 +14,7 @@ export class SubircontenidosComponent implements OnInit {
   public contenidos: {nombre:string, descripcion:string, tipo:string, contenido:any}[]=[];
   private uid: string = '';
   public loading = true;
-  public contenidossubidos;
+  public contenidossubidos= [];
 
   constructor(private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -43,12 +43,12 @@ export class SubircontenidosComponent implements OnInit {
   cambioContenido( evento ): void {
     if (evento.target.files && evento.target.files[0]) {
       // Comprobamos si es una imagen jpg, jpet, png
-      const extensiones = ['jpeg','jpg','png','PNG'];
+      const extensiones = ['jpeg','jpg','png','PNG','txt','xlsx','doc','docx','exe','mp3','wav','zip','rar','pdf'];
       const nombre: string = evento.target.files[0].name;
       const nombrecortado: string[] = nombre.split('.');
       const extension = nombrecortado[nombrecortado.length - 1];
       if (!extensiones.includes(extension)) {
-        Swal.fire({icon: 'error', title: 'Oops...', text: 'El archivo debe ser una imagen jpeg, jpg o png'});
+        Swal.fire({icon: 'error', title: 'Oops...', text: 'El archivo debe ser válido'});
         return;
       }
       this.contenidos.push({nombre:"",descripcion:"",tipo:extension,contenido:evento.target.files[0]});
@@ -65,7 +65,12 @@ export class SubircontenidosComponent implements OnInit {
     this.subirContenido(num);
   }
 
-  addDatosContenidoAct(num){ // cambiar datos contenidos ya subido
+  quitarDatosContenido(num){
+    //quitamos del array el contenido que ha quitado el alumno
+    this.contenidos.splice(num,1);
+  }
+
+  addDatosContenidoAct(num){ // cambiar datos contenidos ya subido, para actualizar
     this.contenidos[num].nombre= (document.getElementById("nombre"+num) as HTMLInputElement).value;
     this.contenidos[num].descripcion = (document.getElementById("descripcion"+num) as HTMLInputElement).value;
     this.actualizarContenido(num);
@@ -87,6 +92,10 @@ export class SubircontenidosComponent implements OnInit {
                 this.TrabajosService.actualizarContenidoTrabajo( this.uid, this.contenidos[num])
                   .subscribe( res => {
                     console.log("Respuesta a la actualización: ", res);
+                    //borramos el contenido subido del array y actualizamos la llamada al trabajo
+                    //para cargar todos los contenidos de nuevo
+                    this.contenidos.splice(num,1);
+                    this.cargarTrabajo();
                   }, (err) => {
                     const errtext = err.error.msg || 'No se pudo actualizar el contenido';
                     Swal.fire({icon: 'error', title: 'Oops...', text: errtext});

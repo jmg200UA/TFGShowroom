@@ -17,3 +17,24 @@
 .segundafila {
     margin-top: 5em;
 }
+
+.primerafila {
+    margin-bottom: 1em;
+}
+
+.main-content {
+    /* margen con el header */
+    margin-top: 2em;
+}
+
+.i1 {
+    margin-right: .5em;
+}
+
+.i2 {
+    margin-left: .5em;
+}
+
+.mini {
+    width: 1em;
+}

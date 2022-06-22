@@ -2,49 +2,60 @@
 </div>
 <div class="main-content">
     <div class="animate__animated animate__fadeInRight animate__faster">
-        <div class="d-flex justify-content-center">
-            <div class="card col-md-10">
-                <div class="card-body">
-                    <div>
-                        <button class="btn btn-info m-r-10" routerLink="/alumno/nuevostrabajos">Volver</button>
+        <div class="card col-md-10">
+            <div class="card-body">
+                <div class="row primerafila">
+                    <div class="col-md-10">
+                        <h3>Añade el contenido para subir</h3>
                     </div>
-                    <div class="row">
-                        <div class="col-md-10">
-                            <div *ngFor="let contenido of contenidos; let i=index" class="card archivo col-md-3 text-center justify-content-center">
-                                <form class="contenido text-center">
-                                    <input type="text" name="nombre" id="{{'nombre'+i}}" class="form-control" placeholder="Introduce nombre">
-                                    <input type="text" name="descripcion" id="{{'descripcion'+i}}" class="form-control input-lg" placeholder="Introduce descripción">
-                                    <input type="text" disabled name="tipo" id="tipo" class="form-control text-center" value={{contenido.tipo}}>
-                                    <button class="btn align-content-center" (click)="addDatosContenido(i)"></button>
-                                </form>
-                            </div>
-                            <!-- <div class="card archivo col-md-2">a</div>
-                            <div class="card archivo col-md-2">a</div>
-                            <div class="card archivo col-md-2">a</div> -->
-                        </div>
-                        <div class="col-md-2">
-                            <input type="file" class="custom-file-input" formControlName="imagen" id="fotoperfil" (change)="cambioContenido( $event )">
-                            <label class="custom-file-label" for="fotoperfil" data-browse="Elegir"></label>
-                        </div>
-                    </div>
-                    <!-- Segunda fila donde estarán los archivo subidos del trabajo en la BD -->
-                    <div class="row segundafila">
-                        <div class="col-md-10">
-                            <h2 *ngIf="contenidossubidos">Contenidos subidos</h2>
-                            <div *ngFor="let contenido of contenidossubidos; let i=index" class="card archivo col-md-3 text-center justify-content-center">
-                                <form class="contenido text-center">
-                                    <input type="text" name="nombre" id="{{'nombre'+i}}" class="form-control" placeholder="Introduce nombre" value={{contenido.nombre}}>
-                                    <input type="text" name="descripcion" id="{{'descripcion'+i}}" class="form-control input-lg" placeholder="Introduce descripción" value={{contenido.descripcion}>
-                                    <input type="text" disabled name="tipo" id="tipo" class="form-control text-center" value={{contenido.tipo}}>
-                                    <button class="btn align-content-center" (click)="addDatosContenidoAct(i)"></button>
-                                </form>
-                            </div>
-                            <!-- <div class="card archivo col-md-2">a</div>
-                          <div class="card archivo col-md-2">a</div>
-                          <div class="card archivo col-md-2">a</div> -->
-                        </div>
-                    </div>
+                    <div class="col-md-2 float-right"><button class="btn btn-info float-right" routerLink="/alumno/nuevostrabajos">Volver</button></div>
+                </div>
 
+                <div class="row">
+                    <div class="col-md-10">
+                        <div *ngFor="let contenido of contenidos; let i=index" class="card archivo col-md-3 text-center justify-content-center">
+                            <form class="contenido text-center">
+                                <input type="text" name="nombre" id="{{'nombre'+i}}" class="form-control" placeholder="Introduce nombre">
+                                <input type="text" name="descripcion" id="{{'descripcion'+i}}" class="form-control input-lg" placeholder="Introduce descripción">
+                                <input type="text" disabled name="tipo" id="tipo" class="form-control text-center" value={{contenido.tipo}}>
+                                <i class="i1 fas fa-plus micursor" (click)="addDatosContenido(i)"></i>
+                                <i class="i2 fas fa-window-close micursor" (click)="quitarDatosContenido(i)"></i>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-2 flex">
+                        <div class="row">
+                            <input type="file" class="custom-file-input" id="fotoperfil" (change)="cambioContenido( $event )">
+                            <label class="custom-file-label" for="fotoperfil" data-browse="Elegir">Añadir contenido</label>
+                        </div>
+                        <div class="row input-group no-border">
+                            <input type="text" class="form-control" placeholder="Añadir video YT">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <i class="fas fa-plus micursor" (click)="cambioVideo()"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card col-md-10 segundafila">
+            <div class="card-body">
+                <!-- Segunda fila donde estarán los archivo subidos del trabajo en la BD -->
+                <div class="row">
+                    <div class="col-md-10">
+                        <h3>Contenidos subidos</h3>
+                        <div *ngFor="let contenido of contenidossubidos; let i=index" class="card archivo col-md-3 text-center justify-content-center">
+                            <form class="contenido text-center">
+                                <input type="text" name="nombre" id="{{'nombre'+i}}" class="form-control" placeholder="Introduce nombre" value={{contenido.nombre}}>
+                                <input type="text" name="descripcion" id="{{'descripcion'+i}}" class="form-control input-lg" placeholder="Introduce descripción" value={{contenido.descripcion}}>
+                                <input type="text" disabled name="tipo" id="tipo" class="form-control text-center" value={{contenido.tipo}}>
+                                <i class="i1 fas fa-redo micursor" (click)="addDatosContenidoAct(i)"></i>
+                                <i class="i2 fas fa-window-close micursor" (click)="addDatosContenidoAct(i)"></i>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

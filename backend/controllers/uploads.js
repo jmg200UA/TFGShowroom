@@ -31,7 +31,7 @@ const subirArchivo = async(req, res = response) => {
         fotoperfil: ["jpeg", "jpg", "png", "PNG"],
         titulacionimg: ["jpeg", "jpg", "png", "PNG"],
         trabajoimg: ["jpeg", "jpg", "png", "PNG"],
-        trabajoconts: ["jpeg", "jpg", "png", "PNG"],
+        trabajoconts: ['jpeg', 'jpg', 'png', 'PNG', 'txt', 'xlsx', 'doc', 'docx', 'exe', 'mp3', 'wav', 'zip', 'rar', 'pdf'],
         // trabajovideos: ['mp4', 'MP4', 'avi', 'AVI'],
         // trabajoaudios: ['mp3', 'MP3', 'wav', 'WAV'],
         // trabajodocs: ['pdf', 'PDF'],
