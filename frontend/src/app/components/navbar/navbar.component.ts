@@ -21,12 +21,15 @@ export class NavbarComponent implements OnInit {
 
     public isCollapsed = true;
 
+    public rol;
+
     constructor(location: Location,  private element: ElementRef, private router: Router, private UsuarioService: UsuarioService) {
       this.location = location;
           this.sidebarVisible = false;
     }
 
     ngOnInit(){
+      this.rol= this.UsuarioService.rol;
       this.listaTitulos = routes.filter(listaTitulos => listaTitulos.children);
       console.log("TITULOS: ", this.listaTitulos);
       const navbar: HTMLElement = this.element.nativeElement;

@@ -35,7 +35,10 @@
                         </p>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                        <a class="dropdown-item" href="admin/perfil">Mi perfil</a>
+                        <a *ngIf="rol=='ROL_ADMIN'" class="dropdown-item" href="admin/perfil">Mi perfil</a>
+                        <a *ngIf="rol=='ROL_ALUMNO'" class="dropdown-item" href="alumno/perfil">Mi perfil</a>
+                        <a *ngIf="rol=='ROL_EDITOR'" class="dropdown-item" href="editor/perfil">Mi perfil</a>
+                        <a *ngIf="rol=='ROL_EMPRESA'" class="dropdown-item" href="empresa/perfil">Mi perfil</a>
                         <a class="dropdown-item micursor" (click)="logout()"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
                     </div>
                 </li>

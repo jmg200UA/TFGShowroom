@@ -98,6 +98,11 @@ export const routes: Routes = [
   //PATHS ALUMNO
   { path: 'alumno', component: AlumnoComponent,canActivate: [ AuthGuard], data: {rol: 'ROL_ALUMNO'},
   children:[
+    { path: 'perfil',  component: UserProfileComponent, canActivate: [ AuthGuard ], data: {
+                                                            rol: 'ROL_ALUMNO',
+                                                            titulo: 'Perfil',
+                                                            breadcrums: []
+                                                          },},
     { path: 'trabajos', component: TrabajosComponent, canActivate: [ AuthGuard ], data: {
                                                             rol: 'ROL_ALUMNO',
                                                             titulo: 'Showroom Alumno - Trabajos',
@@ -125,6 +130,11 @@ export const routes: Routes = [
   //PATHS EDITOR
   { path: 'editor', component: EditorComponent,canActivate: [ AuthGuard], data: {rol: 'ROL_EDITOR'},
   children:[
+    { path: 'perfil',  component: UserProfileComponent, canActivate: [ AuthGuard ], data: {
+                                                            rol: 'ROL_ALUMNO',
+                                                            titulo: 'Perfil',
+                                                            breadcrums: []
+                                                          },},
     { path: 'revisiontrabajos', component: RevisiontrabajosComponent, canActivate: [ AuthGuard ], data: {
                                                             rol: 'ROL_EDITOR',
                                                             titulo: 'Showroom Editor - Trabajos para revisar',
