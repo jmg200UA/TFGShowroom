@@ -3,6 +3,8 @@ import { environment } from '../../../environments/environment';
 import { UsuarioService } from '../../services/usuario.service';
 import {Usuario} from '../../models/usuario.model';
 import Swal from 'sweetalert2';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -11,11 +13,23 @@ import Swal from 'sweetalert2';
 })
 export class UserProfileComponent implements OnInit {
 
-  constructor(private UsuarioService: UsuarioService) { }
+  constructor( private fb: FormBuilder,
+    private UsuarioService: UsuarioService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   public loading = true;
   public usuario: Usuario;
   public rol = this.UsuarioService.rol;
+  private formSubmited = false;
+  public enablepass: boolean = true;
+  public showOKP: boolean = false;
+
+  public nuevoPassword = this.fb.group({
+    password: ['', Validators.required],
+    nuevopassword: ['', Validators.required],
+    nuevopassword2: ['', Validators.required],
+  });
 
   ngOnInit() {
     this.cargarUsuario();
@@ -32,6 +46,23 @@ export class UserProfileComponent implements OnInit {
         Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
         //console.warn('error:', err);
         this.loading = false;
+      });
+  }
+
+  cambiarPassword(){
+    // ponemos el mismo valor en los tres campos
+    const data = {
+      nuevopassword: this.nuevoPassword.get('nuevopassword').value,
+      nuevopassword2: this.nuevoPassword.get('nuevopassword2').value
+    };
+    this.UsuarioService.cambiarPassword( this.UsuarioService.uid, data)
+      .subscribe(res => {
+        this.nuevoPassword.reset();
+        this.showOKP = true;
+      }, (err)=>{
+        const errtext = err.error.msg || 'No se pudo completar la acción, vuelva a intentarlo.';
+        Swal.fire({icon: 'error', title: 'Oops...', text: errtext});
+        return;
       });
   }
 

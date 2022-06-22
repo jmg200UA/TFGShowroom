@@ -8,10 +8,10 @@
                     <h5 class="title">Perfil</h5>
                 </div>
                 <div class="card-body">
-                    <form *ngIf="rol=='ROL_ADMIN'">
+                    <form>
                         <!-- Primera fila -->
                         <div class="row" *ngIf="!loading">
-                            <div class="col-md-5 pr-1">
+                            <div class="col-md-3 pr-1">
                                 <div class="form-group">
                                     <label>Nombre</label>
                                     <input type="text" class="form-control" disabled="" placeholder="nombre_apellidos" value="{{usuario.nombre_apellidos}}">
@@ -20,80 +20,51 @@
                         </div>
                         <!-- Segunda fila -->
                         <div class="row" *ngIf="!loading">
-                            <div class="col-md-6 pr-1">
+                            <div class="col-md-3 pr-1">
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <input name="email" id="email" type="email" class="form-control" placeholder="Email" value="{{usuario.email}}">
                                 </div>
                             </div>
                         </div>
-                        <!-- Primera fila -->
-                        <!-- <div class="row">
-                            <div class="col-md-5 pr-1">
-                                <div class="form-group">
-                                    <label>Company (disabled)</label>
-                                    <input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">
-                                </div>
-                            </div>
-                            <div class="col-md-3 px-1">
-                                <div class="form-group">
-                                    <label>Username</label>
-                                    <input type="text" class="form-control" placeholder="Username" value="michael23">
-                                </div>
-                            </div>
-                            <div class="col-md-4 pl-1">
-                                <div class="form-group">
-                                    <label for="email">Email address</label>
-                                    <input name="email" id="email" type="email" class="form-control" placeholder="Email">
-                                </div>
-                            </div>
-                        </div> -->
-                        <!-- Segunda fila -->
-                        <!-- <div class="row">
-                            <div class="col-md-6 pr-1">
-                                <div class="form-group">
-                                    <label>First Name</label>
-                                    <input type="text" class="form-control" placeholder="Company" value="Mike">
-                                </div>
-                            </div>
-                            <div class="col-md-6 pl-1">
-                                <div class="form-group">
-                                    <label>Last Name</label>
-                                    <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
-                                </div>
-                            </div>
-                        </div> -->
-                        <!-- Tercera fila -->
-                        <!-- <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Address</label>
-                                    <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
-                                </div>
-                            </div>
-                        </div> -->
-                        <!--  Cuarta fila -->
-                        <!-- <div class="row">
-                            <div class="col-md-4 pr-1">
-                                <div class="form-group">
-                                    <label>City</label>
-                                    <input type="text" class="form-control" placeholder="City" value="Mike">
-                                </div>
-                            </div>
-                            <div class="col-md-4 px-1">
-                                <div class="form-group">
-                                    <label>Country</label>
-                                    <input type="text" class="form-control" placeholder="Country" value="Andrew">
-                                </div>
-                            </div>
-                            <div class="col-md-4 pl-1">
-                                <div class="form-group">
-                                    <label>Postal Code</label>
-                                    <input type="number" class="form-control" placeholder="ZIP Code">
-                                </div>
-                            </div>
-                        </div> -->
                     </form>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class="card col-md-10">
+                        <div class="card-body">
+                            <h5>Cambiar contraseña</h5>
+                            <form class="form-horizontal m-t-20" [formGroup]="nuevoPassword" (ngSubmit)="cambiarPassword()">
+                                <div class="row m-t-10">
+                                    <div class="col-lg-3 text-lg-right">
+                                        <span class="">Nueva contraseña</span>
+                                    </div>
+                                    <div class="col-lg-5 ">
+                                        <input type="password" class="form-control" formControlName="nuevopassword" id="pass1">
+                                    </div>
+                                    <div class="text-success col-lg-3 text-lg-left text-right animate__animated animate__faster" *ngIf="(showOKP)" [ngClass]="{'animate__fadeIn': (nuevoPassword.pristine && showOKP), 'animate__fadeOut': (!nuevoPassword.pristine)   }">
+                                        Actualizada
+                                    </div>
+                                </div>
+                                <div class="row m-t-10">
+                                    <div class="col-lg-3 text-lg-right">
+                                        <span class="">Repite nueva contraseña</span>
+                                    </div>
+                                    <div class="col-lg-5 ">
+                                        <input type="password" class="form-control" formControlName="nuevopassword2" id="pass2">
+                                    </div>
+                                    <div class="text-success col-lg-3 text-lg-left text-right animate__animated animate__faster" *ngIf="(showOKP)" [ngClass]="{'animate__fadeIn': (nuevoPassword.pristine && showOKP), 'animate__fadeOut': (!nuevoPassword.pristine)   }">
+                                        Actualizada
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center m-t-10 ">
+                                    <div class="align-content-center ">
+                                        <button class="btn btn-warning m-r-20" type="submit " id="enviarpassword" [disabled]="nuevoPassword.pristine || nuevoPassword.get('nuevopassword').value.length===0"><i class="fa fa-key m-r-10"></i>Cambiar contraseña</button>
+                                        <button class="btn btn-danger " (click)="nuevoPassword.reset();showOKP = false;" type="button" id="cancelar" [disabled]="nuevoPassword.pristine || nuevoPassword.get('nuevopassword').value.length===0">Cancelar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
