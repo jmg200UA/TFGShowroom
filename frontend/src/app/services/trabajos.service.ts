@@ -35,6 +35,13 @@ export class TrabajosService {
     return this.http.put(`${environment.base_url}/trabajos/ac/${uid}`, data, this.cabeceras);
   }
 
+  borrarContenidoTrabajo ( uid: string, num) { // llamada para quitar algun contenido del trabajo
+    console.log("Borrar con: ", num);
+    const datos: FormData = new FormData();
+    datos.append('posicion', num);
+    return this.http.put(`${environment.base_url}/trabajos/bc/${uid}`, datos, this.cabeceras);
+  }
+
   limpiarMultimediaTrabajo ( uid: string) {
 
     return this.http.put(`${environment.base_url}/trabajos/lm/${uid}`, '', this.cabeceras);

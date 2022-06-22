@@ -56,13 +56,39 @@ export class SubircontenidosComponent implements OnInit {
   }
 
   cambioVideo(){ // para videos de youtube
-
+    let url= (document.getElementById("urlyt") as HTMLInputElement).value;
+    console.log("que nos devuelve la validación: ", this.matchYoutubeUrl(url));
+    if(this.matchYoutubeUrl(url)==false){
+      Swal.fire({
+        icon: 'error',
+        title: 'URL de Youtube incorrecta',
+        showConfirmButton: false,
+        timer: 2000
+      })
+    }
+    else{
+      this.contenidos.push({nombre:"",descripcion:"",tipo:"YT",contenido:url});
+    }
   }
+
+  matchYoutubeUrl(url) {
+    var p = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+    if(url.match(p)){
+        return url.match(p)[1];
+    }
+    return false;
+  }
+
 
   addDatosContenido(num){
     this.contenidos[num].nombre= (document.getElementById("nombre"+num) as HTMLInputElement).value;
     this.contenidos[num].descripcion = (document.getElementById("nombre"+num) as HTMLInputElement).value;
-    this.subirContenido(num);
+    if(this.contenidos[num].tipo=="YT"){
+      this.subirVideoYT(num);
+    }
+    else{
+      this.subirContenido(num);
+    }
   }
 
   quitarDatosContenido(num){
@@ -117,17 +143,77 @@ export class SubircontenidosComponent implements OnInit {
     }
   }
 
+  subirVideoYT(num){
+    this.TrabajosService.actualizarContenidoTrabajo( this.uid, this.contenidos[num])
+    .subscribe( res => {
+      console.log("Respuesta a la actualización: ", res);
+      //borramos el contenido subido del array y actualizamos la llamada al trabajo
+      //para cargar todos los contenidos de nuevo
+      this.contenidos.splice(num,1);
+      this.cargarTrabajo();
+    }, (err) => {
+      const errtext = err.error.msg || 'No se pudo actualizar el contenido';
+      Swal.fire({icon: 'error', title: 'Oops...', text: errtext});
+      return;
+    });
+  }
+
   actualizarContenido(num){
-    if(this.contenidos[num].nombre!="" && this.contenidos[num].descripcion!="" && this.contenidos[num].tipo!="" && this.contenidos[num].contenido!=""){
-      this.TrabajosService.subirFoto( this.uid, this.contenidos[num].contenido)
+    if(this.contenidos[num].nombre!="" && this.contenidos[num].descripcion!=""){
+      this.TrabajosService.actualizarContenidoTrabajo( this.uid, this.contenidos[num])
                 .subscribe( res => {
                   console.log("Respuesta a la subida de la foto: ", res);
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Contenido actualizado',
+                    showConfirmButton: false,
+                    timer: 2000
+                  })
+                  this.cargarTrabajo();
                 }, (err) => {
                   const errtext = err.error.msg || 'No se pudo cargar la imagen';
                   Swal.fire({icon: 'error', title: 'Oops...', text: errtext});
                   return;
                 });
     }
+    else{
+      Swal.fire({
+        icon: 'error',
+        title: 'Debes rellenar todos los campos',
+        showConfirmButton: false,
+        timer: 2000
+      })
+    }
+  }
+
+  borrarContenido(num){
+
+    Swal.fire({
+      title: 'Eliminar contenido',
+      text: `¿Seguro que desea eliminar el contenido?`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, borrar'
+    }).then((result) => {
+          if (result.value) {
+            this.TrabajosService.borrarContenidoTrabajo( this.uid, num)
+              .subscribe( res => {
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Contenido eliminado',
+                  showConfirmButton: false,
+                  timer: 2000
+                })
+                this.cargarTrabajo();
+              }
+              ,(err) =>{
+                Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
+                console.warn('error:', err);
+              })
+          }
+      });
   }
 
 }
