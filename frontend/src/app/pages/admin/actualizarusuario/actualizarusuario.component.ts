@@ -19,8 +19,12 @@ export class ActualizarusuarioComponent implements OnInit {
   public datosForm = this.fb.group({
     email: [ '', [Validators.required, Validators.email] ],
     nombre_apellidos: ['', Validators.required ],
-    password: ['', Validators.required ],
     rol: ['ROL_ALUMNO', Validators.required ],
+  });
+
+  public nuevoPassword = this.fb.group({
+    nuevopassword: ['', Validators.required],
+    nuevopassword2: ['', Validators.required],
   });
 
   constructor( private fb: FormBuilder,
@@ -83,6 +87,23 @@ export class ActualizarusuarioComponent implements OnInit {
         Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
         //console.warn('error:', err);
         this.loading = false;
+      });
+  }
+
+  cambiarPassword(){
+    // ponemos el mismo valor en los tres campos
+    const data = {
+      nuevopassword: this.nuevoPassword.get('nuevopassword').value,
+      nuevopassword2: this.nuevoPassword.get('nuevopassword2').value
+    };
+    this.UsuarioService.cambiarPassword( this.UsuarioService.uid, data)
+      .subscribe(res => {
+        this.nuevoPassword.reset();
+        this.showOKP = true;
+      }, (err)=>{
+        const errtext = err.error.msg || 'No se pudo completar la acción, vuelva a intentarlo.';
+        Swal.fire({icon: 'error', title: 'Oops...', text: errtext});
+        return;
       });
   }
 
