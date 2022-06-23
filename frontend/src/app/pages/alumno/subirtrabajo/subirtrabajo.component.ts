@@ -11,6 +11,7 @@ import { TrabajosService } from '../../../services/trabajos.service';
 })
 export class SubirtrabajoComponent implements OnInit {
 
+  public imagenUrl;
   public foto: File = null;
   private formSubmited = false;
   private uid: string = '';
@@ -77,15 +78,6 @@ export class SubirtrabajoComponent implements OnInit {
       this.TrabajosService.actualizarTrabajo( this.uid,this.datosForm.value )
         .subscribe( res => {
           console.log("Trabajo creado: ", res['trabajo']);
-          //Borramos el contenido multimedia que tuviese previamente el trabajo
-          this.TrabajosService.limpiarMultimediaTrabajo(this.uid)
-            .subscribe( res => {
-              console.log("Respuesta limpieza multimedia: ", res);
-            }, (err) => {
-              const errtext = err.error.msg || 'No se pudo realizar la limpieza';
-              Swal.fire({icon: 'error', title: 'Oops...', text: errtext});
-              return;
-            });
           //Subida imagen del trabajo
           if (this.foto ) {
             this.TrabajosService.subirFoto( res['trabajo'].uid, this.foto)
@@ -96,58 +88,6 @@ export class SubirtrabajoComponent implements OnInit {
               Swal.fire({icon: 'error', title: 'Oops...', text: errtext});
               return;
             });
-          }
-          //Subida imagenes adicional
-          if(this.imagenes.length>0){
-            for(var i=0; i<this.imagenes.length; i++){
-              this.TrabajosService.subirFotos( res['trabajo'].uid, this.imagenes[i])
-            .subscribe( res => {
-              console.log("Respuesta a la subida de la foto: ", res);
-            }, (err) => {
-              const errtext = err.error.msg || 'No se pudo cargar la imagen';
-              Swal.fire({icon: 'error', title: 'Oops...', text: errtext});
-              return;
-            });
-            }
-          }
-          //Subida videos adicional
-          if(this.videos.length>0){
-            for(var i=0; i<this.videos.length; i++){
-              this.TrabajosService.subirVideos( res['trabajo'].uid, this.videos[i])
-            .subscribe( res => {
-              console.log("Respuesta a la subida del video: ", res);
-            }, (err) => {
-              const errtext = err.error.msg || 'No se pudo cargar el video';
-              Swal.fire({icon: 'error', title: 'Oops...', text: errtext});
-              return;
-            });
-            }
-          }
-          //Subida audios adicional
-          if(this.audios.length>0){
-            for(var i=0; i<this.audios.length; i++){
-              this.TrabajosService.subirAudios( res['trabajo'].uid, this.audios[i])
-            .subscribe( res => {
-              console.log("Respuesta a la subida del audio: ", res);
-            }, (err) => {
-              const errtext = err.error.msg || 'No se pudo cargar el audio';
-              Swal.fire({icon: 'error', title: 'Oops...', text: errtext});
-              return;
-            });
-            }
-          }
-          //Subida documentos adicional
-          if(this.documentos.length>0){
-            for(var i=0; i<this.documentos.length; i++){
-              this.TrabajosService.subirDocs( res['trabajo'].uid, this.documentos[i])
-            .subscribe( res => {
-              console.log("Respuesta a la subida del documento: ", res);
-            }, (err) => {
-              const errtext = err.error.msg || 'No se pudo cargar el documento';
-              Swal.fire({icon: 'error', title: 'Oops...', text: errtext});
-              return;
-            });
-            }
           }
 
           this.datosForm.markAsPristine();
@@ -165,8 +105,6 @@ export class SubirtrabajoComponent implements OnInit {
           Swal.fire({icon: 'error', title: 'Oops...', text: errtext,});
           return;
         });
-
-
   }
 
   cargarTrabajo(){
@@ -185,6 +123,10 @@ export class SubirtrabajoComponent implements OnInit {
           this.datosForm.get('titulacion').disable();
           this.datosForm.get('tipo').setValue(res['trabajos'].tipo);
           this.datosForm.get('tipo').disable();
+          this.datosForm.get('director').setValue(res['trabajos'].director);
+          this.datosForm.get('resumen').setValue(res['trabajos'].resumen);
+          this.imagenUrl = this.TrabajosService.crearImagenUrl(res['trabajos'].imagen);
+          this.loading = false;
 
 
       }, (err) => {

@@ -5,8 +5,16 @@
         <div class="d-flex justify-content-center">
             <div class="card col-md-10">
                 <div class="card-body">
+                    <div class="alert alert-primary text-center" *ngIf="loading">
+                        <h4 class="alert-heading">Cargando!</h4>
+                        <i class="fa fa-spin fa-spinner fa-3x"></i>
+                        <p>Por favor, espere</p>
+                    </div>
                     <div>
                         <button class="btn btn-info m-r-10" [disabled]="!datosForm.pristine" routerLink="/alumno/nuevostrabajos">Volver</button>
+                    </div>
+                    <div *ngIf="imagenUrl!=''" class="text-center imperfil" style="width: 200px;">
+                        <img [src]="imagenUrl" class="img-thumbnail rounded-circle" width="200">
                     </div>
                     <form class="form-horizontal m-t-20" [formGroup]="datosForm" (ngSubmit)="enviar()">
                         <div class="row m-t-10">
