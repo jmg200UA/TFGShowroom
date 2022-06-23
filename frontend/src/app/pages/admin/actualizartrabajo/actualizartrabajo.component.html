@@ -1,1 +1,100 @@
-<p>actualizartrabajo works!</p>
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-content">
+    <div class="animate__animated animate__fadeInRight animate__faster">
+        <div class="d-flex justify-content-center">
+            <div class="card col-md-10">
+                <div class="card-body">
+                    <div>
+                        <button class="btn btn-info m-r-10" [disabled]="!datosForm.pristine" routerLink="/admin/trabajos">Volver</button>
+                    </div>
+                    <div *ngIf="imagenUrl!=''" class="text-center imperfil" style="width: 200px;">
+                        <img [src]="imagenUrl" class="img-thumbnail rounded-circle" width="200">
+                    </div>
+                    <form class="form-horizontal m-t-20" [formGroup]="datosForm" (ngSubmit)="enviar()">
+                        <div class="row m-t-10">
+                            <div class="col-lg-3 col-md-12 text-lg-right">
+                                <span class="">Título</span>
+                            </div>
+                            <div class="col-lg-8 col-md-12">
+                                <input type="text" class="form-control" formControlName="titulo" id="titulo">
+                            </div>
+                        </div>
+                        <div class="row m-t-10">
+                            <div class="col-lg-3 col-md-12 text-lg-right">
+                                <span class="">Autor</span>
+                            </div>
+                            <div class="col-lg-8 col-md-12">
+                                <input type="text" class="form-control" formControlName="autor" id="autor">
+                            </div>
+                        </div>
+                        <div class="row m-t-10">
+                            <div class="col-lg-3 col-md-12 text-lg-right">
+                                <span class="">Titulación</span>
+                            </div>
+                            <div class="col-lg-8 col-md-12">
+                                <input type="text" class="form-control" formControlName="titulacion" id="titulacion">
+                            </div>
+                        </div>
+                        <div class="row m-t-10">
+                            <div class="col-lg-3 col-md-12 text-lg-right">
+                                <span class="">Area</span>
+                            </div>
+                            <div class="col-lg-8 col-md-12">
+                                <input type="text" class="form-control" formControlName="area" id="area">
+                            </div>
+                        </div>
+                        <div class="row m-t-10">
+                            <div class="col-lg-3 col-md-12 text-lg-right">
+                                <span class="">Tipo</span>
+                            </div>
+                            <div class="col-lg-8 col-md-12">
+                                <input type="text" class="form-control" formControlName="tipo" id="tipo">
+                            </div>
+                        </div>
+                        <!-- Campos que debe introducir el alumno -->
+                        <div class="row m-t-10">
+                            <div class="col-lg-3 col-md-12 text-lg-right">
+                                <span class="">Director de investigación</span>
+                            </div>
+                            <div class="col-lg-8 col-md-12">
+                                <input type="text" class="form-control" formControlName="director" [ngClass]="{'is-invalid' : campoNoValido('director')}" id="director">
+                                <div class="invalid-feedback">
+                                    El campo es obligatorio
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" row m-t-10 ">
+                            <div class="col-lg-3 col-md-12 text-lg-right ">
+                                <span class=" ">Resumen</span>
+                            </div>
+                            <div class="col-lg-8 col-md-12 ">
+                                <textarea class="form-control" formControlName="resumen" [ngClass]="{'is-invalid' : campoNoValido('resumen')}" id="resumen" rows="4"></textarea>
+                                <div class="invalid-feedback ">
+                                    El campo es obligatorio
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row m-t-10">
+                            <div class="col-lg-3 text-lg-right">
+                                <span class=" ">Imagen trabajo</span>
+                            </div>
+                            <div class="col-lg-8 col-md-12">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="imagen" id="fotoperfil" (change)="cambioImagen( $event )">
+                                    <label class="custom-file-label" for="fotoperfil" data-browse="Elegir">{{fileText}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center m-t-10 ">
+                            <div class="align-content-center ">
+                                <button class="btn btn-primary m-r-20 " type="submit " id="enviar" [disabled]="datosForm.pristine">Enviar</button>
+                                <button class="btn btn-danger " type="button" (click)="cancelar()" id="cancelar" [disabled]="datosForm.pristine">Cancelar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

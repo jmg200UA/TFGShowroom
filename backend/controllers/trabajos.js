@@ -410,10 +410,10 @@ const actualizarTrabajo = async(req, res = response) => {
         const usu = await Usuario.findById(idToken);
         let trabajo = await Trabajo.findById(uid);
         //comprobamos que ese trabajo sea suyo
-        if (trabajo.autor != ObjectId(usu._id).toString()) {
+        if (trabajo.autor != ObjectId(usu._id).toString() && rolToken != "ROL_ADMIN") {
             return res.status(400).json({
                 ok: true,
-                msg: 'El usuario no es el autor del trabajo'
+                msg: 'El usuario no tiene permisos para actualizar este trabajo'
             });
         }
 

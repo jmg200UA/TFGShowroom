@@ -3,7 +3,7 @@ Ruta base: /api/usuarios
 */
 
 const { Router } = require('express');
-const { obtenerUsuarios, obtenerAlumnos, crearUsuario, actualizarUsuario, borrarUsuario } = require('../controllers/usuarios');
+const { obtenerUsuarios, obtenerAlumnos, crearUsuario, actualizarUsuario, actualizarPassword, borrarUsuario } = require('../controllers/usuarios');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middleware/validar-campos');
 const { validarRol } = require('../middleware/validar-rol');
@@ -46,6 +46,12 @@ router.put('/:id', [
     validarCampos,
     validarRolAdmin,
 ], actualizarUsuario);
+
+router.put('/np/:id', [
+    validarJWT,
+    check('id', 'El identificador no es válido').isMongoId(),
+    validarCampos,
+], actualizarPassword);
 
 router.delete('/:id', [
     validarJWT,

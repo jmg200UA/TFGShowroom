@@ -47,7 +47,11 @@
                                     <td>{{trabajo.autor.nombre_apellidos}}</td>
                                     <td>{{trabajo.titulo}}</td>
                                     <td>{{trabajo.titulacion.nombre}}</td>
-                                    <td class="text-right "><i class="fa fa-trash text-danger fa-lg micursor " (click)="eliminarTrabajo(trabajo.uid, trabajo.titulo) "></i></td>
+                                    <td class="text-right ">
+                                        <i class="fa fa-pencil-alt text-success fa-lg mr-5 micursor" [routerLink]="['/admin/actualizartrabajo', trabajo.uid]"></i>
+                                        <i class="fas fa-upload fa-lg mr-5 micursor" [routerLink]="['/admin/actualizarcontstrabajo', trabajo.uid]"></i>
+                                        <i class="fa fa-trash text-danger fa-lg micursor " (click)="eliminarTrabajo(trabajo.uid, trabajo.titulo) "></i>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

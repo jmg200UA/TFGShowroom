@@ -52,6 +52,7 @@ export class UserProfileComponent implements OnInit {
   cambiarPassword(){
     // ponemos el mismo valor en los tres campos
     const data = {
+      password : this.nuevoPassword.get('password').value,
       nuevopassword: this.nuevoPassword.get('nuevopassword').value,
       nuevopassword2: this.nuevoPassword.get('nuevopassword2').value
     };

@@ -11,6 +11,7 @@ import { NuevotrabajoComponent } from './admin/nuevotrabajo/nuevotrabajo.compone
 import { NuevatitulacionComponent } from './admin/nuevatitulacion/nuevatitulacion.component';
 import { ActualizarusuarioComponent } from './admin/actualizarusuario/actualizarusuario.component';
 import { ActualizartrabajoComponent } from './admin/actualizartrabajo/actualizartrabajo.component';
+import { ActualizarcontstrabajoComponent } from './admin/actualizarcontstrabajo/actualizarcontstrabajo.component';
 import { ActualizartitulacionComponent } from './admin/actualizartitulacion/actualizartitulacion.component';
 //COMPONENTS ALUMNO
 import { AlumnoComponent } from './alumno/alumno.component';
@@ -26,6 +27,7 @@ import { RevisartrabajoComponent } from './editor/revisartrabajo/revisartrabajo.
 import { UserProfileComponent } from './user-profile/user-profile.component';
 //COMPONENTS LANDING
 import { LandingComponent } from './landing/landing.component';
+
 
 
 
@@ -84,6 +86,11 @@ export const routes: Routes = [
     { path: 'actualizartrabajo/:uid', component: ActualizartrabajoComponent, canActivate: [ AuthGuard ], data: {
                                                             rol: 'ROL_ADMIN',
                                                             titulo: 'Showroom Admin - Actualizar Trabajo',
+                                                            breadcrums: [{titulo: 'Trabajos', url: '/admin/trabajos'}]
+                                                          }},
+    { path: 'actualizarcontstrabajo/:uid', component: ActualizarcontstrabajoComponent, canActivate: [ AuthGuard ], data: {
+                                                            rol: 'ROL_ADMIN',
+                                                            titulo: 'Showroom Admin - Actualizar Contenidos Trabajo',
                                                             breadcrums: [{titulo: 'Trabajos', url: '/admin/trabajos'}]
                                                           }},
     { path: 'actualizartitulacion/:uid', component: ActualizartitulacionComponent, canActivate: [ AuthGuard ], data: {

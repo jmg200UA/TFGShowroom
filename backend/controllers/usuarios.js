@@ -237,6 +237,79 @@ const actualizarUsuario = async(req, res = response) => {
 
 }
 
+const actualizarPassword = async(req, res = response) => {
+
+    const uid = req.params.id;
+    const { password, nuevopassword, nuevopassword2 } = req.body;
+    const rolToken = req.rolToken;
+    const idToken = req.uidToken;
+
+    try {
+        const token = req.header('x-token');
+        // lo puede actualizar un administrador o el propio usuario del token
+        if (rolToken != 'ROL_ADMIN' && idToken != uid) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'No tiene permisos para actualizar contraseña',
+            });
+        }
+
+        const usuarioBD = await Usuario.findById(uid);
+        if (!usuarioBD) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'Usuario incorrecto',
+            });
+        }
+
+        if (rolToken != "ROL_ADMIN") {
+            // Si es el el usuario del token el que trata de cambiar la contraseña, se comprueba que sabe la contraseña vieja y que ha puesto 
+            // dos veces la contraseña nueva
+            const validPassword = bcrypt.compareSync(password, usuarioBD.password);
+
+            if (!validPassword) {
+                return res.status(400).json({
+                    ok: false,
+                    msg: 'Contraseña incorrecta',
+                    token: ''
+                });
+            }
+        }
+
+
+
+        if (nuevopassword !== nuevopassword2) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'La contraseña repetida no coincide con la nueva contraseña',
+            });
+        }
+
+
+
+        // tenemos todo OK, ciframos la nueva contraseña y la actualizamos
+        const salt = bcrypt.genSaltSync();
+        const cpassword = bcrypt.hashSync(nuevopassword, salt);
+        usuarioBD.password = cpassword;
+
+        // Almacenar en BD
+        await usuarioBD.save();
+
+        res.status(200).json({
+            ok: true,
+            msg: 'Contraseña actualizada'
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            ok: false,
+            msg: 'Error al actualizar contraseña',
+        });
+    }
+
+
+}
+
 /*
 delete /:id
 --> OK si ha podido borrar
@@ -272,4 +345,4 @@ const borrarUsuario = async(req, res = response) => {
 }
 
 
-module.exports = { obtenerUsuarios, obtenerAlumnos, crearUsuario, actualizarUsuario, borrarUsuario }
+module.exports = { obtenerUsuarios, obtenerAlumnos, crearUsuario, actualizarUsuario, actualizarPassword, borrarUsuario }

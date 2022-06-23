@@ -71,8 +71,8 @@ const actualizarBD = async(tipo, path, nombreArchivo, id, token) => {
                 return false;
             }
             const usuariofototrabajo = await Usuario.findById(infoToken(token).uid);
-            if (trabajofoto.autor != usuariofototrabajo.uid) {
-                console.log("el usuario no es el propietario del trabajo que quiere actualizar");
+            if (trabajofoto.autor != usuariofototrabajo.uid && infoToken(token).rol != "ROL_ADMIN") {
+                console.log("El usuario no tiene permisos para actualizar");
             }
 
             fotoAntigua = trabajofoto.imagen;

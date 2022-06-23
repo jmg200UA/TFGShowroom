@@ -16,6 +16,7 @@ import { NuevatitulacionComponent } from './nuevatitulacion/nuevatitulacion.comp
 import { ActualizarusuarioComponent } from './actualizarusuario/actualizarusuario.component';
 import { ActualizartrabajoComponent } from './actualizartrabajo/actualizartrabajo.component';
 import { ActualizartitulacionComponent } from './actualizartitulacion/actualizartitulacion.component';
+import { ActualizarcontstrabajoComponent } from './actualizarcontstrabajo/actualizarcontstrabajo.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { ActualizartitulacionComponent } from './actualizartitulacion/actualizar
     NuevatitulacionComponent,
     ActualizarusuarioComponent,
     ActualizartrabajoComponent,
-    ActualizartitulacionComponent
+    ActualizartitulacionComponent,
+    ActualizarcontstrabajoComponent
   ],
   // exports:[
   //   UserProfileComponent,

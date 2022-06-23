@@ -16,7 +16,7 @@ export class ActualizartitulacionComponent implements OnInit {
   public ListaGrados = ['Construcción','Tecnologías de la información y las comunicaciones', 'Industrial y aeronáutica', 'Ciencia y tecnologías para la salud'];
   public ListaMasters = ['Construcción','Tecnologías de la información y las comunicaciones', 'Industrial y aeronáutica', 'Ciencia de la salud'];
 
-  public imagenUrl;
+  public imagenUrl='';
   public foto: File = null;
   private formSubmited = false;
   private uid: string = '';
