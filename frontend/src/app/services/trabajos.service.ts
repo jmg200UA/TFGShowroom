@@ -128,7 +128,7 @@ export class TrabajosService {
 
   //Llamadas obtención archivos
 
-  crearImagenUrl( imagen: string) { // imagen trabajo
+  crearImagenUrl( imagen: string) {
 
     const token = localStorage.getItem('token') || '';
     if (!imagen) {

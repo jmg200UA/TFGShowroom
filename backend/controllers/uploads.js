@@ -75,7 +75,7 @@ const subirArchivo = async(req, res = response) => {
             if (!archivosValidos.trabajoconts.includes(extension)) {
                 return res.status(400).json({
                     ok: false,
-                    msg: `El tipo de archivo '${extension}' no está permitido (${archivosValidos.trabajoimgs})`,
+                    msg: `El tipo de archivo '${extension}' no está permitido (${archivosValidos.trabajoconts})`,
                 });
             }
             break;
@@ -155,12 +155,14 @@ const subirArchivo = async(req, res = response) => {
     });
 };
 
-const enviarArchivo = async(req, res = repsonse) => {
+const enviarArchivo = async(req, res = response) => {
     const tipo = req.params.tipo; // tipos definidos
     const nombreArchivo = req.params.nombrearchivo;
 
     const path = `${process.env.PATHUPLOAD}/${tipo}`;
     pathArchivo = `${path}/${nombreArchivo}`;
+
+    console.log("Tipo: " + tipo + ", nombre: " + nombreArchivo + ", path: " + path);
 
     if (!fs.existsSync(pathArchivo)) {
         if (tipo !== "fotoperfil") {

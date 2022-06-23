@@ -45,12 +45,21 @@ const obtenerTitulaciones = async(req, res) => {
                     ],
                 };
             }
-            [titulaciones, total] = await Promise.all([
-                Titulacion.find(query).
-                skip(desde).
-                limit(registropp),
-                Titulacion.countDocuments(query)
-            ]);
+
+            if (req.query.desde) {
+                [titulaciones, total] = await Promise.all([
+                    Titulacion.find(query).
+                    skip(desde).
+                    limit(registropp),
+                    Titulacion.countDocuments(query)
+                ]);
+            } else {
+                [titulaciones, total] = await Promise.all([
+                    Titulacion.find(query),
+                    Titulacion.countDocuments(query)
+                ]);
+            }
+
         }
 
         res.json({

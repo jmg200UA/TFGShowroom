@@ -11,7 +11,6 @@ import { Titulacion } from '../models/titulacion.model'
   providedIn: 'root'
 })
 export class TitulacionService {
-  cargarEjercicios: any;
 
   constructor(private http: HttpClient,
                private router: Router) { }
@@ -33,6 +32,10 @@ export class TitulacionService {
     if (!desde) { desde = 0;}
     if (!textoBusqueda) {textoBusqueda = '';}
     return this.http.get(`${environment.base_url}/titulaciones/?desde=${desde}&texto=${textoBusqueda}` , this.cabeceras);
+  }
+
+  cargarTitulacionesTodo(): Observable<object> {
+    return this.http.get(`${environment.base_url}/titulaciones` , this.cabeceras);
   }
 
   borrarTitulacion( uid: string) {
