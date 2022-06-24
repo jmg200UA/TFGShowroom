@@ -8,11 +8,12 @@
                     <div>
                         <button class="btn btn-info m-r-10" [disabled]="!datosForm.pristine" routerLink="/admin/usuarios">Volver</button>
                     </div>
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col-md-6">
                             <form class="form-horizontal m-t-20" [formGroup]="datosForm" (ngSubmit)="enviar()">
+                                <h5 class="text-center">Actualizar usuario</h5>
                                 <div class="row m-t-10">
-                                    <div class="col-lg-3 col-md-12 text-lg-right">
+                                    <div class="col-lg-4 col-md-12 text-lg-right">
                                         <span class="">Nombre y apellidos</span>
                                     </div>
                                     <div class="col-lg-5 col-md-12">
@@ -23,7 +24,7 @@
                                     </div>
                                 </div>
                                 <div class=" row m-t-10 ">
-                                    <div class="col-lg-3 col-md-12 text-lg-right ">
+                                    <div class="col-lg-4 col-md-12 text-lg-right ">
                                         <span class=" ">Email</span>
                                     </div>
                                     <div class="col-lg-4 col-md-12 ">
@@ -34,10 +35,10 @@
                                     </div>
                                 </div>
                                 <div class=" row m-t-10 ">
-                                    <div class="col-lg-3 col-md-12 text-lg-right ">
+                                    <div class="col-lg-4 col-md-12 text-lg-right ">
                                         <span class=" ">Rol</span>
                                     </div>
-                                    <div class="col-lg-4 col-md-12 ">
+                                    <div class="col-lg-5 col-md-12 ">
                                         <select class="select2 form-control custom-select" formControlName="rol" [ngClass]="{'is-invalid' : campoNoValido('rol')}" style="width: 100%; height:36px;" id="rol">
                                         <option value="ROL_ADMIN">Administrador / Administradora</option>
                                         <option value="ROL_ALUMNO" >Alumno / Alumna</option>
@@ -59,44 +60,41 @@
                         <!-- Columna contraseña -->
                         <div class="col-md-6">
                             <form [formGroup]="nuevoPassword" (ngSubmit)="cambiarPassword()">
-                                <div class=" row m-t-10 ">
+                                <!-- <div class=" row m-t-10 ">
                                     <div class="col-lg-3 col-md-12 text-lg-right"></div>
                                     <div class="col-lg-3 col-md-12"></div>
-                                </div>
+                                </div> -->
+                                <h5 class="text-center">Cambiar contraseña</h5>
                                 <div class=" row m-t-10 ">
-                                    <div class="col-lg-3 col-md-12 text-lg-right">
+                                    <div class="col-lg-4 col-md-12 text-lg-right">
                                         <span class="">Password</span>
                                     </div>
-                                    <div class="col-lg-3 col-md-12">
-                                        <input type="text" class="form-control" formControlName="nuevopassword" [ngClass]="{'is-invalid' : campoNoValido('nuevopassword')}" id="nuevopassword">
+                                    <div class="col-lg-5 col-md-12">
+                                        <input type="password" class="form-control" formControlName="nuevopassword" [ngClass]="{'is-invalid' : campoNoValidoPass('nuevopassword')}" id="nuevopassword">
                                         <div class="invalid-feedback">
                                             El campo es obligatorio
                                         </div>
                                     </div>
                                 </div>
                                 <div class=" row m-t-10 ">
-                                    <div class="col-lg-3 col-md-12 text-lg-right">
+                                    <div class="col-lg-4 col-md-12 text-lg-right">
                                         <span class="">Repetir password</span>
                                     </div>
-                                    <div class="col-lg-3 col-md-12">
-                                        <input type="text" class="form-control" formControlName="nuevopassword2" [ngClass]="{'is-invalid' : campoNoValido('nuevopassword2')}" id="nuevopassword2">
+                                    <div class="col-lg-5 col-md-12">
+                                        <input type="password" class="form-control" formControlName="nuevopassword2" [ngClass]="{'is-invalid' : campoNoValidoPass('nuevopassword2')}" id="nuevopassword2">
                                         <div class="invalid-feedback">
                                             El campo es obligatorio
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center m-t-10 ">
+                                    <div class="align-content-center ">
+                                        <button class="btn btn-warning m-r-20" type="submit " id="enviarpassword" [disabled]="nuevoPassword.pristine || nuevoPassword.get('nuevopassword').value.length===0"><i class="fa fa-key m-r-10"></i>Cambiar contraseña</button>
                                     </div>
                                 </div>
                             </form>
-
-
-
-                            <div class="d-flex">
-                                <button class="btn btn-warning m-r-20" type="submit " id="enviarpassword" [disabled]="nuevoPassword.pristine || nuevoPassword.get('nuevopassword').value.length===0"><i class="fa fa-key m-r-10"></i>Cambiar contraseña</button>
-                                <!-- <button class="btn btn-danger " (click)="nuevoPassword.reset();showOKP = false;" type="button" id="cancelar" [disabled]="nuevoPassword.pristine || nuevoPassword.get('nuevopassword').value.length===0">Cancelar</button> -->
-                            </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>

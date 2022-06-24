@@ -73,15 +73,18 @@ export class ActualizarusuarioComponent implements OnInit {
     return this.datosForm.get(campo).invalid && this.formSubmited;
   }
 
+  campoNoValidoPass( campo: string) {
+    return this.nuevoPassword.get(campo).invalid && this.formSubmited;
+  }
+
   cargarUsuario(){
     this.loading = true;
     this.UsuarioService.cargarUsuario(this.uid)
       .subscribe( res => {
           this.datosForm.get('nombre_apellidos').setValue(res['usuarios'].nombre_apellidos);
           this.datosForm.get('email').setValue(res['usuarios'].email);
-          this.datosForm.get('password').setValue(res['usuarios'].password);
           this.datosForm.get('rol').setValue(res['usuarios'].rol);
-
+          console.log(res['usuarios']);
 
       }, (err) => {
         Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
@@ -91,15 +94,24 @@ export class ActualizarusuarioComponent implements OnInit {
   }
 
   cambiarPassword(){
+    console.log("Entro pass");
     // ponemos el mismo valor en los tres campos
     const data = {
       nuevopassword: this.nuevoPassword.get('nuevopassword').value,
       nuevopassword2: this.nuevoPassword.get('nuevopassword2').value
     };
-    this.UsuarioService.cambiarPassword( this.UsuarioService.uid, data)
+    this.UsuarioService.cambiarPassword( this.uid, data)
       .subscribe(res => {
         this.nuevoPassword.reset();
         this.showOKP = true;
+        console.log(res);
+        Swal.fire({
+          icon: 'success',
+          title: 'Contraseña actualizada correctamente',
+          showConfirmButton: false,
+          timer: 2000
+        })
+        this.router.navigateByUrl('/admin/usuarios');
       }, (err)=>{
         const errtext = err.error.msg || 'No se pudo completar la acción, vuelva a intentarlo.';
         Swal.fire({icon: 'error', title: 'Oops...', text: errtext});
