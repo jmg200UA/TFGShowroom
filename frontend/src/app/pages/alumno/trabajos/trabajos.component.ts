@@ -4,6 +4,7 @@ import { TrabajosService } from '../../../services/trabajos.service';
 import { UsuarioService } from '../../../services/usuario.service';
 import { Trabajo } from '../../../models/trabajo.model';
 import Swal from 'sweetalert2';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'trabajos',
@@ -21,7 +22,8 @@ export class TrabajosComponent implements OnInit {
   public listaTrabajos: Trabajo[] = [];
 
   constructor(private TrabajosService: TrabajosService,
-              private UsuarioService:UsuarioService) { }
+              private UsuarioService:UsuarioService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.cargarTrabajos(this.ultimaBusqueda);
@@ -59,6 +61,15 @@ export class TrabajosComponent implements OnInit {
     pagina = (pagina < 0 ? 0 : pagina);
     this.posicionactual = ((pagina - 1) * this.registrosporpagina >=0 ? (pagina - 1) * this.registrosporpagina : 0);
     this.cargarTrabajos(this.ultimaBusqueda);
+  }
+
+  //Funciones para enrutar a la edición del trabajo
+  subirTrabajo(id){
+    this.router.navigateByUrl('/alumno/subirtrabajo/'+id);
+  }
+
+  subirContenidos(id){
+    this.router.navigateByUrl('/alumno/subircontenidos/'+id);
   }
 
 }

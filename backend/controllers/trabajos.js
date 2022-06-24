@@ -458,6 +458,9 @@ const actualizarEstadoTrabajo = async(req, res = response) => {
         if (estado == "Aceptado") {
             trabajo.visible = true;
         }
+        if (estado == "Pendiente de revisión") {
+            trabajo.visible = false;
+        }
 
         await trabajo.save();
 
