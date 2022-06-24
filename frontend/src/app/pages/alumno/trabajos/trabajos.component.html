@@ -38,12 +38,19 @@
                                 <th>
                                     Director
                                 </th>
+                                <th>
+                                    Acción
+                                </th>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let trabajo of listaTrabajos">
                                     <td class="micursor">{{trabajo.titulo}}</td>
                                     <td>{{trabajo.titulacion.nombre}}</td>
                                     <td>{{trabajo.director}}</td>
+                                    <td>
+                                        <i class="fa fa-pencil-alt text-success fa-lg mr-5 micursor" (click)="subirTrabajo(trabajo.uid)"></i>
+                                        <i class="fas fa-upload fa-lg mr-5 micursor" (click)="subirContenidos(trabajo.uid)"></i>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

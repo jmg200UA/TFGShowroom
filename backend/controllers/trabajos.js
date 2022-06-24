@@ -447,6 +447,13 @@ const actualizarEstadoTrabajo = async(req, res = response) => {
 
         let trabajo = await Trabajo.findById(uid);
 
+        if (trabajo.autor != idToken && rolToken != "ROL_ADMIN" && rolToken != "ROL_EDITOR") {
+            return res.status(400).json({
+                ok: true,
+                msg: 'El usuario no tiene permisos para actualizar este trabajo'
+            });
+        }
+
         trabajo.estado = estado;
         if (estado == "Aceptado") {
             trabajo.visible = true;

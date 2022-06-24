@@ -72,7 +72,6 @@ router.put('/et/:id', [ // estado trabajo
     check('id', 'El identificador no es válido').isMongoId(),
     // campos que son opcionales que vengan pero que si vienen queremos validar el tipo
     validarCampos,
-    validarRolEditor,
 ], actualizarEstadoTrabajo);
 
 router.put('/ac/:id', [ // ac agregar contenido
