@@ -16,6 +16,10 @@ export class SubircontenidosComponent implements OnInit {
   public loading = true;
   public contenidossubidos= [];
 
+  public dataEstado = this.fb.group({ // para enviar el estado como aceptado o denegado
+    estado: [''],
+  });
+
   constructor(private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -121,6 +125,7 @@ export class SubircontenidosComponent implements OnInit {
                     //borramos el contenido subido del array y actualizamos la llamada al trabajo
                     //para cargar todos los contenidos de nuevo
                     this.contenidos.splice(num,1);
+                    this.actualizarEstado();
                     this.cargarTrabajo();
                   }, (err) => {
                     const errtext = err.error.msg || 'No se pudo actualizar el contenido';
@@ -213,6 +218,21 @@ export class SubircontenidosComponent implements OnInit {
                 console.warn('error:', err);
               })
           }
+      });
+  }
+
+  //función para cambiar el estado a revisión si se ha realizado algún cambio
+  actualizarEstado(){
+    this.dataEstado.get('estado').setValue("Pendiente de revisión");
+    this.loading = true;
+    this.TrabajosService.actualizarEstadoTrabajo(this.uid, this.dataEstado.value)
+      .subscribe( res => {
+          console.log("Estado actualizado");
+
+      }, (err) => {
+        Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
+        //console.warn('error:', err);
+        this.loading = false;
       });
   }
 
