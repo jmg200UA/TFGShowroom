@@ -27,6 +27,7 @@ import { RevisartrabajoComponent } from './editor/revisartrabajo/revisartrabajo.
 import { UserProfileComponent } from './user-profile/user-profile.component';
 //COMPONENTS LANDING
 import { LandingComponent } from './landing/landing.component';
+import { InicioComponent } from './landing/inicio/inicio.component';
 
 
 
@@ -157,9 +158,18 @@ export const routes: Routes = [
   ]},
 
   //PATHS LANDING
-  { path: 'landing', component: LandingComponent,},
+  { path: 'landing', component: LandingComponent,
+  children:[
+    { path: 'inicio',  component: InicioComponent, data: {
+      titulo: 'Inicio',
+      breadcrums: []
+    },},
 
-  { path: '**', redirectTo: 'landing'}
+    { path: '**', redirectTo: 'landing/inicio'}
+  ]},
+
+
+  { path: '**', redirectTo: 'landing/inicio'}
 
 ];
 

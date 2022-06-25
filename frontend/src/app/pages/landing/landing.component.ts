@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UsuarioService} from '../../services/usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'landing',
@@ -8,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  constructor() { }
+  public rol="";
+
+  constructor(private UsuarioService: UsuarioService,
+              private router: Router) { }
 
   ngOnInit(): void {
+    //this.rol= this.UsuarioService.rol;
+    this.router.navigateByUrl('/landing/inicio');
+  }
+
+  logout() {
+    this.UsuarioService.logout();
   }
 
 }

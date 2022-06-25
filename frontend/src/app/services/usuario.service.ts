@@ -153,7 +153,7 @@ export class UsuarioService {
   }
 
   get rol(): string {
-    return this.usuario.rol;
+    if(this.usuario.rol) return this.usuario.rol;
   }
 
   get nombre_apellidos(): string{
