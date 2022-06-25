@@ -45,6 +45,7 @@ export class SubirtrabajoComponent implements OnInit {
     imagen: [''],
     director: ['', Validators.required ],
     estado: [''], // cambiar a revisión por los editores
+    visible: ['']
     //Contenido multimedia que quiera adjuntar el alumno
     // imagenes: [''],
     // videos: [''],
@@ -73,6 +74,7 @@ export class SubirtrabajoComponent implements OnInit {
     this.formSubmited = true;
     if (this.datosForm.invalid) { return; }
     this.datosForm.get('estado').setValue('Pendiente de revisión');
+    this.datosForm.get('visible').setValue(false);
     //Llamar a actualizar trabajo
     //Hacer bucle para cada array de archivos para subirlos uno a uno
       this.TrabajosService.actualizarTrabajo( this.uid,this.datosForm.value )
