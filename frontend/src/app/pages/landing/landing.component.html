@@ -1,66 +1,30 @@
 <!-- HEADER -->
-<nav class="navbar navbar-expand-lg navbar-red navbar-dark">
-    <div class="wrapper">
-
-    </div>
-    <div class="container-fluid all-show">
-        <a class="navbar-brand" href="#">Showroom UA <i class="fa fa-codepen"></i></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarFlex" aria-controls="navbarFlex" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-        <div class="collapse navbar-collapse" id="navbarFlex">
-            <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Categorías</a>
-                </li>
-            </ul>
-            <!-- <div class="d-flex flex-column col-md-2">
-                <div class="input-group no-border">
-                    <input type="text" value="" class="form-control" placeholder="Search...">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <i class="now-ui-icons ui-1_zoom-bold"></i>
-                        </div>
-                    </div>
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="#">
+        <img src="./assets/img/favicon.png" width="100" height="30" class="d-inline-block align-top" alt="Logo" />
+    </a>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Categorías</a>
+            </li>
+            <li class="nav-item dropdown usuario float-right">
+                <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="now-ui-icons users_single-02"></i></a>
+                <div class="dropdown-menu dropdown-menu-right user-dd animated">
+                    <a class="dropdown-item micursor justify-content-sm-center  " data-toggle="modal" data-target="#modalLogin"><strong>Login</strong></a>
+                    <!-- <a class="dropdown-item" routerLink="/cliente/perfil"><i class="fa fa-address-card m-r-5 m-l-5"></i> Mi Perfil</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item micursor" (click)="logout()"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a> -->
                 </div>
-            </div> -->
-            <div class="d-flex flex-column col-md-2 ">
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="now-ui-icons users_single-02"></i></a>
-                        <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                            <a class="dropdown-item micursor justify-content-sm-center  " data-toggle="modal" data-target="#modalLogin"><strong>Login</strong></a>
-                            <!-- <a class="dropdown-item" routerLink="/cliente/perfil"><i class="fa fa-address-card m-r-5 m-l-5"></i> Mi Perfil</a>
-                                      <div class="dropdown-divider"></div>
-                                      <a class="dropdown-item micursor" (click)="logout()"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a> -->
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
 </nav>
-<!-- Carrousel -->
-<div class="slide-carousel" id="one">
-    <div class="arrow-left">&lsaquo;</div>
-    <div class="arrow-right">&rsaquo;</div>
-    <div class="slides">
-        <div class="slide" id="slide1"><span class="title"></span></div>
-        <div class="slide" id="slide2"><span class="title"></span></div>
-        <div class="slide" id="slide3"><span class="title"></span></div>
-        <div class="slide" id="slide4"><span class="title"></span></div>
-        <div class="slide" id="slide5"><span class="title"></span></div>
-    </div>
-    <div class="auto-play">
-        <i class="fas fa-play" id="play-slider"></i>
-        <i class="fas fa-pause" id="pause-slider"></i>
-    </div>
-    <!-- <div class="dots"></div> -->
-</div>
+
 
 <!-- Modal Login -->
 <div class="container">
