@@ -76,10 +76,10 @@ nav {
 
 /* FONDO */
 
-body {
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab) !important;
+.bodylanding {
+    background: linear-gradient(-45deg, #52e9ee, #a6e4e9, #c8e6f1, #fbfcfc) !important;
     background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
+    animation: gradient 1s ease infinite;
     height: 100vh;
 }
 
@@ -93,8 +93,4 @@ body {
     100% {
         background-position: 0% 50%;
     }
-}
-
-.bodylanding {
-    background-color: #e73c7e;
 }
