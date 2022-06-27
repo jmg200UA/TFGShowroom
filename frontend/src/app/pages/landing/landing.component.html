@@ -1,40 +1,42 @@
-<!-- HEADER -->
-<nav class="navbar navbar-expand-lg navbar-red navbar-dark">
-    <div class="container-fluid all-show">
-        <a class="navbar-brand" href="#">
-            <img src="./assets/img/favicon.png" width="100" height="30" class="d-inline-block align-top" alt="Logo" />
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-        <div class="collapse navbar-collapse row" id="navbarNavDropdown">
-            <ul class="navbar-nav col-md-10">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Categorías</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav col-md-2">
-                <li class="nav-item dropdown usuario float-right">
-                    <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="now-ui-icons users_single-02"></i></a>
-                    <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                        <a class="dropdown-item micursor justify-content-sm-center  " data-toggle="modal" data-target="#modalLogin"><strong>Login</strong></a>
-                        <a *ngIf="rol!=''" class="dropdown-item" routerLink="/cliente/perfil"><i class="fa fa-address-card m-r-5 m-l-5"></i> Mi Perfil</a>
-                        <div *ngIf="rol!=''" class="dropdown-divider"></div>
-                        <a *ngIf="rol!=''" class="dropdown-item micursor" (click)="logout()"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
-                    </div>
-                </li>
-            </ul>
+<div class="bodylanding">
+    <!-- HEADER -->
+    <nav class="navbar navbar-expand-lg navbar-red navbar-dark">
+        <div class="container-fluid all-show">
+            <a class="navbar-brand" href="#">
+                <img src="./assets/img/favicon.png" width="100" height="30" class="d-inline-block align-top" alt="Logo" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+            <div class="collapse navbar-collapse row filaheader" id="navbarNavDropdown">
+                <ul class="navbar-nav col-md-10">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Categorías</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav col-md-2">
+                    <li class="nav-item dropdown usuario float-right">
+                        <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="now-ui-icons users_single-02"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right user-dd animated">
+                            <a class="dropdown-item micursor justify-content-sm-center  " data-toggle="modal" data-target="#modalLogin"><strong>Login</strong></a>
+                            <a *ngIf="rol!=''" class="dropdown-item" routerLink="/cliente/perfil"><i class="fa fa-address-card m-r-5 m-l-5"></i> Mi Perfil</a>
+                            <div *ngIf="rol!=''" class="dropdown-divider"></div>
+                            <a *ngIf="rol!=''" class="dropdown-item micursor" (click)="logout()"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
+    </nav>
+    <router-outlet></router-outlet>
+
+
+    <!-- Modal Login -->
+    <div class="container">
+        <app-login2></app-login2>
     </div>
-</nav>
-<router-outlet></router-outlet>
-
-
-<!-- Modal Login -->
-<div class="container">
-    <app-login2></app-login2>
 </div>
