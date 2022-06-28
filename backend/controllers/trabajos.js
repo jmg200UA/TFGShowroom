@@ -47,10 +47,17 @@ const obtenerTrabajos = async(req, res) => {
                     ],
                 };
             }
-            [trabajos, total] = await Promise.all([
-                Trabajo.find(query).skip(desde).limit(registropp).populate('autor').populate('titulacion'),
-                Trabajo.countDocuments(query)
-            ]);
+            if (req.query.desde) {
+                [trabajos, total] = await Promise.all([
+                    Trabajo.find(query).skip(desde).limit(registropp).populate('autor').populate('titulacion'),
+                    Trabajo.countDocuments(query)
+                ]);
+            } else {
+                [trabajos, total] = await Promise.all([
+                    Trabajo.find(query).populate('autor').populate('titulacion'),
+                    Trabajo.countDocuments(query)
+                ]);
+            }
         }
 
         res.json({

@@ -1,5 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import KeenSlider, { KeenSliderInstance } from "keen-slider"
+import { Component, ElementRef, OnInit, AfterViewInit, OnDestroy, ViewChild } from '@angular/core';
+import KeenSlider, { KeenSliderInstance } from "keen-slider";
+import { TrabajosService } from '../../../services/trabajos.service';
+import { Trabajo } from '../../../models/trabajo.model';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -10,24 +13,31 @@ import KeenSlider, { KeenSliderInstance } from "keen-slider"
 })
 export class InicioComponent implements OnInit {
 
-  constructor() { }
+  //Variables para la carga de los trabajos
+  public loading = true;
+  public totaltrabajos = 0;
+  public listaTrabajos;
+
+
+  constructor(private trabajoService: TrabajosService) { }
 
   ngOnInit(): void {
+    this.cargarTrabajos();
   }
 
-  @ViewChild("sliderRef") sliderRef: ElementRef<HTMLElement>
-
-  slider: KeenSliderInstance = null
-
-  ngAfterViewInit() {
-    this.slider = new KeenSlider(this.sliderRef.nativeElement, {
-      loop: true,
-      rtl: true,
-      slides: {
-        perView: 3,
-        spacing: 10,
-      },
-    })
+  cargarTrabajos() { // realizamos la carga de los trabajos registrados para mostrar
+    this.loading = true;
+    this.trabajoService.cargarTrabajosTodo()
+      .subscribe( res => {
+        console.log("Res de trabajos", res['trabajos']);
+          this.listaTrabajos = res['trabajos'];
+          this.totaltrabajos = res['page'].total;
+        this.loading = false;
+      }, (err) => {
+        Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
+        //console.warn('error:', err);
+        this.loading = false;
+      });
   }
 
 

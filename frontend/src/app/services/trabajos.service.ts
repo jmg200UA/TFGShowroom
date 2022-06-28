@@ -57,6 +57,10 @@ export class TrabajosService {
     return this.http.get(`${environment.base_url}/trabajos/?desde=${desde}&texto=${textoBusqueda}` , this.cabeceras);
   }
 
+  cargarTrabajosTodo(): Observable<object> {
+    return this.http.get(`${environment.base_url}/trabajos` , this.cabeceras);
+  }
+
   cargarTrabajosEditor( desde: number, textoBusqueda?: string ): Observable<object> { // get trabajos para revisar
     if (!desde) { desde = 0;}
     if (!textoBusqueda) {textoBusqueda = '';}
