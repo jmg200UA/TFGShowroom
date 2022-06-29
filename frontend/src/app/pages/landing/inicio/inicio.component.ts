@@ -5,7 +5,9 @@ import { Trabajo } from '../../../models/trabajo.model';
 import Swal from 'sweetalert2';
 import { SwiperComponent } from "swiper/angular";
 // import Swiper core and required modules
-import SwiperCore, { SwiperOptions } from 'swiper';
+import SwiperCore, { SwiperOptions, Navigation, Pagination, Scrollbar, A11y  } from 'swiper';
+
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 
 @Component({
@@ -20,7 +22,6 @@ export class InicioComponent implements OnInit {
   public loading = true;
   public totaltrabajos = 0;
   public listaTrabajos;
-  public listaTrabajosPortada;
 
   config: SwiperOptions = {
     slidesPerView: 1,
@@ -71,9 +72,6 @@ export class InicioComponent implements OnInit {
         console.log("Res de trabajos", res['trabajos']);
           this.listaTrabajos = res['trabajos'];
           this.totaltrabajos = res['page'].total;
-          for(var i=0;this.listaTrabajos.length; i++){
-            this.listaTrabajosPortada.push(this.trabajoService.crearImagenUrl(this.listaTrabajos[i].imagen));
-          }
         this.loading = false;
       }, (err) => {
         Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
@@ -86,9 +84,4 @@ export class InicioComponent implements OnInit {
       return this.trabajoService.crearImagenUrl(imagen);
     }
 
-    crearUrlPortada(){
-      for(var i=0;this.listaTrabajos.length; i++){
-        this.listaTrabajosPortada.push(this.trabajoService.crearImagenUrl(this.listaTrabajos[i].imagen));
-      }
-    }
   }

@@ -24,7 +24,6 @@
     -webkit-align-items: center;
     align-items: center;
     height: 200px;
-    border-radius: 10px;
 }
 
 
@@ -56,4 +55,9 @@
 .filabuscador {
     margin-top: 20px;
     margin-bottom: 30px;
+}
+
+.card {
+    border: 10px;
+    border-radius: 10px;
 }
