@@ -1,20 +1,12 @@
-<!-- Contenedor principal con margenes a los lados -->
-<div class="row">
-    <div class="col-md-1">aaaaaa</div>
-    <div class="col-md-10">
-        <!-- Fila maquetación general  -->
-        <div class="row">
-            <!-- Fila buscador -->
-            <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                    <h5>Buscador</h5>
-                </div>
-                <div class="col-md-3"></div>
-            </div>
+<div class="row justify-content-center">
+    <!-- <div class="col-md-1 primeracol">aaaaaa</div> -->
+    <div class="col-md-10  segundacol">
+        <!-- Fila buscador -->
+        <div class="row justify-content-center text-center">
+            <h5>Buscador</h5>
         </div>
-        <!-- Primera fila trabajos -->
-        <div class="row">
+        <!-- Primera fila trabajos, con margenes a los lados izda dcha -->
+        <div class="row ml-4 mr-4">
             <!-- <ng-template *ngFor="let trabajo of listaTrabajos; let i=index"> -->
             <!-- <div class="trabajo">
                     <div class="card">
@@ -23,7 +15,24 @@
                     </div>
                 </div> -->
             <!-- </ng-template> -->
+            <swiper [config]="config" (swiper)="onSwiper($event)" (slideChange)="onSlideChange()">
+                <ng-template *ngFor="let trabajo of listaTrabajos; let i=index" swiperSlide>
+                    <div class="card">
+                        <div class="card-body">
+                            <img class="portada" [src]="crearImagenUrl(trabajo.imagen)" alt="portada">
+                        </div>
+                    </div>
+                </ng-template>
+                <!-- <ng-template swiperSlide>Slide 2</ng-template>
+                <ng-template swiperSlide>Slide 3</ng-template>
+                <ng-template swiperSlide>Slide 1</ng-template>
+                <ng-template swiperSlide>Slide 2</ng-template>
+                <ng-template swiperSlide>Slide 3</ng-template>
+                <ng-template swiperSlide>Slide 1</ng-template>
+                <ng-template swiperSlide>Slide 2</ng-template>
+                <ng-template swiperSlide>Slide 3</ng-template> -->
+            </swiper>
         </div>
     </div>
-    <div class="col-md-1">aaaaaa</div>
+    <!-- <div class="col-md-1 terceracol">aaaaaa</div> -->
 </div>
