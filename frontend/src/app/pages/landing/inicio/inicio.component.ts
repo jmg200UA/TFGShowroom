@@ -7,6 +7,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { SwiperComponent } from "swiper/angular";
 // import SwiperCore y los modulos requeridos
 import SwiperCore, { SwiperOptions, Navigation, Pagination, Scrollbar, A11y  } from 'swiper';
+import { TitulacionService } from '../../../services/titulacion.service';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
@@ -23,6 +24,9 @@ export class InicioComponent implements OnInit {
   public loading = true;
   public totaltrabajos = 0;
   public listaTrabajos;
+
+  //Variables para la carga de titulaciones
+  public listaTitulaciones;
 
   config: SwiperOptions = {
     slidesPerView: 1,
@@ -61,13 +65,16 @@ export class InicioComponent implements OnInit {
 
 
   constructor(private trabajoService: TrabajosService,
+              private TitulacionService: TitulacionService,
               private router: Router) { }
 
   ngOnInit(): void {
     this.cargarTrabajos();
+    this.cargarTitulaciones();
   }
 
-  cargarTrabajos() { // realizamos la carga de los trabajos registrados para mostrar
+  // cargamos los trabajos
+  cargarTrabajos() {
     this.loading = true;
     this.trabajoService.cargarTrabajosTodo()
       .subscribe( res => {
@@ -82,12 +89,32 @@ export class InicioComponent implements OnInit {
       });
     }
 
+    //cargamos las titulaciones
+    cargarTitulaciones() {
+      this.loading = true;
+      this.TitulacionService.cargarTitulacionesTodo()
+        .subscribe( res => {
+            this.listaTitulaciones = res['titulaciones'];
+            this.loading = false;
+          }, (err) => {
+            Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
+            this.loading = false;
+          });
+      }
+
+    //Para cargar la imagen de la titulacion
+    crearUrlTitulacion(imagen:string){
+      return this.TitulacionService.crearImagenUrl(imagen);
+    }
+
+    //Para cargar la imagen del trabajo
     crearImagenUrl(imagen: string) {
       return this.trabajoService.crearImagenUrl(imagen);
     }
 
     irFicha(uid){
-      this.router.navigateByUrl('/landing/trabajo/'+ uid);
+      // this.router.navigateByUrl('/landing/trabajo/'+ uid);
+      window.open('/landing/trabajo/'+uid, '_blank');
     }
 
   }

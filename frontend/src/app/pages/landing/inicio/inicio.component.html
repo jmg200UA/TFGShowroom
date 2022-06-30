@@ -1,35 +1,22 @@
 <div class="row justify-content-center">
-    <h1 class="slogan">Todos los Trabajos de Fin de Grado y Fin de Máster en una plataforma</h1>
+    <!-- <h1 class="slogan">Todos los Trabajos de Fin de Grado y Fin de Máster en una plataforma</h1> -->
     <!-- <div class="col-md-1 primeracol">aaaaaa</div> -->
     <div class="col-md-10  segundacol">
         <!-- Primera fila trabajos, con margenes a los lados izda dcha -->
         <!-- Fila buscador -->
-        <div class="row ml-2 mr-2 filabuscador align-items-center text-center">
-            <input class="search__input text-center" type="text" placeholder="  Busca trabajos">
+        <div class="row ml-2 mr-2 filabuscador">
+            <!-- <input class="search__input text-center" type="text" placeholder="  Busca trabajos"> -->
+            <div class="col-md-2 divtitu" *ngFor="let titulacion of listaTitulaciones">
+                <img [src]="crearUrlTitulacion(titulacion.imagen)" alt="titulacion" class="img-thumbnail rounded-circle" width="50" height="50">
+                <div class="nombretitu">{{titulacion.nombre}}</div>
+            </div>
         </div>
         <div class="row ml-4 mr-4">
-            <!-- <ng-template *ngFor="let trabajo of listaTrabajos; let i=index"> -->
-            <!-- <div class="trabajo">
-                    <div class="card">
-                        <h5>{{trabajo.titulo}}</h5>
-                        <h5>{{trabajo.autor.nombre_apellidos}}</h5>
-                    </div>
-                </div> -->
-            <!-- </ng-template> -->
             <swiper [config]="config">
                 <ng-template *ngFor="let trabajo of listaTrabajos; let i=index" swiperSlide>
                     <img (click)="irFicha(trabajo.uid)" class="micursor portada" [src]="crearImagenUrl(trabajo.imagen)" alt="portada">
                 </ng-template>
-                <!-- <ng-template swiperSlide>Slide 2</ng-template>
-                <ng-template swiperSlide>Slide 3</ng-template>
-                <ng-template swiperSlide>Slide 1</ng-template>
-                <ng-template swiperSlide>Slide 2</ng-template>
-                <ng-template swiperSlide>Slide 3</ng-template>
-                <ng-template swiperSlide>Slide 1</ng-template>
-                <ng-template swiperSlide>Slide 2</ng-template>
-                <ng-template swiperSlide>Slide 3</ng-template> -->
             </swiper>
         </div>
     </div>
-    <!-- <div class="col-md-1 terceracol">aaaaaa</div> -->
 </div>

@@ -102,3 +102,28 @@
     border-radius: 0;
     background-position: 100% center;
 }
+
+@media (min-width: 768px) {
+    .divtitu {
+        text-align: center;
+        margin-bottom: 4em;
+    }
+    .nombretitu {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    /* .divtitu {
+        display: inline-flex;
+        margin-bottom: 1em;
+    }
+    .nombretitu {
+        margin-top: .5em;
+    } */
+    .filabuscador {
+        /* visibility:hidden !important; */
+        display: none !important;
+    }
+}

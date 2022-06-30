@@ -4,7 +4,7 @@
         <!-- Primera columna titulo descripcion -->
         <div class="col-md-6">
             <!-- Row para titulo-->
-            <div class="row col-lg-4 rowgeneral">
+            <div class="row rowgeneral">
                 <h2>{{trabajo.titulo}}</h2>
                 <div class="row">
                     <p>uireowfhrewoufiheworrife</p>
@@ -12,16 +12,16 @@
                 </div>
             </div>
             <!-- Row para descripcion -->
-            <div class="row col-lg-8"></div>
+            <div class="row"></div>
         </div>
         <!-- Segunda columna Imagen detalles -->
         <div class="col-md-6 rowgeneral">
             <!-- Row para la imagen -->
-            <div class="row col-lg-8">
+            <div class="row">
                 <img class="micursor portada" [src]="crearImagenUrl(trabajo.imagen)" alt="portada">
             </div>
             <!-- Row para detalles -->
-            <div class="row col-lg-4">
+            <div class="row">
                 <p>Área: {{trabajo.area}}</p>
                 <p>Carrera: {{trabajo.titulacion.nombre}}</p>
                 <p>Director investigación: {{trabajo.director}}</p>

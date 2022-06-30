@@ -54,7 +54,7 @@ export class TitulacionService {
 
     const token = localStorage.getItem('token') || '';
     if (!imagen) {
-      return `${environment.base_url}/upload/titulacionimg/no-imagen.jpg?token=${token}`;
+      return `${environment.base_url}/upload/titulacionimg/nofoto.PNG?token=${token}`;
     }
     return `${environment.base_url}/upload/titulacionimg/${imagen}?token=${token}`;
   }
