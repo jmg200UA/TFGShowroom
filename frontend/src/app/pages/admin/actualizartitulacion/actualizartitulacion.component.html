@@ -16,7 +16,7 @@
                             <div class="col-lg-3 col-md-12 text-lg-right">
                                 <span class="">Nombre</span>
                             </div>
-                            <div class="col-lg-8 col-md-12">
+                            <div class="col-lg-5 col-md-12">
                                 <input type="text" class="form-control" formControlName="nombre" [ngClass]="{'is-invalid' : campoNoValido('nombre')}" id="nombre">
                                 <div class="invalid-feedback">
                                     El campo es obligatorio
@@ -27,7 +27,7 @@
                             <div class="col-lg-3 col-md-12 text-lg-right">
                                 <span class="">Tipo</span>
                             </div>
-                            <div class="col-lg-8 col-md-12">
+                            <div class="col-lg-2 col-md-12">
                                 <select (change)="salida($event.target.value)" class="form-control" formControlName="tipo" [ngClass]="{'is-invalid' : campoNoValido('tipo')}" id="tipo">
                                 <option value="Grado">Grado</option>
                                 <option value="Máster">Máster</option>
@@ -41,7 +41,7 @@
                             <div class="col-lg-3 col-md-12 text-lg-right">
                                 <span class="">Área</span>
                             </div>
-                            <div class="col-lg-8 col-md-12">
+                            <div class="col-lg-4 col-md-12">
                                 <div *ngIf="tipo=='Grado'">
                                     <select class="form-control" formControlName="area" [ngClass]="{'is-invalid' : campoNoValido('area')}" id="area">
                                       <option [value]="item" *ngFor="let item of ListaGrados">{{item}}</option>
