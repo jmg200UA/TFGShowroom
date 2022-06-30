@@ -1,1 +1,32 @@
-<p>detallestrabajo works!</p>
+<div class="row justify-content-center">
+    <!-- Primera fila info general -->
+    <div class="row mr-4 ml-4" *ngIf="!loading">
+        <!-- Primera columna titulo descripcion -->
+        <div class="col-md-6">
+            <!-- Row para titulo-->
+            <div class="row col-lg-4 rowgeneral">
+                <h2>{{trabajo.titulo}}</h2>
+                <div class="row">
+                    <p>uireowfhrewoufiheworrife</p>
+                    <p>uireowfhrewo</p>
+                </div>
+            </div>
+            <!-- Row para descripcion -->
+            <div class="row col-lg-8"></div>
+        </div>
+        <!-- Segunda columna Imagen detalles -->
+        <div class="col-md-6 rowgeneral">
+            <!-- Row para la imagen -->
+            <div class="row col-lg-8">
+                <img class="micursor portada" [src]="crearImagenUrl(trabajo.imagen)" alt="portada">
+            </div>
+            <!-- Row para detalles -->
+            <div class="row col-lg-4">
+                <p>Área: {{trabajo.area}}</p>
+                <p>Carrera: {{trabajo.titulacion.nombre}}</p>
+                <p>Director investigación: {{trabajo.director}}</p>
+            </div>
+        </div>
+    </div>
+    <!-- Contenidos multimedia y extras -->
+</div>
