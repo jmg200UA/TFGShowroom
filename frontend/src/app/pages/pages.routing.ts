@@ -28,6 +28,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 //COMPONENTS LANDING
 import { LandingComponent } from './landing/landing.component';
 import { InicioComponent } from './landing/inicio/inicio.component';
+import { DetallestrabajoComponent } from './landing/detallestrabajo/detallestrabajo.component';
 
 
 
@@ -162,6 +163,10 @@ export const routes: Routes = [
   children:[
     { path: 'inicio',  component: InicioComponent, data: {
       titulo: 'Inicio',
+      breadcrums: []
+    },},
+    { path: 'trabajo/:uid',  component: DetallestrabajoComponent, data: {
+      titulo: 'Ficha Trabajo',
       breadcrums: []
     },},
 

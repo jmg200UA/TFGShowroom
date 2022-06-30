@@ -3,8 +3,9 @@ import KeenSlider, { KeenSliderInstance } from "keen-slider";
 import { TrabajosService } from '../../../services/trabajos.service';
 import { Trabajo } from '../../../models/trabajo.model';
 import Swal from 'sweetalert2';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { SwiperComponent } from "swiper/angular";
-// import Swiper core and required modules
+// import SwiperCore y los modulos requeridos
 import SwiperCore, { SwiperOptions, Navigation, Pagination, Scrollbar, A11y  } from 'swiper';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
@@ -59,7 +60,8 @@ export class InicioComponent implements OnInit {
   }
 
 
-  constructor(private trabajoService: TrabajosService) { }
+  constructor(private trabajoService: TrabajosService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.cargarTrabajos();
@@ -82,6 +84,10 @@ export class InicioComponent implements OnInit {
 
     crearImagenUrl(imagen: string) {
       return this.trabajoService.crearImagenUrl(imagen);
+    }
+
+    irFicha(uid){
+      this.router.navigateByUrl('/landing/trabajo/'+ uid);
     }
 
   }

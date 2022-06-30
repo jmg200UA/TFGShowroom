@@ -1,16 +1,12 @@
 <div class="row justify-content-center">
+    <h1 class="slogan">Todos los Trabajos de Fin de Grado y Fin de Máster en una plataforma</h1>
     <!-- <div class="col-md-1 primeracol">aaaaaa</div> -->
     <div class="col-md-10  segundacol">
-        <!-- Fila buscador -->
-        <div class="row filabuscador align-items-center">
-            <div class="input-group rounded">
-                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                <span class="input-group-text border-0" id="search-addon">
-              <i class="fas fa-search"></i>
-            </span>
-            </div>
-        </div>
         <!-- Primera fila trabajos, con margenes a los lados izda dcha -->
+        <!-- Fila buscador -->
+        <div class="row ml-2 mr-2 filabuscador align-items-center text-center">
+            <input class="search__input text-center" type="text" placeholder="  Busca trabajos">
+        </div>
         <div class="row ml-4 mr-4">
             <!-- <ng-template *ngFor="let trabajo of listaTrabajos; let i=index"> -->
             <!-- <div class="trabajo">
@@ -20,13 +16,9 @@
                     </div>
                 </div> -->
             <!-- </ng-template> -->
-            <swiper [config]="config" (swiper)="onSwiper($event)" (slideChange)="onSlideChange()">
+            <swiper [config]="config">
                 <ng-template *ngFor="let trabajo of listaTrabajos; let i=index" swiperSlide>
-                    <div class="card">
-                        <div class="card-body">
-                            <img class="portada" [src]="crearImagenUrl(trabajo.imagen)" alt="portada">
-                        </div>
-                    </div>
+                    <img (click)="irFicha(trabajo.uid)" class="micursor portada" [src]="crearImagenUrl(trabajo.imagen)" alt="portada">
                 </ng-template>
                 <!-- <ng-template swiperSlide>Slide 2</ng-template>
                 <ng-template swiperSlide>Slide 3</ng-template>

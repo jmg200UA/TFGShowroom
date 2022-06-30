@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { Auth2Module } from '../../auth2/auth2.module';
 import { InicioComponent } from './inicio/inicio.component';
 import { SwiperModule } from 'swiper/angular';
+import { DetallestrabajoComponent } from './detallestrabajo/detallestrabajo.component';
 
 
 
@@ -14,6 +15,7 @@ import { SwiperModule } from 'swiper/angular';
 
     LandingComponent,
       InicioComponent,
+      DetallestrabajoComponent,
   ],
   imports: [
     CommonModule,

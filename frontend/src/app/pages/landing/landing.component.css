@@ -77,7 +77,7 @@ nav {
 /* FONDO */
 
 .bodylanding {
-    background: linear-gradient(-45deg, #52e9ee, #a6e4e9, #c8e6f1, #fbfcfc) !important;
+    background: linear-gradient(-45deg, #ffffff, #ffffffc7, #ffffff81, rgba(138, 138, 138, 0.192)) !important;
     background-size: 400% 400%;
     animation: gradient 1s ease infinite;
     height: 100vh;
