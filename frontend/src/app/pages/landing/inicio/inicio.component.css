@@ -104,6 +104,10 @@
     background-position: 100% center;
 }
 
+.filabuscador {
+    padding-top: 4em;
+}
+
 @media (min-width: 768px) {
     .divtitu {
         text-align: center;

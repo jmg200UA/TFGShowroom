@@ -8,7 +8,7 @@
     position: sticky;
     top: 0;
     z-index: 9999999;
-    width: 103%;
+    width: 102.95%;
 }
 
 .navbar .nav-link:hover,
@@ -31,13 +31,8 @@
     text-decoration: none;
 }
 
-
-/* Change navbar styling on small viewports */
-
-@media (min-width:991px) {
-    .usuario {
-        padding-left: 60em;
-    }
+.usuario {
+    right: 2em;
 }
 
 @media (max-width:991px) {
@@ -56,9 +51,9 @@
 
 .bodylanding {
     /* background: linear-gradient(-45deg, #ffffff, #ffffffc7, #ffffff81, rgba(138, 138, 138, 0.192)) !important; */
-    background-size: 400% 400%;
+    /* background-size: 400% 400%;
     animation: gradient 1s ease infinite;
-    align-items: flex-start;
+    align-items: flex-start; */
 }
 
 @keyframes gradient {
