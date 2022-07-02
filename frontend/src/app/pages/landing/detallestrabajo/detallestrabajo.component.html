@@ -1,30 +1,34 @@
-<div class="row justify-content-center">
+<div class="row">
     <!-- Primera fila info general -->
-    <div class="row mr-4 ml-4" *ngIf="!loading">
+    <div class="row mt-4" *ngIf="!loading">
         <!-- Primera columna titulo descripcion -->
-        <div class="col-md-6">
+        <div class="column col-md-6 pl-4">
             <!-- Row para titulo-->
-            <div class="row rowgeneral">
-                <h2>{{trabajo.titulo}}</h2>
-                <div class="row">
-                    <p>uireowfhrewoufiheworrife</p>
-                    <p>uireowfhrewo</p>
+            <div class=" row rowtitulo ">
+                <div class="column ">
+                    <h2>{{trabajo.titulo}}</h2>
+                </div>
+                <div class="column ">
+                    <div class="row ">
+                        <p class="float-left">{{trabajo.autor.nombre_apellidos}}</p>
+                        <p class="float-right ">uireowfhrewo</p>
+                    </div>
                 </div>
             </div>
             <!-- Row para descripcion -->
-            <div class="row"></div>
+            <div class="row "></div>
         </div>
         <!-- Segunda columna Imagen detalles -->
-        <div class="col-md-6 rowgeneral">
+        <div class="column columnageneral col-md-6 pr-4 ">
             <!-- Row para la imagen -->
-            <div class="row">
-                <img class="micursor portada" [src]="crearImagenUrl(trabajo.imagen)" alt="portada">
+            <div class="row rowportada ">
+                <img class="micursor portada " [src]="crearImagenUrl(trabajo.imagen) " alt="portada ">
             </div>
             <!-- Row para detalles -->
-            <div class="row">
-                <p>Área: {{trabajo.area}}</p>
-                <p>Carrera: {{trabajo.titulacion.nombre}}</p>
-                <p>Director investigación: {{trabajo.director}}</p>
+            <div class="row detalles ">
+                <div class="column ">Área: {{trabajo.area}}</div>
+                <div class="column ">Carrera: {{trabajo.titulacion.nombre}}</div>
+                <div class="column ">Director investigación: {{trabajo.director}}</div>
             </div>
         </div>
     </div>
