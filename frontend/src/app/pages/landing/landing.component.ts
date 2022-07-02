@@ -58,4 +58,6 @@ export class LandingComponent implements OnInit {
     console.log(this.listatitu);
   }
 
+
+
 }

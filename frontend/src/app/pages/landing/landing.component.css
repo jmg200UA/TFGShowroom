@@ -1,76 +1,50 @@
 /* HEADER */
 
 @import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
-
-/* body {
-    background-color: #eee;
-} */
-
-nav {
+.navbar {
+    transition: all 0.4s;
     background-color: blue;
     margin-bottom: 0;
     position: sticky;
     top: 0;
     z-index: 9999999;
+    width: 103%;
 }
 
-.navbar-nav>li>a {
-    text-transform: uppercase;
-    font-size: 12px;
-    margin-right: 20px;
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
     color: #fff;
+    text-decoration: none;
 }
 
-.navbar-toggler {
-    /* padding: .20rem .50rem;
-    font-size: 1.25rem;
-    line-height: 1;
-    border: 1px solid white;*/
-    background-color: transparent;
-    border: none;
+
+/* Change navbar styling on scroll */
+
+.navbar.active {
+    background: rgb(213, 243, 247);
+    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.nav-link {
-    color: #fff !important;
+.navbar.active .nav-link:hover,
+.navbar.active .nav-link:focus {
+    background: rgb(213, 243, 247);
+    text-decoration: none;
 }
 
-.wrapper {
-    width: 100%;
-    position: absolute;
-    height: 100%;
-    /* background-color: #000; */
-    clip-path: polygon(81% 0, 100% 0, 100% 50%, 100% 100%, 71% 100%);
-    transition: 1s all;
+
+/* Change navbar styling on small viewports */
+
+@media (min-width:991px) {
+    .usuario {
+        padding-left: 60em;
+    }
 }
 
-.navbar-brand {
-    color: #fff;
-    font-family: 'Allerta Stencil', sans-serif;
-    /* margin-bottom: 4px; */
-    font-size: 27px;
-}
-
-.navbar-red:hover .wrapper {
-    clip-path: polygon(81% 0, 100% 0, 100% 50%, 100% 100%, 65% 100%);
-}
-
-.navbar-brand:hover {
-    color: #fff;
-}
-
-.navbar-red {
-    /* background-color: red; */
-    color: #fff;
-}
-
-.all-show {
-    z-index: 10;
-}
-
-.navbar-toggler-icon {
-    /* color: #eee; */
-    border: none;
-    background-color: transparent;
+@media (max-width:991px) {
+    ul {
+        background-color: blue;
+        border: 1px solid white;
+    }
 }
 
 .filaheader {
@@ -81,7 +55,7 @@ nav {
 /* FONDO */
 
 .bodylanding {
-    background: linear-gradient(-45deg, #ffffff, #ffffffc7, #ffffff81, rgba(138, 138, 138, 0.192)) !important;
+    /* background: linear-gradient(-45deg, #ffffff, #ffffffc7, #ffffff81, rgba(138, 138, 138, 0.192)) !important; */
     background-size: 400% 400%;
     animation: gradient 1s ease infinite;
     align-items: flex-start;
@@ -104,9 +78,8 @@ nav {
 }
 
 .desplegabletitu {
-    background: linear-gradient(-45deg, #ffffff, #ecfbff, #c8ecfa, rgb(170, 238, 255)) !important;
-    margin-bottom: 2em;
-    box-shadow: 0px 10px 10px -6px black;
+    background: linear-gradient(rgb(0, 162, 255), rgb(255, 255, 255));
+    box-shadow: 0px 10px 10px -6px rgb(255, 255, 255);
     padding-top: 1em;
     padding-bottom: 1em;
     position: sticky;
@@ -115,7 +88,7 @@ nav {
 }
 
 .nombretitu {
-    font-weight: 500;
+    font-weight: 600;
 }
 
 @media (min-width: 768px) {

@@ -10,7 +10,7 @@
 .swiper-slide {
     text-align: center;
     font-size: 18px;
-    background: #fff;
+    /* background: #fff; */
     /* Center slide text vertically */
     display: -webkit-box;
     display: -ms-flexbox;
@@ -55,8 +55,9 @@
 }
 
 .filabuscador {
-    margin-top: 2em;
-    margin-bottom: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background: linear-gradient(rgb(0, 162, 255), rgb(255, 255, 255));
 }
 
 .slogan {
