@@ -55,8 +55,8 @@
 }
 
 .filabuscador {
-    margin-top: 20px;
-    margin-bottom: 50px;
+    margin-top: 2em;
+    margin-bottom: 2em;
 }
 
 .slogan {
@@ -106,7 +106,7 @@
 @media (min-width: 768px) {
     .divtitu {
         text-align: center;
-        margin-bottom: 4em;
+        margin-bottom: 2em;
     }
     .nombretitu {
         display: flex;

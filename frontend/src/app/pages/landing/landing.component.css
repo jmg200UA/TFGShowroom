@@ -8,6 +8,10 @@
 
 nav {
     background-color: blue;
+    margin-bottom: 0;
+    position: sticky;
+    top: 0;
+    z-index: 9999999;
 }
 
 .navbar-nav>li>a {
@@ -42,7 +46,7 @@ nav {
 .navbar-brand {
     color: #fff;
     font-family: 'Allerta Stencil', sans-serif;
-    margin-bottom: 4px;
+    /* margin-bottom: 4px; */
     font-size: 27px;
 }
 
@@ -80,7 +84,7 @@ nav {
     background: linear-gradient(-45deg, #ffffff, #ffffffc7, #ffffff81, rgba(138, 138, 138, 0.192)) !important;
     background-size: 400% 400%;
     animation: gradient 1s ease infinite;
-    height: 100vh;
+    align-items: flex-start;
 }
 
 @keyframes gradient {
@@ -92,5 +96,45 @@ nav {
     }
     100% {
         background-position: 0% 50%;
+    }
+}
+
+.display {
+    display: none;
+}
+
+.desplegabletitu {
+    background: linear-gradient(-45deg, #ffffff, #ecfbff, #c8ecfa, rgb(170, 238, 255)) !important;
+    margin-bottom: 2em;
+    box-shadow: 0px 10px 10px -6px black;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    position: sticky;
+    top: 4rem;
+    z-index: 99999;
+}
+
+.nombretitu {
+    font-weight: 500;
+}
+
+@media (min-width: 768px) {
+    .divtitu {
+        text-align: center;
+        margin-bottom: 3em;
+    }
+    .nombretitu {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .divtitu {
+        display: inline-flex;
+        margin-bottom: .5em;
+    }
+    .nombretitu {
+        margin-top: .5em;
     }
 }

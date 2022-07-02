@@ -1,4 +1,4 @@
-<div class="bodylanding">
+<div *ngIf="!loading" class="bodylanding">
     <!-- HEADER -->
     <nav class="navbar navbar-expand-lg navbar-red navbar-dark">
         <div class="container-fluid all-show">
@@ -14,7 +14,8 @@
                         <a class="nav-link" href="#">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Titulaciones</a>
+                        <a *ngIf="listatitu" (click)="cambiotitu()" class="nav-link dropdown-toggle micursor" aria-haspopup="true" aria-expanded="false">Titulaciones</a>
+                        <a *ngIf="!listatitu" (click)="cambiotitu()" class="nav-link dropdown-toggle micursor" aria-haspopup="true" aria-expanded="true">Titulaciones</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav col-md-2">
@@ -32,11 +33,19 @@
             </div>
         </div>
     </nav>
+    <!-- Se despliega cuando listatitu esta a false -->
+    <div class="row pl-2 pr-2 desplegabletitu justify-content-center" [ngClass]=" { 'display': listatitu} ">
+        <div [ngClass]=" { 'display': listatitu} " class="col-md-2 divtitu " *ngFor="let titulacion of listaTitulaciones ">
+            <img [src]="crearUrlTitulacion(titulacion.imagen) " alt="titulacion " class="img-thumbnail rounded-circle " width="50 " height="50 ">
+            <div class="nombretitu ">{{titulacion.nombre}}</div>
+        </div>
+    </div>
+
     <router-outlet></router-outlet>
 
 
     <!-- Modal Login -->
-    <div class="container">
+    <div class="container ">
         <app-login2></app-login2>
     </div>
 </div>

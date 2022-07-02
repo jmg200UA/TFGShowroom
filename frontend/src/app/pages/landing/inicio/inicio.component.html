@@ -4,11 +4,11 @@
     <div class="col-md-10  segundacol">
         <!-- Primera fila trabajos, con margenes a los lados izda dcha -->
         <!-- Fila buscador -->
-        <div class="row ml-2 mr-2 filabuscador">
+        <div class="row ml-2 mr-2 filabuscador justify-content-center ">
             <!-- <input class="search__input text-center" type="text" placeholder="  Busca trabajos"> -->
             <div class="col-md-2 divtitu" *ngFor="let titulacion of listaTitulaciones">
                 <img [src]="crearUrlTitulacion(titulacion.imagen)" alt="titulacion" class="img-thumbnail rounded-circle" width="50" height="50">
-                <div class="nombretitu">{{titulacion.nombre}}</div>
+                <div class="nombretitu"><strong>{{titulacion.nombre}}</strong></div>
             </div>
         </div>
         <div class="row ml-4 mr-4">
