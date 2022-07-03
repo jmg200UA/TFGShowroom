@@ -1,3 +1,21 @@
+/* SLIDER */
+
+@import '~swiper/swiper.min.css';
+@import "~swiper/modules/free-mode/free-mode.min.css";
+@import "~swiper/modules/scrollbar/scrollbar.min.css";
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    font-size: 18px;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 30px;
+}
+
 .portada {
     width: 100%;
     height: auto;
@@ -10,6 +28,26 @@
         object-fit: cover;
         object-position: center center;
     }
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background: rgb(196, 188, 188);
+    border-radius: 5px;
 }
 
 

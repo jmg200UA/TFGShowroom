@@ -24,7 +24,7 @@ export class NuevotrabajoComponent implements OnInit {
 
   public datosForm = this.fb.group({
     autor: ['', Validators.required ], // hacer peticion a la BD para sacar en un desplegable todos los usuarios con ROL_ALUMNO
-    titulo: ['', Validators.required ],
+    titulo: ['', Validators.required, Validators.maxLength(150) ], // maximo 150 caracteres
     titulacion: ['', Validators.required ],
     tipo: ['', Validators.required],
     area: ['', Validators.required],

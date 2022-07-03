@@ -32,9 +32,12 @@
                                 <span class=" ">Título</span>
                             </div>
                             <div class="col-lg-5 col-md-12 ">
-                                <input type="text " class="form-control " formControlName="titulo" [ngClass]="{ 'is-invalid' : campoNoValido( 'titulo')} " id="titulo ">
-                                <div class="invalid-feedback ">
+                                <input type="text " class="form-control " maxlength="150" formControlName="titulo" [ngClass]="{ 'is-invalid' : campoNoValido( 'titulo')} " id="titulo ">
+                                <div class="invalid-feedback">
                                     El campo es obligatorio
+                                </div>
+                                <div *ngIf="datosForm.get('titulo').errors?.maxlength">
+                                    Máximo permitido: 150 caracteres
                                 </div>
                             </div>
                         </div>

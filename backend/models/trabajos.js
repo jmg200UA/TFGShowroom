@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 const TrabajoSchema = Schema({
-    titulo: {
+    titulo: { // maximo 150 caracteres
         type: String,
         require: true
     },
