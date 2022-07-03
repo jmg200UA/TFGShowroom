@@ -1,32 +1,35 @@
 <div class="container-fluid">
     <!-- Primera fila info general -->
-    <div class="row mt-4" *ngIf="!loading">
+    <div class="row pt-4" *ngIf="!loading">
         <!-- Primera columna titulo descripcion -->
-        <div class="col-6 pl-4">
+        <div class="col-md-7 primeracol">
             <!-- Row para titulo-->
             <div class="row rowtitulo">
-                <div class="row">
-                    <h2>{{trabajo.titulo}}</h2>
-                </div>
-                <div class="row">
-                    <p class="float-left">{{trabajo.autor.nombre_apellidos}}</p>
-                    <p class="float-right">uireowfhrewo</p>
-                </div>
-                <!-- Row para descripcion -->
-                <div class="row"></div>
+                <h2>{{trabajo.titulo}}</h2>
             </div>
+            <div class="row">
+                {{trabajo.autor.nombre_apellidos}}
+            </div>
+            <!-- Row para descripcion -->
+            <div class="row">{{trabajo.resumen}}</div>
         </div>
         <!-- Segunda columna Imagen detalles -->
-        <div class="col-6 pr-4">
+        <div class="col-md-5 segundacol">
             <!-- Row para la imagen -->
-            <div class="row rowportada">
-                <img class="micursor portada" [src]="crearImagenUrl(trabajo.imagen) " alt="portada ">
+            <div class="row">
+                <img class="micursor portada rowportada" [src]="crearImagenUrl(trabajo.imagen) " alt="portada ">
             </div>
             <!-- Row para detalles -->
-            <div class="row">
-                <div class="row">Área: {{trabajo.area}}</div>
-                <div class="row">Carrera: {{trabajo.titulacion.nombre}}</div>
-                <div class="row">Director investigación: {{trabajo.director}}</div>
+            <div class="row rowdetalles">
+                <div class="row rowdet">
+                    <p><strong>Área: </strong> &nbsp; {{trabajo.area}}</p>
+                </div>
+                <div class="row rowdet">
+                    <p><strong>Carrera: </strong> &nbsp; {{trabajo.titulacion.nombre}}</p>
+                </div>
+                <div class="row rowdet">
+                    <p><strong>Director investigación: </strong> &nbsp; {{trabajo.director}}</p>
+                </div>
             </div>
         </div>
     </div>

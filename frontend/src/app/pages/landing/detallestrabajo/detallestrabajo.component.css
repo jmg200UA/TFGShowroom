@@ -1,6 +1,7 @@
 .portada {
     width: 100%;
     height: auto;
+    border: 1px solid #000;
 }
 
 @supports(object-fit: cover) {
@@ -11,6 +12,37 @@
     }
 }
 
+
+/* por defecto la row tiene -15px de margenes */
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.primeracol,
+.segundacol {
+    height: 500px;
+}
+
+.primeracol {
+    padding-left: 4em;
+}
+
+.segundacol {
+    padding-left: 4em;
+}
+
 .rowportada {
-    height: 200px;
+    height: 280px;
+}
+
+.rowdet {
+    height: 30px;
+}
+
+.rowdetalles {
+    padding-top: 1em;
+    display: flex;
+    flex-direction: column;
 }
