@@ -1,34 +1,32 @@
-<div class="row">
+<div class="container-fluid">
     <!-- Primera fila info general -->
     <div class="row mt-4" *ngIf="!loading">
         <!-- Primera columna titulo descripcion -->
-        <div class="column col-md-6 pl-4">
+        <div class="col-6 pl-4">
             <!-- Row para titulo-->
-            <div class=" row rowtitulo ">
-                <div class="column ">
+            <div class="row rowtitulo">
+                <div class="row">
                     <h2>{{trabajo.titulo}}</h2>
                 </div>
-                <div class="column ">
-                    <div class="row ">
-                        <p class="float-left">{{trabajo.autor.nombre_apellidos}}</p>
-                        <p class="float-right ">uireowfhrewo</p>
-                    </div>
+                <div class="row">
+                    <p class="float-left">{{trabajo.autor.nombre_apellidos}}</p>
+                    <p class="float-right">uireowfhrewo</p>
                 </div>
+                <!-- Row para descripcion -->
+                <div class="row"></div>
             </div>
-            <!-- Row para descripcion -->
-            <div class="row "></div>
         </div>
         <!-- Segunda columna Imagen detalles -->
-        <div class="column columnageneral col-md-6 pr-4 ">
+        <div class="col-6 pr-4">
             <!-- Row para la imagen -->
-            <div class="row rowportada ">
-                <img class="micursor portada " [src]="crearImagenUrl(trabajo.imagen) " alt="portada ">
+            <div class="row rowportada">
+                <img class="micursor portada" [src]="crearImagenUrl(trabajo.imagen) " alt="portada ">
             </div>
             <!-- Row para detalles -->
-            <div class="row detalles ">
-                <div class="column ">Área: {{trabajo.area}}</div>
-                <div class="column ">Carrera: {{trabajo.titulacion.nombre}}</div>
-                <div class="column ">Director investigación: {{trabajo.director}}</div>
+            <div class="row">
+                <div class="row">Área: {{trabajo.area}}</div>
+                <div class="row">Carrera: {{trabajo.titulacion.nombre}}</div>
+                <div class="row">Director investigación: {{trabajo.director}}</div>
             </div>
         </div>
     </div>

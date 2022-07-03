@@ -14,13 +14,3 @@
 .rowportada {
     height: 200px;
 }
-
-.rowtitulo {
-    display: flex;
-    flex-direction: column;
-}
-
-.detalles {
-    display: flex;
-    flex-direction: column;
-}

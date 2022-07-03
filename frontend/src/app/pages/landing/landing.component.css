@@ -31,14 +31,15 @@
     text-decoration: none;
 }
 
-.usuario {
-    right: 2em;
+@media (max-width:991px) {
+    #navbarSupportedContent {
+        background-color: blue;
+    }
 }
 
-@media (max-width:991px) {
-    ul {
-        background-color: blue;
-        border: 1px solid white;
+@media (min-width:991px) {
+    .usuario {
+        padding-top: .8em;
     }
 }
 
@@ -50,10 +51,10 @@
 /* FONDO */
 
 .bodylanding {
-    /* background: linear-gradient(-45deg, #ffffff, #ffffffc7, #ffffff81, rgba(138, 138, 138, 0.192)) !important; */
-    /* background-size: 400% 400%;
-    animation: gradient 1s ease infinite;
-    align-items: flex-start; */
+    /* background: linear-gradient(-45deg, #ffffff, #ffffffc7, #ffffff81, rgba(138, 138, 138, 0.192)) !important;
+    animation: gradient 1s ease infinite;*/
+    background-size: 400% 400%;
+    align-items: flex-start;
 }
 
 @keyframes gradient {
