@@ -70,7 +70,7 @@ export class NuevotrabajoComponent implements OnInit {
               private TitulacionService: TitulacionService) { }
 
   ngOnInit(): void {
-    //this.cargarTitulaciones("");
+    this.cargarTitulaciones();
   }
 
 
@@ -83,6 +83,9 @@ export class NuevotrabajoComponent implements OnInit {
   enviar(): void {
     this.formSubmited = true;
     if (this.datosForm.invalid) { return; }
+    let titu= this.datosForm.get('titulacion').value;
+    this.datosForm.get('tipo').setValue(titu.tipo);
+    this.datosForm.get('area').setValue(titu.area);
 
       this.TrabajosService.nuevoTrabajo( this.datosForm.value )
         .subscribe( res => {
@@ -138,28 +141,12 @@ export class NuevotrabajoComponent implements OnInit {
 
   }
 
-  cargarTitulaciones( textoBuscar: string ) {
-    this.ultimaBusqueda2 = textoBuscar;
-      this.loading2 = true;
-    this.TitulacionService.cargarTitulaciones( this.posicionactual, textoBuscar )
+  cargarTitulaciones() { // cargamos todas las titulaciones
+    this.TitulacionService.cargarTitulacionesTodo()
       .subscribe( res => {
-        if (res['titulaciones'].length === 0) {
-          if (this.posicionactual2 > 0) {
-            this.posicionactual2 = this.posicionactual2 - this.registrosporpagina2;
-            if (this.posicionactual2 < 0) { this.posicionactual2 = 0};
-            this.cargarTitulaciones(this.ultimaBusqueda2);
-          } else {
-            this.listaTitulaciones = [];
-            this.totaltitulaciones = 0;
-          }
-        } else {
           this.listaTitulaciones = res['titulaciones'];
-          this.totaltitulaciones = res['page'].total;
-        }
-          this.loading2 = false;
         }, (err) => {
           Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
-          this.loading2 = false;
         });
     }
 
@@ -169,15 +156,6 @@ export class NuevotrabajoComponent implements OnInit {
     this.ultimaBusqueda='';
     document.getElementById('cerrar').click();
 
-  }
-
-  esteLugar2( titu ) { // Funcion para establecer nombre de la titulacion en el input y reiniciar el listado
-    this.nombreTitu = titu.nombre;
-    this.datosForm.get('titulacion').setValue(titu.uid);
-    this.datosForm.get('tipo').setValue(titu.tipo);
-    this.datosForm.get('area').setValue(titu.area);
-    this.ultimaBusqueda2='';
-    console.log("Titulacion: ", titu);
   }
 
   // Funciones para crear un nuevo alumno si no existe

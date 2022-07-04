@@ -30,29 +30,29 @@
                     <div class="table-responsive">
                         <table class="table">
                             <thead class=" text-primary">
-                                <th>
+                                <th class="col-md-1">
                                     Imagen
                                 </th>
-                                <th>
+                                <th class="col-md-3">
                                     Nombre
                                 </th>
-                                <th>
+                                <th class="col-md-3">
                                     Resumen
                                 </th>
-                                <th>
+                                <th class="col-md-3">
                                     Área
                                 </th>
-                                <th class="text-right">
+                                <th class="col-md-2">
                                     Acción
                                 </th>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let titulacion of listaTitulaciones">
-                                    <td><img [src]="crearImagenUrl(titulacion.imagen)" width="30px" class="rounded-circle"></td>
-                                    <td>{{titulacion.nombre}}</td>
-                                    <td class="col-md-4">{{titulacion.resumen}}</td>
-                                    <td>{{titulacion.area}}</td>
-                                    <td class="text-right">
+                                    <td class="col-md-1"><img [src]="crearImagenUrl(titulacion.imagen)" width="30px" class="rounded-circle"></td>
+                                    <td class="col-md-3">{{titulacion.nombre}}</td>
+                                    <td class="col-md-3">{{titulacion.resumen}}</td>
+                                    <td class="col-md-3">{{titulacion.area}}</td>
+                                    <td class="col-md-2">
                                         <i class="fa fa-pencil-alt text-success fa-lg mr-5 micursor" [routerLink]="['/admin/actualizartitulacion', titulacion.uid]"></i>
                                         <i class="fa fa-trash text-danger fa-lg micursor" (click)="eliminarTitulacion(titulacion.uid, titulacion.nombre)"></i>
                                     </td>

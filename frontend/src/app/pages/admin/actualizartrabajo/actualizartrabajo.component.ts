@@ -286,7 +286,7 @@ export class ActualizartrabajoComponent implements OnInit {
     this.passaleatoria= pass;
   }
 
-  cargarTitulaciones() {
+  cargarTitulaciones() { // cargamos todas las titulaciones
     this.TitulacionService.cargarTitulacionesTodo()
       .subscribe( res => {
           this.listaTitulaciones = res['titulaciones'];
