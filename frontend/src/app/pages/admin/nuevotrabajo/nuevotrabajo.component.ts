@@ -24,7 +24,7 @@ export class NuevotrabajoComponent implements OnInit {
 
   public datosForm = this.fb.group({
     autor: ['', Validators.required ], // hacer peticion a la BD para sacar en un desplegable todos los usuarios con ROL_ALUMNO
-    titulo: ['', Validators.required, Validators.maxLength(150) ], // maximo 150 caracteres
+    titulo: ['', Validators.required], // maximo 150 caracteres
     titulacion: ['', Validators.required ],
     tipo: ['', Validators.required],
     area: ['', Validators.required],
@@ -83,9 +83,6 @@ export class NuevotrabajoComponent implements OnInit {
   enviar(): void {
     this.formSubmited = true;
     if (this.datosForm.invalid) { return; }
-    let titu= this.datosForm.get('titulacion').value;
-    this.datosForm.get('tipo').setValue(titu.tipo);
-    this.datosForm.get('area').setValue(titu.area);
 
       this.TrabajosService.nuevoTrabajo( this.datosForm.value )
         .subscribe( res => {
@@ -225,6 +222,24 @@ export class NuevotrabajoComponent implements OnInit {
     }
     this.datosForm2.get('password').setValue(pass);
     this.passaleatoria= pass;
+  }
+
+  actualizarCamposTitu(){ // funcion para establecer el area y el tipo de la titulacion seleccionada
+    console.log("Entra actualizar campos");
+    let uid= "";
+    uid = this.datosForm.get('titulacion').value;
+    console.log("Entra actualizar campos: ", uid);
+    if(uid!=''){
+      this.TitulacionService.obtenerTitulacion(uid)
+      .subscribe( res => {
+          console.log(res['titulaciones']);
+          this.nombreTitu= res['titulaciones'].nombre;
+          this.datosForm.get('area').setValue(res['titulaciones'].area);
+          this.datosForm.get('tipo').setValue(res['titulaciones'].tipo);
+        }, (err) => {
+          Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
+        });
+    }
   }
 
 }
