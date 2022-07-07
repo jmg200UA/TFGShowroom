@@ -6,6 +6,7 @@ import { AdminModule } from './admin/admin.module';
 import { AlumnoModule } from './alumno/alumno.module';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { EditorModule } from './editor/editor.module';
+import { LandingModule } from './landing/landing.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { EditorModule } from './editor/editor.module';
     ReactiveFormsModule,
     AdminModule,
     AlumnoModule,
-    EditorModule
+    EditorModule,
+    LandingModule
 
   ]
 })

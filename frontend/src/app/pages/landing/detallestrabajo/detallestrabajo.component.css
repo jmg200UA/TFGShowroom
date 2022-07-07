@@ -7,7 +7,7 @@
 
 /* PORTADA */
 
-.portada {
+.portadatrabajo {
     width: 100%;
     height: auto;
     border: 1px solid #000;
@@ -21,7 +21,7 @@
 @media (min-width: 768px) {}
 
 @supports(object-fit: cover) {
-    .portada {
+    .portadatrabajo {
         height: 100%;
         object-fit: cover;
         object-position: center center;
@@ -52,6 +52,10 @@
 h2 {
     font-size: 28px;
     font-weight: 600;
+}
+
+h3 {
+    text-align: center !important;
 }
 
 .descripcion {
@@ -136,4 +140,39 @@ h2 {
     padding-top: 1em;
     display: flex;
     flex-direction: column;
+}
+
+
+/* SLIDER */
+
+@import '~swiper/swiper.min.css';
+@import '~swiper/modules/effect-coverflow/effect-coverflow.min.css';
+@import '~swiper/modules/pagination/pagination.min.css';
+.swipercont {
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.swiper-slidecont {
+    text-align: center;
+    font-size: 18px;
+    /* background: #fff; */
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    height: 360px;
+    width: 480px;
+    border-radius: 20px;
 }
