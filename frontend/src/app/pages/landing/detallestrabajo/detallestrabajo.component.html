@@ -7,11 +7,11 @@
             <div class="row rowtitulo">
                 <h2>{{trabajo.titulo}}</h2>
             </div>
-            <div class="row">
+            <div class="row nombre">
                 {{trabajo.autor.nombre_apellidos}}
             </div>
             <!-- Row para descripcion -->
-            <div class="row descripcion" style="height:100px; overflow: auto;">{{trabajo.resumen}}</div>
+            <div class="row descripcion letrasmall" style="overflow: auto;">{{trabajo.resumen}}</div>
         </div>
         <!-- Segunda columna Imagen detalles -->
         <div class="col-md-5 segundacol">
@@ -21,13 +21,13 @@
             </div>
             <!-- Row para detalles -->
             <div class="row rowdetalles">
-                <div class="row rowdet">
+                <div class="row rowdet letrasmall">
                     <p><strong>Área: </strong> &nbsp; {{trabajo.area}}</p>
                 </div>
-                <div class="row rowdet">
+                <div class="row rowdet letrasmall">
                     <p><strong>Carrera: </strong> &nbsp; {{trabajo.titulacion.nombre}}</p>
                 </div>
-                <div class="row rowdet">
+                <div class="row rowdet letrasmall">
                     <p><strong>Director investigación: </strong> &nbsp; {{trabajo.director}}</p>
                 </div>
             </div>
