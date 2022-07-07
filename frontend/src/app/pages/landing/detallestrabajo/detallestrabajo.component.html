@@ -1,23 +1,27 @@
-<div class="container-fluid">
+<div class="container-fluid todo">
     <!-- Primera fila info general -->
     <div class="row pt-4" *ngIf="!loading">
         <!-- Primera columna titulo descripcion -->
-        <div class="col-md-7 primeracol">
+        <div class="col-md-8 primeracol">
             <!-- Row para titulo-->
             <div class="row rowtitulo">
                 <h2>{{trabajo.titulo}}</h2>
             </div>
             <div class="row nombre">
                 {{trabajo.autor.nombre_apellidos}}
+                <!-- <div class="col-md-8">
+
+                </div>
+                <div class="col-md-4">{{trabajo.autor.valoracion}} likes</div> -->
             </div>
             <!-- Row para descripcion -->
             <div class="row descripcion letrasmall" style="overflow: auto;">{{trabajo.resumen}}</div>
         </div>
         <!-- Segunda columna Imagen detalles -->
-        <div class="col-md-5 segundacol">
+        <div class="col-md-4 segundacol">
             <!-- Row para la imagen -->
-            <div class="row">
-                <img class="micursor portada rowportada" [src]="crearImagenUrl(trabajo.imagen) " alt="portada ">
+            <div class="row rowportada">
+                <img class="micursor portada" [src]="crearImagenUrl(trabajo.imagen) " alt="portada ">
             </div>
             <!-- Row para detalles -->
             <div class="row rowdetalles">

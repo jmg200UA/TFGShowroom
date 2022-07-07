@@ -1,26 +1,24 @@
-/* SLIDER */
+/* DIV QUE ENVUELVE EL CONTENIDO PRINCIPAL */
 
-@import '~swiper/swiper.min.css';
-@import "~swiper/modules/free-mode/free-mode.min.css";
-@import "~swiper/modules/scrollbar/scrollbar.min.css";
-.swiper {
-    width: 100%;
-    height: 100%;
+.todo {
+    background: linear-gradient(rgb(0, 217, 255), rgb(255, 255, 255));
 }
 
-.swiper-slide {
-    font-size: 18px;
-    height: auto;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    padding: 30px;
-}
+
+/* PORTADA */
 
 .portada {
     width: 100%;
     height: auto;
     border: 1px solid #000;
+    border-radius: 5px;
 }
+
+.rowportada {
+    height: 280px;
+}
+
+@media (min-width: 768px) {}
 
 @supports(object-fit: cover) {
     .portada {
@@ -43,26 +41,60 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgb(196, 188, 188);
+    background: rgb(255, 255, 255);
     border-radius: 5px;
+    padding: 1px;
 }
 
 
 /* TEXTO */
 
 h2 {
-    font-size: 30px;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.descripcion {
+    margin-top: 2em;
+    height: 250px;
 }
 
 @media (max-width: 768px) {
     h2 {
-        font-size: 20px;
+        font-size: 25px;
     }
     .nombre {
         font-size: 15px;
     }
     .letrasmall {
         font-size: 12px;
+    }
+}
+
+
+/* MEDIA QUERIES DESCRIPCION */
+
+@media (max-width: 622px) {
+    .descripcion {
+        height: 220px;
+    }
+}
+
+@media (max-width: 576px) {
+    .descripcion {
+        height: 190px;
+    }
+}
+
+@media (max-width: 488px) {
+    .descripcion {
+        height: 160px;
+    }
+}
+
+@media (max-width: 437px) {
+    .descripcion {
+        height: 160px;
     }
 }
 
@@ -95,10 +127,6 @@ h2 {
     padding-left: 4em;
 }
 
-.rowportada {
-    height: 280px;
-}
-
 .rowdet {
     display: flex;
     flex-direction: column;
@@ -108,9 +136,4 @@ h2 {
     padding-top: 1em;
     display: flex;
     flex-direction: column;
-}
-
-.descripcion {
-    margin-top: 2em;
-    height: 10em;
 }
