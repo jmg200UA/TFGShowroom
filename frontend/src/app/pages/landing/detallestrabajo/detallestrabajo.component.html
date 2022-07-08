@@ -39,17 +39,16 @@
     </div>
 </div>
 <!-- Contenidos multimedia y extras -->
-<div class="row ml-4 mr-4 pt-4 contenidos">
+<div class="row ml-4 mr-4 pt-4 contenidos" *ngIf="!loading">
     <h2 class="mx-auto">Contenido multimedia</h2>
     <swiper [config]="config" class="swipercont">
-        <ng-template class="swiper-slidecont" swiperSlide><img src="https://swiperjs.com/demos/images/nature-1.jpg" /></ng-template>
-        <ng-template class="swiper-slidecont" swiperSlide><img src="https://swiperjs.com/demos/images/nature-2.jpg" /></ng-template>
-        <ng-template class="swiper-slidecont" swiperSlide><img src="https://swiperjs.com/demos/images/nature-3.jpg" /></ng-template>
-        <ng-template class="swiper-slidecont" swiperSlide><img src="https://swiperjs.com/demos/images/nature-4.jpg" /></ng-template>
-        <ng-template class="swiper-slidecont" swiperSlide><img src="https://swiperjs.com/demos/images/nature-5.jpg" /></ng-template>
-        <ng-template class="swiper-slidecont" swiperSlide><img src="https://swiperjs.com/demos/images/nature-6.jpg" /></ng-template>
-        <ng-template class="swiper-slidecont" swiperSlide><img src="https://swiperjs.com/demos/images/nature-7.jpg" /></ng-template>
-        <ng-template class="swiper-slidecont" swiperSlide><img src="https://swiperjs.com/demos/images/nature-8.jpg" /></ng-template>
-        <ng-template class="swiper-slidecont" swiperSlide><img src="https://swiperjs.com/demos/images/nature-9.jpg" /></ng-template>
+        <ng-template *ngFor="let contenido of trabajo.contenidos; let i=index" class="swiper-slidecont" swiperSlide>
+            <ng-container *ngIf="contenido.tipo=='jpg' || contenido.tipo=='jpeg' || contenido.tipo=='png' || contenido.tipo=='PNG'">
+                <a [href]='crearContenidosUrl(contenido.contenido)' target="_blank"><img class="img-fluid" [src]="crearContenidosUrl(contenido.contenido)" /></a>
+            </ng-container>
+            <ng-container *ngIf="contenido.tipo=='YT'">
+                <iframe class="swiper-slidecont" [src]="getVideoIframe(contenido.contenido)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </ng-container>
+        </ng-template>
     </swiper>
 </div>

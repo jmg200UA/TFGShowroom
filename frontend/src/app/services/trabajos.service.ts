@@ -147,7 +147,7 @@ export class TrabajosService {
     if (!imagen) {
       return `${environment.base_url}/upload/trabajoconts/no-imagen.jpg?token=${token}`;
     }
-    return `${environment.base_url}/upload/trabajoxonts/${imagen}?token=${token}`;
+    return `${environment.base_url}/upload/trabajoconts/${imagen}?token=${token}`;
   }
 
   // quitar mas tarde estas llamadas

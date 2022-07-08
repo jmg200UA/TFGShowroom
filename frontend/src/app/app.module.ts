@@ -13,7 +13,6 @@ import { AppComponent } from './app.component';
 
 import { AdminComponent } from './pages/admin/admin.component';
 import { PagesModule } from './pages/pages.module';
-import { SafePipe } from './safe.pipe';
 
 
 @NgModule({
@@ -31,7 +30,6 @@ import { SafePipe } from './safe.pipe';
   ],
   declarations: [
     AppComponent,
-    SafePipe,
 
   ],
   providers: [],
