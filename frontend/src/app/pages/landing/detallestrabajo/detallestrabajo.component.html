@@ -54,7 +54,15 @@
                 <audio [src]="crearContenidosUrl(contenido.contenido)" controls [alt]="contenido.nombre"></audio>
             </ng-container>
             <ng-template #otroformato>
-                {{contenido.nombre}}
+                <div class="otroformato-2 pb-2">
+                    <div class="row tipo">
+                        <h5>{{contenido.nombre}} &nbsp; ({{contenido.tipo}})</h5>
+                    </div>
+                    <hr size="1px" color="black" />
+                    <div class="row des">{{contenido.descripcion}}</div>
+                    <hr size="1px" color="black" />
+                    <div class="row downl align-items-center"><a [download]="contenido.nombre" [href]="crearContenidosUrl(contenido.contenido)"><i class="fas fa-download"></i></a></div>
+                </div>
             </ng-template>
         </ng-template>
     </swiper>
