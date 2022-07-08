@@ -22,7 +22,7 @@ export class ActualizartitulacionComponent implements OnInit {
   private uid: string = '';
   public showOKP: boolean = false;
   public loading: boolean = true;
-  public tipo;
+  public tipo : string = '';
   public fileText = 'Seleccione archivo';
 
   public datosForm = this.fb.group({
@@ -125,6 +125,7 @@ export class ActualizartitulacionComponent implements OnInit {
 
   salida(event){
     this.tipo=event.split(": ",2)[1];
+    console.log("Tipo: ", this.tipo);
   }
 
   cargarTitulacion(){
