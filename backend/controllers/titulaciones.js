@@ -127,7 +127,7 @@ put /:id
 
 const actualizarTitulacion = async(req, res = response) => {
 
-    const {...object } = req.body;
+    const { imagen, ...object } = req.body;
     const uid = req.params.id;
     const idToken = req.uidToken;
     const rolToken = req.rolToken;

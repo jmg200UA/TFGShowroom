@@ -94,7 +94,7 @@ export class ActualizartrabajoComponent implements OnInit {
         .subscribe( res => {
           console.log("Trabajo creado: ", res['trabajo']);
           //Subida imagen del trabajo
-          if (this.foto ) {
+          if (this.foto) {
             this.TrabajosService.subirFoto( res['trabajo'].uid, this.foto)
             .subscribe( res => {
               console.log("Respuesta a la subida de la foto: ", res);
@@ -113,7 +113,7 @@ export class ActualizartrabajoComponent implements OnInit {
             showConfirmButton: false,
             timer: 2000
           })
-          this.router.navigateByUrl('/alumno/trabajos');
+          this.router.navigateByUrl('/admin/trabajos');
 
         }, (err) => {
           const errtext = err.error.msg || 'No se pudo completar la acción, vuelva a intentarlo.';
