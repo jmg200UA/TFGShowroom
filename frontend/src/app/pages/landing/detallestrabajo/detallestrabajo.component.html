@@ -43,12 +43,19 @@
     <h2 class="mx-auto">Contenido multimedia</h2>
     <swiper [config]="config" class="swipercont">
         <ng-template *ngFor="let contenido of trabajo.contenidos; let i=index" class="swiper-slidecont" swiperSlide>
+            <ng-container *ngIf="contenido.tipo=='jpg' || contenido.tipo=='jpeg' || contenido.tipo=='png' || contenido.tipo=='PNG' || contenido.tipo=='YT' || contenido.tipo=='mp3' || contenido.tipo=='wav';else otroformato"></ng-container>
             <ng-container *ngIf="contenido.tipo=='jpg' || contenido.tipo=='jpeg' || contenido.tipo=='png' || contenido.tipo=='PNG'">
-                <a [href]='crearContenidosUrl(contenido.contenido)' target="_blank"><img class="img-fluid" [src]="crearContenidosUrl(contenido.contenido)" /></a>
+                <a [href]='crearContenidosUrl(contenido.contenido)' target="_blank"><img class="imagencont" [src]="crearContenidosUrl(contenido.contenido)" [alt]="contenido.nombre" /></a>
             </ng-container>
             <ng-container *ngIf="contenido.tipo=='YT'">
-                <iframe class="swiper-slidecont" [src]="getVideoIframe(contenido.contenido)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe class="swiper-slidecont" [src]="getVideoIframe(contenido.contenido)" [title]="contenido.nombre" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </ng-container>
+            <ng-container *ngIf="contenido.tipo=='mp3' || contenido.tipo=='wav'">
+                <audio [src]="crearContenidosUrl(contenido.contenido)" controls [alt]="contenido.nombre"></audio>
+            </ng-container>
+            <ng-template #otroformato>
+                {{contenido.nombre}}
+            </ng-template>
         </ng-template>
     </swiper>
 </div>

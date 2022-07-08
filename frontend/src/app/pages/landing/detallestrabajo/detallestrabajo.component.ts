@@ -12,7 +12,7 @@ import { SwiperComponent } from "swiper/angular";
 // import SwiperCore y los modulos requeridos
 import SwiperCore, { SwiperOptions, Navigation, Pagination, Scrollbar, A11y, EffectCoverflow  } from 'swiper';
 
-SwiperCore.use([EffectCoverflow, Pagination]);
+SwiperCore.use([EffectCoverflow, Navigation, Pagination, Scrollbar, A11y]);
 
 @Component({
   selector: 'detallestrabajo',
@@ -38,6 +38,7 @@ export class DetallestrabajoComponent implements OnInit {
       modifier: 1,
       slideShadows: true
     },
+    navigation:true,
     pagination: { clickable: true },
     scrollbar: { draggable: true },
   };
