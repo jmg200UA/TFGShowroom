@@ -30,9 +30,9 @@ export class TrabajosService {
     return this.http.put(`${environment.base_url}/trabajos/et/${uid}`, data, this.cabeceras);
   }
 
-  actualizarContenidoTrabajo ( uid: string, data) { // llamada despues de subir el contenido correctamente
+  actualizarContenidoTrabajo ( uid: string, data, num) { // llamada despues de subir el contenido correctamente
     console.log("Actualizar con: ", data);
-    return this.http.put(`${environment.base_url}/trabajos/ac/${uid}`, data, this.cabeceras);
+    return this.http.put(`${environment.base_url}/trabajos/ac/${uid}?num=${num}`, data, this.cabeceras);
   }
 
   borrarContenidoTrabajo ( uid: string, num) { // llamada para quitar algun contenido del trabajo

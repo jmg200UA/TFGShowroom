@@ -42,10 +42,10 @@
 <div class="row ml-4 mr-4 pt-4 contenidos" *ngIf="!loading">
     <h2 class="mx-auto">Contenido multimedia</h2>
     <swiper [config]="config" class="swipercont">
-        <ng-template *ngFor="let contenido of trabajo.contenidos; let i=index" class="swiper-slidecont" swiperSlide>
+        <ng-template *ngFor="let contenido of trabajo.contenidos; let i=index" class="swiper-slidecont card" swiperSlide>
             <ng-container *ngIf="contenido.tipo=='jpg' || contenido.tipo=='jpeg' || contenido.tipo=='png' || contenido.tipo=='PNG' || contenido.tipo=='YT' || contenido.tipo=='mp3' || contenido.tipo=='wav';else otroformato"></ng-container>
             <ng-container *ngIf="contenido.tipo=='jpg' || contenido.tipo=='jpeg' || contenido.tipo=='png' || contenido.tipo=='PNG'">
-                <a [href]='crearContenidosUrl(contenido.contenido)' target="_blank"><img class="imagencont" [src]="crearContenidosUrl(contenido.contenido)" [alt]="contenido.nombre" /></a>
+                <a [href]='crearContenidosUrl(contenido.contenido)' target="_blank"><img class="imagencont swiper-slidecont" [src]="crearContenidosUrl(contenido.contenido)" [alt]="contenido.nombre" /></a>
             </ng-container>
             <ng-container *ngIf="contenido.tipo=='YT'">
                 <iframe class="swiper-slidecont" [src]="getVideoIframe(contenido.contenido)" [title]="contenido.nombre" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -54,7 +54,7 @@
                 <audio [src]="crearContenidosUrl(contenido.contenido)" controls [alt]="contenido.nombre"></audio>
             </ng-container>
             <ng-template #otroformato>
-                <div class="otroformato-2 pb-2">
+                <div class="otroformato-2 pb-4 pt-4 mr-2 ml-2 pr-2 pl-2">
                     <div class="row tipo">
                         <h5>{{contenido.nombre}} &nbsp; ({{contenido.tipo}})</h5>
                     </div>

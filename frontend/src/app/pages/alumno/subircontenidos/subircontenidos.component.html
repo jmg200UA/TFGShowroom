@@ -48,8 +48,8 @@
                         <h3>Contenidos subidos</h3>
                         <div *ngFor="let contenido of contenidossubidos; let i=index" class="card archivo col-md-3 text-center justify-content-center">
                             <form class="contenido text-center">
-                                <input type="text" name="nombre" id="{{'nombre'+i}}" class="form-control" placeholder="Introduce nombre" value={{contenido.nombre}}>
-                                <input type="text" name="descripcion" id="{{'descripcion'+i}}" class="form-control input-lg" placeholder="Introduce descripción" value={{contenido.descripcion}}>
+                                <input type="text" name="nombre2" id="{{'nombre2'+i}}" class="form-control" placeholder="Introduce nombre" value={{contenido.nombre}}>
+                                <input type="text" name="descripcion2" id="{{'descripcion2'+i}}" class="form-control input-lg" placeholder="Introduce descripción" value={{contenido.descripcion}}>
                                 <input type="text" disabled name="tipo" id="tipo" class="form-control text-center" value={{contenido.tipo}}>
                                 <i class="i1 fas fa-redo micursor" (click)="addDatosContenidoAct(i)"></i>
                                 <i class="i2 fas fa-window-close micursor" (click)="borrarContenido(i)"></i>

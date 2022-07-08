@@ -101,8 +101,8 @@ export class SubircontenidosComponent implements OnInit {
   }
 
   addDatosContenidoAct(num){ // cambiar datos contenidos ya subido, para actualizar
-    this.contenidos[num].nombre= (document.getElementById("nombre"+num) as HTMLInputElement).value;
-    this.contenidos[num].descripcion = (document.getElementById("descripcion"+num) as HTMLInputElement).value;
+    this.contenidossubidos[num].nombre= (document.getElementById("nombre"+num) as HTMLInputElement).value;
+    this.contenidossubidos[num].descripcion = (document.getElementById("descripcion"+num) as HTMLInputElement).value;
     this.actualizarContenido(num);
   }
 
@@ -119,7 +119,7 @@ export class SubircontenidosComponent implements OnInit {
               this.contenidos[num].contenido = split3;
               console.log("Contenido: ", split3);
               //si todo sale bien hacemos la llamada para actualizar la bd con la subida del contenido
-                this.TrabajosService.actualizarContenidoTrabajo( this.uid, this.contenidos[num])
+                this.TrabajosService.actualizarContenidoTrabajo( this.uid, this.contenidos[num], -1)
                   .subscribe( res => {
                     console.log("Respuesta a la actualización: ", res);
                     //borramos el contenido subido del array y actualizamos la llamada al trabajo
@@ -149,7 +149,7 @@ export class SubircontenidosComponent implements OnInit {
   }
 
   subirVideoYT(num){
-    this.TrabajosService.actualizarContenidoTrabajo( this.uid, this.contenidos[num])
+    this.TrabajosService.actualizarContenidoTrabajo( this.uid, this.contenidos[num], -1)
     .subscribe( res => {
       console.log("Respuesta a la actualización: ", res);
       //borramos el contenido subido del array y actualizamos la llamada al trabajo
@@ -164,8 +164,8 @@ export class SubircontenidosComponent implements OnInit {
   }
 
   actualizarContenido(num){
-    if(this.contenidos[num].nombre!="" && this.contenidos[num].descripcion!=""){
-      this.TrabajosService.actualizarContenidoTrabajo( this.uid, this.contenidos[num])
+    if(this.contenidossubidos[num].nombre!="" && this.contenidossubidos[num].descripcion!=""){
+      this.TrabajosService.actualizarContenidoTrabajo( this.uid, this.contenidossubidos[num], num)
                 .subscribe( res => {
                   console.log("Respuesta a la subida de la foto: ", res);
                   Swal.fire({

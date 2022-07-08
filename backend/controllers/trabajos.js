@@ -494,6 +494,8 @@ const agregarContenidoTrabajo = async(req, res = response) => {
     const idToken = req.uidToken;
     const rolToken = req.rolToken;
     var ObjectId = require('mongodb').ObjectId;
+    const num = req.query.num;
+
 
     try {
         const usu = await Usuario.findById(idToken);
@@ -513,11 +515,18 @@ const agregarContenidoTrabajo = async(req, res = response) => {
                 msg: 'No tienes permisos para actualizar este trabajo'
             });
         }
-
+        console.log("NUMMMM: ", num);
         console.log("Contenido: ", contenido);
         console.log("La REQ que llega: ", req.body);
 
-        trabajo.contenidos.push(req.body);
+
+        if (num == -1) {
+            trabajo.contenidos.push(req.body);
+        } else {
+            trabajo.contenidos[num].nombre = req.body.nombre;
+            trabajo.contenidos[num].descripcion = req.body.descripcion;
+        }
+
 
         await trabajo.save();
 
