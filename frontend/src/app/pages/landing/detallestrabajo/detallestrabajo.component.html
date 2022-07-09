@@ -39,7 +39,7 @@
     </div>
 </div>
 <!-- Contenidos multimedia y extras -->
-<div class="row ml-4 mr-4 pt-4 contenidos" *ngIf="!loading">
+<div class="row pl-4 pr-4 pt-4 contenidos" *ngIf="!loading">
     <h2 class="mx-auto">Contenido multimedia</h2>
     <swiper [config]="config" class="swipercont">
         <ng-template *ngFor="let contenido of trabajo.contenidos; let i=index" class="swiper-slidecont card" swiperSlide>
@@ -51,17 +51,25 @@
                 <iframe class="swiper-slidecont" [src]="getVideoIframe(contenido.contenido)" [title]="contenido.nombre" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </ng-container>
             <ng-container *ngIf="contenido.tipo=='mp3' || contenido.tipo=='wav'">
-                <audio [src]="crearContenidosUrl(contenido.contenido)" controls [alt]="contenido.nombre"></audio>
-            </ng-container>
-            <ng-template #otroformato>
-                <div class="otroformato-2 pb-4 pt-4 mr-2 ml-2 pr-2 pl-2">
+                <div class="otroformato pb-4 pt-4 mr-2 ml-2 pr-4 pl-4">
                     <div class="row tipo">
                         <h5>{{contenido.nombre}} &nbsp; ({{contenido.tipo}})</h5>
                     </div>
                     <hr size="1px" color="black" />
-                    <div class="row des">{{contenido.descripcion}}</div>
+                    <div class="row des pt-2 pb-2">{{contenido.descripcion}}</div>
                     <hr size="1px" color="black" />
-                    <div class="row downl align-items-center"><a [download]="contenido.nombre" [href]="crearContenidosUrl(contenido.contenido)"><i class="fas fa-download"></i></a></div>
+                    <div class="row downl"><audio [src]="crearContenidosUrl(contenido.contenido)" controls [alt]="contenido.nombre"></audio></div>
+                </div>
+            </ng-container>
+            <ng-template #otroformato>
+                <div class="otroformato pb-4 pt-4 mr-2 ml-2 pr-4 pl-4">
+                    <div class="row tipo">
+                        <h5>{{contenido.nombre}} &nbsp; ({{contenido.tipo}})</h5>
+                    </div>
+                    <hr size="1px" color="black" />
+                    <div class="row des pt-2 pb-2">{{contenido.descripcion}}</div>
+                    <hr size="1px" color="black" />
+                    <div class="row downl"><a [download]="contenido.nombre" [href]="crearContenidosUrl(contenido.contenido)"><i class="fas fa-download"></i></a></div>
                 </div>
             </ng-template>
         </ng-template>
