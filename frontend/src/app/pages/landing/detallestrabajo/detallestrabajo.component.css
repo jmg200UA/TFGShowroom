@@ -63,15 +63,39 @@ h3 {
     height: 250px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1047.5px) {
     h2 {
-        font-size: 25px;
+        font-size: 26px;
     }
     .nombre {
         font-size: 15px;
     }
     .letrasmall {
         font-size: 12px;
+    }
+}
+
+@media (max-width: 965px) {
+    h2 {
+        font-size: 24px;
+    }
+    .nombre {
+        font-size: 12px;
+    }
+    .letrasmall {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    h2 {
+        font-size: 22px;
+    }
+    .nombre {
+        font-size: 10px;
+    }
+    .letrasmall {
+        font-size: 8px;
     }
 }
 
@@ -90,15 +114,21 @@ h3 {
     }
 }
 
-@media (max-width: 488px) {
+@media (max-width: 503px) {
     .descripcion {
         height: 160px;
     }
 }
 
-@media (max-width: 437px) {
+@media (max-width: 469px) {
     .descripcion {
-        height: 160px;
+        height: 130px;
+    }
+}
+
+@media (max-width: 394px) {
+    .descripcion {
+        height: 100px;
     }
 }
 
@@ -150,6 +180,27 @@ h3 {
 }
 
 
+/* RESPONSIVE CONTS */
+
+@media (max-width: 962.5px) {
+    .contenidos {
+        margin-top: 4em;
+    }
+}
+
+@media (max-width: 827.5px) {
+    .contenidos {
+        margin-top: 6em;
+    }
+}
+
+@media (max-width: 773.5px) and (min-width: 767.5px) {
+    .contenidos {
+        margin-top: 6em;
+    }
+}
+
+
 /* SLIDER */
 
 @import '~swiper/swiper.min.css';
@@ -190,21 +241,6 @@ h3 {
     max-width: 100%;
 }
 
-
-/* .otroformato {
-    height: 480px;
-    width: 720px;
-    border-radius: 20px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    font-size: 18px;
-    align-items: center;
-} */
-
 .otroformato {
     background-color: rgba(255, 255, 255, 0.925);
     border-radius: 20px;
@@ -232,6 +268,9 @@ h3 {
     -ms-flex-align: center;
     -webkit-align-items: center;
     align-items: center;
+    background-color: #000;
+    color: #fff;
+    border-radius: 20px;
 }
 
 .des {
@@ -254,4 +293,22 @@ h3 {
     -ms-flex-align: center;
     -webkit-align-items: center;
     align-items: center;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
+
+/* Barra titulo trabajo y autor */
+
+.nomtrabajo {
+    /* font-family: "Lucida Grande", Helvetica, Arial, "Arial Unicode", sans-serif; */
+    background-color: #fff;
+    color: #000;
+    height: 66px;
+    position: sticky;
+    top: 4rem;
+    z-index: 99999;
+}
+
+.nonomtrabajo {
+    display: none;
 }

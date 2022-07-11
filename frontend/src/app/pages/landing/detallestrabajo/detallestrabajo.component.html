@@ -1,4 +1,19 @@
 <div class="container-fluid todo">
+    <script>
+        myID = document.getElementById("nomtrabajo");
+
+        var myScrollFunc = function() {
+            console.log("Hola");
+            var y = window.scrollY;
+            if (y >= 5) {
+                myID.className = "nomtrabajo"
+            } else {
+                myID.className = "nonomtrabajo"
+            }
+        };
+
+        window.addEventListener("scroll", myScrollFunc);
+    </script>
     <!-- Primera fila info general -->
     <div class="row pt-4" *ngIf="!loading">
         <!-- Primera columna titulo descripcion -->
@@ -74,4 +89,9 @@
             </ng-template>
         </ng-template>
     </swiper>
+</div>
+
+<!-- Titulo y nombre autor al hacer scroll -->
+<div *ngIf="!loading" id="titulotrab" class="nonomtrabajo">
+    <h6><strong class="titulo">{{trabajo.titulo}}</strong> &nbsp; - &nbsp; {{trabajo.autor.nombre_apellidos}}</h6>
 </div>

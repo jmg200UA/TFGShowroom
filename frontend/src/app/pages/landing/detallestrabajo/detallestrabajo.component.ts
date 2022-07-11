@@ -25,6 +25,7 @@ export class DetallestrabajoComponent implements OnInit {
   private uid: string = '';
   public loading = true;
   public trabajo;
+  public titulotrabajo: boolean = true;
 
   config: SwiperOptions = {
     effect:'coverflow',
