@@ -31,6 +31,9 @@ export class InicioComponent implements OnInit {
   //para trabajos más recientes
   public trabajosRecientes;
 
+  //para trabajos aleatorios
+  public trabajosAleatorios;
+
   //Variables para la carga de titulaciones
   public listaTitulaciones;
 
@@ -109,6 +112,7 @@ export class InicioComponent implements OnInit {
   ngOnInit(): void {
     this.cargarTrabajosValorados();
     this.cargarTrabajosRecientes();
+    this.cargarTrabajosAleatorios();
     this.cargarTitulaciones();
   }
 
@@ -142,6 +146,21 @@ export class InicioComponent implements OnInit {
           this.loading = false;
         });
       }
+
+      cargarTrabajosAleatorios() {
+        this.loading = true;
+        this.trabajoService.cargarTrabajosAleatorios()
+          .subscribe( res => {
+            console.log("Res de trabajos aleatorios", res['trabajos']);
+              this.trabajosAleatorios = res['trabajos'];
+              //this.totaltrabajos = res['page'].total;
+            this.loading = false;
+          }, (err) => {
+            Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
+            //console.warn('error:', err);
+            this.loading = false;
+          });
+        }
 
     //cargamos las titulaciones
     cargarTitulaciones() {

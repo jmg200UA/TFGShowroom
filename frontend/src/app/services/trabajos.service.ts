@@ -77,6 +77,10 @@ export class TrabajosService {
     return this.http.get(`${environment.base_url}/trabajos/mv/` , this.cabeceras);
   }
 
+  cargarTrabajosAleatorios(): Observable<object> {
+    return this.http.get(`${environment.base_url}/trabajos/aleatorios/` , this.cabeceras);
+  }
+
   cargarTrabajosRecientes(): Observable<object> {
     return this.http.get(`${environment.base_url}/trabajos/mr/` , this.cabeceras);
   }

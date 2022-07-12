@@ -3,7 +3,7 @@ Ruta base: /api/trabajos
 */
 
 const { Router } = require('express');
-const { obtenerTrabajos, obtenerTrabajosAluVisibles, obtenerTrabajosAluNoVisibles, crearTrabajo, actualizarTrabajo, borrarTrabajo, limpiarMultimediaTrabajo, obtenerTrabajosEditor, actualizarEstadoTrabajo, agregarContenidoTrabajo, borrarContenidoTrabajo, obtenerTrabajosMasValorados, obtenerTrabajosRecientes, obtenerTrabajosVisibles } = require('../controllers/trabajos');
+const { obtenerTrabajos, obtenerTrabajosAluVisibles, obtenerTrabajosAluNoVisibles, crearTrabajo, actualizarTrabajo, borrarTrabajo, limpiarMultimediaTrabajo, obtenerTrabajosEditor, actualizarEstadoTrabajo, agregarContenidoTrabajo, borrarContenidoTrabajo, obtenerTrabajosMasValorados, obtenerTrabajosRecientes, obtenerTrabajosVisibles, obtenerTrabajosAleatorios } = require('../controllers/trabajos');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middleware/validar-campos');
 const { validarRol } = require('../middleware/validar-rol');
@@ -28,6 +28,14 @@ router.get('/tv/', [ // get trabajos visibles todos
     check('desde', 'El desde debe ser un número').optional().isNumeric(),
     validarCampos,
 ], obtenerTrabajosVisibles);
+
+router.get('/aleatorios/', [ // get trabajos visibles aleatorios
+    //validarJWT,
+    // Campos opcionales, si vienen los validamos
+    check('id', 'El id de usuario debe ser válido').optional().isMongoId(),
+    check('desde', 'El desde debe ser un número').optional().isNumeric(),
+    validarCampos,
+], obtenerTrabajosAleatorios);
 
 router.get('/mv/', [ // obtener más valorados
     // Campos opcionales, si vienen los validamos

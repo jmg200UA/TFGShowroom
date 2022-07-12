@@ -142,6 +142,82 @@ const obtenerTrabajosVisibles = async(req, res) => {
     }
 }
 
+const obtenerTrabajosAleatorios = async(req, res) => {
+    // Para paginación y buscador
+    const desde = Number(req.query.desde) || 0;
+    const registropp = Number(process.env.DOCSPERPAGE);
+    const texto = req.query.texto;
+    let textoBusqueda = "";
+    if (texto) {
+        textoBusqueda = new RegExp(texto, "i");
+    }
+    // Obtenemos el ID de usuario por si quiere buscar solo un trabajo
+    const id = req.query.id || "";
+
+    try {
+
+        let trabajos, total;
+        let query = {};
+        query = {
+            visible: true
+        };
+        if (req.query.desde) {
+            [trabajos, total] = await Promise.all([
+                Trabajo.find(query).skip(desde).limit(registropp).populate('autor').populate('titulacion'),
+                Trabajo.countDocuments(query)
+            ]);
+        } else {
+            [trabajos, total] = await Promise.all([
+                Trabajo.find(query).populate('autor').populate('titulacion'),
+                Trabajo.countDocuments(query)
+            ]);
+        }
+        let auxtrabajos = []; // auxiliar para elegir 10 trabajos aleatorios
+        var cantidadNumeros = 10;
+        var cant = total;
+        var myArray = [];
+        while (myArray.length < cantidadNumeros) {
+            var numeroAleatorio = Math.floor(Math.random() * cant);
+            var existe = false;
+            for (var i = 0; i < myArray.length; i++) {
+                if (myArray[i] == numeroAleatorio) {
+                    existe = true;
+                    break;
+                }
+            }
+            if (!existe) {
+                myArray[myArray.length] = numeroAleatorio;
+                auxtrabajos.push(trabajos[numeroAleatorio]);
+            }
+        }
+
+        console.log("Array numeros: ", myArray);
+        // console.log("Auxtrabajos: ", auxtrabajos);
+        // console.log("Trabajos: ", trabajos);
+        console.log("total: ", total)
+
+        trabajos = auxtrabajos;
+
+        res.json({
+            ok: true,
+            msg: 'getTrabajos',
+            trabajos,
+            page: {
+                desde,
+                registropp,
+                total
+            }
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.json({
+            ok: false,
+            msg: 'Error obteniendo trabajos'
+        });
+    }
+}
+
 const obtenerTrabajosMasValorados = async(req, res) => {
     // Para paginación y buscador
     const desde = Number(req.query.desde) || 0;
@@ -159,16 +235,7 @@ const obtenerTrabajosMasValorados = async(req, res) => {
         let trabajos, total;
         let query = {};
         query = {
-            $and: [
-                { visible: true },
-                {
-                    $or: [
-                        { autor: textoBusqueda },
-                        { titulo: textoBusqueda },
-                        { titulacion: textoBusqueda },
-                    ],
-                }
-            ]
+            visible: true
         };
         if (req.query.desde) {
             [trabajos, total] = await Promise.all([
@@ -219,16 +286,7 @@ const obtenerTrabajosRecientes = async(req, res) => {
         let trabajos, total;
         let query = {};
         query = {
-            $and: [
-                { visible: true },
-                {
-                    $or: [
-                        { autor: textoBusqueda },
-                        { titulo: textoBusqueda },
-                        { titulacion: textoBusqueda },
-                    ],
-                }
-            ]
+            visible: true
         };
         if (req.query.desde) {
             [trabajos, total] = await Promise.all([
@@ -955,4 +1013,4 @@ const borrarTrabajo = async(req, res = response) => {
 }
 
 
-module.exports = { obtenerTrabajos, obtenerTrabajosVisibles, obtenerTrabajosRecientes, obtenerTrabajosMasValorados, obtenerTrabajosEditor, obtenerTrabajosAluVisibles, obtenerTrabajosAluNoVisibles, crearTrabajo, actualizarTrabajo, actualizarEstadoTrabajo, agregarValoracionTrabajo, quitarValoracionTrabajo, agregarContenidoTrabajo, borrarContenidoTrabajo, limpiarMultimediaTrabajo, borrarTrabajo }
+module.exports = { obtenerTrabajos, obtenerTrabajosVisibles, obtenerTrabajosAleatorios, obtenerTrabajosRecientes, obtenerTrabajosMasValorados, obtenerTrabajosEditor, obtenerTrabajosAluVisibles, obtenerTrabajosAluNoVisibles, crearTrabajo, actualizarTrabajo, actualizarEstadoTrabajo, agregarValoracionTrabajo, quitarValoracionTrabajo, agregarContenidoTrabajo, borrarContenidoTrabajo, limpiarMultimediaTrabajo, borrarTrabajo }
