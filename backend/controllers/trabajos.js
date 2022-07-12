@@ -80,6 +80,188 @@ const obtenerTrabajos = async(req, res) => {
     }
 }
 
+const obtenerTrabajosVisibles = async(req, res) => {
+    // Para paginación y buscador
+    const desde = Number(req.query.desde) || 0;
+    const registropp = Number(process.env.DOCSPERPAGE);
+    const texto = req.query.texto;
+    let textoBusqueda = "";
+    if (texto) {
+        textoBusqueda = new RegExp(texto, "i");
+    }
+    // Obtenemos el ID de usuario por si quiere buscar solo un trabajo
+    const id = req.query.id || "";
+
+    try {
+
+        let trabajos, total;
+        let query = {};
+        if (texto) {
+            query = {
+                $and: [
+                    { visible: true },
+                    {
+                        $or: [
+                            { autor: textoBusqueda },
+                            { titulo: textoBusqueda },
+                            { titulacion: textoBusqueda },
+                        ],
+                    }
+                ]
+            };
+        }
+        if (req.query.desde) {
+            [trabajos, total] = await Promise.all([
+                Trabajo.find(query).skip(desde).limit(registropp).populate('autor').populate('titulacion'),
+                Trabajo.countDocuments(query)
+            ]);
+        } else {
+            [trabajos, total] = await Promise.all([
+                Trabajo.find(query).populate('autor').populate('titulacion'),
+                Trabajo.countDocuments(query)
+            ]);
+        }
+
+        res.json({
+            ok: true,
+            msg: 'getTrabajos',
+            trabajos,
+            page: {
+                desde,
+                registropp,
+                total
+            }
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.json({
+            ok: false,
+            msg: 'Error obteniendo trabajos'
+        });
+    }
+}
+
+const obtenerTrabajosMasValorados = async(req, res) => {
+    // Para paginación y buscador
+    const desde = Number(req.query.desde) || 0;
+    const registropp = Number(process.env.DOCSPERPAGE);
+    const texto = req.query.texto;
+    let textoBusqueda = "";
+    if (texto) {
+        textoBusqueda = new RegExp(texto, "i");
+    }
+    // Obtenemos el ID de usuario por si quiere buscar solo un trabajo
+    const id = req.query.id || "";
+
+    try {
+
+        let trabajos, total;
+        let query = {};
+        query = {
+            $and: [
+                { visible: true },
+                {
+                    $or: [
+                        { autor: textoBusqueda },
+                        { titulo: textoBusqueda },
+                        { titulacion: textoBusqueda },
+                    ],
+                }
+            ]
+        };
+        if (req.query.desde) {
+            [trabajos, total] = await Promise.all([
+                Trabajo.find(query).skip(desde).limit(registropp).populate('autor').populate('titulacion').sort({ valoracion: 1 }),
+                Trabajo.countDocuments(query)
+            ]);
+        } else {
+            [trabajos, total] = await Promise.all([
+                Trabajo.find(query).populate('autor').populate('titulacion').sort({ valoracion: 1 }),
+                Trabajo.countDocuments(query)
+            ]);
+        }
+
+        res.json({
+            ok: true,
+            msg: 'getTrabajos',
+            trabajos,
+            page: {
+                desde,
+                registropp,
+                total
+            }
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.json({
+            ok: false,
+            msg: 'Error obteniendo trabajos'
+        });
+    }
+}
+
+const obtenerTrabajosRecientes = async(req, res) => {
+    // Para paginación y buscador
+    const desde = Number(req.query.desde) || 0;
+    const registropp = Number(process.env.DOCSPERPAGE);
+    const texto = req.query.texto;
+    let textoBusqueda = "";
+    if (texto) {
+        textoBusqueda = new RegExp(texto, "i");
+    }
+    // Obtenemos el ID de usuario por si quiere buscar solo un trabajo
+    const id = req.query.id || "";
+
+    try {
+
+        let trabajos, total;
+        let query = {};
+        query = {
+            $and: [
+                { visible: true },
+                {
+                    $or: [
+                        { autor: textoBusqueda },
+                        { titulo: textoBusqueda },
+                        { titulacion: textoBusqueda },
+                    ],
+                }
+            ]
+        };
+        if (req.query.desde) {
+            [trabajos, total] = await Promise.all([
+                Trabajo.find(query).skip(desde).limit(registropp).populate('autor').populate('titulacion').sort({ alta: 1 }),
+                Trabajo.countDocuments(query)
+            ]);
+        } else {
+            [trabajos, total] = await Promise.all([
+                Trabajo.find(query).populate('autor').populate('titulacion').sort({ alta: 1 }),
+                Trabajo.countDocuments(query)
+            ]);
+        }
+
+        res.json({
+            ok: true,
+            msg: 'getTrabajos',
+            trabajos,
+            page: {
+                desde,
+                registropp,
+                total
+            }
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.json({
+            ok: false,
+            msg: 'Error obteniendo trabajos'
+        });
+    }
+}
+
 const obtenerTrabajosEditor = async(req, res) => {
     // Para paginación y buscador
     const desde = Number(req.query.desde) || 0;
@@ -487,6 +669,100 @@ const actualizarEstadoTrabajo = async(req, res = response) => {
 
 }
 
+const agregarValoracionTrabajo = async(req, res = response) => {
+
+    const uid = req.params.id;
+    const idToken = req.uidToken;
+    const rolToken = req.rolToken;
+
+    try {
+
+        let trabajo = await Trabajo.findById(uid);
+        let empresa = await Usuario.findById(idToken);
+
+        if (rolToken != "ROL_EMPRESA") {
+            return res.status(400).json({
+                ok: true,
+                msg: 'El usuario no tiene permisos para valorar este trabajo'
+            });
+        }
+
+        empresa.valorados.push(uid);
+        await empresa.save();
+
+        trabajo.valoracion = trabajo.valoracion + 1;
+        await trabajo.save();
+
+        res.json({
+            ok: true,
+            msg: 'Valoración Trabajo actualizada',
+            trabajo
+        });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: 'Error actualizando trabajo'
+        });
+    }
+
+}
+
+const quitarValoracionTrabajo = async(req, res = response) => {
+
+    const uid = req.params.id;
+    const idToken = req.uidToken;
+    const rolToken = req.rolToken;
+
+    try {
+
+        let trabajo = await Trabajo.findById(uid);
+        let empresa = await Usuario.findById(idToken);
+
+        if (rolToken != "ROL_EMPRESA") {
+            return res.status(400).json({
+                ok: true,
+                msg: 'El usuario no tiene permisos para valorar este trabajo'
+            });
+        }
+
+        let boolval = false; // booleano para comprobar si ha valorado ese trabajo
+        for (let i = 0; i < empresa.valorados.length; i++) {
+            if (empresa.valorados[i] == uid) {
+                empresa.splice(i, 1);
+                boolval = true;
+            }
+        }
+
+        if (!boolval) {
+            return res.status(400).json({
+                ok: true,
+                msg: 'El usuario no ha valorado este trabajo'
+            });
+        }
+
+        await empresa.save();
+
+        trabajo.valoracion = trabajo.valoracion - 1;
+        await trabajo.save();
+
+        res.json({
+            ok: true,
+            msg: 'Valoración Trabajo actualizada',
+            trabajo
+        });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: 'Error actualizando trabajo'
+        });
+    }
+
+}
+
 const agregarContenidoTrabajo = async(req, res = response) => {
 
     const { contenido } = req.body;
@@ -679,4 +955,4 @@ const borrarTrabajo = async(req, res = response) => {
 }
 
 
-module.exports = { obtenerTrabajos, obtenerTrabajosEditor, obtenerTrabajosAluVisibles, obtenerTrabajosAluNoVisibles, crearTrabajo, actualizarTrabajo, actualizarEstadoTrabajo, agregarContenidoTrabajo, borrarContenidoTrabajo, limpiarMultimediaTrabajo, borrarTrabajo }
+module.exports = { obtenerTrabajos, obtenerTrabajosVisibles, obtenerTrabajosRecientes, obtenerTrabajosMasValorados, obtenerTrabajosEditor, obtenerTrabajosAluVisibles, obtenerTrabajosAluNoVisibles, crearTrabajo, actualizarTrabajo, actualizarEstadoTrabajo, agregarValoracionTrabajo, quitarValoracionTrabajo, agregarContenidoTrabajo, borrarContenidoTrabajo, limpiarMultimediaTrabajo, borrarTrabajo }

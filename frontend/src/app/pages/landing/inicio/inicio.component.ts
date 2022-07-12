@@ -23,7 +23,13 @@ export class InicioComponent implements OnInit {
   //Variables para la carga de los trabajos
   public loading = true;
   public totaltrabajos = 0;
-  public listaTrabajos;
+  public listaTrabajos; // trabajos generales
+
+  //para trabajos más valorados
+  public trabajosValorados;
+
+  //para trabajos más recientes
+  public trabajosRecientes;
 
   //Variables para la carga de titulaciones
   public listaTitulaciones;
@@ -101,18 +107,19 @@ export class InicioComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    this.cargarTrabajos();
+    this.cargarTrabajosValorados();
+    this.cargarTrabajosRecientes();
     this.cargarTitulaciones();
   }
 
   // cargamos los trabajos
-  cargarTrabajos() {
+  cargarTrabajosValorados() {
     this.loading = true;
-    this.trabajoService.cargarTrabajosTodo()
+    this.trabajoService.cargarTrabajosValorados()
       .subscribe( res => {
         console.log("Res de trabajos", res['trabajos']);
-          this.listaTrabajos = res['trabajos'];
-          this.totaltrabajos = res['page'].total;
+          this.trabajosValorados = res['trabajos'];
+          //this.totaltrabajos = res['page'].total;
         this.loading = false;
       }, (err) => {
         Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
@@ -120,6 +127,21 @@ export class InicioComponent implements OnInit {
         this.loading = false;
       });
     }
+
+    cargarTrabajosRecientes() {
+      this.loading = true;
+      this.trabajoService.cargarTrabajosRecientes()
+        .subscribe( res => {
+          console.log("Res de trabajos", res['trabajos']);
+            this.trabajosRecientes = res['trabajos'];
+            //this.totaltrabajos = res['page'].total;
+          this.loading = false;
+        }, (err) => {
+          Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
+          //console.warn('error:', err);
+          this.loading = false;
+        });
+      }
 
     //cargamos las titulaciones
     cargarTitulaciones() {

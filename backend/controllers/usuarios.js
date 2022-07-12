@@ -56,7 +56,9 @@ const obtenerUsuarios = async(req, res) => {
                 };
             }
             [usuarios, total] = await Promise.all([
-                Usuario.find(query).skip(desde).limit(registropp),
+                Usuario.find(query).skip(desde).limit(registropp)
+                .collation({ locale: "es" })
+                .sort({ nombre_apellidos: 1 }),
                 Usuario.countDocuments(query)
             ]);
         }

@@ -30,6 +30,16 @@ export class TrabajosService {
     return this.http.put(`${environment.base_url}/trabajos/et/${uid}`, data, this.cabeceras);
   }
 
+  agregarValoracionTrabajo ( uid: string, data) {
+    console.log("Actualizar con: ", data);
+    return this.http.put(`${environment.base_url}/trabajos/av/${uid}`, data, this.cabeceras);
+  }
+
+  quitarValoracionTrabajo ( uid: string, data) {
+    console.log("Actualizar con: ", data);
+    return this.http.put(`${environment.base_url}/trabajos/qv/${uid}`, data, this.cabeceras);
+  }
+
   actualizarContenidoTrabajo ( uid: string, data, num) { // llamada despues de subir el contenido correctamente
     console.log("Actualizar con: ", data);
     return this.http.put(`${environment.base_url}/trabajos/ac/${uid}?num=${num}`, data, this.cabeceras);
@@ -55,6 +65,20 @@ export class TrabajosService {
     if (!desde) { desde = 0;}
     if (!textoBusqueda) {textoBusqueda = '';}
     return this.http.get(`${environment.base_url}/trabajos/?desde=${desde}&texto=${textoBusqueda}` , this.cabeceras);
+  }
+
+  cargarTrabajosVisibles( desde: number, textoBusqueda?: string ): Observable<object> {
+    if (!desde) { desde = 0;}
+    if (!textoBusqueda) {textoBusqueda = '';}
+    return this.http.get(`${environment.base_url}/trabajos/tv/?desde=${desde}&texto=${textoBusqueda}` , this.cabeceras);
+  }
+
+  cargarTrabajosValorados(): Observable<object> {
+    return this.http.get(`${environment.base_url}/trabajos/mv/` , this.cabeceras);
+  }
+
+  cargarTrabajosRecientes(): Observable<object> {
+    return this.http.get(`${environment.base_url}/trabajos/mr/` , this.cabeceras);
   }
 
   cargarTrabajosTodo(): Observable<object> {
