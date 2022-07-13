@@ -186,7 +186,7 @@ export class InicioComponent implements OnInit {
     }
 
     irFicha(uid){
-      this.router.navigateByUrl('/landing/trabajo/',uid);
+      this.router.navigateByUrl('/landing/trabajo/'+ uid);
       // window.open('/landing/trabajo',uid, '_blank');
     }
 

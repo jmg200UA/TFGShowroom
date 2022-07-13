@@ -27,11 +27,11 @@
                     </li>
                 </ul>
                 <ul class="col-md-4 buscadornav navbar-nav">
-                    <form (ngSubmit)="busqueda()" class="input-group no-border">
-                        <input id="txtQuery" class="form-control" autocomplete="off" placeholder="Busca...">
+                    <form class="input-group no-border">
+                        <input id="txtQuery" (submit)="busqueda()" class="form-control" autocomplete="off" placeholder="Busca...">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <i class="now-ui-icons ui-1_zoom-bold"></i>
+                                <i (click)="busqueda()" class="micursor now-ui-icons ui-1_zoom-bold"></i>
                             </div>
                         </div>
                     </form>

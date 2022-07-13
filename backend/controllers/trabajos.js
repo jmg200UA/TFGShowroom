@@ -115,13 +115,8 @@ const obtenerTrabajosVisibles = async(req, res) => {
                 query = {
                     $and: [
                         { visible: true },
-                        {
-                            $or: [
-                                { autor: textoBusqueda },
-                                { titulo: textoBusqueda },
-                                { titulacion: textoBusqueda },
-                            ],
-                        }
+                        { titulo: textoBusqueda }
+                        // se podria buscar por alumno y titulacion??
                     ]
                 };
             }
