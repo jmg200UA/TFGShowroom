@@ -58,6 +58,10 @@ export class LandingComponent implements OnInit {
     console.log(this.listatitu);
   }
 
+  busqueda(texto){
+    this.router.navigateByUrl('/landing/busqueda/'+texto);
+  }
+
 
 
 }

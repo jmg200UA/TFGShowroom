@@ -26,14 +26,18 @@
                         <a *ngIf="!listatitu" (click)="cambiotitu()" class="nav-link dropdown-toggle text-uppercase font-weight-bold micursor" aria-haspopup="true" aria-expanded="true">Titulaciones</a>
                     </li>
                 </ul>
-                <ul class="col-md-4 mx-auto navbar-nav input-group no-border">
-                    <input #txtQuery (keyup)="cargarUsuarios(txtQuery.value)" class="form-control" autocomplete="off" placeholder="Busca...">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <i class="now-ui-icons ui-1_zoom-bold"></i>
+                <ul class="col-md-4 buscadornav navbar-nav">
+                    <form (ngSubmit)="busqueda(txtQuery.value)" class="input-group no-border">
+                        <input #txtQuery class="form-control" autocomplete="off" placeholder="Busca...">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <i class="now-ui-icons ui-1_zoom-bold"></i>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </ul>
+                <!-- Para centrar el buscador, desaparece al hacer pequeña la pantalla -->
+                <ul class="col-md-1 navbar-nav espaciocol"></ul>
                 <ul class="col-md-1 navbar-nav">
                     <li class="nav-item dropdown usuario">
                         <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

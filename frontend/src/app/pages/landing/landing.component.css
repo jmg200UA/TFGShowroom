@@ -35,11 +35,18 @@
     #navbarSupportedContent {
         background-color: blue;
     }
+    .espaciocol {
+        display: none;
+    }
 }
 
 @media (min-width:991px) {
     .usuario {
         padding-top: .8em;
+    }
+    .buscadornav {
+        margin-left: auto!important;
+        margin-right: auto!important;
     }
 }
 

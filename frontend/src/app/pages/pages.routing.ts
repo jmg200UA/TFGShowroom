@@ -29,6 +29,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { LandingComponent } from './landing/landing.component';
 import { InicioComponent } from './landing/inicio/inicio.component';
 import { DetallestrabajoComponent } from './landing/detallestrabajo/detallestrabajo.component';
+import { ResultadosComponent } from './landing/resultados/resultados.component';
 
 
 
@@ -167,6 +168,10 @@ export const routes: Routes = [
     },},
     { path: 'trabajo/:uid',  component: DetallestrabajoComponent, data: {
       titulo: 'Ficha Trabajo',
+      breadcrums: []
+    },},
+    { path: 'busqueda/:texto',  component: ResultadosComponent, data: {
+      titulo: 'Búsqueda Trabajos',
       breadcrums: []
     },},
 

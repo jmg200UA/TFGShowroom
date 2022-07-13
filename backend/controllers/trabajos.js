@@ -31,7 +31,7 @@ const obtenerTrabajos = async(req, res) => {
 
             [trabajos, total] = await Promise.all([
                 Trabajo.findById(id).populate('autor').populate('titulacion'),
-                Trabajo.countDocuments()
+                Trabajo.countDocuments(id)
             ]);
 
         }
@@ -95,32 +95,49 @@ const obtenerTrabajosVisibles = async(req, res) => {
     try {
 
         let trabajos, total;
-        let query = {};
-        if (texto) {
-            query = {
-                $and: [
-                    { visible: true },
-                    {
-                        $or: [
-                            { autor: textoBusqueda },
-                            { titulo: textoBusqueda },
-                            { titulacion: textoBusqueda },
-                        ],
-                    }
-                ]
-            };
-        }
-        if (req.query.desde) {
+
+        if (id) {
+
             [trabajos, total] = await Promise.all([
-                Trabajo.find(query).skip(desde).limit(registropp).populate('autor').populate('titulacion'),
-                Trabajo.countDocuments(query)
+                Trabajo.findById(id).populate('autor').populate('titulacion'),
+                Trabajo.countDocuments(id)
             ]);
+            if (!trabajos.visible) {
+                return res.status(400).json({
+                    ok: true,
+                    msg: 'El trabajo no es visible'
+                });
+            }
+
         } else {
-            [trabajos, total] = await Promise.all([
-                Trabajo.find(query).populate('autor').populate('titulacion'),
-                Trabajo.countDocuments(query)
-            ]);
+            let query = {};
+            if (texto) {
+                query = {
+                    $and: [
+                        { visible: true },
+                        {
+                            $or: [
+                                { autor: textoBusqueda },
+                                { titulo: textoBusqueda },
+                                { titulacion: textoBusqueda },
+                            ],
+                        }
+                    ]
+                };
+            }
+            if (req.query.desde) {
+                [trabajos, total] = await Promise.all([
+                    Trabajo.find(query).skip(desde).limit(registropp).populate('autor').populate('titulacion'),
+                    Trabajo.countDocuments(query)
+                ]);
+            } else {
+                [trabajos, total] = await Promise.all([
+                    Trabajo.find(query).populate('autor').populate('titulacion'),
+                    Trabajo.countDocuments(query)
+                ]);
+            }
         }
+
 
         res.json({
             ok: true,

@@ -61,6 +61,10 @@ export class TrabajosService {
     return this.http.get(`${environment.base_url}/trabajos/?id=${uid}`, this.cabeceras);
   }
 
+  obtenerTrabajoVisible (uid: string){
+    return this.http.get(`${environment.base_url}/trabajos/tv/?id=${uid}`, this.cabeceras);
+  }
+
   cargarTrabajos( desde: number, textoBusqueda?: string ): Observable<object> {
     if (!desde) { desde = 0;}
     if (!textoBusqueda) {textoBusqueda = '';}
