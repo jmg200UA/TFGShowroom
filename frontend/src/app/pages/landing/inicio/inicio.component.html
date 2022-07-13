@@ -32,4 +32,17 @@
             </swiper>
         </div>
     </div>
+    <div class="col-md-10 pt-4 pb-4 mt-4 mb-4">
+        <!-- Primera fila trabajos, con margenes a los lados izda dcha -->
+        <!-- Fila buscador -->
+        <div class="row ml-4 mr-4">
+            <!-- Trabajos aleatorios -->
+            <h5 class="pl-4"><strong>Pueden interesarte...</strong></h5>
+            <swiper [config]="config2">
+                <ng-template *ngFor="let trabajo of trabajosAleatorios; let i=index" swiperSlide>
+                    <img (click)="irFicha(trabajo.uid)" class="micursor portada" [src]="crearImagenUrl(trabajo.imagen)" alt="portada">
+                </ng-template>
+            </swiper>
+        </div>
+    </div>
 </div>
