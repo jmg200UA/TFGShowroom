@@ -41,9 +41,7 @@ const obtenerTrabajos = async(req, res) => {
             if (texto) {
                 query = {
                     $or: [
-                        { autor: textoBusqueda },
                         { titulo: textoBusqueda },
-                        { titulacion: textoBusqueda },
                     ],
                 };
             }

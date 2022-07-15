@@ -51,16 +51,16 @@ export class InicioComponent implements OnInit {
       },
       // when window width is >= 480px
       480: {
-        slidesPerView: 2,
+        slidesPerView: 1,
         spaceBetween: 30
       },
       // when window width is >= 640px
       1200: {
-        slidesPerView: 3,
+        slidesPerView: 2,
         spaceBetween: 40
       },
       1500: {
-        slidesPerView: 4,
+        slidesPerView: 3,
         spaceBetween: 40
       }
     }
@@ -74,25 +74,25 @@ export class InicioComponent implements OnInit {
     breakpoints: {
       // when window width is >= 320px
       320: {
-        slidesPerView: 2,
+        slidesPerView: 1,
         spaceBetween: 10
       },
       // when window width is >= 480px
       480: {
-        slidesPerView: 3,
+        slidesPerView: 2,
         spaceBetween: 20
       },
       850: {
-        slidesPerView: 4,
+        slidesPerView: 3,
         spaceBetween: 30
       },
       // when window width is >= 640px
       1200: {
-        slidesPerView: 5,
+        slidesPerView: 4,
         spaceBetween: 40
       },
       1500: {
-        slidesPerView: 6,
+        slidesPerView: 5,
         spaceBetween: 40
       }
     }

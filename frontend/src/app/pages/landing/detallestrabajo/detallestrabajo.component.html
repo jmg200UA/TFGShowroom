@@ -1,19 +1,4 @@
 <div class="container-fluid todo">
-    <script>
-        myID = document.getElementById("nomtrabajo");
-
-        var myScrollFunc = function() {
-            console.log("Hola");
-            var y = window.scrollY;
-            if (y >= 5) {
-                myID.className = "nomtrabajo"
-            } else {
-                myID.className = "nonomtrabajo"
-            }
-        };
-
-        window.addEventListener("scroll", myScrollFunc);
-    </script>
     <!-- Primera fila info general -->
     <div class="row pt-4" *ngIf="!loading">
         <!-- Primera columna titulo descripcion -->
@@ -56,6 +41,7 @@
 <!-- Contenidos multimedia y extras -->
 <div class="row pl-4 pr-4 pt-4 contenidos" *ngIf="!loading">
     <h2 class="mx-auto">Contenido multimedia</h2>
+    <!-- Hacer ifelse, para mostrar no hay contenidos en caso de que no haya y sino mostrarlos -->
     <swiper [config]="config" class="swipercont">
         <ng-template *ngFor="let contenido of trabajo.contenidos; let i=index" class="swiper-slidecont card" swiperSlide>
             <ng-container *ngIf="contenido.tipo=='jpg' || contenido.tipo=='jpeg' || contenido.tipo=='png' || contenido.tipo=='PNG' || contenido.tipo=='YT' || contenido.tipo=='mp3' || contenido.tipo=='wav';else otroformato"></ng-container>
@@ -89,9 +75,4 @@
             </ng-template>
         </ng-template>
     </swiper>
-</div>
-
-<!-- Titulo y nombre autor al hacer scroll -->
-<div *ngIf="!loading" id="titulotrab" class="nonomtrabajo">
-    <h6><strong class="titulo">{{trabajo.titulo}}</strong> &nbsp; - &nbsp; {{trabajo.autor.nombre_apellidos}}</h6>
 </div>
