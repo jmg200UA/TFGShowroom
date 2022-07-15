@@ -58,4 +58,14 @@ export class ResultadosComponent implements OnInit {
       });
   }
 
+  //Para cargar la imagen del trabajo
+  crearImagenUrl(imagen: string) {
+    return this.TrabajosService.crearImagenUrl(imagen);
+  }
+
+  irFicha(uid){
+    this.router.navigateByUrl('/landing/trabajo/'+ uid);
+    // window.open('/landing/trabajo',uid, '_blank');
+  }
+
 }
