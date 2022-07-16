@@ -55,8 +55,8 @@
 }
 
 .rowres {
-    margin-left: 5% !important;
-    margin-right: 5% !important;
+    margin-left: 2% !important;
+    margin-right: 2% !important;
     /* flexbox style */
     display: flex;
     flex-direction: row;
