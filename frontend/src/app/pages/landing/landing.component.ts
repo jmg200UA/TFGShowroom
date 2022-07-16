@@ -19,6 +19,8 @@ export class LandingComponent implements OnInit {
   public loading = true;
   public listatitu: boolean = true;
 
+  test : Date = new Date();
+
   constructor(private UsuarioService: UsuarioService,
               private router: Router,
               private TitulacionService: TitulacionService) { }

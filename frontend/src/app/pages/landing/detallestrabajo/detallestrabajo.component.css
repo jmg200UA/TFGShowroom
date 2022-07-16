@@ -65,6 +65,20 @@ h3 {
     height: 250px;
 }
 
+.nombre {
+    display: flex;
+    flex-direction: inline;
+}
+
+.solonombre {
+    width: 70%;
+}
+
+.valoracion {
+    width: 30%;
+    text-align: right;
+}
+
 @media (max-width: 1047.5px) {
     h2 {
         font-size: 26px;

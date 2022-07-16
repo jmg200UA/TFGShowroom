@@ -58,7 +58,7 @@
     <!-- Se despliega cuando listatitu esta a false -->
     <div class="row pl-2 pr-2 desplegabletitu justify-content-center" [ngClass]=" { 'display': listatitu} ">
         <div [ngClass]=" { 'display': listatitu} " class="col-md-2 divtitu " *ngFor="let titulacion of listaTitulaciones ">
-            <img [src]="crearUrlTitulacion(titulacion.imagen) " alt="titulacion " class="img-thumbnail rounded-circle " width="50 " height="50 ">
+            <a target="_blank" [href]="titulacion.resumen"><img [src]="crearUrlTitulacion(titulacion.imagen)" alt="titulacion" class="img-thumbnail rounded-circle" width="50" height="50"></a>
             <div class="nombretitu ">{{titulacion.nombre}}</div>
         </div>
     </div>
@@ -71,3 +71,10 @@
         <app-login2></app-login2>
     </div>
 </div>
+<footer class="footer text-center mx-auto">
+    <div class="container-fluid">
+        <div class="copyright">
+            &copy; {{test | date: 'yyyy'}}, Designed and coded by Javier Martín Gómez.
+        </div>
+    </div>
+</footer>

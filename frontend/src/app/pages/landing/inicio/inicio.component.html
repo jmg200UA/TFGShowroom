@@ -4,7 +4,7 @@
     <div class="row pl-2 pr-2 filabuscador justify-content-center ">
         <!-- <input class="search__input text-center" type="text" placeholder="  Busca trabajos"> -->
         <div class="col-md-2 divtitu" *ngFor="let titulacion of listaTitulaciones">
-            <img [src]="crearUrlTitulacion(titulacion.imagen)" alt="titulacion" class="img-thumbnail rounded-circle" width="50" height="50">
+            <a target="_blank" [href]="titulacion.resumen"><img [src]="crearUrlTitulacion(titulacion.imagen)" alt="titulacion" class="img-thumbnail rounded-circle" width="50" height="50"></a>
             <div class="nombretitu"><strong>{{titulacion.nombre}}</strong></div>
         </div>
     </div>
