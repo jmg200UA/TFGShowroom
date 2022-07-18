@@ -17,7 +17,8 @@ SwiperCore.use([EffectCoverflow, Navigation, Pagination, Scrollbar, A11y]);
 @Component({
   selector: 'previewtrabajo',
   templateUrl: './previewtrabajo.component.html',
-  styleUrls: ['./previewtrabajo.component.css']
+  styleUrls: ['./previewtrabajo.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class PreviewtrabajoComponent implements OnInit {
 

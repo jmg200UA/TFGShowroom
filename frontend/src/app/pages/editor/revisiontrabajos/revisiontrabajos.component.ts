@@ -71,7 +71,7 @@ export class RevisiontrabajosComponent implements OnInit {
   }
 
   irRevision(uid){
-    this.router.navigateByUrl('/editor/revisartrabajo/'+ uid);
+    this.router.navigateByUrl('/editor/previewtrabajo/'+ uid);
   }
 
   actualizarEstado(uid,estado){ // estado param -> 'Aceptado' o 'Denegado'

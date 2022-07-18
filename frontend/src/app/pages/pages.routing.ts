@@ -155,7 +155,7 @@ export const routes: Routes = [
   ]},
 
   //PATH PREVIEW TRABAJO
-  { path: 'editor/previewtrabajo/:uid', component: PreviewtrabajoComponent, canActivate: [ AuthGuard ], data: {
+  { path: 'editor/previewtrabajo/:uid', component: PreviewtrabajoComponent, data: {
     rol: 'ROL_EDITOR',
     titulo: 'Showroom Editor - Revisión Trabajo',
   },},
