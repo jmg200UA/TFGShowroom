@@ -116,12 +116,12 @@ const obtenerTrabajosVisibles = async(req, res) => {
             }
             if (req.query.desde) {
                 [trabajos, total] = await Promise.all([
-                    Trabajo.find(query).skip(desde).limit(registropp).populate('autor'),
+                    Trabajo.find(query).skip(desde).limit(registropp).populate('autor').populate('titulacion.titulacion'),
                     Trabajo.countDocuments(query)
                 ]);
             } else {
                 [trabajos, total] = await Promise.all([
-                    Trabajo.find(query).populate('autor'),
+                    Trabajo.find(query).populate('autor').populate('titulacion.titulacion'),
                     Trabajo.countDocuments(query)
                 ]);
             }
