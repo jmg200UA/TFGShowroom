@@ -254,7 +254,7 @@ const obtenerTrabajosMasValorados = async(req, res) => {
             ]);
         } else {
             [trabajos, total] = await Promise.all([
-                Trabajo.find(query).populate('autor').populate('titulacion').sort({ valoracion: 1 }),
+                Trabajo.find(query).sort({ valoracion: -1 }).populate('autor').populate('titulacion'),
                 Trabajo.countDocuments(query)
             ]);
         }
