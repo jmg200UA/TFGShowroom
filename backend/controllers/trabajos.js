@@ -665,6 +665,8 @@ const actualizarTrabajo = async(req, res = response) => {
     const rolToken = req.rolToken;
     var ObjectId = require('mongodb').ObjectId;
 
+    console.log("Que llega: ", req.body);
+
     try {
 
         const usu = await Usuario.findById(idToken);
@@ -680,12 +682,18 @@ const actualizarTrabajo = async(req, res = response) => {
 
         trabajo = await Trabajo.findByIdAndUpdate(uid, object, { new: true });
 
-        let titu = await Titulacion.findById(titulacion);
-        trabajo.titulacion.nombre = titu.nombre;
-        trabajo.titulacion.titulacion = titulacion;
+        console.log("is nan: ", titulacion[0]);
 
-        // Almacenar en BD
-        await trabajo.save();
+        if (titulacion[0] == 6) { // comprobamos si llega un object id, eso será que se ha actualizado la titulacion del trabajo
+            let titu = await Titulacion.findById(titulacion);
+            trabajo.titulacion.nombre = titu.nombre;
+            trabajo.titulacion.titulacion = titulacion;
+
+            // Almacenar en BD
+            await trabajo.save();
+        }
+
+
 
         res.json({
             ok: true,

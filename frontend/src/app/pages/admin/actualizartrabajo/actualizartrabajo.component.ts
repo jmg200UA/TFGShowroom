@@ -81,7 +81,7 @@ export class ActualizartrabajoComponent implements OnInit {
 
   cancelar(): void {
     // Si estamos creando uno nuevo, vamos a la lista
-      this.router.navigateByUrl('/admin/titulaciones');
+      this.router.navigateByUrl('/admin/trabajos');
   }
 
   enviar(): void {
@@ -221,7 +221,7 @@ export class ActualizartrabajoComponent implements OnInit {
 
   cancelar2(): void {
     // Si estamos creando uno nuevo, vamos a la lista
-      this.router.navigateByUrl('/admin/dashboard');
+      this.router.navigateByUrl('/admin/trabajos');
   }
 
 

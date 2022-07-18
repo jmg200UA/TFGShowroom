@@ -8,8 +8,8 @@
                 <h2>{{trabajo.titulo}}</h2>
             </div>
             <div class="row nombre">
-                <div class="solonombre">{{trabajo.autor.nombre_apellidos}}</div>
-                <div class="valoracion">Valoración: &nbsp; {{trabajo.valoracion}} <i class="fas fa-thumbs-up"></i></div>
+                <div class="solonombre"><strong>{{trabajo.autor.nombre_apellidos}}</strong> &nbsp; {{trabajo.autor.email}}</div>
+                <!-- <div class="valoracion">Valoración: &nbsp; {{trabajo.valoracion}} <i class="fas fa-thumbs-up"></i></div> -->
                 <!-- <div class="col-md-8">
 
                 </div>
@@ -30,7 +30,7 @@
                     <p><strong>Área: </strong> &nbsp; {{trabajo.area}}</p>
                 </div>
                 <div class="row rowdet letrasmall">
-                    <p><strong>Carrera: </strong> &nbsp; {{trabajo.titulacion.nombre}}</p>
+                    <p><strong>Carrera: </strong> &nbsp; {{trabajo.titulacion.titulacion.nombre}}</p>
                 </div>
                 <div class="row rowdet letrasmall">
                     <p><strong>Director investigación: </strong> &nbsp; {{trabajo.director}}</p>
