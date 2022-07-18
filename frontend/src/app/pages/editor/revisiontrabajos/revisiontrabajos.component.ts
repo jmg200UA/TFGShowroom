@@ -5,6 +5,7 @@ import { UsuarioService } from '../../../services/usuario.service';
 import { Trabajo } from '../../../models/trabajo.model';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'revisiontrabajos',
@@ -21,9 +22,14 @@ export class RevisiontrabajosComponent implements OnInit {
   private ultimaBusqueda = '';
   public listaTrabajos: Trabajo[] = [];
 
+  public dataEstado = this.fb.group({ // para enviar el estado como aceptado o denegado
+    estado: [''],
+  });
+
   constructor(private TrabajosService: TrabajosService,
               private UsuarioService:UsuarioService,
-              private router: Router) { }
+              private router: Router,
+              private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.cargarTrabajos(this.ultimaBusqueda);
@@ -66,6 +72,28 @@ export class RevisiontrabajosComponent implements OnInit {
 
   irRevision(uid){
     this.router.navigateByUrl('/editor/revisartrabajo/'+ uid);
+  }
+
+  actualizarEstado(uid,estado){ // estado param -> 'Aceptado' o 'Denegado'
+    this.dataEstado.get('estado').setValue(estado);
+    this.loading = true;
+    this.TrabajosService.actualizarEstadoTrabajo(uid, this.dataEstado.value)
+      .subscribe( res => {
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Estado actualizado correctamente',
+          showConfirmButton: false,
+          timer: 2000
+        })
+
+        this.router.navigateByUrl('/editor/previewtrabajo');
+
+      }, (err) => {
+        Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
+        //console.warn('error:', err);
+        this.loading = false;
+      });
   }
 
 }

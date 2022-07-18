@@ -22,7 +22,7 @@ import { SubircontenidosComponent } from './alumno/subircontenidos/subircontenid
 //COMPONENTS EDITOR
 import { EditorComponent } from './editor/editor.component';
 import { RevisiontrabajosComponent } from './editor/revisiontrabajos/revisiontrabajos.component';
-import { RevisartrabajoComponent } from './editor/revisartrabajo/revisartrabajo.component';
+import { PreviewtrabajoComponent } from './landing/previewtrabajo/previewtrabajo.component';
 //COMPONENT PERFIL GENERAL
 import { UserProfileComponent } from './user-profile/user-profile.component';
 //COMPONENTS LANDING
@@ -30,6 +30,7 @@ import { LandingComponent } from './landing/landing.component';
 import { InicioComponent } from './landing/inicio/inicio.component';
 import { DetallestrabajoComponent } from './landing/detallestrabajo/detallestrabajo.component';
 import { ResultadosComponent } from './landing/resultados/resultados.component';
+
 
 
 
@@ -150,14 +151,14 @@ export const routes: Routes = [
                                                             titulo: 'Showroom Editor - Trabajos para revisar',
                                                             breadcrums: []
                                                           },},
-    { path: 'revisartrabajo/:uid', component: RevisartrabajoComponent, canActivate: [ AuthGuard ], data: {
-                                                            rol: 'ROL_EDITOR',
-                                                            titulo: 'Showroom Editor - Revisión Trabajo',
-                                                            breadcrums: []
-                                                          },},
-
     { path: '**', redirectTo: 'editor/revisiontrabajos'}
   ]},
+
+  //PATH PREVIEW TRABAJO
+  { path: 'editor/previewtrabajo/:uid', component: PreviewtrabajoComponent, canActivate: [ AuthGuard ], data: {
+    rol: 'ROL_EDITOR',
+    titulo: 'Showroom Editor - Revisión Trabajo',
+  },},
 
   //PATHS LANDING
   { path: 'landing', component: LandingComponent,

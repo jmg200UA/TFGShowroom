@@ -8,7 +8,8 @@ import { InicioComponent } from './inicio/inicio.component';
 import { SwiperModule } from 'swiper/angular';
 import { DetallestrabajoComponent } from './detallestrabajo/detallestrabajo.component';
 import {SafePipe} from '../../pipes/SafePipe';
-import { ResultadosComponent } from './resultados/resultados.component'
+import { ResultadosComponent } from './resultados/resultados.component';
+import { PreviewtrabajoComponent } from './previewtrabajo/previewtrabajo.component'
 
 
 
@@ -19,7 +20,8 @@ import { ResultadosComponent } from './resultados/resultados.component'
       InicioComponent,
       DetallestrabajoComponent,
       SafePipe,
-      ResultadosComponent
+      ResultadosComponent,
+      PreviewtrabajoComponent
 
   ],
   imports: [

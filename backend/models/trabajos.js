@@ -55,18 +55,6 @@ const TrabajoSchema = Schema({
             type: String,
         }
     }],
-    // imagenes: [{
-    //     type: String,
-    // }],
-    // videos: [{
-    //     type: String,
-    // }],
-    // audios: [{
-    //     type: String,
-    // }],
-    // documentos: [{
-    //     type: String,
-    // }],
     titulacion: {
         type: Schema.Types.ObjectId,
         ref: 'Titulacion',
@@ -79,7 +67,11 @@ const TrabajoSchema = Schema({
     estado: { // para editar, pendiente de revisión, aceptado, denergado
         type: String,
         default: "Para editar"
-    }
+    },
+    feedback: [{
+        type: String,
+        default: ''
+    }],
 }, { collection: 'trabajos' });
 
 TrabajoSchema.method('toJSON', function() {
