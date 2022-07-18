@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 
 const Trabajo = require('../models/trabajos');
 const Usuario = require('../models/usuarios');
+const Titulacion = require('../models/titulaciones');
 
 /*
 get / 
@@ -111,21 +112,26 @@ const obtenerTrabajosVisibles = async(req, res) => {
             let query = {};
             if (texto) {
                 query = {
-                    $and: [
-                        { visible: true },
-                        { titulo: textoBusqueda }
-                        // se podria buscar por alumno y titulacion??
+                    $and: [{
+                            $or: [
+                                { "titulo": textoBusqueda },
+                                { "titulacion.nombre": textoBusqueda }
+                            ]
+                        },
+                        {
+                            "visible": true
+                        }
                     ]
                 };
             }
             if (req.query.desde) {
                 [trabajos, total] = await Promise.all([
-                    Trabajo.find(query).skip(desde).limit(registropp).populate('autor').populate('titulacion'),
+                    Trabajo.find(query).skip(desde).limit(registropp).populate('autor').populate('titulacion.titulacion'),
                     Trabajo.countDocuments(query)
                 ]);
             } else {
                 [trabajos, total] = await Promise.all([
-                    Trabajo.find(query).populate('autor').populate('titulacion'),
+                    Trabajo.find(query).populate('autor').populate('titulacion.titulacion'),
                     Trabajo.countDocuments(query)
                 ]);
             }
@@ -620,15 +626,22 @@ const crearTrabajo = async(req, res = response) => {
 
     const idToken = req.uidToken;
     const rolToken = req.rolToken;
+    var ObjectId = require('mongodb').ObjectId;
 
     try {
+
+        console.log("Que llega: ", req.body);
 
         // Comrprobar que no existe un usuario con ese email registrado
         const usu = await Usuario.findById(idToken);
 
         // Vamos a tomar todo lo que nos llega por el req.body excepto el alta, ya que la fecha de alta se va a signar automáticamente en BD
-        const { alta, ...object } = req.body;
+        const { alta, titulacion, ...object } = req.body;
         const trabajo = new Trabajo(object);
+
+        let titu = await Titulacion.findById(titulacion);
+        trabajo.titulacion.nombre = titu.nombre;
+        trabajo.titulacion.titulacion = titulacion;
 
         // Almacenar en BD
         await trabajo.save();
@@ -656,7 +669,7 @@ put /:id
 
 const actualizarTrabajo = async(req, res = response) => {
 
-    const { imagen, ...object } = req.body;
+    const { imagen, titulacion, ...object } = req.body;
     const uid = req.params.id;
     const idToken = req.uidToken;
     const rolToken = req.rolToken;
@@ -676,6 +689,13 @@ const actualizarTrabajo = async(req, res = response) => {
 
 
         trabajo = await Trabajo.findByIdAndUpdate(uid, object, { new: true });
+
+        let titu = await Titulacion.findById(titulacion);
+        trabajo.titulacion.nombre = titu.nombre;
+        trabajo.titulacion.titulacion = titulacion;
+
+        // Almacenar en BD
+        await trabajo.save();
 
         res.json({
             ok: true,

@@ -56,9 +56,14 @@ const TrabajoSchema = Schema({
         }
     }],
     titulacion: {
-        type: Schema.Types.ObjectId,
-        ref: 'Titulacion',
-        require: true
+        titulacion: {
+            type: Schema.Types.ObjectId,
+            ref: 'Titulacion',
+            require: true,
+        },
+        nombre: {
+            type: String,
+        }
     },
     visible: {
         type: Boolean,
