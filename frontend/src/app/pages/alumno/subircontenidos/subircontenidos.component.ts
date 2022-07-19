@@ -86,7 +86,7 @@ export class SubircontenidosComponent implements OnInit {
 
   addDatosContenido(num){
     this.contenidos[num].nombre= (document.getElementById("nombre"+num) as HTMLInputElement).value;
-    this.contenidos[num].descripcion = (document.getElementById("nombre"+num) as HTMLInputElement).value;
+    this.contenidos[num].descripcion = (document.getElementById("descripcion"+num) as HTMLInputElement).value;
     if(this.contenidos[num].tipo=="YT"){
       this.subirVideoYT(num);
     }
@@ -101,8 +101,8 @@ export class SubircontenidosComponent implements OnInit {
   }
 
   addDatosContenidoAct(num){ // cambiar datos contenidos ya subido, para actualizar
-    this.contenidossubidos[num].nombre= (document.getElementById("nombre"+num) as HTMLInputElement).value;
-    this.contenidossubidos[num].descripcion = (document.getElementById("descripcion"+num) as HTMLInputElement).value;
+    this.contenidossubidos[num].nombre= (document.getElementById("nombre2"+num) as HTMLInputElement).value;
+    this.contenidossubidos[num].descripcion = (document.getElementById("descripcion2"+num) as HTMLInputElement).value;
     this.actualizarContenido(num);
   }
 
