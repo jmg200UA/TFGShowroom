@@ -30,7 +30,7 @@
                     <p><strong>Área: </strong> &nbsp; {{trabajo.area}}</p>
                 </div>
                 <div class="row rowdet letrasmall">
-                    <p><strong>Carrera: </strong> &nbsp; {{trabajo.titulacion.titulacion.nombre}}</p>
+                    <p><strong>Carrera: </strong> &nbsp; {{trabajo.titulacion.nombre}}</p>
                 </div>
                 <div class="row rowdet letrasmall">
                     <p><strong>Director investigación: </strong> &nbsp; {{trabajo.director}}</p>
@@ -48,39 +48,51 @@
             <ng-template *ngFor="let contenido of trabajo.contenidos; let i=index" class="swiper-slidecont card" swiperSlide>
                 <ng-container *ngIf="contenido.tipo=='jpg' || contenido.tipo=='jpeg' || contenido.tipo=='png' || contenido.tipo=='PNG' || contenido.tipo=='YT' || contenido.tipo=='mp3' || contenido.tipo=='wav';else otroformato"></ng-container>
                 <ng-container *ngIf="contenido.tipo=='jpg' || contenido.tipo=='jpeg' || contenido.tipo=='png' || contenido.tipo=='PNG'">
-                    <a [href]='crearContenidosUrl(contenido.contenido)' target="_blank"><img class="imagencont swiper-slidecont" [src]="crearContenidosUrl(contenido.contenido)" [alt]="contenido.nombre" /></a>
+                    <div class="contenedorimg">
+                        <a [href]='crearContenidosUrl(contenido.contenido)' target="_blank"><img class="imagencont swiper-slidecont" [src]="crearContenidosUrl(contenido.contenido)" [alt]="contenido.nombre" /></a>
+                        <div class="row nomdesfoto">
+                            <div class="row nomfoto mx-auto pt-1 pl-1 pr-1"><strong>{{contenido.nombre}}</strong></div>
+                            <div class="row desfoto mx-auto pb-1 pl-1 pr-1">{{contenido.descripcion}}</div>
+                        </div>
+                    </div>
                 </ng-container>
-                <ng-container *ngIf="contenido.tipo=='YT'">
-                    <iframe class="swiper-slidecont" [src]="getVideoIframe(contenido.contenido)" [title]="contenido.nombre" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <ng-container *ngIf=" contenido.tipo=='YT' ">
+                    <iframe class="swiper-slidecont " [src]="getVideoIframe(contenido.contenido) " [title]="contenido.nombre " frameborder="0 " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen></iframe>
                 </ng-container>
-                <ng-container *ngIf="contenido.tipo=='mp3' || contenido.tipo=='wav'">
-                    <div class="otroformato pb-4 pt-4 mr-2 ml-2 pr-4 pl-4">
-                        <div class="row tipo">
+                <ng-container *ngIf="contenido.tipo=='mp3' || contenido.tipo=='wav' ">
+                    <div class="otroformato pb-4 pt-4 mr-2 ml-2 pr-4 pl-4 ">
+                        <div class="row tipo ">
                             <h5>{{contenido.nombre}} &nbsp; ({{contenido.tipo}})</h5>
                         </div>
-                        <hr size="1px" color="black" />
-                        <div class="row des pt-2 pb-2">{{contenido.descripcion}}</div>
-                        <hr size="1px" color="black" />
-                        <div class="row downl"><audio [src]="crearContenidosUrl(contenido.contenido)" controls [alt]="contenido.nombre"></audio></div>
+                        <hr size="1px " color="black " />
+                        <div class="row des pt-2 pb-2 ">{{contenido.descripcion}}</div>
+                        <hr size="1px " color="black " />
+                        <div class="row downl "><audio [src]="crearContenidosUrl(contenido.contenido) " controls [alt]="contenido.nombre "></audio></div>
                     </div>
                 </ng-container>
                 <ng-template #otroformato>
-                    <div class="otroformato">
-                        <div class="row tipo">
-                            <h5>{{contenido.nombre}} &nbsp; ({{contenido.tipo}})</h5>
+                    <div class="otroformato ">
+                        <div class="row tipo ">
+                            <h5>{{contenido.nombre}}</h5>
                         </div>
-                        <hr size="1px" color="black" />
-                        <div class="row des pt-2 pb-2">{{contenido.descripcion}}</div>
-                        <hr size="1px" color="black" />
-                        <div class="row downl"><a [download]="contenido.nombre" [href]="crearContenidosUrl(contenido.contenido)"><i class="fas fa-download"></i></a></div>
+                        <hr size="1px " color="black " />
+                        <div class="row des pt-2 pb-2 ">{{contenido.descripcion}}</div>
+                        <hr size="1px " color="black " />
+                        <div class="row downl ">
+                            <div>
+                                <button type="button" class="btn btn-success">Descargar<a [download]="contenido.nombre " [href]="crearContenidosUrl(contenido.contenido) "></a></button></div>
+                            <div>
+                                ({{contenido.tipo}})
+                            </div>
+                        </div>
                     </div>
                 </ng-template>
             </ng-template>
         </swiper>
     </ng-container>
     <ng-template #noconts>
-        <div class="row noconts mx-auto">
-            <h5 class="nocontsesc">Este trabajo no tiene contenidos multimedia asociados</h5>
+        <div class="row noconts mx-auto ">
+            <h5 class="nocontsesc ">Este trabajo no tiene contenidos multimedia asociados</h5>
         </div>
     </ng-template>
 </div>
