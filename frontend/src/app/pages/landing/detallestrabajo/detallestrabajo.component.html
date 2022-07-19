@@ -22,7 +22,7 @@
         <div class="col-md-4 segundacol">
             <!-- Row para la imagen -->
             <div class="row rowportada">
-                <img class="micursor portadatrabajo" [src]="crearImagenUrl(trabajo.imagen) " alt="portada ">
+                <img class="micursor portadatrabajo" [src]="crearImagenUrl(trabajo) " alt="portada ">
             </div>
             <!-- Row para detalles -->
             <div class="row rowdetalles">
@@ -30,7 +30,7 @@
                     <p><strong>Área: </strong> &nbsp; {{trabajo.area}}</p>
                 </div>
                 <div class="row rowdet letrasmall">
-                    <p><strong>Carrera: </strong> &nbsp; {{trabajo.titulacion.nombre}}</p>
+                    <p><strong>Carrera: </strong> &nbsp; <a target="_blank " [href]="trabajo.titulacion.resumen ">{{trabajo.titulacion.nombre}}</a></p>
                 </div>
                 <div class="row rowdet letrasmall">
                     <p><strong>Director investigación: </strong> &nbsp; {{trabajo.director}}</p>
