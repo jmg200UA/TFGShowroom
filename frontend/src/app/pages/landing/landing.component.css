@@ -122,6 +122,9 @@
 }
 
 .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     padding: 0% !important;
     height: 20px !important;
     background-color: rgba(0, 0, 255, 0.767);

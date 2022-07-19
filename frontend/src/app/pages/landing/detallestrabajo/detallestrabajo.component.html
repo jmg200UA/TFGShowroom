@@ -41,7 +41,7 @@
 </div>
 <!-- Contenidos multimedia y extras -->
 <div class="row pl-4 pr-4 contenidos" *ngIf="!loading">
-    <h2 class="mx-auto">Contenido multimedia</h2>
+    <h2 class="mx-auto">Contenidos multimedia</h2>
     <ng-container *ngIf="trabajo.contenidos.length>0;else noconts"></ng-container>
     <ng-container *ngIf="trabajo.contenidos.length>0">
         <swiper [config]="config" class="swipercont">

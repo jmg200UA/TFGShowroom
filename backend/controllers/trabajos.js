@@ -111,8 +111,8 @@ const obtenerTrabajosVisibles = async(req, res) => {
         } else {
             let query = {};
             if (texto) {
-                query = { $or: [{ titulo: texto }, { 'titulacion.nombre': texto }], visible: true };
-
+                console.log("TEXTO: ", texto);
+                query = { $or: [{ titulo: textoBusqueda }, { 'titulacion.nombre': textoBusqueda }], visible: true };
             }
             if (req.query.desde) {
                 [trabajos, total] = await Promise.all([
@@ -126,6 +126,8 @@ const obtenerTrabajosVisibles = async(req, res) => {
                 ]);
             }
         }
+
+        console.log("TRARARA: ", trabajos);
 
 
         res.json({

@@ -6,7 +6,7 @@
         <ng-container *ngFor="let trabajo of listaTrabajos">
             <div class="boxres ml-2 mr-2 contenedorresultados mb-4">
                 <div class="divimgmini">
-                    <img (click)="irFicha(trabajo.uid)" class="micursor imagencont" [src]="crearImagenUrl(trabajo.imagen)" alt="portada">
+                    <img (click)="irFicha(trabajo.uid)" class="micursor imagencont" [src]="crearImagenUrl(trabajo)" alt="portada">
                 </div>
                 <div class="divtitulomini"><strong>{{trabajo.titulo}}</strong></div>
             </div>

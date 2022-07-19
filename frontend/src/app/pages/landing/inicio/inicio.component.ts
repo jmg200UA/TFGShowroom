@@ -183,7 +183,6 @@ export class InicioComponent implements OnInit {
     //Para cargar la imagen del trabajo
     crearImagenUrl(trabajo) {
       let img=this.trabajoService.crearImagenUrl(trabajo.imagen);
-      console.log(img);
       if(img=='nofoto'){
         img= this.crearImagenTitu(trabajo.area);
       }
