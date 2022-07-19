@@ -1,4 +1,4 @@
-<div class="row justify-content-center">
+<div class="justify-content-center">
     <!-- <h1 class="slogan">Todos los Trabajos de Fin de Grado y Fin de Máster en una plataforma</h1> -->
     <!-- <div class="col-md-1 primeracol">aaaaaa</div> -->
     <div class="row pl-2 pr-2 filabuscador justify-content-center ">
@@ -8,50 +8,73 @@
             <div class="nombretitu"><strong>{{titulacion.nombre}}</strong></div>
         </div>
     </div>
+    <div class="todotrabajos">
+        <div class="pl-6 pr-6 pt-4 pb-4 mb-4 fondo">
+            <!-- Primera fila trabajos, con margenes a los lados izda dcha -->
+            <div>
+                <h5><strong>Trabajos destacados</strong></h5>
+                <swiper [config]="config">
+                    <ng-template *ngFor="let trabajo of trabajosValorados; let i=index" swiperSlide class="swiperSlideGrande">
+                        <div class="divimg">
+                            <img (click)="irFicha(trabajo.uid)" class="micursor imagencont" [src]="crearImagenUrl(trabajo)" alt="portada">
+                        </div>
+                        <div class="divtitulo">
+                            <div class="puntitos">
+                                <strong>{{trabajo.titulo}}</strong>
+                            </div>
+                            <div class="titulacionmini puntitos">
+                                {{trabajo.titulacion.nombre}}
+                            </div>
+                        </div>
+                    </ng-template>
+                </swiper>
+            </div>
+        </div>
+        <div class="pt-4 pb-4 mt-4 mb-4 fondo">
+            <!-- Primera fila trabajos, con margenes a los lados izda dcha -->
+            <!-- Fila buscador -->
+            <div>
+                <h5><strong>Trabajos recientes</strong></h5>
+                <swiper [config]="config2">
+                    <ng-template *ngFor="let trabajo of trabajosRecientes; let i=index" swiperSlide>
+                        <div class="divimgmini">
+                            <img (click)="irFicha(trabajo.uid)" class="micursor imagencont" [src]="crearImagenUrl(trabajo)" alt="portada">
+                        </div>
+                        <div class="divtitulomini">
+                            <div class="puntitos">
+                                <strong>{{trabajo.titulo}}</strong>
+                            </div>
+                            <div class="titulacionmini puntitos">
+                                {{trabajo.titulacion.nombre}}
+                            </div>
+                        </div>
+                    </ng-template>
+                </swiper>
+            </div>
+        </div>
+        <div class="pt-4 pb-4 mt-4 mb-4 fondo">
+            <!-- Primera fila trabajos, con margenes a los lados izda dcha -->
+            <!-- Fila buscador -->
+            <div>
+                <!-- Trabajos aleatorios -->
+                <h5><strong>Pueden interesarte...</strong></h5>
+                <swiper [config]="config2">
+                    <ng-template *ngFor="let trabajo of trabajosAleatorios; let i=index" swiperSlide>
+                        <div class="divimgmini">
+                            <img (click)="irFicha(trabajo.uid)" class="micursor imagencont" [src]="crearImagenUrl(trabajo)" alt="portada">
+                        </div>
+                        <div class="divtitulomini">
+                            <div class="puntitos">
+                                <strong>{{trabajo.titulo}}</strong>
+                            </div>
+                            <div class="titulacionmini puntitos">
+                                {{trabajo.titulacion.nombre}}
+                            </div>
+                        </div>
+                    </ng-template>
+                </swiper>
+            </div>
+        </div>
+    </div>
 
-    <div class="col-md-10 pt-4 pb-4 mb-4">
-        <!-- Primera fila trabajos, con margenes a los lados izda dcha -->
-        <div class="row ml-4 mr-4">
-            <h5 class="pl-4"><strong>Trabajos destacados</strong></h5>
-            <swiper [config]="config">
-                <ng-template *ngFor="let trabajo of trabajosValorados; let i=index" swiperSlide class="swiperSlideGrande">
-                    <div class="divimg">
-                        <img (click)="irFicha(trabajo.uid)" class="micursor imagencont" [src]="crearImagenUrl(trabajo)" alt="portada">
-                    </div>
-                    <div class="divtitulo"><strong>{{trabajo.titulo}}</strong></div>
-                </ng-template>
-            </swiper>
-        </div>
-    </div>
-    <div class="col-md-10 pt-4 pb-4 mt-4 mb-4">
-        <!-- Primera fila trabajos, con margenes a los lados izda dcha -->
-        <!-- Fila buscador -->
-        <div class="row ml-4 mr-4">
-            <h5 class="pl-4"><strong>Trabajos recientes</strong></h5>
-            <swiper [config]="config2">
-                <ng-template *ngFor="let trabajo of trabajosRecientes; let i=index" swiperSlide>
-                    <div class="divimgmini">
-                        <img (click)="irFicha(trabajo.uid)" class="micursor imagencont" [src]="crearImagenUrl(trabajo)" alt="portada">
-                    </div>
-                    <div class="divtitulomini"><strong>{{trabajo.titulo}}</strong></div>
-                </ng-template>
-            </swiper>
-        </div>
-    </div>
-    <div class="col-md-10 pt-4 pb-4 mt-4 mb-4">
-        <!-- Primera fila trabajos, con margenes a los lados izda dcha -->
-        <!-- Fila buscador -->
-        <div class="row ml-4 mr-4">
-            <!-- Trabajos aleatorios -->
-            <h5 class="pl-4"><strong>Pueden interesarte...</strong></h5>
-            <swiper [config]="config2">
-                <ng-template *ngFor="let trabajo of trabajosAleatorios; let i=index" swiperSlide>
-                    <div class="divimgmini">
-                        <img (click)="irFicha(trabajo.uid)" class="micursor imagencont" [src]="crearImagenUrl(trabajo)" alt="portada">
-                    </div>
-                    <div class="divtitulomini"><strong>{{trabajo.titulo}}</strong></div>
-                </ng-template>
-            </swiper>
-        </div>
-    </div>
 </div>

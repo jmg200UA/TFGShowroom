@@ -57,7 +57,7 @@
                     </div>
                 </ng-container>
                 <ng-container *ngIf=" contenido.tipo=='YT' ">
-                    <iframe class="swiper-slidecont " [src]="getVideoIframe(contenido.contenido) " [title]="contenido.nombre " frameborder="0 " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen></iframe>
+                    <iframe class="swiper-slidecont" [src]="getVideoIframe(contenido.contenido) " [title]="contenido.nombre " frameborder="0 " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen></iframe>
                 </ng-container>
                 <ng-container *ngIf="contenido.tipo=='mp3' || contenido.tipo=='wav' ">
                     <div class="otroformato pb-4 pt-4 mr-2 ml-2 pr-4 pl-4 ">

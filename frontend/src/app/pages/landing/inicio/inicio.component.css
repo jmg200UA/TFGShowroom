@@ -3,14 +3,14 @@
 @import '~swiper/modules/pagination/pagination.min.css';
 @import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
 .swiper {
-    width: 100%;
+    width: 90%;
     height: 100%;
 }
 
 .swiper-slide {
     text-align: center;
     font-size: 18px;
-    /* background: #fff; */
+    background: #fff;
     /* Center slide text vertically */
     display: -webkit-box;
     display: -ms-flexbox;
@@ -24,7 +24,7 @@
     -ms-flex-align: center;
     -webkit-align-items: center;
     align-items: center;
-    height: 300px;
+    height: 320px;
     border-radius: 20px;
     border: solid 2px rgba(240, 248, 255, 0.767);
     display: flex;
@@ -47,7 +47,7 @@
 .filabuscador {
     padding-top: 1em;
     padding-bottom: 1em;
-    background: linear-gradient(rgb(0, 162, 255), rgb(255, 255, 255));
+    /* background: linear-gradient(rgb(0, 162, 255), rgb(255, 255, 255)); */
 }
 
 .slogan {
@@ -173,7 +173,7 @@
     border-radius: 10px;
     border: solid 2px aliceblue;
     z-index: 99999;
-    height: 50px;
+    height: 70px;
     width: 100%;
     white-space: nowrap;
     overflow: hidden;
@@ -189,7 +189,7 @@
     border-radius: 10px;
     border: solid 2px aliceblue;
     z-index: 99999;
-    height: 30px;
+    height: 50px;
     width: 100%;
     white-space: nowrap;
     overflow: hidden;
@@ -198,4 +198,42 @@
     padding-left: 0.4em;
     padding-right: 0.4em;
     vertical-align: middle;
+}
+
+.titulacionmini {
+    font-size: small;
+}
+
+.fondo {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    width: 100% !important;
+}
+
+.todotrabajos {
+    /* Envuelve todo el contenido de los sliders de los trabajos */
+    /* background: url(https://web.ua.es/secciones-ua/images/home/fondoCifras.jpg) repeat center center; */
+    background: url(https://web.ua.es/secciones-ua/images/home/fondoCifras.jpg) repeat center center;
+}
+
+.swiper-pagination-bullet {
+    margin-top: 30px !important;
+}
+
+.puntitos {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    padding-left: 0.4em;
+    padding-right: 0.4em;
+    vertical-align: middle;
+}
+
+h5 {
+    padding-right: 5%;
+    padding-left: 5%;
+    width: 100%;
+    /* background: url(https://web.ua.es/secciones-ua/images/home/fondoCifras.jpg) repeat center center; */
 }
