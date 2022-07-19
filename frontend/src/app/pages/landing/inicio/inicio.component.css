@@ -45,9 +45,45 @@
 }
 
 .filabuscador {
-    padding-top: 1em;
-    padding-bottom: 1em;
+    /* padding-bottom: 1em; */
+    /* display: flex; */
     /* background: linear-gradient(rgb(0, 162, 255), rgb(255, 255, 255)); */
+}
+
+.nombretitu {
+    font-size: 0.7vw;
+}
+
+.titus {
+    /* display: flex;
+    flex-direction: column; */
+    padding: 0 !important;
+}
+
+.coltitus {
+    padding-left: 4em !important;
+    padding-right: 4em !important;
+}
+
+.titulotitu {
+    background-color: #ececec;
+    width: 100% !important;
+    margin-top: 0 !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+}
+
+.rounded-circle {
+    width: 90%;
+    height: 80%;
+}
+
+.grados {
+    border-right: solid 1px #263244;
+}
+
+.masters {
+    border-right: solid 1px #263244;
 }
 
 .slogan {
@@ -92,10 +128,6 @@
     border-bottom: 1px solid #575756;
     border-radius: 0;
     background-position: 100% center;
-}
-
-.filabuscador {
-    padding-top: 4em;
 }
 
 @media (min-width: 768px) {
