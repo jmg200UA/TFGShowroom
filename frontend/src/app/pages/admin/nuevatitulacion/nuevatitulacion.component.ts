@@ -24,7 +24,8 @@ export class NuevatitulacionComponent implements OnInit {
   public fileText = 'Seleccione archivo';
 
   public datosForm = this.fb.group({
-    nombre: ['', Validators.required ], // hacer peticion a la BD para sacar en un desplegable todos los usuarios con ROL_ALUMNO
+    nombre: ['', Validators.required ],
+    abreviatura: ['', Validators.required ],
     resumen: ['', Validators.required ],
     tipo: ['', Validators.required ],
     area: ['', Validators.required ],

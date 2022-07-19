@@ -19,6 +19,9 @@ const TitulacionSchema = Schema({
     },
     tipo: { //TFG o TFM??
         type: String
+    },
+    abreviatura: {
+        type: String
     }
 }, { collection: 'titulaciones' });
 

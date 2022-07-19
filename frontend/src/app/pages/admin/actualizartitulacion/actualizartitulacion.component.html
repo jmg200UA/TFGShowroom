@@ -6,7 +6,7 @@
             <div class="card col-md-10">
                 <div class="card-body">
                     <div>
-                        <button class="btn btn-info m-r-10" [disabled]="!datosForm.pristine" routerLink="/admin/trabajos">Volver</button>
+                        <button class="btn btn-info m-r-10" [disabled]="!datosForm.pristine" routerLink="/admin/titulaciones">Volver</button>
                     </div>
                     <div class="text-center imperfil" style="width: 200px;">
                         <img [src]="imagenUrl" class="img-thumbnail rounded-circle" width="200">
@@ -18,6 +18,17 @@
                             </div>
                             <div class="col-lg-5 col-md-12">
                                 <input type="text" class="form-control" formControlName="nombre" [ngClass]="{'is-invalid' : campoNoValido('nombre')}" id="nombre">
+                                <div class="invalid-feedback">
+                                    El campo es obligatorio
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-t-10">
+                            <div class="col-lg-3 col-md-12 text-lg-right">
+                                <span class="">Abreviatura</span>
+                            </div>
+                            <div class="col-lg-3 col-md-12">
+                                <input type="text" class="form-control" formControlName="abreviatura" [ngClass]="{'is-invalid' : campoNoValido('abreviatura')}" id="abreviatura">
                                 <div class="invalid-feedback">
                                     El campo es obligatorio
                                 </div>

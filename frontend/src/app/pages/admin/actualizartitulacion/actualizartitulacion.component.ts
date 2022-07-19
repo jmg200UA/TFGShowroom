@@ -26,7 +26,8 @@ export class ActualizartitulacionComponent implements OnInit {
   public fileText = 'Seleccione archivo';
 
   public datosForm = this.fb.group({
-    nombre: ['', Validators.required ], // hacer peticion a la BD para sacar en un desplegable todos los usuarios con ROL_ALUMNO
+    nombre: ['', Validators.required ],
+    abreviatura: ['', Validators.required ],
     resumen: ['', Validators.required ],
     tipo: ['', Validators.required ],
     area: ['', Validators.required ],
@@ -137,6 +138,7 @@ export class ActualizartitulacionComponent implements OnInit {
           this.tipo= res['titulaciones'].tipo;
           this.datosForm.get('area').setValue(res['titulaciones'].area);
           this.datosForm.get('resumen').setValue(res['titulaciones'].resumen);
+          this.datosForm.get('abreviatura').setValue(res['titulaciones'].abreviatura);
           //this.datosForm.get('imagen').setValue(res['titulaciones'].imagen);
           this.imagenUrl = this.TitulacionService.crearImagenUrl(res['titulaciones'].imagen);
           console.log("Tipo: ",this.tipo);
