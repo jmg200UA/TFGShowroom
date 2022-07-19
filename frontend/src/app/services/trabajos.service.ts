@@ -168,7 +168,8 @@ export class TrabajosService {
 
     const token = localStorage.getItem('token') || '';
     if (!imagen) {
-      return `${environment.base_url}/upload/trabajoimg/nofoto.PNG?token=${token}`;
+      // return `${environment.base_url}/upload/trabajoimg/nofoto.PNG?token=${token}`;
+      return 'nofoto';
     }
     return `${environment.base_url}/upload/trabajoimg/${imagen}?token=${token}`;
   }

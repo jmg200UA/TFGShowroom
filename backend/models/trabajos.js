@@ -16,6 +16,7 @@ const TrabajoSchema = Schema({
     },
     imagen: {
         type: String,
+        default: ''
     },
     url: {
         type: String
