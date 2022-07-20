@@ -12,8 +12,8 @@
             <div class="row coltitus">
                 <ng-container *ngFor="let titulacion of listaTitulaciones">
                     <div class="col-md-2 divtitu" *ngIf="titulacion.tipo=='Grado'">
-                        <img [src]="crearUrlTitulacion(titulacion.imagen)" [alt]="titulacion.nombre" class="img-thumbnail rounded-circle">
-                        <div class="nombretitu">Ing. Multimedia</div>
+                        <img [src]="crearUrlTitulacion(titulacion.imagen)" (click)="busqueda(titulacion)" [alt]="titulacion.nombre" class="img-thumbnail rounded-circle micursor">
+                        <div class="nombretitu">{{titulacion.abreviatura}}</div>
                     </div>
                 </ng-container>
             </div>
@@ -24,8 +24,8 @@
             <div class="row coltitus">
                 <ng-container *ngFor="let titulacion of listaTitulaciones">
                     <div class="col-md-2 divtitu" *ngIf="titulacion.tipo=='Máster'">
-                        <img [src]="crearUrlTitulacion(titulacion.imagen)" [alt]="titulacion.nombre" class="img-thumbnail rounded-circle" width="100" height="100">
-                        <div class="nombretitu"><strong></strong></div>
+                        <img [src]="crearUrlTitulacion(titulacion.imagen)" (click)="busqueda(titulacion)" [alt]="titulacion.nombre" class="img-thumbnail rounded-circle micursor" width="100" height="100">
+                        <div class="nombretitu">{{titulacion.abreviatura}}</div>
                     </div>
                 </ng-container>
             </div>

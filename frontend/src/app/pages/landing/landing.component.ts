@@ -63,8 +63,9 @@ export class LandingComponent implements OnInit {
   busqueda(){
     let texto= (document.getElementById("txtQuery") as HTMLInputElement).value;
     console.log("TExto: ", texto);
-    // this.router.navigate(['/landing/busqueda/',texto]);
-    this.router.navigateByUrl('/landing/busqueda/'+ texto);
+    // window.location.reload();
+    this.router.navigate(['/landing/busqueda/',texto]);
+    // this.router.navigateByUrl('/landing/busqueda/'+ texto);
   }
 
 

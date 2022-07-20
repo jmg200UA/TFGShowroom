@@ -50,8 +50,13 @@
     /* background: linear-gradient(rgb(0, 162, 255), rgb(255, 255, 255)); */
 }
 
+.grados,
+.masters {
+    padding-bottom: 1em;
+}
+
 .nombretitu {
-    font-size: 0.7vw;
+    font-size: 0.6vw;
 }
 
 .titus {
@@ -75,7 +80,7 @@
 
 .rounded-circle {
     width: 90%;
-    height: 80%;
+    height: 72%;
 }
 
 .grados {
@@ -133,7 +138,6 @@
 @media (min-width: 768px) {
     .divtitu {
         text-align: center;
-        margin-bottom: 2em;
     }
     .nombretitu {
         display: flex;

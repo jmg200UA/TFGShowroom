@@ -214,4 +214,8 @@ export class InicioComponent implements OnInit {
       // window.open('/landing/trabajo',uid, '_blank');
     }
 
+    busqueda(titulacion){
+      this.router.navigateByUrl('/landing/busqueda/'+ titulacion.nombre);
+    }
+
   }
