@@ -47,6 +47,7 @@
         padding-top: .8em;
     }
     .buscadornav {
+        padding-left: 2%;
         margin-left: auto!important;
         margin-right: auto!important;
     }
@@ -151,17 +152,142 @@
 }
 
 .barrasuperior {
-    height: 50px;
+    height: 70px;
     display: flex;
-    width: 90%;
+    width: 100%;
+    background-color: #334053c7 !important;
+    padding-left: 2%;
+    padding-right: 2%;
 }
 
 .sup1 {
-    width: 25%;
+    width: 26%;
 }
 
 .sup2 {
-    width: 65%;
-    padding-top: 15px;
-    font-size: larger;
+    width: 70%;
+    padding-top: 20px;
+    font-size: x-large;
+    color: #fff;
+}
+
+@media (max-width: 1700px) {
+    .sup1 {
+        width: 20%;
+    }
+    .sup2 {
+        width: 76%;
+    }
+}
+
+@media (max-width: 1201px) {
+    .sup2 {
+        font-size: 19.5px;
+    }
+}
+
+.sup22 {
+    font-size: large;
+    color: #fff;
+}
+
+.fa-bars:before {
+    color: #fff;
+}
+
+
+/* Media queries headers */
+
+@media (min-width: 991px) {
+    .brandbajo {
+        display: none;
+    }
+    .sup22 {
+        display: none;
+    }
+}
+
+@media (max-width: 991px) {
+    .barrasuperior {
+        display: none;
+    }
+}
+
+@media (max-width: 930px) {
+    .sup22 {
+        font-size: larger;
+    }
+}
+
+@media (max-width: 886px) {
+    .sup22 {
+        font-size: small;
+    }
+}
+
+@media (max-width: 750px) {
+    .sup22 {
+        font-size: smaller;
+    }
+}
+
+@media (max-width: 702px) {
+    .sup22 {
+        padding-top: 10px;
+        width: 60%;
+        height: 50px;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 587px) {
+    .sup22 {
+        width: 55%;
+    }
+}
+
+@media (max-width: 531px) {
+    .sup22 {
+        width: 50%;
+    }
+}
+
+@media (max-width: 498px) {
+    .sup22 {
+        font-size: x-small;
+        width: 45%;
+    }
+}
+
+@media (max-width: 449px) {
+    .sup22 {
+        padding-top: 5px;
+        font-size: xx-small;
+    }
+    .brandbajo {
+        width: 100px;
+    }
+}
+
+@media (max-width: 401px) {
+    .sup22 {
+        padding-top: 10px;
+        font-size: 2vw;
+    }
+    .logobrand {
+        height: 35px;
+    }
+}
+
+@media (max-width: 370px) {
+    .sup22 {
+        width: 40%;
+    }
+    .logobrand {
+        height: 25px;
+    }
+    .brandbajo {
+        width: 80px;
+    }
 }
