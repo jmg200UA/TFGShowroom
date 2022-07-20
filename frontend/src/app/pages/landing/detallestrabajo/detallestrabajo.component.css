@@ -291,7 +291,7 @@
     }
 
     .otroformato {
-        background-image: url(https://web.ua.es/secciones-ua/images/home/fondoCifras.jpg);
+        background-color: #fff;
         border-radius: 20px;
         width: 70% !important;
         height: 60% !important;

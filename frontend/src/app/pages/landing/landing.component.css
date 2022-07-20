@@ -149,3 +149,19 @@
 .ui-1_zoom-bold {
     color: #263244 !important;
 }
+
+.barrasuperior {
+    height: 50px;
+    display: flex;
+    width: 90%;
+}
+
+.sup1 {
+    width: 25%;
+}
+
+.sup2 {
+    width: 65%;
+    padding-top: 15px;
+    font-size: larger;
+}

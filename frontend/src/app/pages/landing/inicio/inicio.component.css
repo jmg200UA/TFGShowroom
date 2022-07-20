@@ -7,6 +7,10 @@
     height: 100%;
 }
 
+:root {
+    --swiper-theme-color: #263244;
+}
+
 .swiper-slide {
     text-align: center;
     font-size: 18px;
@@ -26,7 +30,7 @@
     align-items: center;
     height: 320px;
     border-radius: 20px;
-    border: solid 2px rgba(240, 248, 255, 0.767);
+    border: solid 2px #ececec;
     display: flex;
     flex-direction: column;
 }
@@ -60,7 +64,7 @@
 }
 
 .nombretitu {
-    font-size: 0.6vw;
+    font-size: 0.5vw;
     /* display: flex;
     width: 100% !important;
     white-space: nowrap !important;
@@ -84,7 +88,7 @@
 .coltitus {
     padding-left: 4em !important;
     padding-right: 4em !important;
-    padding-bottom: 15px !important;
+    /* padding-bottom: 15px !important; */
 }
 
 .titulotitu {
@@ -97,7 +101,14 @@
 
 .rounded-circle {
     width: 100%;
-    height: 67%;
+    height: 70%;
+    filter: drop-shadow(0 0 0.3rem #263244);
+}
+
+@media (max-width: 1000px) {
+    .rounded-circle {
+        height: 50%;
+    }
 }
 
 .grados {
@@ -222,9 +233,9 @@
 }
 
 .divtitulo {
-    background-color: rgba(240, 248, 255, 0.767);
+    background-color: #ececec;
     border-radius: 10px;
-    border: solid 2px aliceblue;
+    border: solid 2px #ececec;
     z-index: 99999;
     height: 70px;
     width: 100%;
@@ -238,9 +249,9 @@
 }
 
 .divtitulomini {
-    background-color: rgba(240, 248, 255, 0.767);
+    background-color: #ececec;
     border-radius: 10px;
-    border: solid 2px aliceblue;
+    border: solid 2px #ececec;
     z-index: 99999;
     height: 50px;
     width: 100%;
@@ -265,7 +276,6 @@
 
 .todotrabajos {
     /* Envuelve todo el contenido de los sliders de los trabajos */
-    /* background: url(https://web.ua.es/secciones-ua/images/home/fondoCifras.jpg) repeat center center; */
     background: url(https://web.ua.es/secciones-ua/images/home/fondoCifras.jpg) repeat center center;
 }
 
