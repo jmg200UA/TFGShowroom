@@ -52,11 +52,27 @@
 
 .grados,
 .masters {
-    padding-bottom: 1em;
+    padding-bottom: 4em !important;
+}
+
+.divtitu {
+    padding-bottom: 1em !important;
 }
 
 .nombretitu {
     font-size: 0.6vw;
+    /* display: flex;
+    width: 100% !important;
+    white-space: nowrap !important;
+    overflow: hidden;
+    text-overflow: ellipsis !important;
+    text-align: center !important; */
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
 }
 
 .titus {
@@ -68,6 +84,7 @@
 .coltitus {
     padding-left: 4em !important;
     padding-right: 4em !important;
+    padding-bottom: 15px !important;
 }
 
 .titulotitu {
@@ -79,8 +96,8 @@
 }
 
 .rounded-circle {
-    width: 90%;
-    height: 72%;
+    width: 100%;
+    height: 67%;
 }
 
 .grados {
@@ -139,10 +156,10 @@
     .divtitu {
         text-align: center;
     }
-    .nombretitu {
+    /* .nombretitu {
         display: flex;
         flex-direction: column;
-    }
+    } */
 }
 
 @media (max-width: 768px) {

@@ -186,3 +186,14 @@ select {
     box-shadow: none;
     outline: none
 }
+
+#basic-addon1,
+#basic-addon2 {
+    background-color: #fff !important;
+    border: none !important;
+    color: black !important;
+}
+
+.logintitu {
+    background: #263244;
+}
