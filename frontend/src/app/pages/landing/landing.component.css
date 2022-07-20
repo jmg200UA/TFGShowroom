@@ -143,6 +143,7 @@
 
 .buscadorfondo::placeholder {
     color: #263244 !important;
+    text-align: center;
 }
 
 .ui-1_zoom-bold {
