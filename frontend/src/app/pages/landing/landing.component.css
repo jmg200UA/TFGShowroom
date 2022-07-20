@@ -152,21 +152,22 @@
 }
 
 .barrasuperior {
-    height: 70px;
+    height: 110px;
     display: flex;
     width: 100%;
-    background-color: #334053c7 !important;
+    background-image: linear-gradient(to bottom, #31475d 0, #202f3f 100%) !important;
     padding-left: 2%;
     padding-right: 2%;
 }
 
 .sup1 {
     width: 26%;
+    padding-top: 20px;
 }
 
 .sup2 {
     width: 70%;
-    padding-top: 20px;
+    padding-top: 40px;
     font-size: x-large;
     color: #fff;
 }
