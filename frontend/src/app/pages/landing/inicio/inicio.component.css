@@ -55,10 +55,12 @@
 
 .divtitu {
     padding-bottom: 1em !important;
+    padding-left: 0.2em !important;
+    padding-right: 0.2em !important;
 }
 
 .nombretitu {
-    font-size: 0.5vw;
+    font-size: 0.6vw;
     /* display: flex;
     width: 100% !important;
     white-space: nowrap !important;
@@ -87,6 +89,7 @@
 
 .titulotitu {
     background-color: #ececec;
+    font-size: 20px;
     width: 100% !important;
     margin-top: 0 !important;
     padding-top: 15px !important;
@@ -95,7 +98,7 @@
 
 .rounded-circle {
     width: 60px;
-    height: 70%;
+    height: 60px;
     filter: drop-shadow(0 0 0.3rem #263244);
 }
 
