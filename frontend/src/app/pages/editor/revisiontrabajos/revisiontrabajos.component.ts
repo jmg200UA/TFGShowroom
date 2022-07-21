@@ -26,6 +26,10 @@ export class RevisiontrabajosComponent implements OnInit {
     estado: [''],
   });
 
+  public dataFeedback = this.fb.group({ // para enviar el feedback si rechaza el trabajo
+    feedback: [''],
+  });
+
   constructor(private TrabajosService: TrabajosService,
               private UsuarioService:UsuarioService,
               private router: Router,
@@ -77,23 +81,64 @@ export class RevisiontrabajosComponent implements OnInit {
   actualizarEstado(uid,estado){ // estado param -> 'Aceptado' o 'Denegado'
     this.dataEstado.get('estado').setValue(estado);
     this.loading = true;
-    this.TrabajosService.actualizarEstadoTrabajo(uid, this.dataEstado.value)
-      .subscribe( res => {
 
+    if(estado=="Denegado"){
+      Swal.fire({
+        title: "Añade feedback del trabajo",
+        text: "¿Qué se debería cambiar o arreglar?",
+        input: 'text',
+        confirmButtonText: 'Enviar',
+        cancelButtonText: "Cancelar",
+        showCancelButton: true
+    }).then((result) => {
+        if (result.value) {
+          console.log("Result: " + result.value);
+          this.dataFeedback.get('feedback').setValue(result.value);
+          this.TrabajosService.actualizarEstadoTrabajo(uid, this.dataEstado.value)
+            .subscribe( res => {
+              this.TrabajosService.actualizarFeedbackTrabajo(uid, this.dataFeedback.value)
+              .subscribe( res => {
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Estado actualizado correctamente',
+                  showConfirmButton: false,
+                  timer: 2000
+                })
+                this.loading = false;
+                this.cargarTrabajos(this.ultimaBusqueda);
+
+              }, (err) => {
+                Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
+                //console.warn('error:', err);
+                this.loading = false;
+              });
+            }, (err) => {
+              Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
+              //console.warn('error:', err);
+              this.loading = false;
+            });
+        }
+    });
+    }
+    else{
+      this.TrabajosService.actualizarEstadoTrabajo(uid, this.dataEstado.value)
+      .subscribe( res => {
         Swal.fire({
           icon: 'success',
           title: 'Estado actualizado correctamente',
           showConfirmButton: false,
           timer: 2000
         })
-
-        this.router.navigateByUrl('/editor/previewtrabajo');
+        this.loading = false;
+        this.cargarTrabajos(this.ultimaBusqueda);
 
       }, (err) => {
         Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
         //console.warn('error:', err);
         this.loading = false;
       });
+    }
+
   }
 
 }

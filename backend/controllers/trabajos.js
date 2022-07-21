@@ -684,18 +684,18 @@ const actualizarTrabajo = async(req, res = response) => {
 
         trabajo = await Trabajo.findByIdAndUpdate(uid, object, { new: true });
 
-        console.log("is nan: ", titulacion[0]);
+        //console.log("is nan: ", titulacion[0]);
 
-        if (titulacion[0] == 6) { // comprobamos si llega un object id, eso será que se ha actualizado la titulacion del trabajo
-            let titu = await Titulacion.findById(titulacion);
-            trabajo.titulacion.nombre = titu.nombre;
-            trabajo.titulacion.titulacion = titulacion;
+        if (rolToken == "ROL_ADMIN") {
+            if (titulacion[0] == 6) { // comprobamos si llega un object id, eso será que se ha actualizado la titulacion del trabajo
+                let titu = await Titulacion.findById(titulacion);
+                trabajo.titulacion.nombre = titu.nombre;
+                trabajo.titulacion.titulacion = titulacion;
 
-            // Almacenar en BD
-            await trabajo.save();
+                // Almacenar en BD
+                await trabajo.save();
+            }
         }
-
-
 
         res.json({
             ok: true,
@@ -752,6 +752,45 @@ const actualizarEstadoTrabajo = async(req, res = response) => {
         return res.status(400).json({
             ok: false,
             msg: 'Error actualizando trabajo'
+        });
+    }
+
+}
+
+// Funcion para añadir un nuevo feedback cuando un editor rechaza un trabajo
+const actualizarFeedbackTrabajo = async(req, res = response) => {
+
+    const { feedback } = req.body;
+    const uid = req.params.id;
+    const idToken = req.uidToken;
+    const rolToken = req.rolToken;
+
+    try {
+
+        let trabajo = await Trabajo.findById(uid);
+
+        if (trabajo.autor != idToken && rolToken != "ROL_ADMIN" && rolToken != "ROL_EDITOR") {
+            return res.status(400).json({
+                ok: true,
+                msg: 'El usuario no tiene permisos para actualizar este trabajo'
+            });
+        }
+        console.log("Feedback: ", feedback);
+        trabajo.feedback.push(feedback);
+
+        await trabajo.save();
+
+        res.json({
+            ok: true,
+            msg: 'Feedback Trabajo actualizado',
+            trabajo
+        });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: 'Error actualizando feedback trabajo'
         });
     }
 
@@ -1043,4 +1082,4 @@ const borrarTrabajo = async(req, res = response) => {
 }
 
 
-module.exports = { obtenerTrabajos, obtenerTrabajosVisibles, obtenerTrabajosAleatorios, obtenerTrabajosRecientes, obtenerTrabajosMasValorados, obtenerTrabajosEditor, obtenerTrabajosAluVisibles, obtenerTrabajosAluNoVisibles, crearTrabajo, actualizarTrabajo, actualizarEstadoTrabajo, agregarValoracionTrabajo, quitarValoracionTrabajo, agregarContenidoTrabajo, borrarContenidoTrabajo, limpiarMultimediaTrabajo, borrarTrabajo }
+module.exports = { obtenerTrabajos, obtenerTrabajosVisibles, obtenerTrabajosAleatorios, obtenerTrabajosRecientes, obtenerTrabajosMasValorados, obtenerTrabajosEditor, obtenerTrabajosAluVisibles, obtenerTrabajosAluNoVisibles, crearTrabajo, actualizarTrabajo, actualizarEstadoTrabajo, agregarValoracionTrabajo, quitarValoracionTrabajo, agregarContenidoTrabajo, borrarContenidoTrabajo, limpiarMultimediaTrabajo, borrarTrabajo, actualizarFeedbackTrabajo }

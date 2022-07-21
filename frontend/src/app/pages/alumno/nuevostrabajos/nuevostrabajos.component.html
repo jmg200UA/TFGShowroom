@@ -52,6 +52,7 @@
                                     <td class="col-md-2">
                                         <i class="fa fa-pencil-alt text-success fa-lg mr-5 micursor" (click)="subirTrabajo(trabajo.uid)"></i>
                                         <i class="fas fa-upload fa-lg mr-5 micursor" (click)="subirContenidos(trabajo.uid)"></i>
+                                        <i class="fas fa-info-circle" data-toggle="modal" data-target="#modalFeed" (click)="clickFeedback(trabajo)"></i>
                                     </td>
                                 </tr>
                             </tbody>
@@ -61,6 +62,37 @@
                         <app-pagination (cambiarPagina)="cambiarPagina( $event ) " [texto]="true " [totalRegistros]="totaltrabajos" [registroActual]="posicionactual+1 " [registrosPorPagina]="registrosporpagina "></app-pagination>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal feedback trabajo -->
+<div class="modal fade" id="modalFeed" *ngIf="!loadingfeed">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <div class="modal-title">
+                    <h4 class="modal-title w-100 font-weight-bold">FEEDBACKS</h4>
+                </div>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <swiper [config]="config3">
+                    <ng-template *ngFor="let feedback of trabajofeed.feedback; let i=index" swiperSlide>
+                        <div>
+                            Feedback &nbsp; {{i}}
+                        </div>
+                        <div>
+                            {{feedback}}
+                        </div>
+                    </ng-template>
+                </swiper>
+            </div>
+            <div class="p-t-10 text-center">
+                <button class="btn btn--pill btn--signin cerrar" id="cerrar" data-dismiss="modal" type="close" data-target="#">Cerrar</button>
             </div>
         </div>
     </div>

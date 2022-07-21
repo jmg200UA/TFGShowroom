@@ -11,6 +11,7 @@ import { TrabajosComponent } from './trabajos/trabajos.component';
 import { NuevostrabajosComponent } from './nuevostrabajos/nuevostrabajos.component';
 import { SubirtrabajoComponent } from './subirtrabajo/subirtrabajo.component';
 import { SubircontenidosComponent } from './subircontenidos/subircontenidos.component';
+import { SwiperModule } from 'swiper/angular';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { SubircontenidosComponent } from './subircontenidos/subircontenidos.comp
     NgbModule,
     ReactiveFormsModule,
     RouterModule,
-    ComponentsModule
+    ComponentsModule,
+    SwiperModule
   ]
 })
 export class AlumnoModule { }

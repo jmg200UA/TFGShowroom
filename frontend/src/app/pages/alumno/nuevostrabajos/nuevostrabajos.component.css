@@ -1,3 +1,101 @@
+/* SWIPER */
+
+@import '~swiper/swiper.min.css';
+@import '~swiper/modules/navigation/navigation.min.css';
+@import '~swiper/modules/pagination/pagination.min.css';
+.swiper {
+    width: 90%;
+    height: 100%;
+}
+
+:root {
+    --swiper-theme-color: #263244;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    height: 200px;
+    border-radius: 20px;
+    border: solid 2px #ececec;
+    display: flex;
+    flex-direction: column;
+}
+
 .primerafila {
     margin-top: 3em;
+}
+
+@media(width:1024px) {
+    .modal-dialog {
+        max-width: 70%
+    }
+}
+
+.modal-content {
+    border-radius: 0.7rem
+}
+
+.modal-header img {
+    width: 100px
+}
+
+.modal-title {
+    margin-left: auto;
+    margin-right: auto
+}
+
+.modal-header {
+    border-bottom: none;
+    padding-bottom: 0;
+    padding-top: 4vh
+}
+
+.modal-footer {
+    border-top: none
+}
+
+.title {
+    font-size: 17px;
+    color: grey
+}
+
+@media(min-height:768px)and(min-width:411px) {
+    .title {
+        font-size: 20px;
+        color: grey
+    }
+}
+
+modal-body>div>input {
+    outline: none;
+    margin: 0;
+    border: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    width: 100%;
+    font-size: 15px;
+    font-family: inherit
+}
+
+
+/* GENERAL */
+
+form>div {
+    margin: 1em;
 }

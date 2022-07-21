@@ -3,7 +3,7 @@ Ruta base: /api/trabajos
 */
 
 const { Router } = require('express');
-const { obtenerTrabajos, obtenerTrabajosAluVisibles, obtenerTrabajosAluNoVisibles, crearTrabajo, actualizarTrabajo, borrarTrabajo, limpiarMultimediaTrabajo, obtenerTrabajosEditor, actualizarEstadoTrabajo, agregarContenidoTrabajo, borrarContenidoTrabajo, obtenerTrabajosMasValorados, obtenerTrabajosRecientes, obtenerTrabajosVisibles, obtenerTrabajosAleatorios } = require('../controllers/trabajos');
+const { obtenerTrabajos, obtenerTrabajosAluVisibles, obtenerTrabajosAluNoVisibles, crearTrabajo, actualizarTrabajo, borrarTrabajo, limpiarMultimediaTrabajo, obtenerTrabajosEditor, actualizarEstadoTrabajo, agregarContenidoTrabajo, borrarContenidoTrabajo, obtenerTrabajosMasValorados, obtenerTrabajosRecientes, obtenerTrabajosVisibles, obtenerTrabajosAleatorios, actualizarFeedbackTrabajo, agregarValoracionTrabajo, quitarValoracionTrabajo } = require('../controllers/trabajos');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middleware/validar-campos');
 const { validarRol } = require('../middleware/validar-rol');
@@ -97,19 +97,26 @@ router.put('/et/:id', [ // estado trabajo
     validarCampos,
 ], actualizarEstadoTrabajo);
 
+router.put('/af/:id', [ // agregar feedback trabajo denegado
+    validarJWT,
+    check('id', 'El identificador no es válido').isMongoId(),
+    // campos que son opcionales que vengan pero que si vienen queremos validar el tipo
+    validarCampos,
+], actualizarFeedbackTrabajo);
+
 router.put('/av/:id', [ // agregar valoracion
     validarJWT,
     check('id', 'El identificador no es válido').isMongoId(),
     // campos que son opcionales que vengan pero que si vienen queremos validar el tipo
     validarCampos,
-], actualizarEstadoTrabajo);
+], agregarValoracionTrabajo);
 
 router.put('/qv/:id', [ // quitar valoracion
     validarJWT,
     check('id', 'El identificador no es válido').isMongoId(),
     // campos que son opcionales que vengan pero que si vienen queremos validar el tipo
     validarCampos,
-], actualizarEstadoTrabajo);
+], quitarValoracionTrabajo);
 
 router.put('/ac/:id', [ // ac agregar contenido
     validarJWT,

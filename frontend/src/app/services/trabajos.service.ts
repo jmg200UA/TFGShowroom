@@ -30,6 +30,11 @@ export class TrabajosService {
     return this.http.put(`${environment.base_url}/trabajos/et/${uid}`, data, this.cabeceras);
   }
 
+  actualizarFeedbackTrabajo ( uid: string, data) {
+    console.log("Actualizar con: ", data);
+    return this.http.put(`${environment.base_url}/trabajos/af/${uid}`, data, this.cabeceras);
+  }
+
   agregarValoracionTrabajo ( uid: string, data) {
     console.log("Actualizar con: ", data);
     return this.http.put(`${environment.base_url}/trabajos/av/${uid}`, data, this.cabeceras);

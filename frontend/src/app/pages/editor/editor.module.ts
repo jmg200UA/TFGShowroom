@@ -8,12 +8,14 @@ import { ComponentsModule } from '../../components/components.module';
 //COMPONENTS
 import { EditorComponent } from './editor.component';
 import { RevisiontrabajosComponent } from './revisiontrabajos/revisiontrabajos.component';
+import { SwiperModule } from 'swiper/angular';
+import {SafePipe} from '../../pipes/SafePipe';
 
 
 @NgModule({
   declarations: [
     EditorComponent,
-    RevisiontrabajosComponent,
+    RevisiontrabajosComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { RevisiontrabajosComponent } from './revisiontrabajos/revisiontrabajos.c
     NgbModule,
     ReactiveFormsModule,
     RouterModule,
-    ComponentsModule
+    ComponentsModule,
+    SwiperModule
   ]
 })
 export class EditorModule { }

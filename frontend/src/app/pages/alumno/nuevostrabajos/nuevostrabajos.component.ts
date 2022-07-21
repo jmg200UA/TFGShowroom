@@ -5,6 +5,11 @@ import { UsuarioService } from '../../../services/usuario.service';
 import { Trabajo } from '../../../models/trabajo.model';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SwiperComponent } from "swiper/angular";
+// import SwiperCore y los modulos requeridos
+import SwiperCore, { SwiperOptions, Navigation, Pagination, Scrollbar, A11y  } from 'swiper';
+
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 @Component({
   selector: 'nuevostrabajos',
@@ -21,6 +26,23 @@ export class NuevostrabajosComponent implements OnInit {
 
   private ultimaBusqueda = '';
   public listaTrabajos: Trabajo[] = [];
+
+  //Variable para ofrecer feedback del trabajo seleccionado
+  public trabajofeed;
+  public loadingfeed = true;
+
+  config3: SwiperOptions = {
+    slidesPerView: 1,
+    navigation: true,
+    pagination: { clickable: true },
+    scrollbar: { draggable: true },
+  };
+  onSwiper([swiper]) {
+    console.log(swiper);
+  }
+  onSlideChange() {
+    console.log('slide change');
+  }
 
   constructor(private TrabajosService: TrabajosService,
               private UsuarioService:UsuarioService,
@@ -70,6 +92,12 @@ export class NuevostrabajosComponent implements OnInit {
 
   subirContenidos(id){
     this.router.navigateByUrl('/alumno/subircontenidos/'+id);
+  }
+
+  clickFeedback(trabajo){
+    this.trabajofeed=trabajo;
+    this.loadingfeed = false;
+    console.log("trabajofeed: ", this.trabajofeed);
   }
 
 }

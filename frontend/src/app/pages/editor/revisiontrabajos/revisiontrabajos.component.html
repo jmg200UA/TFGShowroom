@@ -45,8 +45,8 @@
                                     <td class="col-md-5">{{trabajo.titulacion.nombre}}</td>
                                     <td class="col-md-2 botones"><button (click)="irRevision(trabajo.uid)" class="btn micursor text-warning">Revisar</button>
                                         <!-- Botones aceptar denegar trabajo -->
-                                        <i class="fas fa-check pl-3 pt-2" (click)="actualizarEstado(trabajo.uid,'Aceptado')" id="enviar"></i>
-                                        <i class="fa fa-ban pl-3 pt-2 " aria-hidden="true" (click)="actualizarEstado(trabajo.uid,'Denegado')" id="cancelar"></i>
+                                        <i class="fas fa-check pl-3 pt-2 micursor" (click)="actualizarEstado(trabajo.uid,'Aceptado')" id="enviar"></i>
+                                        <i class="fa fa-ban pl-3 pt-2 micursor" aria-hidden="true" (click)="actualizarEstado(trabajo.uid,'Denegado')" id="cancelar"></i>
                                 </tr>
                             </tbody>
                         </table>

@@ -151,14 +151,18 @@ export const routes: Routes = [
                                                             titulo: 'Showroom Editor - Trabajos para revisar',
                                                             breadcrums: []
                                                           },},
+    { path: 'previewtrabajo/:uid', component: PreviewtrabajoComponent, canActivate: [ AuthGuard ], data: {
+                                                            rol: 'ROL_EDITOR',
+                                                            titulo: 'Showroom Editor - Revisión Trabajo',
+                                                          },},
     { path: '**', redirectTo: 'editor/revisiontrabajos'}
   ]},
 
   //PATH PREVIEW TRABAJO
-  { path: 'editor/previewtrabajo/:uid', component: PreviewtrabajoComponent, data: {
-    rol: 'ROL_EDITOR',
-    titulo: 'Showroom Editor - Revisión Trabajo',
-  },},
+  // { path: 'editor/previewtrabajo/:uid', component: PreviewtrabajoComponent, data: {
+  //   rol: 'ROL_EDITOR',
+  //   titulo: 'Showroom Editor - Revisión Trabajo',
+  // },},
 
   //PATHS LANDING
   { path: 'landing', component: LandingComponent,
