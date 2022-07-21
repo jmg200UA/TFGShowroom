@@ -99,3 +99,32 @@ modal-body>div>input {
 form>div {
     margin: 1em;
 }
+
+
+/* Feedback */
+
+.bodyfeed {
+    width: 90%;
+}
+
+.numfeed {
+    font-size: medium;
+}
+
+.desfeed {
+    font-size: small;
+    height: 50px;
+    width: 70%;
+}
+
+span {
+    display: none !important;
+}
+
+.carousel-control-prev-icon {
+    background-image: url('https://apufpel.com.br/assets/img/seta_prim.png')
+}
+
+.carousel-control-next-icon {
+    background-image: url('https://apufpel.com.br/assets/img/seta_ult.png')
+}

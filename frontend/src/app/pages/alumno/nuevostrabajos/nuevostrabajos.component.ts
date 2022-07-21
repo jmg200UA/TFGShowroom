@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { TrabajosService } from '../../../services/trabajos.service';
 import { UsuarioService } from '../../../services/usuario.service';
@@ -14,7 +14,8 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 @Component({
   selector: 'nuevostrabajos',
   templateUrl: './nuevostrabajos.component.html',
-  styleUrls: ['./nuevostrabajos.component.css']
+  styleUrls: ['./nuevostrabajos.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class NuevostrabajosComponent implements OnInit {
 

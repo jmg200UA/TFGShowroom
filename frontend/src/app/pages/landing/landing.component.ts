@@ -27,8 +27,9 @@ export class LandingComponent implements OnInit {
 
   ngOnInit(): void {
     //this.rol= this.UsuarioService.rol;
-    this.router.navigateByUrl('/landing/inicio');
+    // this.router.navigateByUrl('/landing/inicio');
     this.cargarTitulaciones();
+    console.log("Landing component");
   }
 
   logout() {

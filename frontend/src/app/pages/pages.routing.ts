@@ -164,6 +164,8 @@ export const routes: Routes = [
   //   titulo: 'Showroom Editor - Revisión Trabajo',
   // },},
 
+
+  //http://localhost:4200/landing/trabajo/62d5d6279515244889ebb28d
   //PATHS LANDING
   { path: 'landing', component: LandingComponent,
   children:[
@@ -179,8 +181,13 @@ export const routes: Routes = [
       titulo: 'Búsqueda Trabajos',
       breadcrums: []
     },},
+    { path: '',  component: InicioComponent, data: {
+      titulo: 'Inicio',
+      breadcrums: []
+    },},
 
     { path: '**', redirectTo: 'landing/inicio'}
+
   ]},
 
 
