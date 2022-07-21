@@ -45,13 +45,11 @@ export class SubirtrabajoComponent implements OnInit {
     imagen: [''],
     director: ['', Validators.required ],
     estado: [''], // cambiar a revisión por los editores
-    visible: ['']
-    //Contenido multimedia que quiera adjuntar el alumno
-    // imagenes: [''],
-    // videos: [''],
-    // audios: [''],
-    // documentos: [''],
-
+    visible: [''],
+    enlace: ['', Validators.required ],
+    defensa: ['', Validators.required ],
+    curso: ['', Validators.required ],
+    palabrasclave: ['', Validators.required ],
   });
 
   constructor(private fb: FormBuilder,
@@ -126,6 +124,10 @@ export class SubirtrabajoComponent implements OnInit {
           this.datosForm.get('tipo').setValue(res['trabajos'].tipo);
           this.datosForm.get('tipo').disable();
           this.datosForm.get('director').setValue(res['trabajos'].director);
+          this.datosForm.get('enlace').setValue(res['trabajos'].enlace);
+          this.datosForm.get('defensa').setValue(res['trabajos'].defensa);
+          this.datosForm.get('curso').setValue(res['trabajos'].curso);
+          this.datosForm.get('palabrasclave').setValue(res['trabajos'].palabrasclave);
           this.datosForm.get('resumen').setValue(res['trabajos'].resumen);
           this.imagenUrl = this.TrabajosService.crearImagenUrl(res['trabajos'].imagen);
           this.loading = false;

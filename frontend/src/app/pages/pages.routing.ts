@@ -116,17 +116,17 @@ export const routes: Routes = [
                                                           },},
     { path: 'trabajos', component: TrabajosComponent, canActivate: [ AuthGuard ], data: {
                                                             rol: 'ROL_ALUMNO',
-                                                            titulo: 'Showroom Alumno - Trabajos',
+                                                            titulo: 'Showroom Alumno - Trabajos subidos',
                                                             breadcrums: []
                                                           },},
     { path: 'nuevostrabajos', component: NuevostrabajosComponent, canActivate: [ AuthGuard ], data: {
                                                             rol: 'ROL_ALUMNO',
-                                                            titulo: 'Showroom Alumno - Nuevos Trabajos',
+                                                            titulo: 'Showroom Alumno - Trabajos para Editar',
                                                             breadcrums: []
                                                           },},
     { path: 'subirtrabajo/:uid', component: SubirtrabajoComponent, canActivate: [ AuthGuard ], data: {
                                                             rol: 'ROL_ALUMNO',
-                                                            titulo: 'Showroom Alumno - Subir Trabajo',
+                                                            titulo: 'Showroom Alumno - Editar Trabajo',
                                                             breadcrums: []
                                                           },},
     { path: 'subircontenidos/:uid', component: SubircontenidosComponent, canActivate: [ AuthGuard ], data: {

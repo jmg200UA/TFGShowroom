@@ -25,7 +25,6 @@ declare const gapi:any;
 })
 export class DetallestrabajoComponent implements OnInit {
 
-  @ViewChild('closeAddExpenseModal') public closeAddExpenseModal: ElementRef;
 
   private uid: string = '';
   public loading = true;
@@ -62,6 +61,7 @@ export class DetallestrabajoComponent implements OnInit {
               private zone: NgZone) { }
 
   ngOnInit(): void {
+    this.loading = true;
     this.uid = this.route.snapshot.params['uid'];
     console.log("UID: ", this.uid);
     this.cargarTrabajo();
@@ -126,53 +126,5 @@ export class DetallestrabajoComponent implements OnInit {
 
     return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + video);
 }
-
-// Para votar
-
-// startApp() {
-//   gapi.load('auth2', ()=>{
-//     // Retrieve the singleton for the GoogleAuth library and set up the client.
-//     this.auth2 = gapi.auth2.init({
-//       client_id: '826053114073-g8rqruj8i8bl3gubhrlfa3juc27ffkrn.apps.googleusercontent.com',
-//       cookiepolicy: 'single_host_origin',
-//     });
-//     this.attachSignin(document.getElementById('my-signin2'));
-//   });
-// };
-
-// attachSignin(element) {
-//   if(element!=null){
-//     this.auth2.attachClickHandler(element, {},
-//     (googleUser) => {
-//       var id_token = googleUser.getAuthResponse().id_token;
-//       this.closeAddExpenseModal.nativeElement.click();
-//       this.TrabajosService.loginGoogle(id_token)
-//         .subscribe( res => {
-//           this.zone.run(() => {
-//             this.router.navigateByUrl('/admin/dashboard');
-//           });
-//         }, (err) => {
-//           console.warn('Error respueta api:',err);
-//           Swal.fire({
-//             title: 'Error!',
-//             text: err.error.msg || 'No pudo completarse la acción, vuelva a intentarlo más tarde',
-//             icon: 'error',
-//             confirmButtonText: 'Ok',
-//             allowOutsideClick: false
-//           });
-//         }
-//         );
-//     }, (error) => {
-//       alert(JSON.stringify(error, undefined, 2));
-//     });
-//   }
-// }
-
-onSignIn(googleUser) {
-  console.log("entro");
-  var profile = googleUser.getBasicProfile();
-  console.log("Profile: ", profile);
-}
-
 
 }

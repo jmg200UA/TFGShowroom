@@ -78,6 +78,19 @@ const TrabajoSchema = Schema({
         type: String,
         default: ''
     }],
+    //Nuevos campos de info
+    enlace: { // enlace para meet defensa trabajo
+        type: String
+    },
+    defensa: { // fecha defensa
+        type: String
+    },
+    curso: { // curso academico
+        type: String
+    },
+    palabrasclave: {
+        type: String
+    }
 }, { collection: 'trabajos' });
 
 TrabajoSchema.method('toJSON', function() {

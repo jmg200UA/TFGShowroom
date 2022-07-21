@@ -7,12 +7,9 @@ import { TitulacionService } from '../../services/titulacion.service';
 @Component({
   selector: 'landing',
   templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.css',
-              '../../../assets/css/slide/slide.css']
+  styleUrls: ['./landing.component.css']
 })
 export class LandingComponent implements OnInit {
-
-  public rol="";
 
   //Variables para la carga de titulaciones
   public listaTitulaciones;
@@ -30,6 +27,7 @@ export class LandingComponent implements OnInit {
     // this.router.navigateByUrl('/landing/inicio');
     this.cargarTitulaciones();
     console.log("Landing component");
+    console.log("Url: ", this.router.url);
   }
 
   logout() {

@@ -55,6 +55,10 @@ export class ActualizartrabajoComponent implements OnInit {
     resumen: ['', Validators.required ],
     imagen: [''],
     director: ['', Validators.required ],
+    enlace: ['', Validators.required ],
+    defensa: ['', Validators.required ],
+    curso: ['', Validators.required ],
+    palabrasclave: ['', Validators.required ],
     estado: [''], // cambiar a revisión por los editores
   });
 
@@ -138,6 +142,10 @@ export class ActualizartrabajoComponent implements OnInit {
           this.nombreTitu = res['trabajos'].titulacion.nombre;
           this.datosForm.get('tipo').setValue(res['trabajos'].tipo);
           this.datosForm.get('director').setValue(res['trabajos'].director);
+          this.datosForm.get('enlace').setValue(res['trabajos'].enlace);
+          this.datosForm.get('defensa').setValue(res['trabajos'].defensa);
+          this.datosForm.get('curso').setValue(res['trabajos'].curso);
+          this.datosForm.get('palabrasclave').setValue(res['trabajos'].palabrasclave);
           this.datosForm.get('resumen').setValue(res['trabajos'].resumen);
           this.imagenUrl = this.TrabajosService.crearImagenUrl(res['trabajos'].imagen);
           this.loading = false;

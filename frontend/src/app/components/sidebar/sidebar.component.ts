@@ -17,8 +17,8 @@ export const ROUTESADMIN: RouteInfo[] = [
 ];
 
 export const ROUTESALUMNOS: RouteInfo[] = [
-  { path: 'trabajos', title: 'Trabajos',  icon:'design_bullet-list-67', class: '' },
-  { path: 'nuevostrabajos', title: 'Nuevos Trabajos para subir',  icon:'design_bullet-list-67', class: '' }
+  { path: 'trabajos', title: 'Trabajos subidos',  icon:'design_bullet-list-67', class: '' },
+  { path: 'nuevostrabajos', title: 'Trabajos para editar',  icon:'design_bullet-list-67', class: '' }
 ];
 
 export const ROUTESEDITOR: RouteInfo[] = [

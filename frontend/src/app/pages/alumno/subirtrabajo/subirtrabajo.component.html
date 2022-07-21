@@ -53,17 +53,64 @@
                             <div class="col-lg-3 col-md-12 text-lg-right">
                                 <span class="">Tipo</span>
                             </div>
-                            <div class="col-lg-1 col-md-12">
+                            <div class="col-lg-2 col-md-12">
                                 <input type="text" class="form-control" formControlName="tipo" id="tipo">
                             </div>
                         </div>
                         <!-- Campos que debe introducir el alumno -->
                         <div class="row m-t-10">
                             <div class="col-lg-3 col-md-12 text-lg-right">
-                                <span class="">Director de investigación</span>
+                                <span class="">Tutor</span>
                             </div>
                             <div class="col-lg-3 col-md-12">
                                 <input type="text" class="form-control" formControlName="director" [ngClass]="{'is-invalid' : campoNoValido('director')}" id="director">
+                                <div class="invalid-feedback">
+                                    El campo es obligatorio
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-t-10">
+                            <div class="col-lg-3 col-md-12 text-lg-right">
+                                <span class="">Enlace defensa</span>
+                            </div>
+                            <div class="col-lg-3 col-md-12">
+                                <input type="text" class="form-control" formControlName="enlace" [ngClass]="{'is-invalid' : campoNoValido('enlace')}" id="enlace">
+                                <div class="invalid-feedback">
+                                    El campo es obligatorio
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-t-10">
+                            <div class="col-lg-3 col-md-12 text-lg-right">
+                                <span class="">Fecha defensa</span>
+                            </div>
+                            <div class="col-lg-3 col-md-12">
+                                <input type="text" class="form-control" formControlName="defensa" [ngClass]="{'is-invalid' : campoNoValido('defensa')}" id="defensa">
+                                <small class="form-text text-muted">Formato: "7-9-2022"</small>
+                                <div class="invalid-feedback">
+                                    El campo es obligatorio
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-t-10">
+                            <div class="col-lg-3 col-md-12 text-lg-right">
+                                <span class="">Curso académico</span>
+                            </div>
+                            <div class="col-lg-2 col-md-12">
+                                <input type="text" class="form-control" formControlName="curso" [ngClass]="{'is-invalid' : campoNoValido('curso')}" id="curso">
+                                <small class="form-text text-muted">Formato: "2021-2022"</small>
+                                <div class="invalid-feedback">
+                                    El campo es obligatorio
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-t-10">
+                            <div class="col-lg-3 col-md-12 text-lg-right">
+                                <span class="">Palabras clave</span>
+                            </div>
+                            <div class="col-lg-5 col-md-12">
+                                <input type="text" class="form-control" formControlName="palabrasclave" [ngClass]="{'is-invalid' : campoNoValido('palabrasclave')}" id="palabrasclave">
+                                <small class="form-text text-muted">Formato: "palabra clave | palabra clave"</small>
                                 <div class="invalid-feedback">
                                     El campo es obligatorio
                                 </div>
