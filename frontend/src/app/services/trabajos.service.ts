@@ -188,33 +188,43 @@ export class TrabajosService {
     return `${environment.base_url}/upload/trabajoconts/${imagen}?token=${token}`;
   }
 
+  //Identificacion con Google
+  loginGoogle( tokenGoogle ) {
+    return this.http.post(`${environment.base_url}/login/google`, { token: tokenGoogle })
+            .pipe(
+              tap( (res : any) => {
+                localStorage.setItem('token', res['token']);
+              })
+            );
+  }
+
   // quitar mas tarde estas llamadas
-  crearImagenesUrl( imagen: string) { // imagenes adicionales trabajo
+  // crearImagenesUrl( imagen: string) { // imagenes adicionales trabajo
 
-    const token = localStorage.getItem('token') || '';
-    if (!imagen) {
-      return `${environment.base_url}/upload/trabajoimgs/no-imagen.jpg?token=${token}`;
-    }
-    return `${environment.base_url}/upload/trabajoimgs/${imagen}?token=${token}`;
-  }
+  //   const token = localStorage.getItem('token') || '';
+  //   if (!imagen) {
+  //     return `${environment.base_url}/upload/trabajoimgs/no-imagen.jpg?token=${token}`;
+  //   }
+  //   return `${environment.base_url}/upload/trabajoimgs/${imagen}?token=${token}`;
+  // }
 
-  crearVideoUrl( video: string) { // videos adicionales trabajo
+  // crearVideoUrl( video: string) { // videos adicionales trabajo
 
-    const token = localStorage.getItem('token') || '';
-    return `${environment.base_url}/upload/trabajovideos/${video}?token=${token}`;
-  }
+  //   const token = localStorage.getItem('token') || '';
+  //   return `${environment.base_url}/upload/trabajovideos/${video}?token=${token}`;
+  // }
 
-  crearDocUrl( doc: string) { // docs adicionales trabajo
+  // crearDocUrl( doc: string) { // docs adicionales trabajo
 
-    const token = localStorage.getItem('token') || '';
-    return `${environment.base_url}/upload/trabajodocs/${doc}?token=${token}`;
-  }
+  //   const token = localStorage.getItem('token') || '';
+  //   return `${environment.base_url}/upload/trabajodocs/${doc}?token=${token}`;
+  // }
 
-  crearAudioUrl( audio: string) { // audios adicionales trabajo
+  // crearAudioUrl( audio: string) { // audios adicionales trabajo
 
-    const token = localStorage.getItem('token') || '';
-    return `${environment.base_url}/upload/trabajoaudios/${audio}?token=${token}`;
-  }
+  //   const token = localStorage.getItem('token') || '';
+  //   return `${environment.base_url}/upload/trabajoaudios/${audio}?token=${token}`;
+  // }
 
   get cabeceras() {
     return {

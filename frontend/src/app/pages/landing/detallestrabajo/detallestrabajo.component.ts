@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit,NgZone, AfterContentInit } from '@angular/core';
+import { ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -14,18 +15,27 @@ import SwiperCore, { SwiperOptions, Navigation, Pagination, Scrollbar, A11y, Eff
 
 SwiperCore.use([EffectCoverflow, Navigation, Pagination, Scrollbar, A11y]);
 
+declare const gapi:any;
+
 @Component({
   selector: 'detallestrabajo',
   templateUrl: './detallestrabajo.component.html',
   styleUrls: ['./detallestrabajo.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class DetallestrabajoComponent implements OnInit {
+export class DetallestrabajoComponent implements OnInit, AfterContentInit {
+
+  @ViewChild('closeAddExpenseModal') public closeAddExpenseModal: ElementRef;
 
   private uid: string = '';
   public loading = true;
   public trabajo;
   public titulotrabajo: boolean = true;
+
+  //ATRIBUTOS Google Identification
+  public formSubmint = false;
+  public waiting = false;
+  public auth2: any;
 
   config: SwiperOptions = {
     effect:'coverflow',
@@ -48,13 +58,18 @@ export class DetallestrabajoComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router,
               private TrabajosService: TrabajosService,
-              private sanitizer: DomSanitizer) { }
+              private sanitizer: DomSanitizer,
+              private zone: NgZone) { }
 
   ngOnInit(): void {
     this.uid = this.route.snapshot.params['uid'];
     console.log("UID: ", this.uid);
     this.cargarTrabajo();
   }
+
+  public ngAfterContentInit(): void {
+    this.startApp();
+ }
 
   cargarTrabajo(){
     this.loading = true;
@@ -113,6 +128,47 @@ export class DetallestrabajoComponent implements OnInit {
     video   = (results === null) ? url : results[1];
 
     return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + video);
+}
+
+// Para votar
+
+startApp() {
+  gapi.load('auth2', ()=>{
+    // Retrieve the singleton for the GoogleAuth library and set up the client.
+    this.auth2 = gapi.auth2.init({
+      client_id: '826053114073-g8rqruj8i8bl3gubhrlfa3juc27ffkrn.apps.googleusercontent.com',
+      cookiepolicy: 'single_host_origin',
+    });
+    this.attachSignin(document.getElementById('my-signin2'));
+  });
+};
+
+attachSignin(element) {
+  if(element!=null){
+    this.auth2.attachClickHandler(element, {},
+    (googleUser) => {
+      var id_token = googleUser.getAuthResponse().id_token;
+      this.closeAddExpenseModal.nativeElement.click();
+      this.TrabajosService.loginGoogle(id_token)
+        .subscribe( res => {
+          this.zone.run(() => {
+            this.router.navigateByUrl('/admin/dashboard');
+          });
+        }, (err) => {
+          console.warn('Error respueta api:',err);
+          Swal.fire({
+            title: 'Error!',
+            text: err.error.msg || 'No pudo completarse la acción, vuelva a intentarlo más tarde',
+            icon: 'error',
+            confirmButtonText: 'Ok',
+            allowOutsideClick: false
+          });
+        }
+        );
+    }, (error) => {
+      alert(JSON.stringify(error, undefined, 2));
+    });
+  }
 }
 
 

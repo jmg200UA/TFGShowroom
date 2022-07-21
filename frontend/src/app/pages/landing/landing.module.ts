@@ -9,7 +9,9 @@ import { SwiperModule } from 'swiper/angular';
 import { DetallestrabajoComponent } from './detallestrabajo/detallestrabajo.component';
 import {SafePipe} from '../../pipes/SafePipe';
 import { ResultadosComponent } from './resultados/resultados.component';
-import { PreviewtrabajoComponent } from './previewtrabajo/previewtrabajo.component'
+import { PreviewtrabajoComponent } from './previewtrabajo/previewtrabajo.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -29,7 +31,9 @@ import { PreviewtrabajoComponent } from './previewtrabajo/previewtrabajo.compone
     ComponentsModule,
     RouterModule,
     Auth2Module,
-    SwiperModule
+    SwiperModule,
+    FormsModule,
+    HttpClientModule
   ]
 })
 export class LandingModule { }
