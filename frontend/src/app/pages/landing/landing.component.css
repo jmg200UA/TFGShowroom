@@ -292,3 +292,8 @@
         width: 80px;
     }
 }
+
+.seccionescab {
+    /* Texto Inicio y Titulaciones */
+    font-size: 12px !important;
+}

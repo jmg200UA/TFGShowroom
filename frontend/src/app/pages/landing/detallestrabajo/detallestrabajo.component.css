@@ -1,3 +1,11 @@
+@import '~swiper/swiper.min.css';
+@import '~swiper/modules/navigation/navigation.min.css';
+@import '~swiper/modules/pagination/pagination.min.css';
+:root {
+    --swiper-theme-color: #263244;
+}
+
+
 /* Estilo barra overflow */
 
 .letrasmall::-webkit-scrollbar {
@@ -207,9 +215,6 @@ h3 {
 
 /* SLIDER */
 
-@import '~swiper/swiper.min.css';
-@import '~swiper/modules/navigation/navigation.min.css';
-@import '~swiper/modules/pagination/pagination.min.css';
 .swipercont {
     width: 90%;
     height: 90%;
@@ -425,7 +430,6 @@ h3 {
 /* Nueva estructura tres columnas */
 
 .rowficha {
-    height: 280px !important;
     padding-top: 2em;
     padding-left: 15px !important;
     padding-right: 15px !important;
@@ -467,6 +471,17 @@ h3 {
         width: 35%;
     }
     .imagen {
+        margin-top: 1.5em;
+        width: 100%;
+    }
+}
+
+@media (max-width: 900px) {
+    .descripcion {
+        width: 100%;
+    }
+    .detalles {
+        margin-top: 1.5em;
         width: 100%;
     }
 }

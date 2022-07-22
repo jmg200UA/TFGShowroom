@@ -15,7 +15,6 @@ import SwiperCore, { SwiperOptions, Navigation, Pagination, Scrollbar, A11y, Eff
 
 SwiperCore.use([EffectCoverflow, Navigation, Pagination, Scrollbar, A11y]);
 
-declare const gapi:any;
 
 @Component({
   selector: 'detallestrabajo',
@@ -31,15 +30,11 @@ export class DetallestrabajoComponent implements OnInit {
   public trabajo;
   public titulotrabajo: boolean = true;
 
-  //ATRIBUTOS Google Identification
-  public formSubmint = false;
-  public waiting = false;
-  public auth2: any;
-
   config: SwiperOptions = {
     effect:'coverflow',
     grabCursor:true,
     centeredSlides:true,
+    loop: true,
     slidesPerView:'auto',
     coverflowEffect:{
       rotate: 50,
@@ -52,13 +47,20 @@ export class DetallestrabajoComponent implements OnInit {
     pagination: { clickable: true },
     scrollbar: { draggable: true },
   };
+  onSwiper([swiper]) {
+    console.log(swiper);
+  }
+  onSlideChange() {
+    console.log('slide change');
+  }
 
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
               private TrabajosService: TrabajosService,
               private sanitizer: DomSanitizer,
-              private zone: NgZone) { }
+              private zone: NgZone) {
+              }
 
   ngOnInit(): void {
     this.loading = true;
