@@ -2,7 +2,7 @@
     <!-- Primera fila info general -->
     <div class="row pt-4" *ngIf="!loading">
         <!-- Primera columna titulo descripcion -->
-        <div class="col-md-8 primeracol">
+        <div class="col-md-5 primeracol">
             <!-- Row para titulo-->
             <div class="row rowtitulo">
                 <h2>{{trabajo.titulo}}</h2>
@@ -19,7 +19,9 @@
             <!-- Row para descripcion -->
             <div class="row descripcion letrasmall" style="overflow: auto;">{{trabajo.resumen}}</div>
         </div>
-        <!-- Segunda columna Imagen detalles -->
+        <!-- Tercera columna detalles -->
+        <div class="col-md-3 terceracol"></div>
+        <!-- Segunda columna Imagen-->
         <div class="col-md-4 segundacol">
             <!-- Row para la imagen -->
             <div class="row rowportada">
