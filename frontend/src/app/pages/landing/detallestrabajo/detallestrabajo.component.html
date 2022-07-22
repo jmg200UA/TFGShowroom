@@ -1,8 +1,7 @@
 <div class="container-fluid todo">
     <!-- Primera fila info general -->
     <div class="row pt-4" *ngIf="!loading">
-        <!-- Primera columna titulo descripcion -->
-        <div class="col-md-5 primeracol">
+        <div class="col-md-12">
             <!-- Row para titulo-->
             <div class="row rowtitulo">
                 <h2>{{trabajo.titulo}}</h2>
@@ -16,19 +15,12 @@
                 </div>
                 <div class="col-md-4">{{trabajo.autor.valoracion}} likes</div> -->
             </div>
-            <!-- Row para descripcion -->
-            <div class="row descripcion letrasmall" style="overflow: auto;">{{trabajo.resumen}}</div>
         </div>
-        <!-- Tercera columna detalles -->
-        <div class="col-md-3 terceracol"></div>
-        <!-- Segunda columna Imagen-->
-        <div class="col-md-4 segundacol">
-            <!-- Row para la imagen -->
-            <div class="row rowportada">
-                <img class="micursor portadatrabajo" [src]="crearImagenUrl(trabajo) " alt="portada ">
-            </div>
+        <div class="row rowficha">
+            <!-- Row para descripcion -->
+            <div class="descripcion letrasmall" style="overflow: auto;">{{trabajo.resumen}}</div>
             <!-- Row para detalles -->
-            <div class="row rowdetalles">
+            <div class="detalles">
                 <div class="row rowdet letrasmall">
                     <p><strong>Área: </strong> &nbsp; {{trabajo.area}}</p>
                 </div>
@@ -36,10 +28,33 @@
                     <p><strong>Carrera: </strong> &nbsp; <a target="_blank " [href]="trabajo.titulacion.resumen ">{{trabajo.titulacion.nombre}}</a></p>
                 </div>
                 <div class="row rowdet letrasmall">
-                    <p><strong>Director investigación: </strong> &nbsp; {{trabajo.director}}</p>
+                    <p><strong>Tutor: </strong> &nbsp; {{trabajo.director}}</p>
+                </div>
+                <div class="row rowdet letrasmall">
+                    <p><strong>Enlace defensa: </strong> &nbsp; {{trabajo.enlace}}</p>
+                </div>
+                <div class="row rowdet letrasmall">
+                    <p><strong>Fecha defensa: </strong> &nbsp; {{trabajo.defensa}}</p>
+                </div>
+                <div class="row rowdet letrasmall">
+                    <p><strong>Curso académico: </strong> &nbsp; {{trabajo.curso}}</p>
+                </div>
+                <div class="row rowdet letrasmall">
+                    <div class="pclave"><strong>Palabras clave: </strong> &nbsp;
+                        <div class="clave">{{trabajo.palabrasclave}}</div>
+                    </div>
                 </div>
             </div>
+            <!-- Tercera columna Imagen-->
+            <div class="imagen">
+                <!-- Row para la imagen -->
+                <!-- <div class="row rowportada"> -->
+                <img class="micursor portadatrabajo" [src]="crearImagenUrl(trabajo)" alt="portada">
+                <!-- </div> -->
+
+            </div>
         </div>
+
     </div>
 </div>
 <!-- Contenidos multimedia y extras -->
