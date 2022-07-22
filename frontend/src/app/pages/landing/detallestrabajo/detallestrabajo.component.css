@@ -429,10 +429,16 @@ h3 {
 
 /* Nueva estructura tres columnas */
 
+.rowtitulo,
+.nombre {
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+}
+
 .rowficha {
     padding-top: 2em;
-    padding-left: 15px !important;
-    padding-right: 15px !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
     /* flexbox style */
     display: flex;
     flex-direction: row;

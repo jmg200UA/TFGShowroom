@@ -1,3 +1,10 @@
+/* Font family UA general */
+
+* {
+    font-family: "Roboto", sans-serif;
+}
+
+
 /* HEADER */
 
 @import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
@@ -152,40 +159,66 @@
 }
 
 .barrasuperior {
-    height: 110px;
+    height: 90px;
     display: flex;
     width: 100%;
-    background-image: linear-gradient(to bottom, #31475d 0, #202f3f 100%) !important;
+    /* background-image: linear-gradient(to bottom, #31475d 0, #202f3f 100%) !important; */
+    background-color: #fff;
+    color: black;
     padding-left: 2%;
     padding-right: 2%;
 }
 
 .sup1 {
-    width: 24%;
+    width: 30%;
     padding-top: 20px;
 }
 
 .sup2 {
-    width: 71%;
-    padding-top: 40px;
+    width: 66%;
+    padding-top: 30px;
     font-size: x-large;
-    color: #fff;
+    color: #263244;
+}
+
+.sup3 {
+    padding-top: 10px;
+    padding-left: 10px;
 }
 
 @media (max-width: 1700px) {
     .sup1 {
-        width: 20%;
+        width: 24%;
     }
     .sup2 {
-        width: 76%;
+        width: 72%;
     }
 }
 
-@media (max-width: 1201px) {
+@media (max-width: 1300px) {
     .sup2 {
-        font-size: 19.5px;
+        font-size: 22px;
     }
 }
+
+@media (max-width: 1101px) {
+    .sup2 {
+        font-size: 20px;
+    }
+}
+
+
+/* @media (max-width: 1102px) {
+    .sup2 {
+        font-size: 19px;
+    }
+}
+
+@media (max-width: 1035px) {
+    .sup2 {
+        font-size: 18px;
+    }
+} */
 
 .sup22 {
     font-size: large;
@@ -222,20 +255,20 @@
 
 @media (max-width: 886px) {
     .sup22 {
-        font-size: small;
+        font-size: 16px;
     }
 }
 
-@media (max-width: 750px) {
+@media (max-width: 760px) {
     .sup22 {
-        font-size: smaller;
+        font-size: 14px;
     }
 }
 
 @media (max-width: 702px) {
     .sup22 {
         padding-top: 10px;
-        width: 60%;
+        width: 70%;
         height: 50px;
         display: flex;
         flex-direction: column;
@@ -244,56 +277,42 @@
 
 @media (max-width: 587px) {
     .sup22 {
-        width: 55%;
+        width: 65%;
     }
 }
 
 @media (max-width: 531px) {
     .sup22 {
-        width: 50%;
+        width: 60%;
     }
 }
 
 @media (max-width: 498px) {
     .sup22 {
-        font-size: x-small;
-        width: 45%;
+        font-size: 12px;
+        width: 55%;
+    }
+    .seccionescab {
+        font-size: 12px !important;
     }
 }
 
-@media (max-width: 449px) {
+@media (max-width: 471px) {
     .sup22 {
-        padding-top: 5px;
-        font-size: xx-small;
-    }
-    .brandbajo {
-        width: 100px;
+        font-size: 10px;
     }
 }
 
 @media (max-width: 401px) {
     .sup22 {
-        padding-top: 10px;
-        font-size: 2vw;
+        font-size: 2.5vw;
     }
-    .logobrand {
-        height: 35px;
-    }
-}
-
-@media (max-width: 370px) {
-    .sup22 {
-        width: 40%;
-    }
-    .logobrand {
-        height: 25px;
-    }
-    .brandbajo {
-        width: 80px;
+    .seccionescab {
+        font-size: 2.5vw !important;
     }
 }
 
 .seccionescab {
     /* Texto Inicio y Titulaciones */
-    font-size: 12px !important;
+    font-size: 16px !important;
 }
