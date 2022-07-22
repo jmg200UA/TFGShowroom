@@ -1,16 +1,5 @@
 <div *ngIf="!loading" class="bodylanding">
     <!-- HEADER -->
-    <script>
-        $(function() {
-            $(window).on('scroll', function() {
-                if ($(window).scrollTop() > 10) {
-                    myID.className = "bottomMenu show"
-                } else {
-                    $('.navbar').removeClass('active');
-                }
-            });
-        });
-    </script>
     <div class="barrasuperior justify-content-center mx-auto">
         <div class="sup1">
             <a class="navbar-brand brandarriba" href="https://www.ua.es/">
@@ -74,10 +63,36 @@
     </nav>
 
     <!-- Se despliega cuando listatitu esta a false -->
-    <div class="row pl-2 pr-2 desplegabletitu justify-content-center" [ngClass]=" { 'display': listatitu} ">
-        <div [ngClass]=" { 'display': listatitu} " class="col-md-2 divtitu " *ngFor="let titulacion of listaTitulaciones ">
+    <div class="row desplegabletitu justify-content-center" [ngClass]="{ 'display': listatitu}">
+        <!-- <div class="col-md-2 divtitu" *ngFor="let titulacion of listaTitulaciones">
             <a target="_blank" [href]="titulacion.resumen"><img [src]="crearUrlTitulacion(titulacion.imagen)" alt="titulacion" class="img-thumbnail rounded-circle" width="50" height="50"></a>
-            <div class="nombretitu ">{{titulacion.nombre}}</div>
+            <div class="nombretitu"><strong>{{titulacion.nombre}}</strong></div>
+        </div> -->
+        <!-- Grados -->
+        <div class="titus grados" [ngClass]="{ 'display': listatitu}">
+            <h4 class="mx-auto text-center titulotitu"><strong>GRADOS</strong></h4>
+            <div class="row coltitus">
+                <ng-container *ngFor="let titulacion of listaTitulaciones">
+                    <div class="col-md-1 divtitu" style="width: 14.25%;
+                    flex: 0 0 14.25%;max-width: 14.25%;" *ngIf="titulacion.tipo=='Grado'">
+                        <img [src]="crearUrlTitulacion(titulacion.imagen)" (click)="busqueda(titulacion)" [alt]="titulacion.nombre" class="img-thumbnail rounded-circle micursor">
+                        <div class="nombretitu">{{titulacion.abreviatura}}</div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+        <!-- Másters -->
+        <div class="titus masters" [ngClass]="{ 'display': listatitu}">
+            <h4 class="mx-auto text-center titulotitu"><strong>MÁSTERS</strong></h4>
+            <div class="row coltitus">
+                <ng-container *ngFor="let titulacion of listaTitulaciones">
+                    <div class="col-md-1 divtitu" style="width: 14.25%;
+                    flex: 0 0 14.25%;max-width: 14.25%;" *ngIf="titulacion.tipo=='Máster'">
+                        <img [src]="crearUrlTitulacion(titulacion.imagen)" (click)="busquedatitu(titulacion)" [alt]="titulacion.nombre" class="img-thumbnail rounded-circle micursor" width="100" height="100">
+                        <div class="nombretitu">{{titulacion.abreviatura}}</div>
+                    </div>
+                </ng-container>
+            </div>
         </div>
     </div>
 
