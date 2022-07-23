@@ -30,6 +30,8 @@ export class DetallestrabajoComponent implements OnInit {
   public trabajo;
   public titulotrabajo: boolean = true;
 
+  public rutatrabajo;
+
   config: SwiperOptions = {
     effect:'coverflow',
     grabCursor:true,
@@ -64,6 +66,7 @@ export class DetallestrabajoComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
+    this.rutatrabajo = window.location.href;
     this.uid = this.route.snapshot.params['uid'];
     console.log("UID: ", this.uid);
     this.cargarTrabajo();

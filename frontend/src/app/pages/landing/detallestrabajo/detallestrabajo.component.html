@@ -7,7 +7,10 @@
                 <h2>{{trabajo.titulo}}</h2>
             </div>
             <div class="row nombre">
-                <div class="solonombre"><strong>{{trabajo.autor.nombre_apellidos}}</strong> &nbsp; {{trabajo.autor.email}}</div>
+                <div class="solonombre">
+                    <strong>{{trabajo.autor.nombre_apellidos}}</strong> &nbsp; {{trabajo.autor.email}}
+                    <share-buttons theme="circles-dark" [include]="['copy', 'facebook', 'email', 'linkedin', 'telegram', 'twitter', 'whatsapp']" [showIcon]="true" [showText]="false" [url]="rutatrabajo" [description]="trabajo.titulo" class="sharebotones"> </share-buttons>
+                </div>
                 <!-- <div class="valoracion">Valoración: &nbsp; {{trabajo.valoracion}} <i class="fas fa-thumbs-up"></i></div> -->
                 <!-- <div class="g-signin2" data-onsuccess="onSignIn">Login google</div> -->
                 <!-- <div class="col-md-8">

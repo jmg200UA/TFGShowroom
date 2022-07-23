@@ -28,6 +28,7 @@ export class LandingComponent implements OnInit {
     this.cargarTitulaciones();
     console.log("Landing component");
     console.log("Url: ", this.router.url);
+    console.log(window.location.href)
   }
 
   logout() {

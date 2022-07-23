@@ -35,8 +35,13 @@ h3 {
     text-align: center !important;
 }
 
-.nombre {
+.solonombre {
     display: flex;
+}
+
+.sharebotones {
+    padding-left: 10px;
+    margin-top: -10px;
 }
 
 @media (max-width: 1047.5px) {
@@ -73,7 +78,7 @@ h3 {
     .letrasmall {
         font-size: 8px;
     }
-    .nombre {
+    .solonombre {
         flex-direction: column;
     }
     .swiper-slidecont {

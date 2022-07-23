@@ -13,6 +13,9 @@ import { PreviewtrabajoComponent } from './previewtrabajo/previewtrabajo.compone
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import {ShareButtonsModule} from 'ngx-sharebuttons/buttons';
+import {ShareIconsModule} from 'ngx-sharebuttons/icons';
+
 
 
 @NgModule({
@@ -33,7 +36,9 @@ import { HttpClientModule } from '@angular/common/http';
     Auth2Module,
     SwiperModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ShareButtonsModule,
+    ShareIconsModule
   ]
 })
 export class LandingModule { }
