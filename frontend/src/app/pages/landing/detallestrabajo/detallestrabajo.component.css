@@ -23,6 +23,12 @@
     padding: 1px;
 }
 
+@media (min-width: 991px) {
+    .seccionescab {
+        display: inline !important;
+    }
+}
+
 
 /* TEXTO */
 

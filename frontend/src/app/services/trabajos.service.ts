@@ -82,6 +82,11 @@ export class TrabajosService {
     return this.http.get(`${environment.base_url}/trabajos/tv/?desde=${desde}&texto=${textoBusqueda}` , this.cabeceras);
   }
 
+  cargarTrabajosVisiblesNoPag(textoBusqueda?: string ): Observable<object> {
+    if (!textoBusqueda) {textoBusqueda = '';}
+    return this.http.get(`${environment.base_url}/trabajos/tv/?texto=${textoBusqueda}` , this.cabeceras);
+  }
+
   cargarTrabajosValorados(): Observable<object> {
     return this.http.get(`${environment.base_url}/trabajos/mv/` , this.cabeceras);
   }

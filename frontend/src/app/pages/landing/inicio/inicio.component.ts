@@ -97,12 +97,12 @@ export class InicioComponent implements OnInit {
       }
     }
   };
-  onSwiper([swiper]) {
-    console.log(swiper);
-  }
-  onSlideChange() {
-    console.log('slide change');
-  }
+  // onSwiper([swiper]) {
+  //   console.log(swiper);
+  // }
+  // onSlideChange() {
+  //   console.log('slide change');
+  // }
 
 
   constructor(private trabajoService: TrabajosService,

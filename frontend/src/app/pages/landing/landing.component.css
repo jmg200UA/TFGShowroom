@@ -251,6 +251,12 @@
 }
 */
 
+@media (min-width: 991px) {
+    .seccionescab {
+        display: none;
+    }
+}
+
 @media (max-width: 471px) {
     .sup22 {
         font-size: 12px;

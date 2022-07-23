@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,  OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { TrabajosService } from '../../../services/trabajos.service';
@@ -8,9 +8,10 @@ import { environment } from '../../../../environments/environment';
 @Component({
   selector: 'resultados',
   templateUrl: './resultados.component.html',
-  styleUrls: ['./resultados.component.css']
+  styleUrls: ['./resultados.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
-export class ResultadosComponent implements OnInit {
+export class ResultadosComponent implements OnInit{
 
   public texto: string = '';
   public loading = true;
@@ -20,37 +21,38 @@ export class ResultadosComponent implements OnInit {
   public registrosporpagina = environment.registros_por_pagina;
 
   private ultimaBusqueda = '';
-  public listaTrabajos: Trabajo[] = [];
+  public listaTrabajos= [];
 
   constructor(private route: ActivatedRoute,
     private router: Router,
     private TrabajosService: TrabajosService) { }
 
   ngOnInit(): void {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    // window.location.reload();
+    console.log("Hijo cargado");
     this.texto = this.route.snapshot.params['texto'];
+    // if(this.texto!=this.ultimaBusqueda){
+    //   this.ultimaBusqueda=this.texto;
+    //   window.location.reload();
+    // }
     console.log("Texto: ", this.texto);
     this.cargarTrabajos();
   }
 
+  busqueda(){
+    console.log("Hijo cargado");
+    this.ngOnInit();
+  }
+
   cargarTrabajos() {
-    this.ultimaBusqueda = this.texto;
       this.loading = true;
-      this.TrabajosService.cargarTrabajosVisibles( this.posicionactual, this.texto )
+      console.log("Se entra en cargar trabajos");
+      this.TrabajosService.cargarTrabajosVisiblesNoPag(this.texto )
       .subscribe( res => {
         console.log("Res trabajos: ", res['trabajos']);
-        if (res['trabajos'].length === 0) {
-          if (this.posicionactual > 0) {
-            this.posicionactual = this.posicionactual - this.registrosporpagina;
-            if (this.posicionactual < 0) { this.posicionactual = 0};
-            this.cargarTrabajos();
-          } else {
-            this.listaTrabajos = [];
-            this.totaltrabajos = 0;
-          }
-        } else {
           this.listaTrabajos = res['trabajos'];
           this.totaltrabajos = res['page'].total;
-        }
         this.loading = false;
       }, (err) => {
         Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});

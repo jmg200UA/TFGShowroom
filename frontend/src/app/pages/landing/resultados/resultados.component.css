@@ -64,6 +64,12 @@
     flex-flow: wrap;
 }
 
+@media (min-width: 991px) {
+    .seccionescab {
+        display: inline !important;
+    }
+}
+
 
 /* Responsive media querys */
 
