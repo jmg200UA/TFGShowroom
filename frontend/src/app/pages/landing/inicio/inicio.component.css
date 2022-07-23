@@ -125,6 +125,12 @@
     }
 } */
 
+@media (min-width: 991px) {
+    .seccionescab {
+        display: none;
+    }
+}
+
 .grados {
     border-right: solid 1px #263244;
 }

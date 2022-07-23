@@ -8,7 +8,7 @@
             </div>
             <div class="row nombre">
                 <div class="solonombre">
-                    <strong>{{trabajo.autor.nombre_apellidos}}</strong> &nbsp; {{trabajo.autor.email}}
+                    <strong>{{trabajo.autor.nombre_apellidos}}</strong> &nbsp; <a [href]="'mailto:'+trabajo.autor.email">{{trabajo.autor.email}}</a>
                     <share-buttons theme="circles-dark" [include]="['copy', 'facebook', 'email', 'linkedin', 'telegram', 'twitter', 'whatsapp']" [showIcon]="true" [showText]="false" [url]="rutatrabajo" [description]="trabajo.titulo" class="sharebotones"> </share-buttons>
                 </div>
                 <!-- <div class="valoracion">Valoración: &nbsp; {{trabajo.valoracion}} <i class="fas fa-thumbs-up"></i></div> -->
@@ -28,7 +28,7 @@
                     <p><strong>Área: </strong> &nbsp; {{trabajo.area}}</p>
                 </div>
                 <div class="row rowdet letrasmall">
-                    <p><strong>Carrera: </strong> &nbsp; <a target="_blank " [href]="trabajo.titulacion.resumen ">{{trabajo.titulacion.nombre}}</a></p>
+                    <p><strong>Carrera: </strong> &nbsp; <a target="_blank " [href]="titulacionenlace">{{trabajo.titulacion.nombre}}</a></p>
                 </div>
                 <div class="row rowdet letrasmall">
                     <p><strong>Tutor: </strong> &nbsp; {{trabajo.director}}</p>

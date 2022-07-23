@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { TrabajosService } from '../../../services/trabajos.service';
+import { TitulacionService } from '../../../services/titulacion.service';
 //SANITIZER
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
@@ -31,6 +32,8 @@ export class DetallestrabajoComponent implements OnInit {
   public titulotrabajo: boolean = true;
 
   public rutatrabajo;
+
+  public titulacionenlace;
 
   config: SwiperOptions = {
     effect:'coverflow',
@@ -60,6 +63,7 @@ export class DetallestrabajoComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router,
               private TrabajosService: TrabajosService,
+              private TitulacionService: TitulacionService,
               private sanitizer: DomSanitizer,
               private zone: NgZone) {
               }
@@ -79,6 +83,18 @@ export class DetallestrabajoComponent implements OnInit {
       .subscribe( res => {
         console.log("LA RES de trabajos: ", res['trabajos']);
           this.trabajo = res['trabajos'];
+
+          //para la navegación a la ficha de la titulación
+          this.TitulacionService.obtenerTitulacion(this.trabajo.titulacion.titulacion)
+          .subscribe( res => {
+            console.log("LA RES de titulacion: ", res['titulaciones']);
+              this.titulacionenlace = res['titulaciones'].resumen;
+          }, (err) => {
+            Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
+            //console.warn('error:', err);
+            this.loading = false;
+          });
+
           this.loading=false;
       }, (err) => {
         Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
