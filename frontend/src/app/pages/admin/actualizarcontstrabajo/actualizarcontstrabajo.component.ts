@@ -67,7 +67,8 @@ export class ActualizarcontstrabajoComponent implements OnInit {
       })
     }
     else{
-      this.contenidos.push({nombre:"",descripcion:"",tipo:"YT",contenido:url});
+      this.contenidos.push({nombre:"",descripcion:url,tipo:"YT",contenido:url});
+      this.addDatosContenido(this.contenidos.length-1);
     }
   }
 
@@ -81,12 +82,12 @@ export class ActualizarcontstrabajoComponent implements OnInit {
 
 
   addDatosContenido(num){
-    this.contenidos[num].nombre= (document.getElementById("nombre"+num) as HTMLInputElement).value;
-    this.contenidos[num].descripcion = (document.getElementById("descripcion"+num) as HTMLInputElement).value;
     if(this.contenidos[num].tipo=="YT"){
       this.subirVideoYT(num);
     }
     else{
+      this.contenidos[num].nombre= (document.getElementById("nombre"+num) as HTMLInputElement).value;
+      this.contenidos[num].descripcion = (document.getElementById("descripcion"+num) as HTMLInputElement).value;
       this.subirContenido(num);
     }
   }
