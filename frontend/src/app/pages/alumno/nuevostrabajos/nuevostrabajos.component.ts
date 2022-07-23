@@ -5,16 +5,13 @@ import { UsuarioService } from '../../../services/usuario.service';
 import { Trabajo } from '../../../models/trabajo.model';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SwiperComponent } from "swiper/angular";
-// import SwiperCore y los modulos requeridos
-import SwiperCore, { SwiperOptions, Navigation, Pagination, Scrollbar, A11y  } from 'swiper';
-
-SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'nuevostrabajos',
   templateUrl: './nuevostrabajos.component.html',
   styleUrls: ['./nuevostrabajos.component.css'],
+  providers: [NgbCarouselConfig],
   encapsulation: ViewEncapsulation.None
 })
 export class NuevostrabajosComponent implements OnInit {
@@ -32,22 +29,21 @@ export class NuevostrabajosComponent implements OnInit {
   public trabajofeed;
   public loadingfeed = true;
 
-  config3: SwiperOptions = {
-    slidesPerView: 1,
-    navigation: true,
-    pagination: { clickable: true },
-    scrollbar: { draggable: true },
-  };
-  onSwiper([swiper]) {
-    console.log(swiper);
-  }
-  onSlideChange() {
-    console.log('slide change');
-  }
+  showNavigationArrows = false;
 
   constructor(private TrabajosService: TrabajosService,
               private UsuarioService:UsuarioService,
-              private router: Router) { }
+              private router: Router,
+              private config: NgbCarouselConfig) {
+                //Customizacion valores carrusel
+                config.interval = 1000000;
+                //config.wrap = false;
+                config.keyboard = true;
+                config.pauseOnHover = false;
+                config.showNavigationIndicators = false;
+                config.showNavigationArrows = true;
+                config.showNavigationIndicators = true;
+               }
 
   ngOnInit(): void {
     this.cargarTrabajos(this.ultimaBusqueda);

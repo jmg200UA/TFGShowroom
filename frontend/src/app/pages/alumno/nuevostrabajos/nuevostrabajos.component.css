@@ -47,7 +47,7 @@
 }
 
 .modal-content {
-    border-radius: 0.7rem
+    border-radius: 0.7rem;
 }
 
 .modal-header img {
@@ -112,19 +112,40 @@ form>div {
 }
 
 .desfeed {
+    height: 50px !important;
+    padding-top: 10px;
     font-size: small;
     height: 50px;
     width: 70%;
+}
+
+
+/* Estilo barra overflow */
+
+.desfeed::-webkit-scrollbar {
+    width: 10px;
+}
+
+.desfeed::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+.desfeed::-webkit-scrollbar-thumb {
+    background: #263244;
+    border-radius: 5px;
+    padding: 1px;
 }
 
 span {
     display: none !important;
 }
 
-.carousel-control-prev-icon {
-    background-image: url('https://apufpel.com.br/assets/img/seta_prim.png')
+.carousel-control-next-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ff0000' viewBox='0 0 8 8'%3E%3Cpath d='M1.5 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+    color: black !important;
 }
 
-.carousel-control-next-icon {
-    background-image: url('https://apufpel.com.br/assets/img/seta_ult.png')
-}
+
+/* .carousel-indicators>button{
+} */

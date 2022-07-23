@@ -93,9 +93,9 @@
                 <ngb-carousel>
                     <ng-template ngbSlide *ngFor="let feedback of trabajofeed.feedback; let i=index">
                         <div class="numfeed text-center">
-                            Feedback &nbsp; {{i}}
+                            <strong>Feedback &nbsp; {{i+1}}</strong>
                         </div>
-                        <div class="desfeed mx-auto">
+                        <div class="desfeed mx-auto" style="overflow: auto;">
                             {{feedback}}
                         </div>
                     </ng-template>
