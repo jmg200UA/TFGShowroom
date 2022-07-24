@@ -26,10 +26,10 @@ const UsuarioSchema = Schema({
         type: Date,
         default: Date.now
     },
-    valorados: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Trabajos',
-    }]
+    // valorados: [{
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Trabajos',
+    // }]
 }, { collection: 'usuarios' });
 
 UsuarioSchema.method('toJSON', function() {

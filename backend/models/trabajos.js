@@ -90,7 +90,10 @@ const TrabajoSchema = Schema({
     },
     palabrasclave: {
         type: String
-    }
+    },
+    valoraciones: [{
+        type: String
+    }]
 }, { collection: 'trabajos' });
 
 TrabajoSchema.method('toJSON', function() {

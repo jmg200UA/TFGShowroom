@@ -11,8 +11,7 @@ import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
   selector: 'nuevostrabajos',
   templateUrl: './nuevostrabajos.component.html',
   styleUrls: ['./nuevostrabajos.component.css'],
-  providers: [NgbCarouselConfig],
-  encapsulation: ViewEncapsulation.None
+  providers: [NgbCarouselConfig]
 })
 export class NuevostrabajosComponent implements OnInit {
 

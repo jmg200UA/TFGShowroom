@@ -8,7 +8,9 @@ import { ResultadosComponent } from './resultados/resultados.component';
 @Component({
   selector: 'landing',
   templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.css']
+  styleUrls: ['./landing.component.css'],
+  encapsulation: ViewEncapsulation.None,
+
 })
 export class LandingComponent implements OnInit {
 
