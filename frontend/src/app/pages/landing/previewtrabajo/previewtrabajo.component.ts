@@ -57,7 +57,7 @@ export class PreviewtrabajoComponent implements OnInit {
 
   cargarTrabajo(){
     this.loading = true;
-    this.TrabajosService.obtenerTrabajoVisible(this.uid)
+    this.TrabajosService.obtenerTrabajo(this.uid)
       .subscribe( res => {
         console.log("LA RES de trabajos: ", res['trabajos']);
           this.trabajo = res['trabajos'];
