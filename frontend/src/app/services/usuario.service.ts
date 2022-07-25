@@ -18,10 +18,13 @@ export class UsuarioService {
   constructor( private http: HttpClient,
                private router: Router  ) { }
 
+  //POST
+
   nuevoUsuario ( data: Usuario) {
     return this.http.post(`${environment.base_url}/usuarios/`, data, this.cabeceras);
   }
 
+  //PUT
 
   actualizarUsuario ( uid: string, data: Usuario) {
     return this.http.put(`${environment.base_url}/usuarios/${uid}`, data, this.cabeceras);
@@ -33,13 +36,14 @@ export class UsuarioService {
   }
 
 
-  subirFoto( uid: string, foto: File) {
-    const url = `${environment.base_url}/upload/fotoperfil/${uid}`;
-    const datos: FormData = new FormData();
-    datos.append('archivo', foto, foto.name);
-    return this.http.post(`${environment.base_url}/upload/fotoperfil/${uid}`, datos, this.cabeceras);
-  }
+  // subirFoto( uid: string, foto: File) {
+  //   const url = `${environment.base_url}/upload/fotoperfil/${uid}`;
+  //   const datos: FormData = new FormData();
+  //   datos.append('archivo', foto, foto.name);
+  //   return this.http.post(`${environment.base_url}/upload/fotoperfil/${uid}`, datos, this.cabeceras);
+  // }
 
+  //GET
 
   cargarUsuarios( desde: number, textoBusqueda?: string ): Observable<object> {
     if (!desde) { desde = 0;}
@@ -58,10 +62,14 @@ export class UsuarioService {
     return this.http.get(`${environment.base_url}/usuarios/alumnos?desde=${desde}&texto=${textoBusqueda}` , this.cabeceras);
   }
 
+  //DELETE
+
   borrarUsuario( uid: string) {
     if (!uid || uid === null) {uid = 'a'; }
     return this.http.delete(`${environment.base_url}/usuarios/${uid}` , this.cabeceras);
   }
+
+  //LOGIN
 
   login( formData: loginForm) {
     return this.http.post(`${environment.base_url}/login`, formData)
