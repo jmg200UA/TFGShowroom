@@ -18,9 +18,9 @@ const TrabajoSchema = Schema({
         type: String,
         default: ''
     },
-    url: {
-        type: String
-    },
+    // url: {
+    //     type: String
+    // },
     area: { // area de conocimiento
         type: String,
     },
@@ -70,7 +70,7 @@ const TrabajoSchema = Schema({
         type: Boolean,
         default: false
     },
-    estado: { // para editar, pendiente de revisión, aceptado, denergado
+    estado: { // para editar, pendiente de revisión, aceptado, denegado
         type: String,
         default: "Para editar"
     },
