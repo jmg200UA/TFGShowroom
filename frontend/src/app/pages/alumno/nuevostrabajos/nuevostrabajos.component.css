@@ -1,3 +1,27 @@
+@import '~swiper/swiper.min.css';
+@import '~swiper/modules/navigation/navigation.min.css';
+@import '~swiper/modules/pagination/pagination.min.css';
+.swiper {
+    width: 90%;
+    height: 100%;
+}
+
+:root {
+    --swiper-theme-color: #263244;
+}
+
+.swiper-slide {
+    margin: 0 !important;
+    height: 320px;
+    border-radius: 20px;
+    border: solid 2px #ececec;
+}
+
+.swiper {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .primerafila {
     margin-top: 3em;
 }
@@ -12,17 +36,13 @@ form>div {
 
 /* Feedback */
 
-.bodyfeed {
-    width: 90%;
-}
-
 .numfeed {
     font-size: medium;
 }
 
 .desfeed {
     height: 100px !important;
-    margin: 5px;
+    margin-bottom: 10px !important;
     font-size: small;
     width: 70% !important;
 }
@@ -101,6 +121,11 @@ button:focus {
     margin-bottom: 3vh;
 }
 
+.modal-body {
+    padding: 1em !important;
+    word-wrap: break-word !important;
+}
+
 
 /* Estilo barra overflow */
 
@@ -121,6 +146,14 @@ button:focus {
 
 span {
     display: none !important;
+    visibility: hidden !important;
+    color: #fff !important;
+}
+
+.visually-hidden {
+    display: none !important;
+    visibility: hidden !important;
+    color: #fff !important;
 }
 
 .carousel-control-next-icon {

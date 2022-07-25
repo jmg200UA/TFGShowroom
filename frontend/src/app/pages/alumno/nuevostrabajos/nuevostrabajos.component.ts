@@ -5,14 +5,23 @@ import { UsuarioService } from '../../../services/usuario.service';
 import { Trabajo } from '../../../models/trabajo.model';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
-import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
+import { SwiperComponent } from "swiper/angular";
+// import SwiperCore y los modulos requeridos
+import SwiperCore, { SwiperOptions, Navigation, Pagination, Scrollbar, A11y, EffectCoverflow  } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+SwiperCore.use([EffectCoverflow, Navigation, Pagination, Scrollbar, A11y]);
 
 @Component({
   selector: 'nuevostrabajos',
   templateUrl: './nuevostrabajos.component.html',
   styleUrls: ['./nuevostrabajos.component.css'],
-  providers: [NgbCarouselConfig]
+
 })
+
+
 export class NuevostrabajosComponent implements OnInit {
 
   public loading = true;
@@ -28,20 +37,27 @@ export class NuevostrabajosComponent implements OnInit {
   public trabajofeed;
   public loadingfeed = true;
 
-  showNavigationArrows = false;
+
+  config: SwiperOptions = {
+    effect:'coverflow',
+    grabCursor:true,
+    centeredSlides:true,
+    slidesPerView:'auto',
+    coverflowEffect:{
+      rotate: 50,
+      stretch: 0,
+      depth: 100,
+      modifier: 1,
+      slideShadows: true
+    },
+    navigation:true,
+    pagination: { clickable: true },
+    scrollbar: { draggable: true },
+  };
 
   constructor(private TrabajosService: TrabajosService,
               private UsuarioService:UsuarioService,
-              private router: Router,
-              private config: NgbCarouselConfig) {
-                //Customizacion valores carrusel
-                config.interval = 1000000;
-                //config.wrap = false;
-                config.keyboard = true;
-                config.pauseOnHover = false;
-                config.showNavigationIndicators = false;
-                config.showNavigationArrows = true;
-                config.showNavigationIndicators = true;
+              private router: Router) {
                }
 
   ngOnInit(): void {
