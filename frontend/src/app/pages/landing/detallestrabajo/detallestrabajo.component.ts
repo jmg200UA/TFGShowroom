@@ -16,6 +16,8 @@ import SwiperCore, { SwiperOptions, Navigation, Pagination, Scrollbar, A11y, Eff
 
 SwiperCore.use([EffectCoverflow, Navigation, Pagination, Scrollbar, A11y]);
 
+declare const gapi:any;
+
 
 @Component({
   selector: 'detallestrabajo',
@@ -25,6 +27,9 @@ SwiperCore.use([EffectCoverflow, Navigation, Pagination, Scrollbar, A11y]);
 })
 export class DetallestrabajoComponent implements OnInit {
 
+  // @ViewChild('closeAddExpenseModal') closeAddExpenseModal: ElementRef;
+
+  public auth2: any;
 
   private uid: string = '';
   public loading = true;
@@ -74,6 +79,51 @@ export class DetallestrabajoComponent implements OnInit {
     this.uid = this.route.snapshot.params['uid'];
     console.log("UID: ", this.uid);
     this.cargarTrabajo();
+    this.startApp();
+  }
+
+  startApp() {
+    console.log("Entra attach1");
+    gapi.load('auth2', ()=>{
+      // Retrieve the singleton for the GoogleAuth library and set up the client.
+      this.auth2 = gapi.auth2.init({
+        // client_id: '267603643942-q9j8dm25g6uq0ivqn1ls2df05rgs372h.apps.googleusercontent.com',
+        client_id: '826053114073-g8rqruj8i8bl3gubhrlfa3juc27ffkrn.apps.googleusercontent.com',
+      });
+      this.attachSignin(document.getElementById('my-signin2'));
+    });
+  };
+
+  attachSignin(element) {
+    console.log("Entra attach2");
+    if(element!=null){
+      this.auth2.attachClickHandler(element, {},
+      (googleUser) => {
+        var id_token = googleUser.getAuthResponse().id_token;
+        // this.closeAddExpenseModal.nativeElement.click();
+        console.log("User: ",googleUser.getBasicProfile().getEmail());
+
+        this.TrabajosService.agregarValoracionTrabajo(this.uid,googleUser.getBasicProfile().getEmail())
+          .subscribe( res => {
+            console.log("Datos de login para valorar OK");
+            Swal.fire({
+              icon: 'success',
+              title: 'Valoración añadida correctamente',
+              showConfirmButton: false,
+              timer: 2000
+            })
+            window.location.reload();
+          }, (err) => {
+            Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
+            //console.warn('error:', err);
+            this.loading = false;
+          });
+
+        // this.closeAddExpenseModal.nativeElement.click();
+      }, (error) => {
+        alert(JSON.stringify(error, undefined, 2));
+      });
+    }
   }
 
 

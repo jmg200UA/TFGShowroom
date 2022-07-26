@@ -55,10 +55,11 @@ export class TrabajosService {
     return this.http.put(`${environment.base_url}/trabajos/af/${uid}`, data, this.cabeceras);
   }
 
-  // agregarValoracionTrabajo ( uid: string, data) {
-  //   console.log("Actualizar con: ", data);
-  //   return this.http.put(`${environment.base_url}/trabajos/av/${uid}`, data, this.cabeceras);
-  // }
+  agregarValoracionTrabajo ( uid: string, usuario) {
+    const datos: FormData = new FormData();
+    datos.append('usuario', usuario);
+    return this.http.put(`${environment.base_url}/trabajos/av/${uid}`, datos, this.cabeceras);
+  }
 
   // quitarValoracionTrabajo ( uid: string, data) {
   //   console.log("Actualizar con: ", data);

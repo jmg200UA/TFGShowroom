@@ -801,21 +801,26 @@ const agregarValoracionTrabajo = async(req, res = response) => {
     const uid = req.params.id;
     const idToken = req.uidToken;
     const rolToken = req.rolToken;
+    console.log(req.body);
 
     try {
 
         let trabajo = await Trabajo.findById(uid);
-        let empresa = await Usuario.findById(idToken);
+        let valorado = false;
 
-        if (rolToken != "ROL_EMPRESA") {
-            return res.status(400).json({
-                ok: true,
-                msg: 'El usuario no tiene permisos para valorar este trabajo'
-            });
+        for (let i = 0; i < trabajo.valoraciones.length; i++) {
+            if (trabajo.valoraciones[i] == req.body.usuario) valorado = true;
         }
 
-        empresa.valorados.push(uid);
-        await empresa.save();
+        if (valorado) {
+            return res.status(400).json({
+                ok: true,
+                msg: 'El usuario ya ha valorado este trabajo'
+            });
+        }
+        console.log(trabajo.valoraciones);
+
+        trabajo.valoraciones.push(req.body.usuario);
 
         trabajo.valoracion = trabajo.valoracion + 1;
         await trabajo.save();
