@@ -635,6 +635,20 @@ const crearTrabajo = async(req, res = response) => {
         trabajo.titulacion.nombre = titu.nombre;
         trabajo.titulacion.titulacion = titulacion;
 
+        const r = Math.ceil(Math.random() * (4 - 1) + 1); // numero aleatorio del 1 al 4
+        if (trabajo.area == "Construcción") {
+            trabajo.imagen = 'const' + r + '.jpg'
+        }
+        if (trabajo.area == "Tecnologías de la información y las comunicaciones") {
+            trabajo.imagen = 'tecno' + r + '.jpg'
+        }
+        if (trabajo.area == "Ciencia y tecnologías para la salud" || trabajo.area == "Ciencia de la salud") {
+            trabajo.imagen = 'salud' + r + '.jpg'
+        }
+        if (trabajo.area == "Industrial y aeronáutica") {
+            trabajo.imagen = 'aero' + r + '.jpg'
+        }
+
         // Almacenar en BD
         await trabajo.save();
 

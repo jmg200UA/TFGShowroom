@@ -87,6 +87,7 @@ export class DetallestrabajoComponent implements OnInit {
     gapi.load('auth2', ()=>{
       // Retrieve the singleton for the GoogleAuth library and set up the client.
       this.auth2 = gapi.auth2.init({
+        // ID de las credenciales de OAUTH que se generen
         // client_id: '267603643942-q9j8dm25g6uq0ivqn1ls2df05rgs372h.apps.googleusercontent.com',
         client_id: '826053114073-g8rqruj8i8bl3gubhrlfa3juc27ffkrn.apps.googleusercontent.com',
       });

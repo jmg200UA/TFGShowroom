@@ -25,6 +25,7 @@ export class TrabajosService {
   //Llamadas subida archivos
 
   subirFoto( uid: string, foto: File) {
+    console.log(foto);
     const url = `${environment.base_url}/upload/trabajoimg/${uid}`;
     const datos: FormData = new FormData();
     datos.append('archivo', foto, foto.name);
