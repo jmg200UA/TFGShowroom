@@ -75,7 +75,7 @@
                 <ng-container *ngFor="let titulacion of listaTitulaciones">
                     <div class="col-md-1 divtitu" style="width: 14.25%;
                     flex: 0 0 14.25%;max-width: 14.25%;" *ngIf="titulacion.tipo=='Grado'">
-                        <img [src]="crearUrlTitulacion(titulacion.imagen)" (click)="busqueda(titulacion)" [alt]="titulacion.nombre" class="img-thumbnail rounded-circle micursor">
+                        <img [src]="crearUrlTitulacion(titulacion.imagen)" (click)="busquedatitu(titulacion)" [alt]="titulacion.nombre" class="img-thumbnail rounded-circle micursor">
                         <div class="nombretitu">{{titulacion.abreviatura}}</div>
                     </div>
                 </ng-container>

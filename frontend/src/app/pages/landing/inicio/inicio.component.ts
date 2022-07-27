@@ -70,7 +70,6 @@ export class InicioComponent implements OnInit {
     spaceBetween: 50,
     navigation: true,
     pagination: { clickable: true },
-    scrollbar: { draggable: true },
     breakpoints: {
       // when window width is >= 320px
       320: {

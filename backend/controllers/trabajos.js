@@ -181,7 +181,7 @@ const obtenerTrabajosAleatorios = async(req, res) => {
             ]);
         }
         let auxtrabajos = []; // auxiliar para elegir 10 trabajos aleatorios
-        var cantidadNumeros = 5;
+        var cantidadNumeros = 10;
         var cant = total;
         var myArray = [];
         while (myArray.length < cantidadNumeros) {

@@ -105,7 +105,7 @@ router.put('/af/:id', [ // agregar feedback trabajo denegado
 ], actualizarFeedbackTrabajo);
 
 router.put('/av/:id', [ // agregar valoracion
-    validarJWT,
+    // validarJWT,
     check('id', 'El identificador no es válido').isMongoId(),
     // campos que son opcionales que vengan pero que si vienen queremos validar el tipo
     validarCampos,
