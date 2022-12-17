@@ -1,6 +1,9 @@
 **Título:** Plataforma de visualización TFG/TFM
+
 **Autor:** Javier Marín Gómez
+
 **Tutor:** José Vicente Berná Martínez
+
 **Resumen:** Desde la EPS de la Universidad de Alicante se desea crear una plataforma que sirva de puente entre el sector
              profesional y el alumnado, a través de los trabajos fin de grado y fin de máster. La idea es desarrollar una
              plataforma en la que los alumnos pueda visibilizar sus trabajos y ponerlos a disposición de empresas y tejido
