@@ -1,6 +1,6 @@
 **Título:** Plataforma de visualización TFG/TFM
 
-**Autor:** Javier Marín Gómez
+**Autor:** Javier Martín Gómez
 
 **Tutor:** José Vicente Berná Martínez
 
